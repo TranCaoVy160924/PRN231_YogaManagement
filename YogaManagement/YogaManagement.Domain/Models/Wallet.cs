@@ -10,6 +10,6 @@ public class Wallet
     public int Id { get; set; }
     public double Balance { get; set; }
 
-    public int MemberShipId { get; set; }
-    public virtual Membership Membership { get; set; }
+    public int MemberId { get; set; }
+    public virtual Member Member { get; set; }
 }

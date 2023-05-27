@@ -22,6 +22,21 @@ namespace YogaManagement.Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CategoryMember", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MembersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoryId", "MembersId");
+
+                    b.HasIndex("MembersId");
+
+                    b.ToTable("CategoryMember");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -332,7 +347,7 @@ namespace YogaManagement.Database.Migrations
 
             modelBuilder.Entity("YogaManagement.Domain.Models.Enrollment", b =>
                 {
-                    b.Property<int>("MembershipId")
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<int>("CourseId")
@@ -347,14 +362,14 @@ namespace YogaManagement.Database.Migrations
                     b.Property<DateTime>("EnrollDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("MembershipId", "CourseId");
+                    b.HasKey("MemberId", "CourseId");
 
                     b.HasIndex("CourseId");
 
                     b.ToTable("Enrollments");
                 });
 
-            modelBuilder.Entity("YogaManagement.Domain.Models.Membership", b =>
+            modelBuilder.Entity("YogaManagement.Domain.Models.Member", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -370,7 +385,39 @@ namespace YogaManagement.Database.Migrations
                     b.HasIndex("AppUserId")
                         .IsUnique();
 
-                    b.ToTable("Memberships");
+                    b.ToTable("Members");
+                });
+
+            modelBuilder.Entity("YogaManagement.Domain.Models.TeacherEnrollment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TeacherProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("YogaClassId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeacherProfileId");
+
+                    b.HasIndex("YogaClassId");
+
+                    b.ToTable("TeacherEnrollments");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.TeacherProfile", b =>
@@ -431,12 +478,12 @@ namespace YogaManagement.Database.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("float");
 
-                    b.Property<int>("MemberShipId")
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MemberShipId")
+                    b.HasIndex("MemberId")
                         .IsUnique();
 
                     b.ToTable("Wallets");
@@ -463,16 +510,26 @@ namespace YogaManagement.Database.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("TeacherProfileId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
 
-                    b.HasIndex("TeacherProfileId");
-
                     b.ToTable("YogaClasses");
+                });
+
+            modelBuilder.Entity("CategoryMember", b =>
+                {
+                    b.HasOne("YogaManagement.Domain.Models.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YogaManagement.Domain.Models.Member", null)
+                        .WithMany()
+                        .HasForeignKey("MembersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -575,26 +632,45 @@ namespace YogaManagement.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("YogaManagement.Domain.Models.Membership", "Membership")
+                    b.HasOne("YogaManagement.Domain.Models.Member", "Member")
                         .WithMany()
-                        .HasForeignKey("MembershipId")
+                        .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
 
-                    b.Navigation("Membership");
+                    b.Navigation("Member");
                 });
 
-            modelBuilder.Entity("YogaManagement.Domain.Models.Membership", b =>
+            modelBuilder.Entity("YogaManagement.Domain.Models.Member", b =>
                 {
                     b.HasOne("YogaManagement.Domain.Models.AppUser", "AppUser")
-                        .WithOne("Membership")
-                        .HasForeignKey("YogaManagement.Domain.Models.Membership", "AppUserId")
+                        .WithOne("Member")
+                        .HasForeignKey("YogaManagement.Domain.Models.Member", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("YogaManagement.Domain.Models.TeacherEnrollment", b =>
+                {
+                    b.HasOne("YogaManagement.Domain.Models.TeacherProfile", "TeacherProfile")
+                        .WithMany("TeacherEnrollments")
+                        .HasForeignKey("TeacherProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YogaManagement.Domain.Models.YogaClass", "YogaClass")
+                        .WithMany("TeacherEnrollments")
+                        .HasForeignKey("YogaClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TeacherProfile");
+
+                    b.Navigation("YogaClass");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.TeacherProfile", b =>
@@ -610,13 +686,13 @@ namespace YogaManagement.Database.Migrations
 
             modelBuilder.Entity("YogaManagement.Domain.Models.Wallet", b =>
                 {
-                    b.HasOne("YogaManagement.Domain.Models.Membership", "Membership")
+                    b.HasOne("YogaManagement.Domain.Models.Member", "Member")
                         .WithOne("Wallet")
-                        .HasForeignKey("YogaManagement.Domain.Models.Wallet", "MemberShipId")
+                        .HasForeignKey("YogaManagement.Domain.Models.Wallet", "MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Membership");
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.YogaClass", b =>
@@ -627,18 +703,12 @@ namespace YogaManagement.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("YogaManagement.Domain.Models.TeacherProfile", "TeacherProfile")
-                        .WithMany("YogaClasses")
-                        .HasForeignKey("TeacherProfileId");
-
                     b.Navigation("Course");
-
-                    b.Navigation("TeacherProfile");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.AppUser", b =>
                 {
-                    b.Navigation("Membership");
+                    b.Navigation("Member");
 
                     b.Navigation("TeacherProfile");
                 });
@@ -653,14 +723,19 @@ namespace YogaManagement.Database.Migrations
                     b.Navigation("YogaClasses");
                 });
 
-            modelBuilder.Entity("YogaManagement.Domain.Models.Membership", b =>
+            modelBuilder.Entity("YogaManagement.Domain.Models.Member", b =>
                 {
                     b.Navigation("Wallet");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.TeacherProfile", b =>
                 {
-                    b.Navigation("YogaClasses");
+                    b.Navigation("TeacherEnrollments");
+                });
+
+            modelBuilder.Entity("YogaManagement.Domain.Models.YogaClass", b =>
+                {
+                    b.Navigation("TeacherEnrollments");
                 });
 #pragma warning restore 612, 618
         }

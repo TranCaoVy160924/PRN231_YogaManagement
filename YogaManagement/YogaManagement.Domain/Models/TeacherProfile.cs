@@ -12,6 +12,6 @@ public class TeacherProfile
     public int AppUserId { get; set; }
     public virtual AppUser AppUser { get; set; }
 
-    public virtual ICollection<YogaClass>? YogaClasses { get; set; }
+    public virtual ICollection<TeacherEnrollment>? TeacherEnrollments { get; set; }
     public virtual ICollection<TimeSlot>? AvailableSlot { get; set; }
 }

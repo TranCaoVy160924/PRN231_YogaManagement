@@ -29,7 +29,7 @@ public class YogaManagementDbContext : IdentityDbContext<AppUser, AppRole, int>
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Enrollment>()
-            .HasKey(sc => new { sc.MembershipId, sc.CourseId });
+            .HasKey(sc => new { sc.MemberId, sc.CourseId });
     }
 
     public DbSet<AppRole> AppRoles { get; set; }
@@ -37,9 +37,10 @@ public class YogaManagementDbContext : IdentityDbContext<AppUser, AppRole, int>
     public DbSet<Category> Categories { get; set; }
     public DbSet<Course> Courses { get; set; }
     public DbSet<Enrollment> Enrollments { get; set; }
-    public DbSet<Membership> Memberships { get; set; }
+    public DbSet<Member> Members { get; set; }
     public DbSet<TeacherProfile> TeacherProfiles { get; set; }
     public DbSet<TimeSlot> TimeSlots { get; set; }
     public DbSet<Wallet> Wallets { get; set; }
     public DbSet<YogaClass> YogaClasses { get; set; }
+    public DbSet<TeacherEnrollment> TeacherEnrollments { get; set; }
 }

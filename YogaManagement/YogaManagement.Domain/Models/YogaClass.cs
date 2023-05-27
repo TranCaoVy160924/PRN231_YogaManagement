@@ -13,6 +13,6 @@ public class YogaClass
     public bool Status { get; set; }
 
     public virtual Course Course { get; set; }
-    public virtual TeacherProfile? TeacherProfile { get; set; }
+    public virtual ICollection<TeacherEnrollment>? TeacherEnrollments { get; set; }
     public virtual ICollection<TimeSlot> TimeSlots { get; set; } 
 }

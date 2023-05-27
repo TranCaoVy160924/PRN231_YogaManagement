@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace YogaManagement.Domain.Models;
-public class Category
+public class TeacherEnrollment
 {
     public int Id { get; set; }
-    public string Name { get; set; }
     public bool IsActive { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
 
-    public virtual ICollection<Course> Courses { get; set; }
-    public virtual ICollection<Member> Members { get; set; }
+    public virtual TeacherProfile TeacherProfile { get; set; }
+    public virtual YogaClass YogaClass { get; set; }
 }

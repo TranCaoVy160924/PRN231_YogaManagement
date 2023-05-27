@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace YogaManagement.Domain.Models;
-public class Membership
+public class Member
 {
     public int Id { get; set; }
 
@@ -13,4 +13,5 @@ public class Membership
     public virtual AppUser AppUser { get; set; }
 
     public virtual Wallet? Wallet { get; set; }
+    public virtual ICollection<Category>? Category { get; set; }
 }

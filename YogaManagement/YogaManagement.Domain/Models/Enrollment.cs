@@ -11,8 +11,8 @@ public class Enrollment
     public double Discount { get; set; }
     public double Amount { get; set; }
 
-    public int MembershipId { get; set; }
-    public virtual Membership Membership { get; set; }
+    public int MemberId { get; set; }
+    public virtual Member Member { get; set; }
 
     public int CourseId { get; set; }
     public virtual Course Course { get; set; }
