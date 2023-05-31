@@ -12,5 +12,4 @@ public class Category
     public bool IsActive { get; set; }
 
     public virtual ICollection<Course> Courses { get; set; }
-    public virtual ICollection<Member> Members { get; set; }
 }

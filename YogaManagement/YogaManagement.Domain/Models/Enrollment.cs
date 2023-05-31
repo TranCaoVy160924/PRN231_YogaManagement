@@ -14,6 +14,6 @@ public class Enrollment
     public int MemberId { get; set; }
     public virtual Member Member { get; set; }
 
-    public int CourseId { get; set; }
-    public virtual Course Course { get; set; }
+    public int YogaClassId { get; set; }
+    public virtual YogaClass YogaClass { get; set; }
 }

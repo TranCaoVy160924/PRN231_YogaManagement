@@ -29,7 +29,7 @@ public class YogaManagementDbContext : IdentityDbContext<AppUser, AppRole, int>
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Enrollment>()
-            .HasKey(sc => new { sc.MemberId, sc.CourseId });
+            .HasKey(sc => new { sc.MemberId, sc.YogaClassId });
     }
 
     public DbSet<AppRole> AppRoles { get; set; }

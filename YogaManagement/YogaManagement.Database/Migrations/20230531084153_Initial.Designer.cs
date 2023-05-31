@@ -12,7 +12,7 @@ using YogaManagement.Database.EF;
 namespace YogaManagement.Database.Migrations
 {
     [DbContext(typeof(YogaManagementDbContext))]
-    [Migration("20230526155233_Initial")]
+    [Migration("20230531084153_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -24,21 +24,6 @@ namespace YogaManagement.Database.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CategoryMember", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MembersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoryId", "MembersId");
-
-                    b.HasIndex("MembersId");
-
-                    b.ToTable("CategoryMember");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
@@ -353,7 +338,7 @@ namespace YogaManagement.Database.Migrations
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CourseId")
+                    b.Property<int>("YogaClassId")
                         .HasColumnType("int");
 
                     b.Property<double>("Amount")
@@ -365,9 +350,9 @@ namespace YogaManagement.Database.Migrations
                     b.Property<DateTime>("EnrollDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("MemberId", "CourseId");
+                    b.HasKey("MemberId", "YogaClassId");
 
-                    b.HasIndex("CourseId");
+                    b.HasIndex("YogaClassId");
 
                     b.ToTable("Enrollments");
                 });
@@ -520,21 +505,6 @@ namespace YogaManagement.Database.Migrations
                     b.ToTable("YogaClasses");
                 });
 
-            modelBuilder.Entity("CategoryMember", b =>
-                {
-                    b.HasOne("YogaManagement.Domain.Models.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("YogaManagement.Domain.Models.Member", null)
-                        .WithMany()
-                        .HasForeignKey("MembersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("YogaManagement.Domain.Models.AppRole", null)
@@ -629,21 +599,21 @@ namespace YogaManagement.Database.Migrations
 
             modelBuilder.Entity("YogaManagement.Domain.Models.Enrollment", b =>
                 {
-                    b.HasOne("YogaManagement.Domain.Models.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("YogaManagement.Domain.Models.Member", "Member")
-                        .WithMany()
+                        .WithMany("Enrollments")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Course");
+                    b.HasOne("YogaManagement.Domain.Models.YogaClass", "YogaClass")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("YogaClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Member");
+
+                    b.Navigation("YogaClass");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.Member", b =>
@@ -728,6 +698,8 @@ namespace YogaManagement.Database.Migrations
 
             modelBuilder.Entity("YogaManagement.Domain.Models.Member", b =>
                 {
+                    b.Navigation("Enrollments");
+
                     b.Navigation("Wallet");
                 });
 
@@ -738,6 +710,8 @@ namespace YogaManagement.Database.Migrations
 
             modelBuilder.Entity("YogaManagement.Domain.Models.YogaClass", b =>
                 {
+                    b.Navigation("Enrollments");
+
                     b.Navigation("TeacherEnrollments");
                 });
 #pragma warning restore 612, 618

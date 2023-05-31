@@ -258,30 +258,6 @@ namespace YogaManagement.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CategoryMember",
-                columns: table => new
-                {
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    MembersId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CategoryMember", x => new { x.CategoryId, x.MembersId });
-                    table.ForeignKey(
-                        name: "FK_CategoryMember_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CategoryMember_Members_MembersId",
-                        column: x => x.MembersId,
-                        principalTable: "Members",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Wallets",
                 columns: table => new
                 {
@@ -326,33 +302,6 @@ namespace YogaManagement.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Enrollments",
-                columns: table => new
-                {
-                    MemberId = table.Column<int>(type: "int", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
-                    EnrollDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Discount = table.Column<double>(type: "float", nullable: false),
-                    Amount = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Enrollments", x => new { x.MemberId, x.CourseId });
-                    table.ForeignKey(
-                        name: "FK_Enrollments_Courses_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Courses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Enrollments_Members_MemberId",
-                        column: x => x.MemberId,
-                        principalTable: "Members",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "YogaClasses",
                 columns: table => new
                 {
@@ -370,6 +319,33 @@ namespace YogaManagement.Database.Migrations
                         name: "FK_YogaClasses_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Enrollments",
+                columns: table => new
+                {
+                    MemberId = table.Column<int>(type: "int", nullable: false),
+                    YogaClassId = table.Column<int>(type: "int", nullable: false),
+                    EnrollDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Discount = table.Column<double>(type: "float", nullable: false),
+                    Amount = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Enrollments", x => new { x.MemberId, x.YogaClassId });
+                    table.ForeignKey(
+                        name: "FK_Enrollments_Members_MemberId",
+                        column: x => x.MemberId,
+                        principalTable: "Members",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Enrollments_YogaClasses_YogaClassId",
+                        column: x => x.YogaClassId,
+                        principalTable: "YogaClasses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -467,19 +443,14 @@ namespace YogaManagement.Database.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryMember_MembersId",
-                table: "CategoryMember",
-                column: "MembersId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Courses_CategoryId",
                 table: "Courses",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enrollments_CourseId",
+                name: "IX_Enrollments_YogaClassId",
                 table: "Enrollments",
-                column: "CourseId");
+                column: "YogaClassId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Members_AppUserId",
@@ -542,9 +513,6 @@ namespace YogaManagement.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "CategoryMember");
 
             migrationBuilder.DropTable(
                 name: "Enrollments");
