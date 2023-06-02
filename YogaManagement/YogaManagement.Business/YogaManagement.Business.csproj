@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\YogaManagement.Database\YogaManagement.Database.csproj" />
+  </ItemGroup>
+
 </Project>
