@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YogaManagement.Domain", "Yo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YogaManagement.Business", "YogaManagement.Business\YogaManagement.Business.csproj", "{1346562B-D4E2-48F4-B46A-94EF304FC4CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YogaManagement.Contracts", "YogaManagement.Contracts\YogaManagement.Contracts.csproj", "{D2CAB9AA-B627-40DC-A4F6-296E8A80C226}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1346562B-D4E2-48F4-B46A-94EF304FC4CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1346562B-D4E2-48F4-B46A-94EF304FC4CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1346562B-D4E2-48F4-B46A-94EF304FC4CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2CAB9AA-B627-40DC-A4F6-296E8A80C226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2CAB9AA-B627-40DC-A4F6-296E8A80C226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2CAB9AA-B627-40DC-A4F6-296E8A80C226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2CAB9AA-B627-40DC-A4F6-296E8A80C226}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

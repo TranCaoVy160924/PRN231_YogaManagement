@@ -12,8 +12,8 @@ using YogaManagement.Database.EF;
 namespace YogaManagement.Database.Migrations
 {
     [DbContext(typeof(YogaManagementDbContext))]
-    [Migration("20230531084153_Initial")]
-    partial class Initial
+    [Migration("20230603152219_Inital")]
+    partial class Inital
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,6 +107,13 @@ namespace YogaManagement.Database.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 1
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -190,6 +197,36 @@ namespace YogaManagement.Database.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "MEMBER",
+                            Name = "Member",
+                            NormalizedName = "member"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "TEACHER",
+                            Name = "Teacger",
+                            NormalizedName = "teacher"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "STAFF",
+                            Name = "Staff",
+                            NormalizedName = "staff"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "ADMIN",
+                            Name = "Admin",
+                            NormalizedName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.AppUser", b =>
@@ -273,6 +310,28 @@ namespace YogaManagement.Database.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            Address = "HCM",
+                            ConcurrencyStamp = "ec391f48-f107-43fa-8d19-20a3c3e6c2ee",
+                            Email = "adminhcm@gmail.com",
+                            EmailConfirmed = true,
+                            Firstname = "Toan",
+                            Lastname = "Bach",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "adminhcm@gmail.com",
+                            NormalizedUserName = "1",
+                            PasswordHash = "AQAAAAIAAYagAAAAEH9jzwUhzsLgy6Q71CEvBNiXAt2XTYlRreCsGgWXNK2Vi+ZhPjx/4H1Cy7Zw3ixtlA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            Status = false,
+                            TwoFactorEnabled = false,
+                            UserName = "1"
+                        });
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.Category", b =>

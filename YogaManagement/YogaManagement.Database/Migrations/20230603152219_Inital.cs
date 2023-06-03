@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace YogaManagement.Database.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Inital : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -402,6 +404,27 @@ namespace YogaManagement.Database.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { 1, null, "MEMBER", "Member", "member" },
+                    { 2, null, "TEACHER", "Teacger", "teacher" },
+                    { 3, null, "STAFF", "Staff", "staff" },
+                    { 4, null, "ADMIN", "Admin", "admin" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Email", "EmailConfirmed", "Firstname", "Lastname", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UserName" },
+                values: new object[] { 1, 0, "HCM", "ec391f48-f107-43fa-8d19-20a3c3e6c2ee", "adminhcm@gmail.com", true, "Toan", "Bach", false, null, "adminhcm@gmail.com", "1", "AQAAAAIAAYagAAAAEH9jzwUhzsLgy6Q71CEvBNiXAt2XTYlRreCsGgWXNK2Vi+ZhPjx/4H1Cy7Zw3ixtlA==", null, false, "", false, false, "1" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { 1, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

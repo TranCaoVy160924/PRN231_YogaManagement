@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YogaManagement.Data.Extensions;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Database.EF;
@@ -27,9 +28,9 @@ public class YogaManagementDbContext : IdentityDbContext<AppUser, AppRole, int>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
         modelBuilder.Entity<Enrollment>()
             .HasKey(sc => new { sc.MemberId, sc.YogaClassId });
+        modelBuilder.Seed();
     }
 
     public DbSet<AppRole> AppRoles { get; set; }
