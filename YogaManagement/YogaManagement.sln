@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YogaManagement.Database", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YogaManagement.Domain", "YogaManagement.Domain\YogaManagement.Domain.csproj", "{B1A97686-ECC7-419F-B3FA-F8B93FB3FB81}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YogaManagement.Business", "YogaManagement.Business\YogaManagement.Business.csproj", "{F0316017-6907-4CE3-8C18-48AF8E993124}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YogaManagement.Business", "YogaManagement.Business\YogaManagement.Business.csproj", "{1346562B-D4E2-48F4-B46A-94EF304FC4CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{B1A97686-ECC7-419F-B3FA-F8B93FB3FB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1A97686-ECC7-419F-B3FA-F8B93FB3FB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1A97686-ECC7-419F-B3FA-F8B93FB3FB81}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F0316017-6907-4CE3-8C18-48AF8E993124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F0316017-6907-4CE3-8C18-48AF8E993124}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F0316017-6907-4CE3-8C18-48AF8E993124}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F0316017-6907-4CE3-8C18-48AF8E993124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1346562B-D4E2-48F4-B46A-94EF304FC4CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1346562B-D4E2-48F4-B46A-94EF304FC4CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1346562B-D4E2-48F4-B46A-94EF304FC4CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1346562B-D4E2-48F4-B46A-94EF304FC4CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
