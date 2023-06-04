@@ -56,7 +56,7 @@ public class AuthController : Controller
         }
         catch
         {
-            TempData["LoginErrorMessage"] = "Password or Username is invalid";
+            TempData["LoginErrorMessage"] = "Password or Email is invalid";
             return RedirectToAction("Login", "Auth");
         }
     }
