@@ -28,8 +28,5 @@ namespace YogaManagement.Contracts.Authority.Request
         [Required(ErrorMessage = "Please enter confirm password")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
-
-        [Required(ErrorMessage = "Please select role:")]
-        public bool IsFreelancer { get; set; }
     }
 }

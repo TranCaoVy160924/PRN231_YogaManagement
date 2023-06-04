@@ -76,7 +76,8 @@ public class AuthorityController : ControllerBase
                 fullFirstName += slice.ToString().ToLower();
             }
         }
-        string[] splitlastname = registerRequest.LastName.Trim().Split(' ');
+        //LASST NAME BUGGGY
+        string[] splitlastname = registerRequest.LastName.Trim().Split(separator: ' ');
         string fullLastName = "";
         foreach (string slice in splitlastname)
         {
@@ -98,12 +99,12 @@ public class AuthorityController : ControllerBase
             Email = registerRequest.Email,
             EmailConfirmed = true,
             SecurityStamp = string.Empty,
-            Address = "Hochiminh"
+            Address = "HCM"
         };
 
         var result = await _userManager.CreateAsync(user, registerRequest.Password);
         var resultRole = await _userManager
-            .AddToRoleAsync(user, registerRequest.IsFreelancer? "Freelancer" : "Business");
+            .AddToRoleAsync(user, role: "Member");
 
         if (result.Succeeded && resultRole.Succeeded)
         {

@@ -14,8 +14,8 @@ namespace YogaManagement.Client.RefitClient;
 
 public interface IAuthorityClient
 {
-    [Post("/Authority/")]
-    Task<UserResponse> RegisterAsync([Body] RegisterRequest registerRequest);
+    [Post("/Authority/auth")]
+    Task RegisterAsync([Body] RegisterRequest registerRequest);
     [Post("/Authority/auth/token")]
     Task<string> AuthenticateAsync([Body] LoginRequest loginRequest);
 }
