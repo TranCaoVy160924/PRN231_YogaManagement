@@ -42,10 +42,10 @@ public class AuthController : Controller
 
             // Http login
             JwtManager jwtManager = new JwtManager(token);
-            var claimsPrinciple = jwtManager.GetPriciples();
-            await HttpContext.SignInAsync(claimsPrinciple);
+            //var claimsPrinciple = jwtManager.GetPriciples();
+            //await HttpContext.SignInAsync(claimsPrinciple);
 
-            if (jwtManager.GetUserRole().Equals("User"))
+            if (jwtManager != null)
             {
                 return RedirectToAction("Index", "Home");
             }
