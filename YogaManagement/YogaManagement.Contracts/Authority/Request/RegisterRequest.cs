@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YogaManagement.Contracts.User.Request
+namespace YogaManagement.Contracts.Authority.Request
 {
     public class RegisterRequest
     {

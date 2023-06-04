@@ -11,10 +11,9 @@ using YogaManagement.Domain.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using YogaManagement.Contracts.User.Request;
 using YogaManagement.Application;
 
-namespace SteelanceX.Application.Controllers;
+namespace YogaManagement.Application.Controllers;
 [Route("api")]
 [ApiController]
 public class AuthorityController : ControllerBase
