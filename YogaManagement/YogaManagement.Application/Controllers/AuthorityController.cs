@@ -14,7 +14,7 @@ using System.Text;
 using YogaManagement.Application;
 
 namespace YogaManagement.Application.Controllers;
-[Route("api")]
+[Route("api/[controller]")]
 [ApiController]
 public class AuthorityController : ControllerBase
 {
@@ -27,7 +27,7 @@ public class AuthorityController : ControllerBase
         _config = config;
     }
 
-    [HttpPost("auth/token/")]
+    [HttpPost("auth/token")]
     public async Task<IActionResult> Authenticate([FromBody] LoginRequest request)
     {
         if (!ModelState.IsValid)

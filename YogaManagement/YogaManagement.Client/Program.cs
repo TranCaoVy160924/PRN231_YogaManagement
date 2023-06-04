@@ -19,7 +19,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-string baseUrl = "https://localhost:7186/api";
+string baseUrl = "https://localhost:44361/api";
 
 builder.Services.AddRefitClient<IAuthorityClient>()
     .ConfigureHttpClient(c => c.BaseAddress = new Uri(baseUrl));

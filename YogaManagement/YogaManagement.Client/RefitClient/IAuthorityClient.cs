@@ -16,6 +16,6 @@ public interface IAuthorityClient
 {
     [Post("/Authority/")]
     Task<UserResponse> RegisterAsync([Body] RegisterRequest registerRequest);
-    [Post("/Authority/auth/token/")]
+    [Post("/Authority/auth/token")]
     Task<string> AuthenticateAsync([Body] LoginRequest loginRequest);
 }

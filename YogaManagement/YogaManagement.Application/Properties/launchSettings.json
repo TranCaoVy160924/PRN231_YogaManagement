@@ -1,22 +1,48 @@
 {
   "profiles": {
-    "YogaManagement.Application": {
+    "http": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:7186;http://localhost:50456"
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5192"
     },
-    "WSL": {
-      "commandName": "WSL2",
+    "https": {
+      "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:50455",
+      "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "https://localhost:50455;http://localhost:50456"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "distributionName": ""
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7150;http://localhost:5192"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:27113",
+      "sslPort": 44361
     }
   }
 }

@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YogaManagement.Business", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YogaManagement.Contracts", "YogaManagement.Contracts\YogaManagement.Contracts.csproj", "{D2CAB9AA-B627-40DC-A4F6-296E8A80C226}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YogaManagement.Client", "YogaManagement.Client\YogaManagement.Client.csproj", "{2683588D-2289-4900-BA23-36A44BBD0EA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YogaManagement.Client", "YogaManagement.Client\YogaManagement.Client.csproj", "{2683588D-2289-4900-BA23-36A44BBD0EA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
