@@ -12,8 +12,8 @@ using YogaManagement.Database.EF;
 namespace YogaManagement.Database.Migrations
 {
     [DbContext(typeof(YogaManagementDbContext))]
-    [Migration("20230603152219_Inital")]
-    partial class Inital
+    [Migration("20230605042638_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -210,7 +210,7 @@ namespace YogaManagement.Database.Migrations
                         {
                             Id = 2,
                             Description = "TEACHER",
-                            Name = "Teacger",
+                            Name = "Teacher",
                             NormalizedName = "teacher"
                         },
                         new
@@ -317,7 +317,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "ec391f48-f107-43fa-8d19-20a3c3e6c2ee",
+                            ConcurrencyStamp = "de3f08c9-ab9b-4bf3-a992-a172367aa182",
                             Email = "adminhcm@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Toan",
@@ -325,7 +325,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "adminhcm@gmail.com",
                             NormalizedUserName = "1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEH9jzwUhzsLgy6Q71CEvBNiXAt2XTYlRreCsGgWXNK2Vi+ZhPjx/4H1Cy7Zw3ixtlA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMsjLMKTlM3zNygDltQTJZErF2h1Sl9nQC0oSYWWDrz7w/QFynVsqkzrGaslCEIKRQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = false,
@@ -435,6 +435,25 @@ namespace YogaManagement.Database.Migrations
                     b.ToTable("Members");
                 });
 
+            modelBuilder.Entity("YogaManagement.Domain.Models.SystemWallet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Balance")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SystemWallet");
+                });
+
             modelBuilder.Entity("YogaManagement.Domain.Models.TeacherEnrollment", b =>
                 {
                     b.Property<int>("Id")
@@ -512,6 +531,33 @@ namespace YogaManagement.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TimeSlots");
+                });
+
+            modelBuilder.Entity("YogaManagement.Domain.Models.Transaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TransactionType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WalletId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WalletId");
+
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.Wallet", b =>
@@ -716,6 +762,17 @@ namespace YogaManagement.Database.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("YogaManagement.Domain.Models.Transaction", b =>
+                {
+                    b.HasOne("YogaManagement.Domain.Models.Wallet", "Wallet")
+                        .WithMany("Transactions")
+                        .HasForeignKey("WalletId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Wallet");
+                });
+
             modelBuilder.Entity("YogaManagement.Domain.Models.Wallet", b =>
                 {
                     b.HasOne("YogaManagement.Domain.Models.Member", "Member")
@@ -765,6 +822,11 @@ namespace YogaManagement.Database.Migrations
             modelBuilder.Entity("YogaManagement.Domain.Models.TeacherProfile", b =>
                 {
                     b.Navigation("TeacherEnrollments");
+                });
+
+            modelBuilder.Entity("YogaManagement.Domain.Models.Wallet", b =>
+                {
+                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.YogaClass", b =>

@@ -44,4 +44,6 @@ public class YogaManagementDbContext : IdentityDbContext<AppUser, AppRole, int>
     public DbSet<Wallet> Wallets { get; set; }
     public DbSet<YogaClass> YogaClasses { get; set; }
     public DbSet<TeacherEnrollment> TeacherEnrollments { get; set; }
+    public DbSet<Transaction> Transactions { get; set; }
+    public DbSet<SystemWallet> SystemWallet { get; set; }
 }

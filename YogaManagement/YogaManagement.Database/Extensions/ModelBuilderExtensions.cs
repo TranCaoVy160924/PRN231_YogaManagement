@@ -28,7 +28,7 @@ public static class ModelBuilderExtensions
         modelBuilder.Entity<AppRole>().HasData(new AppRole
         {
             Id = teacherRoleId,
-            Name = "Teacger",
+            Name = "Teacher",
             NormalizedName = "teacher",
             Description = "TEACHER"
         });

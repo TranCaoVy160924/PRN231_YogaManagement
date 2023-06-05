@@ -15,6 +15,7 @@ public class Course
     public DateTime EnddDate { get; set; }
     public bool IsActive { get; set; }
 
+    public int CategoryId { get; set; }
     public virtual Category Category { get; set; }
     public virtual ICollection<YogaClass> YogaClasses { get; set; }
 }

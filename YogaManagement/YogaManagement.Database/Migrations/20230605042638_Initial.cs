@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace YogaManagement.Database.Migrations
 {
     /// <inheritdoc />
-    public partial class Inital : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -71,6 +71,20 @@ namespace YogaManagement.Database.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SystemWallet",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Balance = table.Column<double>(type: "float", nullable: false),
+                    LastUpdated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SystemWallet", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -326,6 +340,28 @@ namespace YogaManagement.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Transactions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Amount = table.Column<double>(type: "float", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TransactionType = table.Column<int>(type: "int", nullable: false),
+                    WalletId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Wallets_WalletId",
+                        column: x => x.WalletId,
+                        principalTable: "Wallets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Enrollments",
                 columns: table => new
                 {
@@ -411,7 +447,7 @@ namespace YogaManagement.Database.Migrations
                 values: new object[,]
                 {
                     { 1, null, "MEMBER", "Member", "member" },
-                    { 2, null, "TEACHER", "Teacger", "teacher" },
+                    { 2, null, "TEACHER", "Teacher", "teacher" },
                     { 3, null, "STAFF", "Staff", "staff" },
                     { 4, null, "ADMIN", "Admin", "admin" }
                 });
@@ -419,7 +455,7 @@ namespace YogaManagement.Database.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Email", "EmailConfirmed", "Firstname", "Lastname", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "HCM", "ec391f48-f107-43fa-8d19-20a3c3e6c2ee", "adminhcm@gmail.com", true, "Toan", "Bach", false, null, "adminhcm@gmail.com", "1", "AQAAAAIAAYagAAAAEH9jzwUhzsLgy6Q71CEvBNiXAt2XTYlRreCsGgWXNK2Vi+ZhPjx/4H1Cy7Zw3ixtlA==", null, false, "", false, false, "1" });
+                values: new object[] { 1, 0, "HCM", "de3f08c9-ab9b-4bf3-a992-a172367aa182", "adminhcm@gmail.com", true, "Toan", "Bach", false, null, "adminhcm@gmail.com", "1", "AQAAAAIAAYagAAAAEMsjLMKTlM3zNygDltQTJZErF2h1Sl9nQC0oSYWWDrz7w/QFynVsqkzrGaslCEIKRQ==", null, false, "", false, false, "1" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -508,6 +544,11 @@ namespace YogaManagement.Database.Migrations
                 column: "YogaClassesId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Transactions_WalletId",
+                table: "Transactions",
+                column: "WalletId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Wallets_MemberId",
                 table: "Wallets",
                 column: "MemberId",
@@ -541,6 +582,9 @@ namespace YogaManagement.Database.Migrations
                 name: "Enrollments");
 
             migrationBuilder.DropTable(
+                name: "SystemWallet");
+
+            migrationBuilder.DropTable(
                 name: "TeacherEnrollments");
 
             migrationBuilder.DropTable(
@@ -550,7 +594,7 @@ namespace YogaManagement.Database.Migrations
                 name: "TimeSlotYogaClass");
 
             migrationBuilder.DropTable(
-                name: "Wallets");
+                name: "Transactions");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -565,16 +609,19 @@ namespace YogaManagement.Database.Migrations
                 name: "YogaClasses");
 
             migrationBuilder.DropTable(
-                name: "Members");
+                name: "Wallets");
 
             migrationBuilder.DropTable(
                 name: "Courses");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Members");
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }
