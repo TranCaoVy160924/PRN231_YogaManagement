@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
+using YogaManagement.Application.MapperConfig;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
 
@@ -15,6 +17,8 @@ builder.Services.AddScoped<YogaManagementDbContext>();
 builder.Services.AddIdentity<AppUser, AppRole>()
     .AddEntityFrameworkStores<YogaManagementDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MapperProfile)));
 
 //password policy configuration
 builder.Services.Configure<IdentityOptions>(options =>
