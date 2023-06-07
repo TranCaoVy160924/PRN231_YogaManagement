@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace YogaManagement.Domain.Models;
+﻿namespace YogaManagement.Domain.Models;
 public class YogaClass
 {
     public int Id { get; set; }
@@ -16,5 +10,5 @@ public class YogaClass
     public virtual Course Course { get; set; }
     public virtual ICollection<TeacherEnrollment>? TeacherEnrollments { get; set; }
     public virtual ICollection<Enrollment>? Enrollments { get; set; }
-    public virtual ICollection<TimeSlot> TimeSlots { get; set; } 
+    public virtual ICollection<TimeSlot> TimeSlots { get; set; }
 }

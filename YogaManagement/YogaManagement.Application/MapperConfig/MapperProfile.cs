@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using AutoMapper.Execution;
+using YogaManagement.Contracts.Authority.Response;
 using YogaManagement.Domain.Models;
-using YogaManagement.Contracts.Member.Response;
 
 namespace YogaManagement.Application.MapperConfig;
 
@@ -9,9 +8,24 @@ public class MapperProfile : Profile
 {
     public MapperProfile()
     {
-        #region Member
-        CreateMap<Domain.Models.Member, MemberResponse>()
-            .ForMember(dest => dest.AppUserName, opt => opt.MapFrom(src => src.AppUser.UserName));
+        #region AppUser
+        CreateMap<Domain.Models.AppUser, UserResponse>()
+            .ForMember(dest => dest.Role, opt => opt.MapFrom(src => GetUserRoleName(src)));
         #endregion
+    }
+
+    private static string GetUserRoleName(AppUser user)
+    {
+        string role = "Staff";
+        if (user.TeacherProfile != null)
+        {
+            role = "Teacher";
+        }
+        if (user.Member != null)
+        {
+            role = "Member";
+        }
+
+        return role;
     }
 }

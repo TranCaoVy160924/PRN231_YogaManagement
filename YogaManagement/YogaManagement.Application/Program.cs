@@ -1,16 +1,19 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
-using System.Net;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using YogaManagement.Application.MapperConfig;
+using YogaManagement.Application.Utilities;
 using YogaManagement.Business.Repositories;
-using YogaManagement.Contracts.Member.Response;
+using YogaManagement.Contracts.Authority.Request;
+using YogaManagement.Contracts.Authority.Response;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
 
@@ -25,7 +28,11 @@ builder.Services.AddIdentity<AppUser, AppRole>()
     .AddEntityFrameworkStores<YogaManagementDbContext>()
     .AddDefaultTokenProviders();
 
+// Repository
 builder.Services.AddScoped<MemberRepository>();
+
+// Utilities
+builder.Services.AddSingleton<JwtHelper>();
 
 builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MapperProfile)));
 
@@ -142,8 +149,17 @@ app.Run();
 static IEdmModel GetEdmModel()
 {
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-    var members = builder.EntitySet<Member>("Members");
-    members.EntityType.Collection.Function("Get").Returns<MemberResponse>();
+
+    #region AppUser
+    var appUsers = builder.EntitySet<AppUser>("Users").EntityType;
+    appUsers.Collection.Function("Get").Returns<UserResponse>();
+    appUsers.Function("Get").Returns<UserResponse>();
+
+    builder.EntityType<RegisterRequest>();
+    appUsers.Action("RegisterStaff").Parameter<RegisterRequest>("request");
+    appUsers.Collection.Action("RegisterStaff").Parameter<RegisterRequest>("request");
+
+    #endregion
 
     return builder.GetEdmModel();
 }

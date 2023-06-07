@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using YogaManagement.Domain.Models;
-using System;
 
 namespace YogaManagement.Data.Extensions;
 public static class ModelBuilderExtensions

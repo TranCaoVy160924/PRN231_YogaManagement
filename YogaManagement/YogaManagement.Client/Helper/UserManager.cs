@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 
 namespace YogaManagement.Client.Helper;
 
