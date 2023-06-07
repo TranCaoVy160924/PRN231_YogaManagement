@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
 using System.Reflection.Metadata;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Member.Response;
@@ -20,23 +22,25 @@ public class MembersController : ODataController
         _memberRepo = memberRepo;
         _mapper = mapper;
     }
+
     [EnableQuery]
     public ActionResult<IQueryable<Member>> Get()
     {
-        return Ok(_memberRepo.GetAll());
+        return Ok(_mapper.ProjectTo<MemberResponse>(_memberRepo.GetAll()));
     }
 
     [EnableQuery]
-    public ActionResult<Member> Get([FromRoute] int key)
+    public ActionResult<MemberResponse> Get([FromRoute] int key)
     {
         var member = _memberRepo.GetAll()
-            .SingleOrDefault(d => d.Id.Equals(key));
+            //.SingleOrDefault(m => m.Id == key);
+            .Where(m => m.Id == key);
 
         if (member == null)
         {
             return NotFound();
         }
 
-        return Ok(member);
+        return Ok(_mapper.ProjectTo<MemberResponse>(member));
     }
 }

@@ -9,8 +9,5 @@ public class MemberResponse
 {
     public int Id { get; set; }
 
-    public int AppUserId { get; set; }
-
-    public List<int> Enrollments { get; set; }
-    //public string AppUserName { get; set; }
+    public string AppUserName { get; set; }
 }

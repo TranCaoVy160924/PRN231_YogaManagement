@@ -143,7 +143,7 @@ static IEdmModel GetEdmModel()
 {
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
     var members = builder.EntitySet<Member>("Members");
-    //members.EntityType.Collection.Function("Get").Returns<Member>();
+    members.EntityType.Collection.Function("Get").Returns<MemberResponse>();
 
     return builder.GetEdmModel();
 }
