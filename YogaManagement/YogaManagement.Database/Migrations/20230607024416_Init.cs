@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace YogaManagement.Database.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -455,11 +455,16 @@ namespace YogaManagement.Database.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Email", "EmailConfirmed", "Firstname", "Lastname", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "HCM", "de3f08c9-ab9b-4bf3-a992-a172367aa182", "adminhcm@gmail.com", true, "Toan", "Bach", false, null, "adminhcm@gmail.com", "1", "AQAAAAIAAYagAAAAEMsjLMKTlM3zNygDltQTJZErF2h1Sl9nQC0oSYWWDrz7w/QFynVsqkzrGaslCEIKRQ==", null, false, "", false, false, "1" });
+                values: new object[] { 1, 0, "HCM", "4fcc6a8a-9c1a-4010-be27-b408a15abfdb", "adminhcm@gmail.com", true, "Toan", "Bach", false, null, "adminhcm@gmail.com", "1", "AQAAAAIAAYagAAAAELL7v7b1VornO8DDQHEkTZ8HUCPxTx/CRDrEZJYo4NYonuJNrZTChT+H+bt+pftSyA==", null, false, "", false, false, "1" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
+                values: new object[] { 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Members",
+                columns: new[] { "Id", "AppUserId" },
                 values: new object[] { 1, 1 });
 
             migrationBuilder.CreateIndex(

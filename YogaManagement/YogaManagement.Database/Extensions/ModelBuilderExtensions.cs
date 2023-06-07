@@ -69,5 +69,11 @@ public static class ModelBuilderExtensions
             RoleId = memberRoleId,
             UserId = 1
         });
+
+        modelBuilder.Entity<Member>().HasData(new Member
+        {
+            Id = 1,
+            AppUserId = 1
+        });
     }
 }
