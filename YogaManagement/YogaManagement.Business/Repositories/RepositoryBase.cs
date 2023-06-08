@@ -24,6 +24,8 @@ public abstract class RepositoryBase<T> where T : class
         return Data.AsQueryable();
     }
 
+    public async Task<T> Get(int id) => await Data.FindAsync(id);
+
     public async Task CreateAsync(T entity)
     {
         _dbContext.Add(entity);

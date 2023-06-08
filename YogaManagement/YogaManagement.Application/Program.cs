@@ -1,9 +1,18 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.OData;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using System.Text.Json.Serialization;
 using YogaManagement.Application.MapperConfig;
+using YogaManagement.Business.Repositories;
+using YogaManagement.Contracts.Authority.Request;
+using YogaManagement.Contracts.Authority.Response;
+using YogaManagement.Contracts.YogaClass.Request;
+using YogaManagement.Contracts.YogaClass.Response;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
 
@@ -18,7 +27,17 @@ builder.Services.AddIdentity<AppUser, AppRole>()
     .AddEntityFrameworkStores<YogaManagementDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.AddScoped<YogaClassRepository>();
+
 builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MapperProfile)));
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+}).AddOData(options => options.Select().Filter().Count()
+    .OrderBy().Expand().SetMaxTop(100)
+    .AddRouteComponents("odata", GetEdmModel()));
+
 
 //password policy configuration
 builder.Services.Configure<IdentityOptions>(options =>
@@ -122,3 +141,18 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+static IEdmModel GetEdmModel()
+{
+    ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+
+    var ygclasses = builder.EntitySet<YogaClass>("YogaClasses").EntityType;
+    ygclasses.Collection.Function("Get").Returns<YogaClassResponse>();
+    ygclasses.Function("Get").Returns<YogaClassResponse>();
+
+    builder.EntityType<YogaClassCreateRequest>();
+    ygclasses.Action("Post").Parameter<YogaClassCreateRequest>("ygclassrequest");
+    ygclasses.Action("Put").Parameter<YogaClassCreateRequest>("ygclassrequest");
+
+    return builder.GetEdmModel();
+}
