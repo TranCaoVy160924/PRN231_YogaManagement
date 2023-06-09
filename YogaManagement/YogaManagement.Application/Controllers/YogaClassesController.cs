@@ -11,8 +11,8 @@ using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
 
-[ApiController]
-[Route("[controller]")]
+//[ApiController]
+//[Route("[controller]")]
 public class YogaClassesController : ODataController
 {
     private readonly IMapper _mapper;
