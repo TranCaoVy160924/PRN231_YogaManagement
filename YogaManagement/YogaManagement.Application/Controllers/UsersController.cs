@@ -45,7 +45,7 @@ public class UsersController : ODataController
         return Ok(_mapper.Map<UserResponse>(member));
     }
 
-    [HttpPost("auth/token")]
+    [HttpPost("auth")]
     public async Task<IActionResult> Authenticate([FromBody] LoginRequest request)
     {
         if (!ModelState.IsValid)
@@ -71,7 +71,6 @@ public class UsersController : ODataController
         return Ok(new LoginResponse { Token = _jwtHelper.CreateToken(user, request.Email, role), Role = role });
     }
 
-    //[HttpPost("auth")]
     public async Task<IActionResult> Post(RegisterRequest registerRequest)
     {
         if (!ModelState.IsValid)
@@ -111,7 +110,7 @@ public class UsersController : ODataController
         return BadRequest("Create user unsuccessfully!");
     }
 
-    [HttpPost]
+    [HttpPost("staff")]
     public async Task<IActionResult> RegisterStaff(ODataActionParameters parameters)
     {
         parameters.TryGetValue("request", out object request);

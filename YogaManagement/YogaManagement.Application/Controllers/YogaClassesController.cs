@@ -17,7 +17,7 @@ public class YogaClassesController : ODataController
 {
     private readonly IMapper _mapper;
     private readonly YogaClassRepository _ygclassrepo;
-    
+
     public YogaClassesController(YogaClassRepository yogaClassRepository, IMapper mapper)
     {
         _mapper = mapper;
@@ -63,11 +63,11 @@ public class YogaClassesController : ODataController
                 await _ygclassrepo.CreateAsync(newygclass);
                 return NoContent();
             }
-        }catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             return BadRequest(ex.Message);
         }
-        
     }
 
     [HttpPut("update")]
@@ -123,5 +123,4 @@ public class YogaClassesController : ODataController
             return BadRequest(ex.Message);
         }
     }
-
 }

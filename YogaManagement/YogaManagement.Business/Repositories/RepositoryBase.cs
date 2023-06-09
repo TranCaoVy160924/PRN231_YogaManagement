@@ -14,10 +14,7 @@ public abstract class RepositoryBase<T> where T : class
         Data = _dbContext.Set<T>();
     }
 
-    public IQueryable<T> GetAll()
-    {
-        return Data.AsQueryable();
-    }
+    public IQueryable<T> GetAll() => Data.AsQueryable();
 
     public async Task<T> Get(int id) => await Data.FindAsync(id);
 
