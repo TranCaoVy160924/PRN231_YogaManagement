@@ -30,10 +30,10 @@ public class YogaClassesController : ODataController
         return Ok(_mapper.ProjectTo<YogaClassResponse>(_ygclassrepo.GetAll()));
     }
 
-    [EnableQuery]
-    public async Task<ActionResult<YogaClassResponse>> Get([FromRoute] int id)
+    [HttpGet("{key}")]
+    public async Task<ActionResult<YogaClassResponse>> Get([FromRoute] int key)
     {     
-        var ygclass = await _ygclassrepo.Get(id);
+        var ygclass = await _ygclassrepo.Get(key);
 
         if (ygclass == null)
         {
@@ -43,13 +43,18 @@ public class YogaClassesController : ODataController
         return Ok(_mapper.Map<YogaClassResponse>(ygclass));
     }
 
+    [HttpPost("create")]
     public async Task<IActionResult> Post([FromBody] YogaClassCreateRequest ygclassrequest)
     {
         try
         {
             if (!ModelState.IsValid)
             {
-                throw new Exception("Some fields might be inputted wrong format");
+                var errorMessages = ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+                throw new Exception($"Invalid input format. Errors: {string.Join(", ", errorMessages)}");
             }
             else
             {
@@ -65,35 +70,44 @@ public class YogaClassesController : ODataController
         
     }
 
-    public async Task<IActionResult> Put([FromBody] YogaClassCreateRequest ygclassrequest, [FromRoute] int id)
+    [HttpPut("update")]
+    public async Task<IActionResult> Put([FromBody] YogaClassCreateRequest ygclassrequest, int key)
     {
-        var existclass = await _ygclassrepo.Get(id); 
+        var existclass = await _ygclassrepo.Get(key);
         if (existclass == null)
         {
             return NotFound();
         }
-        try
+        else
         {
-            if (!ModelState.IsValid)
+            try
             {
-                throw new Exception("Some fields might be inputted wrong format");
+                if (!ModelState.IsValid)
+                {
+                    var errorMessages = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                    throw new Exception($"Invalid input format. Errors: {string.Join(", ", errorMessages)}");
+                }
+                else
+                {
+                    var newygclass = _mapper.Map(ygclassrequest, existclass);
+                    await _ygclassrepo.UpdateAsync(newygclass);
+                    return NoContent();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var newygclass = _mapper.Map<YogaClass>(ygclassrequest);
-                await _ygclassrepo.UpdateAsync(newygclass);
-                return NoContent();
+                return BadRequest(ex.Message);
             }
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
         }
     }
-    
-    public async Task<IActionResult> Delete([FromRoute] int id)
+
+    [HttpDelete("delete")]
+    public async Task<IActionResult> Delete(int key)
     {
-        var existclass = await _ygclassrepo.Get(id);
+        var existclass = await _ygclassrepo.Get(key);
         if(existclass == null)
         {
             return NotFound();

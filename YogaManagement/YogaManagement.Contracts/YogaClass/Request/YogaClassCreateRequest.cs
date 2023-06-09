@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace YogaManagement.Contracts.YogaClass.Request;
 public class YogaClassCreateRequest
 {

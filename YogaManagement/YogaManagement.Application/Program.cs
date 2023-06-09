@@ -39,12 +39,12 @@ builder.Services.AddSingleton<JwtHelper>();
 
 builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MapperProfile)));
 
-//builder.Services.AddControllers().AddJsonOptions(options =>
-//{
-//    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-//}).AddOData(options => options.Select().Filter().Count()
-//    .OrderBy().Expand().SetMaxTop(100)
-//    .AddRouteComponents("odata", GetEdmModel()));
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+}).AddOData(options => options.Select().Filter().Count()
+    .OrderBy().Expand().SetMaxTop(100)
+    .AddRouteComponents("odata", GetEdmModel()));
 
 //password policy configuration
 builder.Services.Configure<IdentityOptions>(options =>
@@ -159,6 +159,7 @@ static IEdmModel GetEdmModel()
 
     builder.EntityType<YogaClassCreateRequest>();
     ygclasses.Action("Post").Parameter<YogaClassCreateRequest>("ygclassrequest");
+    ygclasses.Collection.Action("Post").Parameter<YogaClassCreateRequest>("ygclassrequest");
     ygclasses.Action("Put").Parameter<YogaClassCreateRequest>("ygclassrequest");
 
     #region AppUser
