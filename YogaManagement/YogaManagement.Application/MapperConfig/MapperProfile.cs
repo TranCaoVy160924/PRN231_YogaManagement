@@ -10,17 +10,14 @@ public class MapperProfile : Profile
 {
     public MapperProfile()
     {
-        //#region Job
-        //CreateMap<Job, JobResponse>()
-        //    .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src.Categories.Select(c => c.CategoryId)))
-        //    .ForMember(dest => dest.BusinessName, opt => opt.MapFrom(src => src.BusinessProfile.BusinessName));
-        //#endregion
+        #region YogaClass
         CreateMap<YogaClassCreateRequest, YogaClass>();
         CreateMap<YogaClass, YogaClassResponse>().ForMember(dest => dest.CourseName, otp =>
         {
             otp.MapFrom(src => src.Course.Name);
         });
-        
+        #endregion
+
         #region AppUser
         CreateMap<Domain.Models.AppUser, UserResponse>()
             .ForMember(dest => dest.Role, opt => opt.MapFrom(src => GetUserRoleName(src)));

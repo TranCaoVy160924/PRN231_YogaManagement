@@ -153,6 +153,7 @@ static IEdmModel GetEdmModel()
 {
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
 
+    #region Yogaclass
     var ygclasses = builder.EntitySet<YogaClass>("YogaClasses").EntityType;
     ygclasses.Collection.Function("Get").Returns<YogaClassResponse>();
     ygclasses.Function("Get").Returns<YogaClassResponse>();
@@ -160,6 +161,7 @@ static IEdmModel GetEdmModel()
     builder.EntityType<YogaClassCreateRequest>();
     ygclasses.Action("Post").Parameter<YogaClassCreateRequest>("ygclassrequest");
     ygclasses.Action("Put").Parameter<YogaClassCreateRequest>("ygclassrequest");
+    #endregion
 
     #region AppUser
     var appUsers = builder.EntitySet<AppUser>("Users").EntityType;

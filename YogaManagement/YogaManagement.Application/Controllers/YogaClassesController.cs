@@ -10,14 +10,11 @@ using YogaManagement.Contracts.YogaClass.Response;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
-
-[ApiController]
-[Route("[controller]")]
 public class YogaClassesController : ODataController
 {
     private readonly IMapper _mapper;
     private readonly YogaClassRepository _ygclassrepo;
-    
+
     public YogaClassesController(YogaClassRepository yogaClassRepository, IMapper mapper)
     {
         _mapper = mapper;
@@ -31,9 +28,9 @@ public class YogaClassesController : ODataController
     }
 
     [EnableQuery]
-    public async Task<ActionResult<YogaClassResponse>> Get([FromRoute] int id)
-    {     
-        var ygclass = await _ygclassrepo.Get(id);
+    public async Task<ActionResult<YogaClassResponse>> Get([FromRoute] int key)
+    {
+        var ygclass = await _ygclassrepo.Get(key);
 
         if (ygclass == null)
         {
@@ -58,16 +55,16 @@ public class YogaClassesController : ODataController
                 await _ygclassrepo.CreateAsync(newygclass);
                 return NoContent();
             }
-        }catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             return BadRequest(ex.Message);
         }
-        
     }
 
     public async Task<IActionResult> Put([FromBody] YogaClassCreateRequest ygclassrequest, [FromRoute] int id)
     {
-        var existclass = await _ygclassrepo.Get(id); 
+        var existclass = await _ygclassrepo.Get(id);
         if (existclass == null)
         {
             return NotFound();
@@ -90,11 +87,11 @@ public class YogaClassesController : ODataController
             return BadRequest(ex.Message);
         }
     }
-    
+
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
         var existclass = await _ygclassrepo.Get(id);
-        if(existclass == null)
+        if (existclass == null)
         {
             return NotFound();
         }
@@ -109,5 +106,4 @@ public class YogaClassesController : ODataController
             return BadRequest(ex.Message);
         }
     }
-
 }
