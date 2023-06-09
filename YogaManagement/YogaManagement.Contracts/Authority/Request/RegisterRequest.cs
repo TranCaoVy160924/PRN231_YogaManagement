@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace YogaManagement.Contracts.Authority.Request
 {
@@ -20,6 +15,9 @@ namespace YogaManagement.Contracts.Authority.Request
         [Required(ErrorMessage = "Please enter email")]
         [EmailAddress]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Please enter address")]
+        public string Address { get; set; }
 
         [Required(ErrorMessage = "Please enter password")]
         [DataType(DataType.Password)]

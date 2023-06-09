@@ -33,6 +33,7 @@
 	  <ProjectReference Include="..\YogaManagement.Business\YogaManagement.Business.csproj" />
 	  <ProjectReference Include="..\YogaManagement.Contracts\YogaManagement.Contracts.csproj" />
 	  <ProjectReference Include="..\YogaManagement.Database\YogaManagement.Database.csproj" />
+	  <ProjectReference Include="..\YogaManagement.Domain\YogaManagement.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -314,7 +314,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "de3f08c9-ab9b-4bf3-a992-a172367aa182",
+                            ConcurrencyStamp = "4fcc6a8a-9c1a-4010-be27-b408a15abfdb",
                             Email = "adminhcm@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Toan",
@@ -322,7 +322,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "adminhcm@gmail.com",
                             NormalizedUserName = "1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMsjLMKTlM3zNygDltQTJZErF2h1Sl9nQC0oSYWWDrz7w/QFynVsqkzrGaslCEIKRQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELL7v7b1VornO8DDQHEkTZ8HUCPxTx/CRDrEZJYo4NYonuJNrZTChT+H+bt+pftSyA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = false,
@@ -430,6 +430,13 @@ namespace YogaManagement.Database.Migrations
                         .IsUnique();
 
                     b.ToTable("Members");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AppUserId = 1
+                        });
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.SystemWallet", b =>

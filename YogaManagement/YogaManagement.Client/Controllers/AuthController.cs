@@ -1,12 +1,8 @@
-﻿using YogaManagement.Domain.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using Refit;
-using System.Security.Claims;
-using YogaManagement.Contracts.Authority.Request;
-using YogaManagement.Client.RefitClient;
 using YogaManagement.Client.Helper;
+using YogaManagement.Client.RefitClient;
+using YogaManagement.Contracts.Authority.Request;
 
 namespace EbookStore.Client.Controllers;
 public class AuthController : Controller

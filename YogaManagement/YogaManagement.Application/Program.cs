@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
@@ -13,6 +15,7 @@ using YogaManagement.Contracts.Authority.Request;
 using YogaManagement.Contracts.Authority.Response;
 using YogaManagement.Contracts.YogaClass.Request;
 using YogaManagement.Contracts.YogaClass.Response;
+using YogaManagement.Application.Utilities;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
 
@@ -28,6 +31,11 @@ builder.Services.AddIdentity<AppUser, AppRole>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<YogaClassRepository>();
+// Repository
+builder.Services.AddScoped<MemberRepository>();
+
+// Utilities
+builder.Services.AddSingleton<JwtHelper>();
 
 builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MapperProfile)));
 
@@ -37,7 +45,6 @@ builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MapperProfile)));
 //}).AddOData(options => options.Select().Filter().Count()
 //    .OrderBy().Expand().SetMaxTop(100)
 //    .AddRouteComponents("odata", GetEdmModel()));
-
 
 //password policy configuration
 builder.Services.Configure<IdentityOptions>(options =>
@@ -153,6 +160,16 @@ static IEdmModel GetEdmModel()
     builder.EntityType<YogaClassCreateRequest>();
     ygclasses.Action("Post").Parameter<YogaClassCreateRequest>("ygclassrequest");
     ygclasses.Action("Put").Parameter<YogaClassCreateRequest>("ygclassrequest");
+
+    #region AppUser
+    var appUsers = builder.EntitySet<AppUser>("Users").EntityType;
+    appUsers.Collection.Function("Get").Returns<UserResponse>();
+    appUsers.Function("Get").Returns<UserResponse>();
+
+    builder.EntityType<RegisterRequest>();
+    appUsers.Action("RegisterStaff").Parameter<RegisterRequest>("request");
+    appUsers.Collection.Action("RegisterStaff").Parameter<RegisterRequest>("request");
+    #endregion
 
     return builder.GetEdmModel();
 }

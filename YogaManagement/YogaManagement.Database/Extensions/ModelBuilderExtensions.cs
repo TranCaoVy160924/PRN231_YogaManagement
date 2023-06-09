@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using YogaManagement.Domain.Models;
-using System;
 
 namespace YogaManagement.Data.Extensions;
 public static class ModelBuilderExtensions
@@ -68,6 +67,12 @@ public static class ModelBuilderExtensions
         {
             RoleId = memberRoleId,
             UserId = 1
+        });
+
+        modelBuilder.Entity<Member>().HasData(new Member
+        {
+            Id = 1,
+            AppUserId = 1
         });
     }
 }
