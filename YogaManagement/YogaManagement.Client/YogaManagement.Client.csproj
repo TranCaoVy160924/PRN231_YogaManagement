@@ -7,9 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Connected Services\OData Service\OData ServiceCsdl.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Connected Services\OData Service\OData ServiceCsdl.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.OData.Client" Version="7.16.0" />
+    <PackageReference Include="Microsoft.OData.Core" Version="7.16.0" />
+    <PackageReference Include="Microsoft.OData.Edm" Version="7.16.0" />
+    <PackageReference Include="Microsoft.Spatial" Version="7.16.0" />
     <PackageReference Include="Refit" Version="7.0.0-beta.1" />
     <PackageReference Include="Refit.HttpClientFactory" Version="7.0.0-beta.1" />
     <PackageReference Include="Refit.Newtonsoft.Json" Version="7.0.0-beta.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Text.Json" Version="7.0.2" />
   </ItemGroup>
 
   <ItemGroup>

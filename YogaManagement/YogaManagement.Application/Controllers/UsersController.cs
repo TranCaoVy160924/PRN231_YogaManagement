@@ -45,7 +45,7 @@ public class UsersController : ODataController
         return Ok(_mapper.Map<UserResponse>(member));
     }
 
-    [HttpPost("auth")]
+    [HttpPost("odata/[controller]/auth")]
     public async Task<IActionResult> Authenticate([FromBody] LoginRequest request)
     {
         if (!ModelState.IsValid)
@@ -110,7 +110,7 @@ public class UsersController : ODataController
         return BadRequest("Create user unsuccessfully!");
     }
 
-    [HttpPost("staff")]
+    [HttpPost("odata/[controller]/staff")]
     public async Task<IActionResult> RegisterStaff(ODataActionParameters parameters)
     {
         parameters.TryGetValue("request", out object request);
