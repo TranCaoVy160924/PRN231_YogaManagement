@@ -26,7 +26,7 @@ public class YogaClassesController : ODataController
     }
 
     [HttpGet]
-    [EnableQuery]
+    [EnableQuery(PageSize = 10)]
     public ActionResult<IQueryable<YogaClassResponse>> GetAll()
     {
         return Ok(_mapper.ProjectTo<YogaClassResponse>(_ygclassrepo.GetAll()));
