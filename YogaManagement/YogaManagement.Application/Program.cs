@@ -30,9 +30,9 @@ builder.Services.AddIdentity<AppUser, AppRole>()
     .AddEntityFrameworkStores<YogaManagementDbContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddScoped<YogaClassRepository>();
 // Repository
 builder.Services.AddScoped<MemberRepository>();
+builder.Services.AddScoped<YogaClassRepository>();
 
 // Utilities
 builder.Services.AddSingleton<JwtHelper>();
