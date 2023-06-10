@@ -11,31 +11,27 @@ using YogaManagement.Contracts.YogaClass.Response;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
-
-[ApiController]
-[Route("odata/[controller]")]
 public class YogaClassesController : ODataController
 {
     private readonly IMapper _mapper;
-    private readonly YogaClassRepository _ygclassrepo;
+    private readonly YogaClassRepository _ygClassRepo;
 
     public YogaClassesController(YogaClassRepository yogaClassRepository, IMapper mapper)
     {
         _mapper = mapper;
-        _ygclassrepo = yogaClassRepository;
+        _ygClassRepo = yogaClassRepository;
     }
 
-    [HttpGet]
     [EnableQuery(PageSize = 10)]
-    public ActionResult<IQueryable<YogaClassResponse>> GetAll()
+    public ActionResult<IQueryable<YogaClassResponse>> Get()
     {
-        return Ok(_mapper.ProjectTo<YogaClassResponse>(_ygclassrepo.GetAll()));
+        return Ok(_mapper.ProjectTo<YogaClassResponse>(_ygClassRepo.GetAll()));
     }
 
-    [HttpGet("{key}")]
-    public async Task<ActionResult<YogaClassResponse>> GetOneAsync([FromRoute] int key)
-    {     
-        var ygclass = await _ygclassrepo.Get(key);
+    [EnableQuery]
+    public async Task<ActionResult<YogaClassResponse>> Get([FromRoute] int key)
+    {
+        var ygclass = await _ygClassRepo.Get(key);
 
         if (ygclass == null)
         {
@@ -45,7 +41,7 @@ public class YogaClassesController : ODataController
         return Ok(_mapper.Map<YogaClassResponse>(ygclass));
     }
 
-    [HttpPost]
+    [HttpPost("odata/[controller]")]
     public async Task<IActionResult> CreateAsync([FromBody] YogaClassCreateRequest ygclassrequest)
     {
         try
@@ -60,10 +56,10 @@ public class YogaClassesController : ODataController
             }
             else
             {
-                var newygclass = _mapper.Map<YogaClass>(ygclassrequest);
-                newygclass.Status = true;
-                await _ygclassrepo.CreateAsync(newygclass);
-                return Created(newygclass);
+                var newYgClass = _mapper.Map<YogaClass>(ygclassrequest);
+                newYgClass.Status = true;
+                await _ygClassRepo.CreateAsync(newYgClass);
+                return Created(newYgClass);
             }
         }
         catch (Exception ex)
@@ -72,11 +68,11 @@ public class YogaClassesController : ODataController
         }
     }
 
-    [HttpPut]
-    public async Task<IActionResult> UpdateAsync([FromBody] YogaClassCreateRequest ygclassrequest, int key)
+    [HttpPut("odata/[controller]")]
+    public async Task<IActionResult> UpdateAsync([FromBody] YogaClassUpdateRequest ygClassRequest)
     {
-        var existclass = await _ygclassrepo.Get(key);
-        if (existclass == null)
+        var existClass = await _ygClassRepo.Get(ygClassRequest.Id);
+        if (existClass == null)
         {
             return NotFound();
         }
@@ -94,9 +90,9 @@ public class YogaClassesController : ODataController
                 }
                 else
                 {
-                    var newygclass = _mapper.Map(ygclassrequest, existclass);
-                    await _ygclassrepo.UpdateAsync(newygclass);
-                    return NoContent();
+                    var ygClass = _mapper.Map(ygClassRequest, existClass);
+                    await _ygClassRepo.UpdateAsync(ygClass);
+                    return Updated(ygClass);
                 }
             }
             catch (Exception ex)
@@ -106,18 +102,18 @@ public class YogaClassesController : ODataController
         }
     }
 
-    [HttpDelete]
+    [HttpDelete("odata/[controller]")]
     public async Task<IActionResult> DeleteAsync(int key)
     {
-        var existclass = await _ygclassrepo.Get(key);
-        if(existclass == null)
+        var existClass = await _ygClassRepo.Get(key);
+        if(existClass == null)
         {
             return NotFound();
         }
         try
         {
-            existclass.Status = false;
-            await _ygclassrepo.UpdateAsync(existclass);
+            existClass.Status = false;
+            await _ygClassRepo.UpdateAsync(existClass);
             return NoContent();
         }
         catch (Exception ex)

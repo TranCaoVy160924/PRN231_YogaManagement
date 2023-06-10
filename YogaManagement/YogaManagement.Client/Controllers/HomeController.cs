@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 using YogaManagement.Client.Models;
+using YogaManagement.Client.OdataClient.Default;
+using YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.Response;
 
 namespace YogaManagement.Client.Controllers;
 public class HomeController : Controller
@@ -12,8 +15,13 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        var serviceRoot = "https://localhost:44361/odata/";
+        var context = new Container(new Uri(serviceRoot));
+
+        var people = (await context.YogaClasses.ExecuteAsync()).ToList();
+        
         return View();
     }
 

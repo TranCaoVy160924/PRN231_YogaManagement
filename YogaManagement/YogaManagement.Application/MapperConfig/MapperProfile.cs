@@ -12,6 +12,7 @@ public class MapperProfile : Profile
     {
         #region YogaClass
         CreateMap<YogaClassCreateRequest, YogaClass>();
+        CreateMap<YogaClassUpdateRequest, YogaClass>();
         CreateMap<YogaClass, YogaClassResponse>().ForMember(dest => dest.CourseName, otp =>
         {
             otp.MapFrom(src => src.Course.Name);

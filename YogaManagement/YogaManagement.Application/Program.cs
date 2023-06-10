@@ -154,24 +154,11 @@ static IEdmModel GetEdmModel()
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
 
     #region Yogaclass
-    var ygclasses = builder.EntitySet<YogaClass>("YogaClasses").EntityType;
-    ygclasses.Collection.Function("GetAll").Returns<YogaClassResponse>();
-    ygclasses.Function("GetOneAsync").Returns<YogaClassResponse>();
-
-    builder.EntityType<YogaClassCreateRequest>();
-    ygclasses.Action("Post").Parameter<YogaClassCreateRequest>("ygclassrequest");
-    ygclasses.Collection.Action("Post").Parameter<YogaClassCreateRequest>("ygclassrequest");
-    ygclasses.Action("Put").Parameter<YogaClassCreateRequest>("ygclassrequest");
+    var ygclasses = builder.EntitySet<YogaClassResponse>("YogaClasses").EntityType;
     #endregion
 
     #region AppUser
-    var appUsers = builder.EntitySet<AppUser>("Users").EntityType;
-    appUsers.Collection.Function("Get").Returns<UserResponse>();
-    appUsers.Function("Get").Returns<UserResponse>();
-
-    builder.EntityType<RegisterRequest>();
-    appUsers.Action("RegisterStaff").Parameter<RegisterRequest>("request");
-    appUsers.Collection.Action("RegisterStaff").Parameter<RegisterRequest>("request");
+    var appUsers = builder.EntitySet<UserResponse>("Users").EntityType;
     #endregion
 
     return builder.GetEdmModel();
