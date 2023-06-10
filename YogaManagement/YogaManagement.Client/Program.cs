@@ -21,11 +21,6 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-string baseUrl = "https://localhost:44361/api";
-
-builder.Services.AddRefitClient<IAuthorityClient>()
-    .ConfigureHttpClient(c => c.BaseAddress = new Uri(baseUrl));
-
 IConfigurationRoot configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json")
@@ -33,8 +28,12 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
 var cntString = configuration.GetConnectionString("YogaManagement");
 var odataRoot = configuration.GetConnectionString("Odata");
 builder.Services.AddScoped(x => new Container(new Uri(odataRoot + "/")));
-
 builder.Services.AddSqlServer<YogaManagementDbContext>(cntString);
+
+string baseUrl = odataRoot;
+builder.Services.AddRefitClient<IAuthorityClient>()
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri(baseUrl));
+
 builder.Services.AddRazorPages();
 
 builder.Services.AddControllersWithViews();
