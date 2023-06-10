@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Refit;
+using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.RefitClient;
+using YogaManagement.Database.EF;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,15 @@ string baseUrl = "https://localhost:44361/api";
 builder.Services.AddRefitClient<IAuthorityClient>()
     .ConfigureHttpClient(c => c.BaseAddress = new Uri(baseUrl));
 
+IConfigurationRoot configuration = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
+var cntString = configuration.GetConnectionString("YogaManagement");
+var odataRoot = configuration.GetConnectionString("Odata");
+builder.Services.AddScoped(x => new Container(new Uri(odataRoot + "/")));
+
+builder.Services.AddSqlServer<YogaManagementDbContext>(cntString);
 builder.Services.AddRazorPages();
 
 builder.Services.AddControllersWithViews();

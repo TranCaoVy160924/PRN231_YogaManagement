@@ -17,11 +17,6 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var serviceRoot = "https://localhost:44361/odata/";
-        var context = new Container(new Uri(serviceRoot));
-
-        var people = (await context.YogaClasses.ExecuteAsync()).ToList();
-        
         return View();
     }
 
