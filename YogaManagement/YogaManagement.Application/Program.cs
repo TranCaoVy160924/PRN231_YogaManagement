@@ -155,7 +155,7 @@ static IEdmModel GetEdmModel()
 
     #region Yogaclass
     var ygclasses = builder.EntitySet<YogaClass>("YogaClasses").EntityType;
-    ygclasses.Collection.Function("Get").Returns<YogaClassResponse>();
+    ygclasses.Collection.Function("GetAll").Returns<YogaClassResponse>();
     ygclasses.Function("Get").Returns<YogaClassResponse>();
 
     builder.EntityType<YogaClassCreateRequest>();
