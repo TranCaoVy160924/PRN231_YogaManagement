@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using System.Drawing;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Data.Extensions;
@@ -14,8 +16,7 @@ public static class ModelBuilderExtensions
 
         var hasher = new PasswordHasher<AppUser>();
 
-        Random random = new Random();
-
+        #region Role
         modelBuilder.Entity<AppRole>().HasData(new AppRole
         {
             Id = memberRoleId,
@@ -47,32 +48,162 @@ public static class ModelBuilderExtensions
             NormalizedName = "admin",
             Description = "ADMIN"
         });
+        #endregion
 
+        #region Member
+        for(int  i = 1; i <= 30; i++)
+        {
+            modelBuilder.Entity<AppUser>().HasData(new AppUser
+            {
+                Id = i,
+                UserName = "UserMember" +i.ToString(),
+                NormalizedUserName = "usermember" + i.ToString(),
+                Email = "member" + i.ToString()+ "@gmail.com",
+                NormalizedEmail = "member" + i.ToString() + "@gmail.com",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "12345678"),
+                SecurityStamp = string.Empty,
+                Firstname = "Name"+i.ToString(),
+                Lastname = "LastName"+i.ToString(),
+                Address = "HCM"
+            });
+
+            modelBuilder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>
+            {
+                RoleId = memberRoleId,
+                UserId = i
+            });
+
+            modelBuilder.Entity<Member>().HasData(new Member
+            {
+                Id = i,
+                AppUserId = i
+            });
+        }
+        #endregion
+
+        #region Teacher
+        for (int i = 31; i <= 40; i++)
+        {
+            modelBuilder.Entity<AppUser>().HasData(new AppUser
+            {
+                Id = i,
+                UserName = "UserTeacher" + i.ToString(),
+                NormalizedUserName = "userteacher" + i.ToString(),
+                Email = "teacher" + i.ToString() + "@gmail.com",
+                NormalizedEmail = "teacher" + i.ToString() + "@gmail.com",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "12345678"),
+                SecurityStamp = string.Empty,
+                Firstname = "Name" + i.ToString(),
+                Lastname = "LastName" + i.ToString(),
+                Address = "HCM"
+            });
+
+            modelBuilder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>
+            {
+                RoleId = teacherRoleId,
+                UserId = i
+            });
+
+            modelBuilder.Entity<TeacherProfile>().HasData(new TeacherProfile
+            {
+                Id = i,
+                AppUserId = i
+            });
+        }
+        #endregion
+
+        #region Staff
+        for (int i = 41; i <= 45; i++)
+        {
+            modelBuilder.Entity<AppUser>().HasData(new AppUser
+            {
+                Id = i,
+                UserName = "UserStaff" + i.ToString(),
+                NormalizedUserName = "userstaff" + i.ToString(),
+                Email = "staff" + i.ToString() + "@gmail.com",
+                NormalizedEmail = "staff" + i.ToString() + "@gmail.com",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "12345678"),
+                SecurityStamp = string.Empty,
+                Firstname = "Name" + i.ToString(),
+                Lastname = "LastName" + i.ToString(),
+                Address = "HCM"
+            });
+
+            modelBuilder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>
+            {
+                RoleId = staffRoleId,
+                UserId = i
+            });
+        }
+        #endregion
+
+        #region Admin
         modelBuilder.Entity<AppUser>().HasData(new AppUser
         {
-            Id = 1,
-            UserName = "1",
-            NormalizedUserName = "1",
-            Email = "adminhcm@gmail.com",
-            NormalizedEmail = "adminhcm@gmail.com",
+            Id = 46,
+            UserName = "UserAdmin46",
+            NormalizedUserName = "useradmin46",
+            Email = "admin46"+"@gmail.com",
+            NormalizedEmail = "admin46" + "@gmail.com",
             EmailConfirmed = true,
             PasswordHash = hasher.HashPassword(null, "12345678"),
             SecurityStamp = string.Empty,
-            Firstname = "Toan",
-            Lastname = "Bach",
+            Firstname = "Name46" ,
+            Lastname = "LastName46",
             Address = "HCM"
         });
 
         modelBuilder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>
         {
-            RoleId = memberRoleId,
-            UserId = 1
+            RoleId = AdminRoleId,
+            UserId = 46
         });
+        #endregion
 
-        modelBuilder.Entity<Member>().HasData(new Member
+        #region Category
+        for (int i = 1; i <= 10; i++)
         {
-            Id = 1,
-            AppUserId = 1
-        });
+            modelBuilder.Entity<Category>().HasData(new Category
+            {
+                Id = i,
+                Name = "Category" + i.ToString(),
+                IsActive = true
+            });
+        }
+        #endregion
+
+        #region Course
+        for (int i = 1 ; i<= 10; i++ )
+        {
+            modelBuilder.Entity<Course>().HasData(new Course
+            {
+                Id = i,
+                Name = "Course"+i.ToString(),
+                Description = "Yoga course number " + i.ToString(),
+                Price = i*100,
+                StartDate = DateTime.Now,
+                EnddDate = DateTime.MaxValue,
+                IsActive = true,
+                CategoryId = i
+            });
+        }
+        #endregion
+
+        #region Class
+        for (int i = 1; i <= 10; i++)
+        {
+            modelBuilder.Entity<YogaClass>().HasData(new YogaClass
+            {
+                Id = i,
+                Name = "Class" + i.ToString(),
+                Size = 20 - i,
+                Status = true,
+                CourseId = i
+            });
+        }
+        #endregion
     }
 }
