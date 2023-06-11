@@ -110,14 +110,6 @@ public class UsersController : ODataController
         return BadRequest("Create user unsuccessfully!");
     }
 
-    [HttpPost("odata/[controller]/staff")]
-    public async Task<IActionResult> RegisterStaff(ODataActionParameters parameters)
-    {
-        parameters.TryGetValue("request", out object request);
-        var registerRequest = request as RegisterRequest;
-        return Created(parameters);
-    }
-
     //[HttpPost("auth/change-password/")]
     //[Authorize]
     //public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request)

@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using YogaManagement.Contracts.Authority.Response;
+using YogaManagement.Domain.Enums;
 
 namespace YogaManagement.Contracts.Authority.Request
 {
@@ -26,5 +28,7 @@ namespace YogaManagement.Contracts.Authority.Request
         [Required(ErrorMessage = "Please enter confirm password")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+
+        public UserRoles Roles { get; set; }
     }
 }
