@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using YogaManagement.Business.Repositories;
-using YogaManagement.Contracts.Category.Response;
-using YogaManagement.Contracts.Course.Response;
+using YogaManagement.Contracts.Category;
+using YogaManagement.Contracts.Course;
 
 namespace YogaManagement.Application.Controllers;
 public class CategoriesController : ODataController
@@ -19,12 +19,13 @@ public class CategoriesController : ODataController
     }
 
     [EnableQuery(PageSize = 10)]
-    public ActionResult<IQueryable<CategoryResponse>> Get()
+    public ActionResult<IQueryable<CategoryDTO>> Get()
     {
-        return Ok(_mapper.ProjectTo<CourseResponse>(_categoryRepo.GetAll()));
+        return Ok(_mapper.ProjectTo<CategoryDTO>(_categoryRepo.GetAll()));
     }
+
     [EnableQuery]
-    public async Task<ActionResult<CategoryResponse>> Get([FromRoute] int key)
+    public async Task<ActionResult<CategoryDTO>> Get([FromRoute] int key)
     {
         var category = await _categoryRepo.Get(key);
 
@@ -33,6 +34,6 @@ public class CategoriesController : ODataController
             return NotFound();
         }
 
-        return Ok(_mapper.Map<CategoryResponse>(category));
+        return Ok(_mapper.Map<CategoryDTO>(category));
     }
 }

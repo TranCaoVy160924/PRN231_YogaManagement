@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using YogaManagement.Contracts.YogaClass.Request;
-using YogaManagement.Contracts.YogaClass.Response;
 using YogaManagement.Contracts.Authority.Response;
 using YogaManagement.Domain.Models;
 using YogaManagement.Contracts.Authority;
-using YogaManagement.Contracts.Course.Request;
-using YogaManagement.Contracts.Course.Response;
-using YogaManagement.Contracts.Category.Response;
+using YogaManagement.Contracts.Category;
+using YogaManagement.Contracts.Course;
+using YogaManagement.Contracts.YogaClass;
 
 namespace YogaManagement.Application.MapperConfig;
 
@@ -15,30 +13,29 @@ public class MapperProfile : Profile
     public MapperProfile()
     {
         #region YogaClass
-        CreateMap<YogaClassCreateRequest, YogaClass>();
-        CreateMap<YogaClassUpdateRequest, YogaClass>();
-        CreateMap<YogaClass, YogaClassResponse>().ForMember(dest => dest.CourseName, otp =>
+        CreateMap<YogaClass, YogaClassDTO>().ForMember(dest => dest.CourseName, otp =>
         {
             otp.MapFrom(src => src.Course.Name);
         });
+        CreateMap<YogaClassDTO, YogaClass>();
         #endregion
 
         #region AppUser
         CreateMap<Domain.Models.AppUser, UserDTO>()
             .ForMember(dest => dest.Role, opt => opt.MapFrom(src => GetUserRoleName(src)));
+        CreateMap<UserDTO, Domain.Models.AppUser>();
         #endregion
 
         #region Course
-        CreateMap<CourseCreateRequest, Course>();
-        //CreateMap<CourseUpdateRequest, Course>();
-        CreateMap<Course, CourseResponse>().ForMember(dest => dest.CategoryName, otp =>
+        CreateMap<Course, CourseDTO>().ForMember(dest => dest.CategoryName, otp =>
         {
             otp.MapFrom(src => src.Category.Name);
         });
+        CreateMap<CourseDTO, Course>();
         #endregion
 
         #region Category
-        CreateMap<Category, CategoryResponse>();
+        CreateMap<Category, CategoryDTO>();
         #endregion
     }
 

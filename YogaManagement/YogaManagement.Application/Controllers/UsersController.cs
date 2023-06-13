@@ -50,66 +50,72 @@ public class UsersController : ODataController
     [HttpPost("odata/[controller]/auth")]
     public async Task<IActionResult> Authenticate([FromBody] LoginRequest request)
     {
-        if (!ModelState.IsValid)
+        try
         {
-            return BadRequest(ModelState);
-        }
+            ModelState.ValidateRequest();
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user == null)
+            {
+                throw new Exception("Username or password is incorrect. Please try again");
+            }
 
-        var user = await _userManager.FindByEmailAsync(request.Email);
-        if (user == null)
+            var result = await _userManager.CheckPasswordAsync(user, request.Password);
+            if (!result)
+            {
+                throw new Exception("Username or password is incorrect. Please try again");
+            }
+
+            var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+            //var role = await _dbContext.AppRoles.FindAsync(user.RoleId);
+            StaticValues.Usernames.Add(request.Email);
+            return Ok(new LoginResponse { Token = _jwtHelper.CreateToken(user, request.Email, role), Role = role });
+        }
+        catch (Exception ex)
         {
-            return BadRequest("Username or password is incorrect. Please try again");
+            return BadRequest(ex.Message);
         }
-
-        var result = await _userManager.CheckPasswordAsync(user, request.Password);
-        if (!result)
-        {
-            return BadRequest("Username or password is incorrect. Please try again");
-        }
-
-        var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
-        //var role = await _dbContext.AppRoles.FindAsync(user.RoleId);
-        StaticValues.Usernames.Add(request.Email);
-        return Ok(new LoginResponse { Token = _jwtHelper.CreateToken(user, request.Email, role), Role = role });
     }
 
     public async Task<IActionResult> Post([FromBody] UserDTO registerRequest)
     {
-        if (!ModelState.IsValid)
+        try
         {
-            return BadRequest(ModelState);
+            ModelState.ValidateRequest();
+            if (registerRequest.Password != registerRequest.ConfirmPassword)
+            {
+                throw new Exception("Confirm password must match password");
+            }
+
+            var hasher = new PasswordHasher<AppUser>();
+            string firstName = registerRequest.FirstName.Trim();
+            string lastName = registerRequest.LastName.Trim();
+            var user = new AppUser
+            {
+                Firstname = firstName,
+                Lastname = lastName,
+                PasswordHash = hasher.HashPassword(null, "12345678"),
+                UserName = firstName + lastName,
+                Email = registerRequest.Email,
+                EmailConfirmed = true,
+                SecurityStamp = string.Empty,
+                Address = registerRequest.Address,
+            };
+
+            var result = await _userManager.CreateAsync(user, registerRequest.Password);
+            var resultRole = await _userManager
+                .AddToRoleAsync(user, role: "Member");
+
+            if (result.Succeeded && resultRole.Succeeded)
+            {
+                return Created(registerRequest);
+            }
+
+            throw new Exception("Create user unsuccessfully!");
         }
-
-        if (registerRequest.Password != registerRequest.ConfirmPassword)
+        catch (Exception ex)
         {
-            return BadRequest("Confirm password must match password");
+            return BadRequest(ex.Message);
         }
-
-        var hasher = new PasswordHasher<AppUser>();
-        string firstName = registerRequest.FirstName.Trim();
-        string lastName = registerRequest.LastName.Trim();
-        var user = new AppUser
-        {
-            Firstname = firstName,
-            Lastname = lastName,
-            PasswordHash = hasher.HashPassword(null, "12345678"),
-            UserName = firstName + lastName,
-            Email = registerRequest.Email,
-            EmailConfirmed = true,
-            SecurityStamp = string.Empty,
-            Address = registerRequest.Address,
-        };
-
-        var result = await _userManager.CreateAsync(user, registerRequest.Password);
-        var resultRole = await _userManager
-            .AddToRoleAsync(user, role: "Member");
-
-        if (result.Succeeded && resultRole.Succeeded)
-        {
-            return Created(registerRequest);
-        }
-
-        return BadRequest("Create user unsuccessfully!");
     }
 
     //[HttpPost("auth/change-password/")]

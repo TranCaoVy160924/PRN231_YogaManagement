@@ -1,16 +1,33 @@
-﻿namespace YogaManagement.Contracts.Authority;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace YogaManagement.Contracts.Authority;
 public class UserDTO
 {
-    // Display
-    public int Id { get; set; }
+    // Core
+    public int Id { get; set; } = 0;
+
+    [Required]
     public string FirstName { get; set; }
+
+    [Required]
     public string LastName { get; set; }
+
+    [Required]
     public bool Status { get; set; }
+
+    [Required]
     public string Address { get; set; }
+
+    [Required]
     public string Email { get; set; }
-    public string Role { get; set; }
+
+    // Display
+    public string Role { get; set; } = "";
 
     // Edit
+    [Required]
     public string Password { get; set; } = "";
+
+    [Required]
     public string ConfirmPassword { get; set; } = "";
 }

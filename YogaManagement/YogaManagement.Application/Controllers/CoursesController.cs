@@ -3,11 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using YogaManagement.Application.Utilities;
 using YogaManagement.Business.Repositories;
-using YogaManagement.Contracts.Course.Request;
-using YogaManagement.Contracts.Course.Response;
-using YogaManagement.Contracts.YogaClass.Request;
-using YogaManagement.Contracts.YogaClass.Response;
+using YogaManagement.Contracts.Course;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
@@ -25,12 +23,13 @@ public class CoursesController : ODataController
     }
 
     [EnableQuery(PageSize = 10)]
-    public ActionResult<IQueryable<CourseResponse>> Get()
+    public ActionResult<IQueryable<CourseDTO>> Get()
     {
-        return Ok(_mapper.ProjectTo<CourseResponse>(_courseRepo.GetAll()));
+        return Ok(_mapper.ProjectTo<CourseDTO>(_courseRepo.GetAll()));
     }
+
     [EnableQuery]
-    public async Task<ActionResult<CourseResponse>> Get([FromRoute] int key)
+    public async Task<ActionResult<CourseDTO>> Get([FromRoute] int key)
     {
         var course = await _courseRepo.Get(key);
         var category = await _categoryRepo.Get(course.CategoryId);
@@ -40,29 +39,18 @@ public class CoursesController : ODataController
             return NotFound();
         }
 
-        return Ok(_mapper.Map<CourseResponse>(course));
+        return Ok(_mapper.Map<CourseDTO>(course));
     }
 
-    //[HttpPost("odata/[controller]")]
-    public async Task<IActionResult> Post([FromBody] CourseCreateRequest courseRequest)
+    public async Task<IActionResult> Post([FromBody] CourseDTO createRequest)
     {
         try
         {
-            if (!ModelState.IsValid)
-            {
-                var errorMessages = ModelState.Values
-                .SelectMany(v => v.Errors)
-                .Select(e => e.ErrorMessage)
-                .ToList();
-                throw new Exception($"Invalid input format. Errors: {string.Join(", ", errorMessages)}");
-            }
-            else
-            {
-                var newCourse = _mapper.Map<Course>(courseRequest);
-                newCourse.IsActive = true;
-                await _courseRepo.CreateAsync(newCourse);
-                return Created(newCourse);
-            }
+            ModelState.ValidateRequest();
+            var newCourse = _mapper.Map<Course>(createRequest);
+            newCourse.IsActive = true;
+            await _courseRepo.CreateAsync(newCourse);
+            return Created(createRequest);
         }
         catch (Exception ex)
         {
@@ -70,9 +58,9 @@ public class CoursesController : ODataController
         }
     }
 
-    //[HttpPut("odata/[controller]")]
-    public async Task<IActionResult> Put([FromRoute] int key, [FromBody] CourseCreateRequest courseRequest)
+    public async Task<IActionResult> Patch([FromRoute] int key, [FromBody] Delta<CourseDTO> delta)
     {
+        var updateRequest = delta.GetInstance();
         var existCourse = await _courseRepo.Get(key);
         if (existCourse == null)
         {
@@ -82,21 +70,9 @@ public class CoursesController : ODataController
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    var errorMessages = ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-                    throw new Exception($"Invalid input format. Errors: {string.Join(", ", errorMessages)}");
-                }
-                else
-                {
-                    
-                    var course = _mapper.Map(courseRequest, existCourse);
-                    await _courseRepo.UpdateAsync(course);
-                    return Updated(course);
-                }
+                var course = _mapper.Map(updateRequest, existCourse);
+                await _courseRepo.UpdateAsync(course);
+                return Updated(updateRequest);
             }
             catch (Exception ex)
             {
@@ -105,7 +81,6 @@ public class CoursesController : ODataController
         }
     }
 
-    //[HttpDelete("odata/[controller]")]
     public async Task<IActionResult> Delete([FromRoute] int key)
     {
         var existCourse = await _courseRepo.Get(key);
@@ -123,7 +98,7 @@ public class CoursesController : ODataController
             {
                 existCourse.IsActive = true;
             }
-            
+
             await _courseRepo.UpdateAsync(existCourse);
             return NoContent();
         }
