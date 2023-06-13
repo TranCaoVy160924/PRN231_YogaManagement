@@ -16,6 +16,8 @@ using YogaManagement.Application.Utilities;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
 using YogaManagement.Contracts.Authority;
+using YogaManagement.Contracts.Course.Response;
+using YogaManagement.Contracts.Category.Response;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +33,8 @@ builder.Services.AddIdentity<AppUser, AppRole>()
 // Repository
 builder.Services.AddScoped<MemberRepository>();
 builder.Services.AddScoped<YogaClassRepository>();
+builder.Services.AddScoped<CourseRepository>();
+builder.Services.AddScoped<CategoryRepository>();
 
 // Utilities
 builder.Services.AddSingleton<JwtHelper>();
@@ -157,6 +161,14 @@ static IEdmModel GetEdmModel()
 
     #region AppUser
     var appUsers = builder.EntitySet<UserDTO>("Users").EntityType;
+    #endregion
+
+    #region Course
+    var course = builder.EntitySet<CourseResponse>("Courses").EntityType;
+    #endregion
+
+    #region Category
+    var category = builder.EntitySet<CategoryResponse>("Categories").EntityType;
     #endregion
 
     return builder.GetEdmModel();
