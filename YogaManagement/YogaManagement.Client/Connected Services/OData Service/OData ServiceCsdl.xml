@@ -1,7 +1,7 @@
 <edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
   <edmx:DataServices>
-    <Schema Namespace="YogaManagement.Contracts.YogaClass.Response" xmlns="http://docs.oasis-open.org/odata/ns/edm">
-      <EntityType Name="YogaClassResponse">
+    <Schema Namespace="YogaManagement.Contracts.YogaClass" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="YogaClassDTO">
         <Key>
           <PropertyRef Name="Id" />
         </Key>
@@ -29,10 +29,38 @@
         <Property Name="ConfirmPassword" Type="Edm.String" Nullable="false" />
       </EntityType>
     </Schema>
+    <Schema Namespace="YogaManagement.Contracts.Course" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="CourseDTO">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="false" />
+        <Property Name="Price" Type="Edm.Double" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="EnddDate" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="IsActive" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="CategoryId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CategoryName" Type="Edm.String" Nullable="false" />
+      </EntityType>
+    </Schema>
+    <Schema Namespace="YogaManagement.Contracts.Category" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="CategoryDTO">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" />
+        <Property Name="IsActive" Type="Edm.Boolean" Nullable="false" />
+      </EntityType>
+    </Schema>
     <Schema Namespace="Default" xmlns="http://docs.oasis-open.org/odata/ns/edm">
       <EntityContainer Name="Container">
-        <EntitySet Name="YogaClasses" EntityType="YogaManagement.Contracts.YogaClass.Response.YogaClassResponse" />
+        <EntitySet Name="YogaClasses" EntityType="YogaManagement.Contracts.YogaClass.YogaClassDTO" />
         <EntitySet Name="Users" EntityType="YogaManagement.Contracts.Authority.UserDTO" />
+        <EntitySet Name="Courses" EntityType="YogaManagement.Contracts.Course.CourseDTO" />
+        <EntitySet Name="Categories" EntityType="YogaManagement.Contracts.Category.CategoryDTO" />
       </EntityContainer>
     </Schema>
   </edmx:DataServices>

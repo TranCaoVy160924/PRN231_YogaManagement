@@ -3,7 +3,6 @@ using System;
 using System.Diagnostics;
 using YogaManagement.Client.Models;
 using YogaManagement.Client.OdataClient.Default;
-using YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.Response;
 
 namespace YogaManagement.Client.Controllers;
 public class HomeController : Controller

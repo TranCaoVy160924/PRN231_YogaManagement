@@ -8,46 +8,46 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/13/2023 2:15:30 PM
-namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.Response
+// Generation date: 6/13/2023 10:37:08 PM
+namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
 {
     /// <summary>
-    /// There are no comments for YogaClassResponseSingle in the schema.
+    /// There are no comments for YogaClassDTOSingle in the schema.
     /// </summary>
-    [global::Microsoft.OData.Client.OriginalNameAttribute("YogaClassResponseSingle")]
-    public partial class YogaClassResponseSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<YogaClassResponse>
+    [global::Microsoft.OData.Client.OriginalNameAttribute("YogaClassDTOSingle")]
+    public partial class YogaClassDTOSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<YogaClassDTO>
     {
         /// <summary>
-        /// Initialize a new YogaClassResponseSingle object.
+        /// Initialize a new YogaClassDTOSingle object.
         /// </summary>
-        public YogaClassResponseSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
+        public YogaClassDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
             : base(context, path) {}
 
         /// <summary>
-        /// Initialize a new YogaClassResponseSingle object.
+        /// Initialize a new YogaClassDTOSingle object.
         /// </summary>
-        public YogaClassResponseSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
+        public YogaClassDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
             : base(context, path, isComposable) {}
 
         /// <summary>
-        /// Initialize a new YogaClassResponseSingle object.
+        /// Initialize a new YogaClassDTOSingle object.
         /// </summary>
-        public YogaClassResponseSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<YogaClassResponse> query)
+        public YogaClassDTOSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<YogaClassDTO> query)
             : base(query) {}
 
     }
     /// <summary>
-    /// There are no comments for YogaClassResponse in the schema.
+    /// There are no comments for YogaClassDTO in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
     [global::Microsoft.OData.Client.Key("Id")]
-    [global::Microsoft.OData.Client.OriginalNameAttribute("YogaClassResponse")]
-    public partial class YogaClassResponse : global::Microsoft.OData.Client.BaseEntityType, global::System.ComponentModel.INotifyPropertyChanged
+    [global::Microsoft.OData.Client.OriginalNameAttribute("YogaClassDTO")]
+    public partial class YogaClassDTO : global::Microsoft.OData.Client.BaseEntityType, global::System.ComponentModel.INotifyPropertyChanged
     {
         /// <summary>
-        /// Create a new YogaClassResponse object.
+        /// Create a new YogaClassDTO object.
         /// </summary>
         /// <param name="ID">Initial value of Id.</param>
         /// <param name="name">Initial value of Name.</param>
@@ -56,21 +56,21 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.R
         /// <param name="courseId">Initial value of CourseId.</param>
         /// <param name="courseName">Initial value of CourseName.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static YogaClassResponse CreateYogaClassResponse(int ID, 
+        public static YogaClassDTO CreateYogaClassDTO(int ID, 
                     string name, 
                     int size, 
                     bool status, 
                     int courseId, 
                     string courseName)
         {
-            YogaClassResponse yogaClassResponse = new YogaClassResponse();
-            yogaClassResponse.Id = ID;
-            yogaClassResponse.Name = name;
-            yogaClassResponse.Size = size;
-            yogaClassResponse.Status = status;
-            yogaClassResponse.CourseId = courseId;
-            yogaClassResponse.CourseName = courseName;
-            return yogaClassResponse;
+            YogaClassDTO yogaClassDTO = new YogaClassDTO();
+            yogaClassDTO.Id = ID;
+            yogaClassDTO.Name = name;
+            yogaClassDTO.Size = size;
+            yogaClassDTO.Status = status;
+            yogaClassDTO.CourseId = courseId;
+            yogaClassDTO.CourseName = courseName;
+            return yogaClassDTO;
         }
         /// <summary>
         /// There are no comments for Property Id in the schema.
