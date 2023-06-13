@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using YogaManagement.Client.OdataClient.Default;
-using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.Response;
+using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
 
@@ -59,7 +59,7 @@ namespace YogaManagement.Client.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Status, Address,Email,Role")] UserResponse appUser)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Status, Address,Email,Role")] UserDTO appUser)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace YogaManagement.Client.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Status, Address,Email,Role")] UserResponse appUser)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Status, Address,Email,Role")] UserDTO appUser)
         {
             if (id != appUser.Id)
             {

@@ -3,6 +3,7 @@ using YogaManagement.Contracts.YogaClass.Request;
 using YogaManagement.Contracts.YogaClass.Response;
 using YogaManagement.Contracts.Authority.Response;
 using YogaManagement.Domain.Models;
+using YogaManagement.Contracts.Authority;
 
 namespace YogaManagement.Application.MapperConfig;
 
@@ -20,7 +21,7 @@ public class MapperProfile : Profile
         #endregion
 
         #region AppUser
-        CreateMap<Domain.Models.AppUser, UserResponse>()
+        CreateMap<Domain.Models.AppUser, UserDTO>()
             .ForMember(dest => dest.Role, opt => opt.MapFrom(src => GetUserRoleName(src)));
         #endregion
     }

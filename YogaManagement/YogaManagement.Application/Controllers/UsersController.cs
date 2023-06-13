@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Attributes;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using YogaManagement.Application.Utilities;
+using YogaManagement.Contracts.Authority;
 using YogaManagement.Contracts.Authority.Request;
 using YogaManagement.Contracts.Authority.Response;
 using YogaManagement.Domain.Models;
@@ -27,13 +28,14 @@ public class UsersController : ODataController
     }
 
     [EnableQuery]
-    public ActionResult<IQueryable<UserResponse>> Get()
+    public ActionResult<IQueryable<UserDTO>> Get()
     {
-        return Ok(_mapper.ProjectTo<UserResponse>(_userManager.Users));
+        var result = _mapper.ProjectTo<UserDTO>(_userManager.Users);
+        return Ok(result);
     }
 
     [EnableQuery]
-    public async Task<ActionResult<UserResponse>> Get([FromRoute] int key)
+    public async Task<ActionResult<UserDTO>> Get([FromRoute] int key)
     {
         var member = await _userManager.FindByIdAsync(key.ToString());
 
@@ -42,7 +44,7 @@ public class UsersController : ODataController
             return NotFound();
         }
 
-        return Ok(_mapper.Map<UserResponse>(member));
+        return Ok(_mapper.Map<UserDTO>(member));
     }
 
     [HttpPost("odata/[controller]/auth")]
@@ -71,7 +73,7 @@ public class UsersController : ODataController
         return Ok(new LoginResponse { Token = _jwtHelper.CreateToken(user, request.Email, role), Role = role });
     }
 
-    public async Task<IActionResult> Post(RegisterRequest registerRequest)
+    public async Task<IActionResult> Post([FromBody] UserDTO registerRequest)
     {
         if (!ModelState.IsValid)
         {
@@ -104,7 +106,7 @@ public class UsersController : ODataController
 
         if (result.Succeeded && resultRole.Succeeded)
         {
-            return Ok();
+            return Created(registerRequest);
         }
 
         return BadRequest("Create user unsuccessfully!");
