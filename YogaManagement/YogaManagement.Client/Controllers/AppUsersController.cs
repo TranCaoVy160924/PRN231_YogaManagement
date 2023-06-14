@@ -81,106 +81,106 @@ namespace YogaManagement.Client.Controllers
 
         }
 
-        // GET: AppUsers/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Users == null)
-            {
-                return NotFound();
-            }
+        //// GET: AppUsers/Edit/5
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null || _context.Users == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var appUser = await _context.Users.ByKey(id.Value).GetValueAsync();
-            if (appUser == null)
-            {
-                return NotFound();
-            }
-            return View(appUser);
-        }
+        //    var appUser = await _context.Users.ByKey(id.Value).GetValueAsync();
+        //    if (appUser == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(appUser);
+        //}
 
-        // POST: AppUsers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Status, Address,Email,Role")] UserDTO appUser)
-        {
-            if (id != appUser.Id)
-            {
-                return NotFound();
-            }
+        //// POST: AppUsers/Edit/5
+        //// To protect from overposting attacks, enable the specific properties you want to bind to.
+        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Status, Address,Email,Role")] UserDTO appUser)
+        //{
+        //    if (id != appUser.Id)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    if (!ModelState.IsValid)
-                    {
-                        throw new Exception("Invalid input");
-                    }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            if (!ModelState.IsValid)
+        //            {
+        //                throw new Exception("Invalid input");
+        //            }
 
-                    var user = _context.Users.ByKey(id).GetValue();
-                    user.FirstName = appUser.FirstName;
-                    user.LastName = appUser.LastName;
-                    user.Email = appUser.Email;
-                    user.Address = appUser.Address;
-                    user.Status = appUser.Status;
-                    user.Role = appUser.Role;
+        //            var user = _context.Users.ByKey(id).GetValue();
+        //            user.FirstName = appUser.FirstName;
+        //            user.LastName = appUser.LastName;
+        //            user.Email = appUser.Email;
+        //            user.Address = appUser.Address;
+        //            user.Status = appUser.Status;
+        //            user.Role = appUser.Role;
 
-                    _context.UpdateObject(user);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AppUserExists(appUser.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(appUser);
-        }
+        //            _context.UpdateObject(user);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!AppUserExists(appUser.Id))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(appUser);
+        //}
 
-        // GET: AppUsers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Users == null)
-            {
-                return NotFound();
-            }
+        //// GET: AppUsers/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null || _context.Users == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var appUser = await _context.Users
-                .ByKey(id.Value).GetValueAsync();
-            if (appUser == null)
-            {
-                return NotFound();
-            }
+        //    var appUser = await _context.Users
+        //        .ByKey(id.Value).GetValueAsync();
+        //    if (appUser == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(appUser);
-        }
+        //    return View(appUser);
+        //}
 
-        // POST: AppUsers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var appUser =  _context.Users.ByKey(id).GetValue();
-            if (appUser != null)
-            {
-                _context.DeleteObject(appUser);
-            }
+        //// POST: AppUsers/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var appUser =  _context.Users.ByKey(id).GetValue();
+        //    if (appUser != null)
+        //    {
+        //        _context.DeleteObject(appUser);
+        //    }
             
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
-        private bool AppUserExists(int id)
-        {
-          return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+        //private bool AppUserExists(int id)
+        //{
+        //  return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+        //}
     }
 }

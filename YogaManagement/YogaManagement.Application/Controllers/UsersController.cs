@@ -101,9 +101,11 @@ public class UsersController : ODataController
                 Address = registerRequest.Address,
             };
 
+            var chosenRole = registerRequest.Role;
+
             var result = await _userManager.CreateAsync(user, registerRequest.Password);
             var resultRole = await _userManager
-                .AddToRoleAsync(user, role: "Member");
+                .AddToRoleAsync(user, role: chosenRole);
 
             if (result.Succeeded && resultRole.Succeeded)
             {
