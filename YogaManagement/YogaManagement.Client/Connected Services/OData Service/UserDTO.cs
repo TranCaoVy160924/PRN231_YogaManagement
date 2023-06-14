@@ -8,46 +8,46 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/10/2023 12:38:33 PM
-namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.Response
+// Generation date: 6/13/2023 10:37:08 PM
+namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
 {
     /// <summary>
-    /// There are no comments for UserResponseSingle in the schema.
+    /// There are no comments for UserDTOSingle in the schema.
     /// </summary>
-    [global::Microsoft.OData.Client.OriginalNameAttribute("UserResponseSingle")]
-    public partial class UserResponseSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<UserResponse>
+    [global::Microsoft.OData.Client.OriginalNameAttribute("UserDTOSingle")]
+    public partial class UserDTOSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<UserDTO>
     {
         /// <summary>
-        /// Initialize a new UserResponseSingle object.
+        /// Initialize a new UserDTOSingle object.
         /// </summary>
-        public UserResponseSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
+        public UserDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
             : base(context, path) {}
 
         /// <summary>
-        /// Initialize a new UserResponseSingle object.
+        /// Initialize a new UserDTOSingle object.
         /// </summary>
-        public UserResponseSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
+        public UserDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
             : base(context, path, isComposable) {}
 
         /// <summary>
-        /// Initialize a new UserResponseSingle object.
+        /// Initialize a new UserDTOSingle object.
         /// </summary>
-        public UserResponseSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<UserResponse> query)
+        public UserDTOSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<UserDTO> query)
             : base(query) {}
 
     }
     /// <summary>
-    /// There are no comments for UserResponse in the schema.
+    /// There are no comments for UserDTO in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
     [global::Microsoft.OData.Client.Key("Id")]
-    [global::Microsoft.OData.Client.OriginalNameAttribute("UserResponse")]
-    public partial class UserResponse : global::Microsoft.OData.Client.BaseEntityType, global::System.ComponentModel.INotifyPropertyChanged
+    [global::Microsoft.OData.Client.OriginalNameAttribute("UserDTO")]
+    public partial class UserDTO : global::Microsoft.OData.Client.BaseEntityType, global::System.ComponentModel.INotifyPropertyChanged
     {
         /// <summary>
-        /// Create a new UserResponse object.
+        /// Create a new UserDTO object.
         /// </summary>
         /// <param name="ID">Initial value of Id.</param>
         /// <param name="firstName">Initial value of FirstName.</param>
@@ -56,24 +56,30 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.R
         /// <param name="address">Initial value of Address.</param>
         /// <param name="email">Initial value of Email.</param>
         /// <param name="role">Initial value of Role.</param>
+        /// <param name="password">Initial value of Password.</param>
+        /// <param name="confirmPassword">Initial value of ConfirmPassword.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static UserResponse CreateUserResponse(int ID, 
+        public static UserDTO CreateUserDTO(int ID, 
                     string firstName, 
                     string lastName, 
-                    string status, 
+                    bool status, 
                     string address, 
                     string email, 
-                    string role)
+                    string role, 
+                    string password, 
+                    string confirmPassword)
         {
-            UserResponse userResponse = new UserResponse();
-            userResponse.Id = ID;
-            userResponse.FirstName = firstName;
-            userResponse.LastName = lastName;
-            userResponse.Status = status;
-            userResponse.Address = address;
-            userResponse.Email = email;
-            userResponse.Role = role;
-            return userResponse;
+            UserDTO userDTO = new UserDTO();
+            userDTO.Id = ID;
+            userDTO.FirstName = firstName;
+            userDTO.LastName = lastName;
+            userDTO.Status = status;
+            userDTO.Address = address;
+            userDTO.Email = email;
+            userDTO.Role = role;
+            userDTO.Password = password;
+            userDTO.ConfirmPassword = confirmPassword;
+            return userDTO;
         }
         /// <summary>
         /// There are no comments for Property Id in the schema.
@@ -157,7 +163,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.R
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("Status")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Status is required.")]
-        public virtual string Status
+        public virtual bool Status
         {
             get
             {
@@ -172,8 +178,8 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.R
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private string _Status;
-        partial void OnStatusChanging(string value);
+        private bool _Status;
+        partial void OnStatusChanging(bool value);
         partial void OnStatusChanged();
         /// <summary>
         /// There are no comments for Property Address in the schema.
@@ -250,6 +256,56 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.R
         private string _Role;
         partial void OnRoleChanging(string value);
         partial void OnRoleChanged();
+        /// <summary>
+        /// There are no comments for Property Password in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Password")]
+        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Password is required.")]
+        public virtual string Password
+        {
+            get
+            {
+                return this._Password;
+            }
+            set
+            {
+                this.OnPasswordChanging(value);
+                this._Password = value;
+                this.OnPasswordChanged();
+                this.OnPropertyChanged("Password");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _Password;
+        partial void OnPasswordChanging(string value);
+        partial void OnPasswordChanged();
+        /// <summary>
+        /// There are no comments for Property ConfirmPassword in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("ConfirmPassword")]
+        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "ConfirmPassword is required.")]
+        public virtual string ConfirmPassword
+        {
+            get
+            {
+                return this._ConfirmPassword;
+            }
+            set
+            {
+                this.OnConfirmPasswordChanging(value);
+                this._ConfirmPassword = value;
+                this.OnConfirmPasswordChanged();
+                this.OnPropertyChanged("ConfirmPassword");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _ConfirmPassword;
+        partial void OnConfirmPasswordChanging(string value);
+        partial void OnConfirmPasswordChanged();
         /// <summary>
         /// This event is raised when the value of the property is changed
         /// </summary>

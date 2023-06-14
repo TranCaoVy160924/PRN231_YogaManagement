@@ -11,13 +11,13 @@ using System.Reflection;
 using System.Text.Json.Serialization;
 using YogaManagement.Application.MapperConfig;
 using YogaManagement.Business.Repositories;
-using YogaManagement.Contracts.Authority.Request;
-using YogaManagement.Contracts.Authority.Response;
-using YogaManagement.Contracts.YogaClass.Request;
-using YogaManagement.Contracts.YogaClass.Response;
 using YogaManagement.Application.Utilities;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
+using YogaManagement.Contracts.Authority;
+using YogaManagement.Contracts.Category;
+using YogaManagement.Contracts.Course;
+using YogaManagement.Contracts.YogaClass;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +33,8 @@ builder.Services.AddIdentity<AppUser, AppRole>()
 // Repository
 builder.Services.AddScoped<MemberRepository>();
 builder.Services.AddScoped<YogaClassRepository>();
+builder.Services.AddScoped<CourseRepository>();
+builder.Services.AddScoped<CategoryRepository>();
 
 // Utilities
 builder.Services.AddSingleton<JwtHelper>();
@@ -154,11 +156,19 @@ static IEdmModel GetEdmModel()
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
 
     #region Yogaclass
-    var ygclasses = builder.EntitySet<YogaClassResponse>("YogaClasses").EntityType;
+    var ygclasses = builder.EntitySet<YogaClassDTO>("YogaClasses").EntityType;
     #endregion
 
     #region AppUser
-    var appUsers = builder.EntitySet<UserResponse>("Users").EntityType;
+    var appUsers = builder.EntitySet<UserDTO>("Users").EntityType;
+    #endregion
+
+    #region Course
+    var course = builder.EntitySet<CourseDTO>("Courses").EntityType;
+    #endregion
+
+    #region Category
+    var category = builder.EntitySet<CategoryDTO>("Categories").EntityType;
     #endregion
 
     return builder.GetEdmModel();

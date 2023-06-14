@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Attributes;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using YogaManagement.Application.Utilities;
+using YogaManagement.Contracts.Authority;
 using YogaManagement.Contracts.Authority.Request;
 using YogaManagement.Contracts.Authority.Response;
 using YogaManagement.Domain.Models;
@@ -27,13 +28,14 @@ public class UsersController : ODataController
     }
 
     [EnableQuery]
-    public ActionResult<IQueryable<UserResponse>> Get()
+    public ActionResult<IQueryable<UserDTO>> Get()
     {
-        return Ok(_mapper.ProjectTo<UserResponse>(_userManager.Users));
+        var result = _mapper.ProjectTo<UserDTO>(_userManager.Users);
+        return Ok(result);
     }
 
     [EnableQuery]
-    public async Task<ActionResult<UserResponse>> Get([FromRoute] int key)
+    public async Task<ActionResult<UserDTO>> Get([FromRoute] int key)
     {
         var member = await _userManager.FindByIdAsync(key.ToString());
 
@@ -42,80 +44,78 @@ public class UsersController : ODataController
             return NotFound();
         }
 
-        return Ok(_mapper.Map<UserResponse>(member));
+        return Ok(_mapper.Map<UserDTO>(member));
     }
 
     [HttpPost("odata/[controller]/auth")]
     public async Task<IActionResult> Authenticate([FromBody] LoginRequest request)
     {
-        if (!ModelState.IsValid)
+        try
         {
-            return BadRequest(ModelState);
-        }
+            ModelState.ValidateRequest();
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user == null)
+            {
+                throw new Exception("Username or password is incorrect. Please try again");
+            }
 
-        var user = await _userManager.FindByEmailAsync(request.Email);
-        if (user == null)
+            var result = await _userManager.CheckPasswordAsync(user, request.Password);
+            if (!result)
+            {
+                throw new Exception("Username or password is incorrect. Please try again");
+            }
+
+            var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+            //var role = await _dbContext.AppRoles.FindAsync(user.RoleId);
+            StaticValues.Usernames.Add(request.Email);
+            return Ok(new LoginResponse { Token = _jwtHelper.CreateToken(user, request.Email, role), Role = role });
+        }
+        catch (Exception ex)
         {
-            return BadRequest("Username or password is incorrect. Please try again");
+            return BadRequest(ex.Message);
         }
-
-        var result = await _userManager.CheckPasswordAsync(user, request.Password);
-        if (!result)
-        {
-            return BadRequest("Username or password is incorrect. Please try again");
-        }
-
-        var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
-        //var role = await _dbContext.AppRoles.FindAsync(user.RoleId);
-        StaticValues.Usernames.Add(request.Email);
-        return Ok(new LoginResponse { Token = _jwtHelper.CreateToken(user, request.Email, role), Role = role });
     }
 
-    public async Task<IActionResult> Post(RegisterRequest registerRequest)
+    public async Task<IActionResult> Post([FromBody] UserDTO registerRequest)
     {
-        if (!ModelState.IsValid)
+        try
         {
-            return BadRequest(ModelState);
+            ModelState.ValidateRequest();
+            if (registerRequest.Password != registerRequest.ConfirmPassword)
+            {
+                throw new Exception("Confirm password must match password");
+            }
+
+            var hasher = new PasswordHasher<AppUser>();
+            string firstName = registerRequest.FirstName.Trim();
+            string lastName = registerRequest.LastName.Trim();
+            var user = new AppUser
+            {
+                Firstname = firstName,
+                Lastname = lastName,
+                PasswordHash = hasher.HashPassword(null, "12345678"),
+                UserName = firstName + lastName,
+                Email = registerRequest.Email,
+                EmailConfirmed = true,
+                SecurityStamp = string.Empty,
+                Address = registerRequest.Address,
+            };
+
+            var result = await _userManager.CreateAsync(user, registerRequest.Password);
+            var resultRole = await _userManager
+                .AddToRoleAsync(user, role: "Member");
+
+            if (result.Succeeded && resultRole.Succeeded)
+            {
+                return Created(registerRequest);
+            }
+
+            throw new Exception("Create user unsuccessfully!");
         }
-
-        if (registerRequest.Password != registerRequest.ConfirmPassword)
+        catch (Exception ex)
         {
-            return BadRequest("Confirm password must match password");
+            return BadRequest(ex.Message);
         }
-
-        var hasher = new PasswordHasher<AppUser>();
-        string firstName = registerRequest.FirstName.Trim();
-        string lastName = registerRequest.LastName.Trim();
-        var user = new AppUser
-        {
-            Firstname = firstName,
-            Lastname = lastName,
-            PasswordHash = hasher.HashPassword(null, "12345678"),
-            UserName = firstName + lastName,
-            Email = registerRequest.Email,
-            EmailConfirmed = true,
-            SecurityStamp = string.Empty,
-            Address = registerRequest.Address,
-        };
-
-        var result = await _userManager.CreateAsync(user, registerRequest.Password);
-        var resultRole = await _userManager
-            .AddToRoleAsync(user, role: "Member");
-
-        if (result.Succeeded && resultRole.Succeeded)
-        {
-            return Ok();
-        }
-
-        return BadRequest("Create user unsuccessfully!");
-    }
-
-    [HttpPost("odata/[controller]/staff")]
-    public async Task<IActionResult> RegisterStaff(ODataActionParameters parameters)
-    {
-        parameters.TryGetValue("request", out object request);
-        var registerRequest = request as RegisterRequest;
-        return Created(parameters);
     }
 
     //[HttpPost("auth/change-password/")]

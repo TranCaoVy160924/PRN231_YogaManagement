@@ -8,11 +8,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/10/2023 12:38:33 PM
-namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.Response
+// Generation date: 6/13/2023 10:37:08 PM
+namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
 {
 }
-namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.Response
+namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
+{
+}
+namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
+{
+}
+namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Category
 {
 }
 namespace YogaManagement.Client.OdataClient.Default
@@ -54,12 +60,22 @@ namespace YogaManagement.Client.OdataClient.Default
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         protected global::System.Type ResolveTypeFromName(string typeName)
         {
-            global::System.Type resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.Authority.Response", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.Response");
+            global::System.Type resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.Authority", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority");
             if ((resolvedType != null))
             {
                 return resolvedType;
             }
-            resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.YogaClass.Response", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.Response");
+            resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.YogaClass", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass");
+            if ((resolvedType != null))
+            {
+                return resolvedType;
+            }
+            resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.Category", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.Category");
+            if ((resolvedType != null))
+            {
+                return resolvedType;
+            }
+            resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.Course", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course");
             if ((resolvedType != null))
             {
                 return resolvedType;
@@ -80,21 +96,37 @@ namespace YogaManagement.Client.OdataClient.Default
         protected string ResolveNameFromType(global::System.Type clientType)
         {
             global::Microsoft.OData.Client.OriginalNameAttribute originalNameAttribute = (global::Microsoft.OData.Client.OriginalNameAttribute)global::System.Linq.Enumerable.SingleOrDefault(global::Microsoft.OData.Client.Utility.GetCustomAttributes(clientType, typeof(global::Microsoft.OData.Client.OriginalNameAttribute), true));
-            if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.Response", global::System.StringComparison.Ordinal))
+            if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority", global::System.StringComparison.Ordinal))
             {
                 if (originalNameAttribute != null)
                 {
-                    return string.Concat("YogaManagement.Contracts.Authority.Response.", originalNameAttribute.OriginalName);
+                    return string.Concat("YogaManagement.Contracts.Authority.", originalNameAttribute.OriginalName);
                 }
-                return string.Concat("YogaManagement.Contracts.Authority.Response.", clientType.Name);
+                return string.Concat("YogaManagement.Contracts.Authority.", clientType.Name);
             }
-            if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.Response", global::System.StringComparison.Ordinal))
+            if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass", global::System.StringComparison.Ordinal))
             {
                 if (originalNameAttribute != null)
                 {
-                    return string.Concat("YogaManagement.Contracts.YogaClass.Response.", originalNameAttribute.OriginalName);
+                    return string.Concat("YogaManagement.Contracts.YogaClass.", originalNameAttribute.OriginalName);
                 }
-                return string.Concat("YogaManagement.Contracts.YogaClass.Response.", clientType.Name);
+                return string.Concat("YogaManagement.Contracts.YogaClass.", clientType.Name);
+            }
+            if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.YogaManagement.Contracts.Category", global::System.StringComparison.Ordinal))
+            {
+                if (originalNameAttribute != null)
+                {
+                    return string.Concat("YogaManagement.Contracts.Category.", originalNameAttribute.OriginalName);
+                }
+                return string.Concat("YogaManagement.Contracts.Category.", clientType.Name);
+            }
+            if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course", global::System.StringComparison.Ordinal))
+            {
+                if (originalNameAttribute != null)
+                {
+                    return string.Concat("YogaManagement.Contracts.Course.", originalNameAttribute.OriginalName);
+                }
+                return string.Concat("YogaManagement.Contracts.Course.", clientType.Name);
             }
             if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.Default", global::System.StringComparison.Ordinal))
             {
@@ -111,52 +143,104 @@ namespace YogaManagement.Client.OdataClient.Default
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         [global::Microsoft.OData.Client.OriginalNameAttribute("YogaClasses")]
-        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.Response.YogaClassResponse> YogaClasses
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.YogaClassDTO> YogaClasses
         {
             get
             {
                 if ((this._YogaClasses == null))
                 {
-                    this._YogaClasses = base.CreateQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.Response.YogaClassResponse>("YogaClasses");
+                    this._YogaClasses = base.CreateQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.YogaClassDTO>("YogaClasses");
                 }
                 return this._YogaClasses;
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.Response.YogaClassResponse> _YogaClasses;
+        private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.YogaClassDTO> _YogaClasses;
         /// <summary>
         /// There are no comments for Users in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         [global::Microsoft.OData.Client.OriginalNameAttribute("Users")]
-        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.Response.UserResponse> Users
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.UserDTO> Users
         {
             get
             {
                 if ((this._Users == null))
                 {
-                    this._Users = base.CreateQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.Response.UserResponse>("Users");
+                    this._Users = base.CreateQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.UserDTO>("Users");
                 }
                 return this._Users;
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.Response.UserResponse> _Users;
+        private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.UserDTO> _Users;
+        /// <summary>
+        /// There are no comments for Courses in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Courses")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course.CourseDTO> Courses
+        {
+            get
+            {
+                if ((this._Courses == null))
+                {
+                    this._Courses = base.CreateQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course.CourseDTO>("Courses");
+                }
+                return this._Courses;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course.CourseDTO> _Courses;
+        /// <summary>
+        /// There are no comments for Categories in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Categories")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Category.CategoryDTO> Categories
+        {
+            get
+            {
+                if ((this._Categories == null))
+                {
+                    this._Categories = base.CreateQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Category.CategoryDTO>("Categories");
+                }
+                return this._Categories;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Category.CategoryDTO> _Categories;
         /// <summary>
         /// There are no comments for YogaClasses in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public virtual void AddToYogaClasses(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.Response.YogaClassResponse yogaClassResponse)
+        public virtual void AddToYogaClasses(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass.YogaClassDTO yogaClassDTO)
         {
-            base.AddObject("YogaClasses", yogaClassResponse);
+            base.AddObject("YogaClasses", yogaClassDTO);
         }
         /// <summary>
         /// There are no comments for Users in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public virtual void AddToUsers(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.Response.UserResponse userResponse)
+        public virtual void AddToUsers(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority.UserDTO userDTO)
         {
-            base.AddObject("Users", userResponse);
+            base.AddObject("Users", userDTO);
+        }
+        /// <summary>
+        /// There are no comments for Courses in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual void AddToCourses(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course.CourseDTO courseDTO)
+        {
+            base.AddObject("Courses", courseDTO);
+        }
+        /// <summary>
+        /// There are no comments for Categories in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual void AddToCategories(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Category.CategoryDTO categoryDTO)
+        {
+            base.AddObject("Categories", categoryDTO);
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private abstract class GeneratedEdmModel
