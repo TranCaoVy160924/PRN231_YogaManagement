@@ -42,7 +42,7 @@ public class YogaClassesController : ODataController
     }
 
     [HttpPost("odata/[controller]")]
-    public async Task<IActionResult> CreateAsync([FromBody] YogaClassCreateRequest ygclassrequest)
+    public async Task<IActionResult> CreateAsync([FromBody] YogaClassCreateRequest ygClassRequest)
     {
         try
         {
@@ -56,7 +56,7 @@ public class YogaClassesController : ODataController
             }
             else
             {
-                var newYgClass = _mapper.Map<YogaClass>(ygclassrequest);
+                var newYgClass = _mapper.Map<YogaClass>(ygClassRequest);
                 newYgClass.Status = true;
                 await _ygClassRepo.CreateAsync(newYgClass);
                 return Created(newYgClass);
@@ -69,9 +69,9 @@ public class YogaClassesController : ODataController
     }
 
     [HttpPut("odata/[controller]")]
-    public async Task<IActionResult> UpdateAsync([FromBody] YogaClassUpdateRequest ygClassRequest)
+    public async Task<IActionResult> UpdateAsync([FromBody] YogaClassUpdateRequest ygClassUdRequest)
     {
-        var existClass = await _ygClassRepo.Get(ygClassRequest.Id);
+        var existClass = await _ygClassRepo.Get(ygClassUdRequest.Id);
         if (existClass == null)
         {
             return NotFound();
@@ -90,7 +90,7 @@ public class YogaClassesController : ODataController
                 }
                 else
                 {
-                    var ygClass = _mapper.Map(ygClassRequest, existClass);
+                    var ygClass = _mapper.Map(ygClassUdRequest, existClass);
                     await _ygClassRepo.UpdateAsync(ygClass);
                     return Updated(ygClass);
                 }
