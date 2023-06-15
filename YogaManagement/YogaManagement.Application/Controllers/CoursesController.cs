@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿    using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
@@ -22,7 +22,7 @@ public class CoursesController : ODataController
         _categoryRepo = categoryRepository;
     }
 
-    [EnableQuery(PageSize = 10)]
+    
     public ActionResult<IQueryable<CourseDTO>> Get()
     {
         return Ok(_mapper.ProjectTo<CourseDTO>(_courseRepo.GetAll()));
