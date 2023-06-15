@@ -4,9 +4,9 @@ namespace YogaManagement.Domain.Enums;
 public enum UserRoles
 {
     [Display(Name = "Member")]
-    Member = 1,
+    Member,
     [Display(Name = "Teacher")]
-    Teacher = 2,
+    Teacher,
     [Display(Name = "Staff")]
-    Staff = 3
+    Staff
 }

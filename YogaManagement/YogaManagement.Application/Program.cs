@@ -32,6 +32,7 @@ builder.Services.AddIdentity<AppUser, AppRole>()
 
 // Repository
 builder.Services.AddScoped<MemberRepository>();
+builder.Services.AddScoped<TeacherProfileRepository>();
 builder.Services.AddScoped<YogaClassRepository>();
 builder.Services.AddScoped<CourseRepository>();
 builder.Services.AddScoped<CategoryRepository>();

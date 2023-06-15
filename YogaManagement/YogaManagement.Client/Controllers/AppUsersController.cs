@@ -59,7 +59,7 @@ namespace YogaManagement.Client.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Status, Address,Email,Role")] UserDTO appUser)
+        public async Task<IActionResult> Create([Bind("Id, FirstName, LastName, Status, Address, Email, Password, ConfirmPassword, Role")] UserDTO appUser)
         {
             try
             {
@@ -67,6 +67,18 @@ namespace YogaManagement.Client.Controllers
                 {
                     throw new Exception("Invalid input");
                 }
+
+                var newUser = new UserDTO()
+                {
+                    FirstName = appUser.FirstName,
+                    LastName = appUser.LastName,
+                    Address = appUser.Address,
+                    Email = appUser.Email,
+                    Password = appUser.Password,
+                    ConfirmPassword = appUser.Password,
+                    Role = appUser.Role,
+                    Status = true
+                };
 
                 _context.AddToUsers(appUser);
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Attributes;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using YogaManagement.Application.Utilities;
+using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Authority;
 using YogaManagement.Contracts.Authority.Request;
 using YogaManagement.Contracts.Authority.Response;
@@ -15,14 +16,20 @@ namespace YogaManagement.Application.Controllers;
 public class UsersController : ODataController
 {
     private readonly UserManager<AppUser> _userManager;
+    private readonly MemberRepository _mRepo;
+    private readonly TeacherProfileRepository _tRepo;
     private readonly JwtHelper _jwtHelper;
     private readonly IMapper _mapper;
 
     public UsersController(UserManager<AppUser> userManager,
+        MemberRepository mRepo,
+        TeacherProfileRepository tRepo,
         IMapper mapper,
         JwtHelper jwtHelper)
     {
         _userManager = userManager;
+        _mRepo = mRepo;
+        _tRepo = tRepo;
         _mapper = mapper;
         _jwtHelper = jwtHelper;
     }
@@ -101,14 +108,30 @@ public class UsersController : ODataController
                 Address = registerRequest.Address,
             };
 
-            var chosenRole = registerRequest.Role;
-
             var result = await _userManager.CreateAsync(user, registerRequest.Password);
+            var chosenRole = registerRequest.Role;
             var resultRole = await _userManager
-                .AddToRoleAsync(user, role: chosenRole);
+                .AddToRoleAsync(user, role: chosenRole);   
 
             if (result.Succeeded && resultRole.Succeeded)
             {
+                if (chosenRole == "Member")
+                {
+                    var newMember = new Member()
+                    {
+                        AppUserId = user.Id
+                    };
+                    await _mRepo.CreateAsync(newMember);
+                }
+                else if (chosenRole == "Teacher")
+                {
+                    var newTeacher = new TeacherProfile()
+                    {
+                        AppUserId = user.Id
+                    };
+                    await _tRepo.CreateAsync(newTeacher);
+                }
+
                 return Created(registerRequest);
             }
 
