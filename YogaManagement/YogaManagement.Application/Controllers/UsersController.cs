@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
-using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
-using System.Data;
 using YogaManagement.Application.Utilities;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Authority;
@@ -90,9 +88,12 @@ public class UsersController : ODataController
         try
         {
             ModelState.ValidateRequest();
-            if (registerRequest.Password != registerRequest.ConfirmPassword)
+            if (registerRequest.Role == "Member")
             {
-                throw new Exception("Confirm password must match password");
+                if (registerRequest.Password != registerRequest.ConfirmPassword)
+                {
+                    throw new Exception("Confirm password must match password");
+                }
             }
 
             var hasher = new PasswordHasher<AppUser>();
@@ -113,7 +114,7 @@ public class UsersController : ODataController
             var result = await _userManager.CreateAsync(user, registerRequest.Password);
             var chosenRole = registerRequest.Role;
             var resultRole = await _userManager
-                .AddToRoleAsync(user, role: chosenRole);   
+                .AddToRoleAsync(user, role: chosenRole);
 
             if (result.Succeeded && resultRole.Succeeded)
             {
@@ -145,21 +146,22 @@ public class UsersController : ODataController
         }
     }
 
-    [Authorize(Roles ="Teacher, Staff")]
+    //[Authorize(Roles = "Teacher, Staff")]
     public async Task<ActionResult> Delete([FromRoute] int key)
     {
         var user = await _userManager.FindByIdAsync(key.ToString());
 
         if (user != null)
         {
-            await _userManager.DeleteAsync(user);
+            user.Status = false;
+            await _userManager.UpdateAsync(user);
         }
 
         return NoContent();
     }
 
-    [Authorize(Roles ="Teacher, Staff")]
-    public async Task<ActionResult> PatchAsync([FromRoute] int key, [FromBody] Delta<UserDTO> delta)
+    //[Authorize(Roles = "Teacher, Staff")]
+    public async Task<ActionResult> Patch([FromRoute] int key, [FromBody] Delta<UserDTO> delta)
     {
         try
         {
@@ -177,7 +179,6 @@ public class UsersController : ODataController
 
             user.Firstname = firstName;
             user.Lastname = lastName;
-            user.PasswordHash = hasher.HashPassword(null, "12345678");
             user.UserName = firstName + lastName;
             user.Email = updateRequest.Email;
             user.EmailConfirmed = true;

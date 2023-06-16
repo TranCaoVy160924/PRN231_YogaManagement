@@ -90,7 +90,7 @@ public class CoursesController : ODataController
         }
         try
         {
-            if (existCourse.IsActive == true)
+            if (existCourse.IsActive)
             {
                 existCourse.IsActive = false;
             }

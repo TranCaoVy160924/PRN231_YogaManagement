@@ -63,7 +63,8 @@ public static class ModelBuilderExtensions
                 SecurityStamp = string.Empty,
                 Firstname = "Name" + i.ToString(),
                 Lastname = "LastName" + i.ToString(),
-                Address = "HCM"
+                Address = "HCM",
+                Status = true,
             });
 
             modelBuilder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>
@@ -95,7 +96,8 @@ public static class ModelBuilderExtensions
                 SecurityStamp = string.Empty,
                 Firstname = "Name" + i.ToString(),
                 Lastname = "LastName" + i.ToString(),
-                Address = "HCM"
+                Address = "HCM",
+                Status = true,
             });
 
             modelBuilder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>
@@ -127,7 +129,8 @@ public static class ModelBuilderExtensions
                 SecurityStamp = string.Empty,
                 Firstname = "Name" + i.ToString(),
                 Lastname = "LastName" + i.ToString(),
-                Address = "HCM"
+                Address = "HCM",
+                Status = true,
             });
 
             modelBuilder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>
@@ -151,7 +154,8 @@ public static class ModelBuilderExtensions
             SecurityStamp = string.Empty,
             Firstname = "Name46",
             Lastname = "LastName46",
-            Address = "HCM"
+            Address = "HCM",
+            Status = true,
         });
 
         modelBuilder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>

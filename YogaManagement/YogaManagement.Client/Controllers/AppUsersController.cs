@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
 
@@ -17,8 +16,7 @@ namespace YogaManagement.Client.Controllers
         // GET: AppUsers
         public async Task<IActionResult> Index()
         {
-            var appUserDbContext = await _context.Users
-                .ExecuteAsync();
+            var appUserDbContext = await _context.Users.ExecuteAsync();
             return View(appUserDbContext);
         }
 
@@ -27,7 +25,7 @@ namespace YogaManagement.Client.Controllers
         {
             if (id == null || _context.Users == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
 
             var appUser = _context.Users
@@ -35,7 +33,7 @@ namespace YogaManagement.Client.Controllers
                 .SingleOrDefault();
             if (appUser == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
 
             return View(appUser);
@@ -90,13 +88,13 @@ namespace YogaManagement.Client.Controllers
         {
             if (id == null || _context.Users == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
 
             var appUser = await _context.Users.ByKey(id.Value).GetValueAsync();
             if (appUser == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
             return View(appUser);
         }
@@ -108,13 +106,13 @@ namespace YogaManagement.Client.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id, FirstName, LastName, Status, Address, Email, Password, ConfirmPassword, Role")] UserDTO appUser)
         {
+            if (id != appUser.Id)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
             try
             {
-                if (id != appUser.Id)
-                {
-                    return NotFound();
-                }
-
                 if (!ModelState.IsValid)
                 {
                     throw new Exception("Invalid input");
@@ -126,8 +124,6 @@ namespace YogaManagement.Client.Controllers
                 updateUser.LastName = appUser.LastName;
                 updateUser.Address = appUser.Address;
                 updateUser.Email = appUser.Email;
-                updateUser.Password = appUser.Password;
-                updateUser.ConfirmPassword = appUser.Password;
                 updateUser.Role = updateUser.Role;
                 updateUser.Status = updateUser.Status;
 
@@ -147,14 +143,14 @@ namespace YogaManagement.Client.Controllers
         {
             if (id == null || _context.Users == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
 
             var appUser = await _context.Users
                 .ByKey(id.Value).GetValueAsync();
             if (appUser == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
 
             return View(appUser);
@@ -165,19 +161,21 @@ namespace YogaManagement.Client.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var appUser = _context.Users.ByKey(id).GetValue();
-            if (appUser != null)
+            try
             {
-                _context.DeleteObject(appUser);
+                var appUser = _context.Users.ByKey(id).GetValue();
+                if (appUser != null)
+                {
+                    _context.DeleteObject(appUser);
+                }
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool AppUserExists(int id)
-        {
-            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+            catch (Exception)
+            {
+                return RedirectToAction(nameof(Index));
+            }
         }
     }
 }

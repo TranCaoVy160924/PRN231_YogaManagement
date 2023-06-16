@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course;
@@ -158,13 +157,20 @@ public class CourseController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        var course = _context.Courses.ByKey(id).GetValue();
-        if (course != null)
+        try
         {
-            _context.DeleteObject(course);
-        }
+            var course = _context.Courses.ByKey(id).GetValue();
+            if (course != null)
+            {
+                _context.DeleteObject(course);
+            }
 
-        await _context.SaveChangesAsync();
-        return RedirectToAction(nameof(Index));
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception)
+        {
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
