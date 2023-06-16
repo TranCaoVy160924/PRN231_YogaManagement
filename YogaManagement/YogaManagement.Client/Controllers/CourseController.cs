@@ -32,14 +32,14 @@ public class CourseController : Controller
     {
         if (id == null || _context.Courses == null)
         {
-            return NotFound();
+            RedirectToAction(nameof(Index));
         }
 
         var course = await _context.Courses
             .ByKey(id.Value).GetValueAsync();
         if (course == null)
         {
-            return NotFound();
+            RedirectToAction(nameof(Index));
         }
 
         return View(course);
@@ -88,7 +88,7 @@ public class CourseController : Controller
     {
         if (id == null || _context.Courses == null)
         {
-            return NotFound();
+            RedirectToAction(nameof(Index));
         }
 
         var course = await _context.Courses.ByKey(id.Value).GetValueAsync();
@@ -97,7 +97,7 @@ public class CourseController : Controller
         ViewBag.Categories = new SelectList(categories, "Id", "Name");
         if (course == null)
         {
-            return NotFound();
+            RedirectToAction(nameof(Index));
         }
         return View(course);
     }
@@ -110,7 +110,7 @@ public class CourseController : Controller
     {
         if (id != course.Id)
         {
-            return NotFound();
+            RedirectToAction(nameof(Index));
         }
         var categories = await _context.Categories
                     .ExecuteAsync();
@@ -141,7 +141,7 @@ public class CourseController : Controller
             {
                 if (!CourseExists(course.Id))
                 {
-                    return NotFound();
+                    RedirectToAction(nameof(Index));
                 }
                 else
                 {
@@ -157,14 +157,14 @@ public class CourseController : Controller
     {
         if (id == null || _context.Courses == null)
         {
-            return NotFound();
+            RedirectToAction(nameof(Index));
         }
 
         var course = await _context.Courses
             .ByKey(id.Value).GetValueAsync();
         if (course == null)
         {
-            return NotFound();
+            RedirectToAction(nameof(Index));
         }
 
         return View(course);
