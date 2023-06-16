@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
-using YogaManagement.Database.EF;
-using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Client.Controllers
 {
@@ -73,7 +66,7 @@ namespace YogaManagement.Client.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewData["Error"] = ex.Message;
                 return View(appUser);
@@ -168,19 +161,19 @@ namespace YogaManagement.Client.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var appUser =  _context.Users.ByKey(id).GetValue();
+            var appUser = _context.Users.ByKey(id).GetValue();
             if (appUser != null)
             {
                 _context.DeleteObject(appUser);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AppUserExists(int id)
         {
-          return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

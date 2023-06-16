@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Refit;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.RefitClient;
-using YogaManagement.Database.EF;
 
 var builder = WebApplication.CreateBuilder(args);
 

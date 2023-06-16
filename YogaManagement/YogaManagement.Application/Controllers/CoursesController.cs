@@ -1,4 +1,4 @@
-﻿    using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
@@ -22,7 +22,7 @@ public class CoursesController : ODataController
         _categoryRepo = categoryRepository;
     }
 
-    
+
     public ActionResult<IQueryable<CourseDTO>> Get()
     {
         return Ok(_mapper.ProjectTo<CourseDTO>(_courseRepo.GetAll()));
@@ -93,10 +93,6 @@ public class CoursesController : ODataController
             if (existCourse.IsActive == true)
             {
                 existCourse.IsActive = false;
-            }
-            else
-            {
-                existCourse.IsActive = true;
             }
 
             await _courseRepo.UpdateAsync(existCourse);

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course;
-using YogaManagement.Database.EF;
-using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Client.Controllers;
 public class CourseController : Controller
@@ -20,35 +14,35 @@ public class CourseController : Controller
     {
         _context = context;
     }
+
     // GET: Courses
     public async Task<IActionResult> Index()
     {
-        var coursesDbContext = await _context.Courses
-            .ExecuteAsync();
+        var coursesDbContext = await _context.Courses.ExecuteAsync();
         return View(coursesDbContext);
     }
+
     // GET: Courses/Details/5
     public async Task<IActionResult> Details(int? id)
     {
         if (id == null || _context.Courses == null)
         {
-            RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
 
-        var course = await _context.Courses
-            .ByKey(id.Value).GetValueAsync();
+        var course = await _context.Courses.ByKey(id.Value).GetValueAsync();
         if (course == null)
         {
-            RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
 
         return View(course);
     }
+
     // GET: Courses/Create
     public async Task<IActionResult> Create()
     {
-        var categories = await _context.Categories
-                    .ExecuteAsync();
+        var categories = await _context.Categories.ExecuteAsync();
         ViewBag.Categories = new SelectList(categories, "Id", "Name");
         return View();
     }
@@ -62,19 +56,18 @@ public class CourseController : Controller
     {
         try
         {
-                var categories = await _context.Categories
-                    .ExecuteAsync();
+            var categories = await _context.Categories.ExecuteAsync();
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
             ModelState.Remove("CategoryName");
             if (!ModelState.IsValid)
             {
                 throw new Exception("Invalid input");
             }
-            course.CategoryName= "";
+            course.CategoryName = "";
             _context.AddToCourses(course);
 
             await _context.SaveChangesAsync();
-            
+
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)
@@ -88,7 +81,7 @@ public class CourseController : Controller
     {
         if (id == null || _context.Courses == null)
         {
-            RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
 
         var course = await _context.Courses.ByKey(id.Value).GetValueAsync();
@@ -97,7 +90,7 @@ public class CourseController : Controller
         ViewBag.Categories = new SelectList(categories, "Id", "Name");
         if (course == null)
         {
-            RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
         return View(course);
     }
@@ -110,61 +103,51 @@ public class CourseController : Controller
     {
         if (id != course.Id)
         {
-            RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
-        var categories = await _context.Categories
-                    .ExecuteAsync();
+        var categories = await _context.Categories.ExecuteAsync();
         ViewBag.Categories = new SelectList(categories, "Id", "Name");
         ModelState.Remove("CategoryName");
-        if (!ModelState.IsValid)
+
+        try
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("Invalid input");
+            }
+
+            var initCourse = _context.Courses.ByKey(id).GetValue();
+            initCourse.Name = course.Name;
+            initCourse.Description = course.Description;
+            initCourse.Price = course.Price;
+            initCourse.StartDate = course.StartDate;
+            initCourse.EnddDate = course.EnddDate;
+            initCourse.IsActive = course.IsActive;
+            initCourse.CategoryId = course.CategoryId;
+
+            _context.UpdateObject(initCourse);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception ex)
         {
             ViewData["Error"] = "Invalid input";
             return View(course);
         }
-        else 
-        {
-            try
-            {              
-                var initCourse = _context.Courses.ByKey(id).GetValue();
-                initCourse.Name = course.Name;
-                initCourse.Description = course.Description;
-                initCourse.Price = course.Price;
-                initCourse.StartDate = course.StartDate;
-                initCourse.EnddDate = course.EnddDate;
-                initCourse.IsActive = course.IsActive;
-                initCourse.CategoryId = course.CategoryId;
-
-                _context.UpdateObject(initCourse);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CourseExists(course.Id))
-                {
-                    RedirectToAction(nameof(Index));
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return RedirectToAction(nameof(Index));
-        }
-        return View(course);
     }
+
     // GET: Courses/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null || _context.Courses == null)
         {
-            RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
 
-        var course = await _context.Courses
-            .ByKey(id.Value).GetValueAsync();
+        var course = await _context.Courses.ByKey(id.Value).GetValueAsync();
         if (course == null)
         {
-            RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
 
         return View(course);
@@ -183,9 +166,5 @@ public class CourseController : Controller
 
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
-    }
-    private bool CourseExists(int id)
-    {
-        return (_context.Courses?.Any(e => e.Id == id)).GetValueOrDefault();
     }
 }

@@ -2,14 +2,14 @@
 @model CourseDTO
 
 @{
-    ViewData["Title"] = "Create";   
+    ViewData["Title"] = "Create";
     var errorMessage = ViewData["Error"] as string;
     if (!string.IsNullOrEmpty(errorMessage))
-        {
-            <div class="alert alert-danger">
-                @errorMessage
-            </div>
-        }    
+    {
+        <div class="alert alert-danger">
+            @errorMessage
+        </div>
+    }
 }
 
 <h1>Create</h1>
@@ -66,5 +66,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

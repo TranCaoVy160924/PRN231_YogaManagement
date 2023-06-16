@@ -17,9 +17,9 @@ public class CourseDTO
     public double Price { get; set; }
 
     [Required]
-   // [Range(typeof(DateTime), "1/1/2000", "12/31/2100", ErrorMessage = "The value must be a valid date.")]
+    // [Range(typeof(DateTime), "1/1/2000", "12/31/2100", ErrorMessage = "The value must be a valid date.")]
     //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-    public DateTime StartDate { get ; set; }
+    public DateTime StartDate { get; set; }
 
     [Required]
     //[Range(typeof(DateTime), "1/1/2000", "12/31/2100", ErrorMessage = "The value must be a valid date.")]

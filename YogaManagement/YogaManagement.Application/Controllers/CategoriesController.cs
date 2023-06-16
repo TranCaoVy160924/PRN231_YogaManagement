@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Category;
-using YogaManagement.Contracts.Course;
 
 namespace YogaManagement.Application.Controllers;
 public class CategoriesController : ODataController
