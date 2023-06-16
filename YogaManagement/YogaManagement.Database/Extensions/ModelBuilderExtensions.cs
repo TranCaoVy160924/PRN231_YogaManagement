@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
-using System.Drawing;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Data.Extensions;
@@ -51,20 +49,20 @@ public static class ModelBuilderExtensions
         #endregion
 
         #region Member
-        for(int  i = 1; i <= 30; i++)
+        for (int i = 1; i <= 30; i++)
         {
             modelBuilder.Entity<AppUser>().HasData(new AppUser
             {
                 Id = i,
-                UserName = "UserMember" +i.ToString(),
+                UserName = "UserMember" + i.ToString(),
                 NormalizedUserName = "usermember" + i.ToString(),
-                Email = "member" + i.ToString()+ "@gmail.com",
+                Email = "member" + i.ToString() + "@gmail.com",
                 NormalizedEmail = "member" + i.ToString() + "@gmail.com",
                 EmailConfirmed = true,
                 PasswordHash = hasher.HashPassword(null, "12345678"),
                 SecurityStamp = string.Empty,
-                Firstname = "Name"+i.ToString(),
-                Lastname = "LastName"+i.ToString(),
+                Firstname = "Name" + i.ToString(),
+                Lastname = "LastName" + i.ToString(),
                 Address = "HCM"
             });
 
@@ -146,12 +144,12 @@ public static class ModelBuilderExtensions
             Id = 46,
             UserName = "UserAdmin46",
             NormalizedUserName = "useradmin46",
-            Email = "admin46"+"@gmail.com",
+            Email = "admin46" + "@gmail.com",
             NormalizedEmail = "admin46" + "@gmail.com",
             EmailConfirmed = true,
             PasswordHash = hasher.HashPassword(null, "12345678"),
             SecurityStamp = string.Empty,
-            Firstname = "Name46" ,
+            Firstname = "Name46",
             Lastname = "LastName46",
             Address = "HCM"
         });
@@ -176,14 +174,14 @@ public static class ModelBuilderExtensions
         #endregion
 
         #region Course
-        for (int i = 1 ; i<= 10; i++ )
+        for (int i = 1; i <= 10; i++)
         {
             modelBuilder.Entity<Course>().HasData(new Course
             {
                 Id = i,
-                Name = "Course"+i.ToString(),
+                Name = "Course" + i.ToString(),
                 Description = "Yoga course number " + i.ToString(),
-                Price = i*100,
+                Price = i * 100,
                 StartDate = DateTime.Now,
                 EnddDate = DateTime.MaxValue,
                 IsActive = true,

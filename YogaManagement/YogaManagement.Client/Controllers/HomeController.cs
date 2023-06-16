@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Diagnostics;
 using YogaManagement.Client.Models;
-using YogaManagement.Client.OdataClient.Default;
 
 namespace YogaManagement.Client.Controllers;
 public class HomeController : Controller
