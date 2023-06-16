@@ -1,4 +1,5 @@
-﻿@model IEnumerable<YogaManagement.Domain.Models.YogaClass>
+﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass;
+@model IEnumerable<YogaClassDTO>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,7 +23,7 @@
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Course)
+                @Html.DisplayNameFor(model => model.CourseName)
             </th>
             <th></th>
         </tr>
@@ -40,7 +41,7 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Course.Description)
+                @Html.DisplayFor(modelItem => item.CourseName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

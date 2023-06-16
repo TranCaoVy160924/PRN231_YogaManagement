@@ -38,6 +38,7 @@ public class YogaClassesController : ODataController
         {
             return NotFound();
         }
+       //var ygclassout = _mapper.Map<YogaClassDTO>(ygClass);
 
         return Ok(_mapper.Map<YogaClassDTO>(ygClass));
     }
@@ -81,8 +82,8 @@ public class YogaClassesController : ODataController
         }
     }
 
-    [HttpDelete("odata/[controller]")]
-    public async Task<IActionResult> DeleteAsync(int key)
+    [HttpDelete()]
+    public async Task<IActionResult> Delete(int key)
     {
         var existClass = await _ygClassRepo.Get(key);
         if (existClass == null)

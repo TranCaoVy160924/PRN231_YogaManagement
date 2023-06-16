@@ -4,7 +4,7 @@ namespace YogaManagement.Contracts.YogaClass;
 public class YogaClassDTO
 {
     // Core
-    public int Id { get; set; } = 0;
+    public int Id { get; set; }
 
     [Required]
     public string Name { get; set; }
@@ -19,5 +19,5 @@ public class YogaClassDTO
     public int CourseId { get; set; }
 
     // Display
-    public string CourseName { get; set; } = "";
+    public string? CourseName { get; set; } 
 }

@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using YogaManagement.Client.OdataClient.Default;
+using YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
 
@@ -12,9 +15,10 @@ namespace YogaManagement.Client.Controllers
 {
     public class YogaClassesController : Controller
     {
-        private readonly YogaManagementDbContext _context;
+        private readonly Container _context;
 
-        public YogaClassesController(YogaManagementDbContext context)
+
+        public YogaClassesController(Container context)
         {
             _context = context;
         }
@@ -22,8 +26,8 @@ namespace YogaManagement.Client.Controllers
         // GET: YogaClasses
         public async Task<IActionResult> Index()
         {
-            var yogaManagementDbContext = _context.YogaClasses.Include(y => y.Course);
-            return View(await yogaManagementDbContext.ToListAsync());
+            var ygClasses = await _context.YogaClasses.ExecuteAsync();
+            return View(ygClasses);
         }
 
         // GET: YogaClasses/Details/5
@@ -31,24 +35,24 @@ namespace YogaManagement.Client.Controllers
         {
             if (id == null || _context.YogaClasses == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
 
-            var yogaClass = await _context.YogaClasses
-                .Include(y => y.Course)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var yogaClass = _context.YogaClasses
+               .Where(y => y.Id == id).SingleOrDefault();
             if (yogaClass == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
 
             return View(yogaClass);
         }
 
         // GET: YogaClasses/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Description");
+            var course = await _context.Courses.ExecuteAsync();
+            ViewBag.Courses = new SelectList(course, "Id", "Name");
             return View();
         }
 
@@ -57,16 +61,28 @@ namespace YogaManagement.Client.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Size,Status,CourseId")] YogaClass yogaClass)
+        public async Task<IActionResult> Create([Bind("Id,Name,Size,Status,CourseId")] YogaClassDTO yogaClass)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(yogaClass);
+                var course = await _context.Courses.ExecuteAsync();
+                ViewBag.Courses = new SelectList(course, "Id", "Name");
+                ModelState.Remove("CourseName");
+                if (!ModelState.IsValid)
+                {
+                    throw new Exception("Invalid Input");
+                }
+                yogaClass.CourseName = "";
+                _context.AddToYogaClasses(yogaClass);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
+            }catch (Exception ex)
+            {
+                ViewData["Error"] = ex.Message;
+                return View(yogaClass);
             }
-            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Description", yogaClass.CourseId);
-            return View(yogaClass);
         }
 
         // GET: YogaClasses/Edit/5
@@ -74,15 +90,16 @@ namespace YogaManagement.Client.Controllers
         {
             if (id == null || _context.YogaClasses == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
 
-            var yogaClass = await _context.YogaClasses.FindAsync(id);
+            var yogaClass = await _context.YogaClasses.ByKey(id.Value).GetValueAsync();
+            var course = await _context.Courses.ExecuteAsync();
+            ViewBag.Courses = new SelectList(course, "Id", "Name");
             if (yogaClass == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
-            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Description", yogaClass.CourseId);
             return View(yogaClass);
         }
 
@@ -91,35 +108,43 @@ namespace YogaManagement.Client.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Size,Status,CourseId")] YogaClass yogaClass)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Size,Status,CourseId")] YogaClassDTO UyogaClass)
         {
-            if (id != yogaClass.Id)
+            if (id != UyogaClass.Id)
             {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(yogaClass);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!YogaClassExists(yogaClass.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Description", yogaClass.CourseId);
-            return View(yogaClass);
+
+            try
+            {
+                var course = await _context.Courses.ExecuteAsync();
+                ViewBag.Courses = new SelectList(course, "Id", "Name");
+                ModelState.Remove("CourseName");
+                if (!ModelState.IsValid)
+                {
+                    throw new Exception("Invalid input");
+                }
+                var ygClass = _context.YogaClasses.ByKey(id).GetValue();
+                ygClass.Name = UyogaClass.Name;
+                ygClass.Status = UyogaClass.Status;
+                ygClass.Size = UyogaClass.Size;
+                ygClass.CourseId = UyogaClass.CourseId;          
+
+                _context.UpdateObject(ygClass);
+                await _context.SaveChangesAsync();
+
+            }catch (Exception ex)
+            {
+                if(!YogaClassExists(UyogaClass.Id))
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: YogaClasses/Delete/5
@@ -127,15 +152,14 @@ namespace YogaManagement.Client.Controllers
         {
             if (id == null || _context.YogaClasses == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
 
-            var yogaClass = await _context.YogaClasses
-                .Include(y => y.Course)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var yogaClass = await _context.YogaClasses.ByKey(id.Value).GetValueAsync();
+       
             if (yogaClass == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
 
             return View(yogaClass);
@@ -148,12 +172,12 @@ namespace YogaManagement.Client.Controllers
         {
             if (_context.YogaClasses == null)
             {
-                return Problem("Entity set 'YogaManagementDbContext.YogaClasses'  is null.");
+                return RedirectToAction(nameof(Index));
             }
-            var yogaClass = await _context.YogaClasses.FindAsync(id);
+            var yogaClass = _context.YogaClasses.ByKey(id).GetValue();
             if (yogaClass != null)
             {
-                _context.YogaClasses.Remove(yogaClass);
+                _context.DeleteObject(yogaClass);
             }
             
             await _context.SaveChangesAsync();
