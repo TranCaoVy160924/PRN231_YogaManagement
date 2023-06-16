@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using YogaManagement.Client.OdataClient.Default;
@@ -179,14 +174,14 @@ namespace YogaManagement.Client.Controllers
             {
                 _context.DeleteObject(yogaClass);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool YogaClassExists(int id)
         {
-          return (_context.YogaClasses?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.YogaClasses?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

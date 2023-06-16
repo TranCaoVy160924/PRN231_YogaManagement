@@ -1,4 +1,5 @@
 ﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
+@using YogaManagement.Domain.Enums;
 @model UserDTO
 
 @{
@@ -8,6 +9,7 @@
     {
         errorMessage = ViewData["Error"] as string;
     }
+
 }
 
 <h1>Create</h1>
@@ -18,11 +20,12 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group form-check">
+@*            <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
                 </label>
-            </div>
+            </div>*@
+            <input class="form-check-input" asp-for="Status" type="hidden" value="true"/>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
@@ -44,8 +47,14 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <input asp-for="ConfirmPassword" class="form-control" type="hidden" value="12345678"/>
+            <div class="form-group">
                 <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
+                <select asp-for="Role" class="form-control" asp-items='@Html.GetEnumSelectList<UserRoles>().Select(x => new SelectListItem { Text = x.Text, Value = x.Text })'></select>
                 <span asp-validation-for="Role" class="text-danger"></span>
             </div>
             <div class="form-group">
