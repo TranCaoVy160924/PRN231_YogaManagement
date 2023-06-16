@@ -18,6 +18,7 @@ using YogaManagement.Contracts.Authority;
 using YogaManagement.Contracts.Category;
 using YogaManagement.Contracts.Course;
 using YogaManagement.Contracts.YogaClass;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 

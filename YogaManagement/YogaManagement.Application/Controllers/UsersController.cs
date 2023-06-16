@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Attributes;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using System.Data;
 using YogaManagement.Application.Utilities;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Authority;
@@ -143,6 +146,54 @@ public class UsersController : ODataController
         }
     }
 
+    [Authorize(Roles ="Teacher, Staff")]
+    public async Task<ActionResult> Delete([FromRoute] int key)
+    {
+        var user = await _userManager.FindByIdAsync(key.ToString());
+
+        if (user != null)
+        {
+            await _userManager.DeleteAsync(user);
+        }
+
+        return NoContent();
+    }
+
+    [Authorize(Roles ="Teacher, Staff")]
+    public async Task<ActionResult> PatchAsync([FromRoute] int key, [FromBody] Delta<UserDTO> delta)
+    {
+        try
+        {
+            var updateRequest = delta.GetInstance();
+            var user = await _userManager.FindByIdAsync(key.ToString());
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var hasher = new PasswordHasher<AppUser>();
+            string firstName = updateRequest.FirstName.Trim();
+            string lastName = updateRequest.LastName.Trim();
+
+            user.Firstname = firstName;
+            user.Lastname = lastName;
+            user.PasswordHash = hasher.HashPassword(null, "12345678");
+            user.UserName = firstName + lastName;
+            user.Email = updateRequest.Email;
+            user.EmailConfirmed = true;
+            user.SecurityStamp = string.Empty;
+            user.Address = updateRequest.Address;
+
+            await _userManager.UpdateAsync(user);
+
+            return Updated(updateRequest);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
     //[HttpPost("auth/change-password/")]
     //[Authorize]
     //public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request)

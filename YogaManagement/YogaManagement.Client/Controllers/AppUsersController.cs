@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -90,109 +92,101 @@ namespace YogaManagement.Client.Controllers
                 ViewData["Error"] = ex.Message;
                 return View(appUser);
             }
-
         }
 
-        //// GET: AppUsers/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null || _context.Users == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // GET: AppUsers/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null || _context.Users == null)
+            {
+                return NotFound();
+            }
 
-        //    var appUser = await _context.Users.ByKey(id.Value).GetValueAsync();
-        //    if (appUser == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(appUser);
-        //}
+            var appUser = await _context.Users.ByKey(id.Value).GetValueAsync();
+            if (appUser == null)
+            {
+                return NotFound();
+            }
+            return View(appUser);
+        }
 
-        //// POST: AppUsers/Edit/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to.
-        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Status, Address,Email,Role")] UserDTO appUser)
-        //{
-        //    if (id != appUser.Id)
-        //    {
-        //        return NotFound();
-        //    }
+        // POST: AppUsers/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id, FirstName, LastName, Status, Address, Email, Password, ConfirmPassword, Role")] UserDTO appUser)
+        {
+            try
+            {
+                if (id != appUser.Id)
+                {
+                    return NotFound();
+                }
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            if (!ModelState.IsValid)
-        //            {
-        //                throw new Exception("Invalid input");
-        //            }
+                if (!ModelState.IsValid)
+                {
+                    throw new Exception("Invalid input");
+                }
 
-        //            var user = _context.Users.ByKey(id).GetValue();
-        //            user.FirstName = appUser.FirstName;
-        //            user.LastName = appUser.LastName;
-        //            user.Email = appUser.Email;
-        //            user.Address = appUser.Address;
-        //            user.Status = appUser.Status;
-        //            user.Role = appUser.Role;
+                var updateUser = _context.Users.ByKey(id).GetValue();
 
-        //            _context.UpdateObject(user);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!AppUserExists(appUser.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(appUser);
-        //}
+                updateUser.FirstName = appUser.FirstName;
+                updateUser.LastName = appUser.LastName;
+                updateUser.Address = appUser.Address;
+                updateUser.Email = appUser.Email;
+                updateUser.Password = appUser.Password;
+                updateUser.ConfirmPassword = appUser.Password;
+                updateUser.Role = updateUser.Role;
+                updateUser.Status = updateUser.Status;
 
-        //// GET: AppUsers/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null || _context.Users == null)
-        //    {
-        //        return NotFound();
-        //    }
+                _context.UpdateObject(updateUser);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ViewData["Error"] = ex.Message;
+                return View(appUser);
+            }
+        }
 
-        //    var appUser = await _context.Users
-        //        .ByKey(id.Value).GetValueAsync();
-        //    if (appUser == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // GET: AppUsers/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context.Users == null)
+            {
+                return NotFound();
+            }
 
-        //    return View(appUser);
-        //}
+            var appUser = await _context.Users
+                .ByKey(id.Value).GetValueAsync();
+            if (appUser == null)
+            {
+                return NotFound();
+            }
 
-        //// POST: AppUsers/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var appUser =  _context.Users.ByKey(id).GetValue();
-        //    if (appUser != null)
-        //    {
-        //        _context.DeleteObject(appUser);
-        //    }
-            
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+            return View(appUser);
+        }
 
-        //private bool AppUserExists(int id)
-        //{
-        //  return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
-        //}
+        // POST: AppUsers/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var appUser = _context.Users.ByKey(id).GetValue();
+            if (appUser != null)
+            {
+                _context.DeleteObject(appUser);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool AppUserExists(int id)
+        {
+            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
     }
 }
