@@ -1,17 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass;
-using YogaManagement.Database.EF;
-using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Client.Controllers
 {
     public class YogaClassesController : Controller
     {
         private readonly Container _context;
-
 
         public YogaClassesController(Container context)
         {
@@ -26,7 +22,7 @@ namespace YogaManagement.Client.Controllers
         }
 
         // GET: YogaClasses/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null || _context.YogaClasses == null)
             {
@@ -73,7 +69,8 @@ namespace YogaManagement.Client.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ViewData["Error"] = ex.Message;
                 return View(yogaClass);
@@ -103,9 +100,9 @@ namespace YogaManagement.Client.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Size,Status,CourseId")] YogaClassDTO UyogaClass)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Size,Status,CourseId")] YogaClassDTO yogaClass)
         {
-            if (id != UyogaClass.Id)
+            if (id != yogaClass.Id)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -120,24 +117,19 @@ namespace YogaManagement.Client.Controllers
                     throw new Exception("Invalid input");
                 }
                 var ygClass = _context.YogaClasses.ByKey(id).GetValue();
-                ygClass.Name = UyogaClass.Name;
-                ygClass.Status = UyogaClass.Status;
-                ygClass.Size = UyogaClass.Size;
-                ygClass.CourseId = UyogaClass.CourseId;          
+                ygClass.Name = yogaClass.Name;
+                ygClass.Status = yogaClass.Status;
+                ygClass.Size = yogaClass.Size;
+                ygClass.CourseId = yogaClass.CourseId;
 
                 _context.UpdateObject(ygClass);
                 await _context.SaveChangesAsync();
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                if(!YogaClassExists(UyogaClass.Id))
-                {
-                    return RedirectToAction(nameof(Index));
-                }
-                else
-                {
-                    throw;
-                }
+                ViewData["Error"] = ex.Message;
+                return View(yogaClass);
             }
             return RedirectToAction(nameof(Index));
         }
@@ -151,7 +143,7 @@ namespace YogaManagement.Client.Controllers
             }
 
             var yogaClass = await _context.YogaClasses.ByKey(id.Value).GetValueAsync();
-       
+
             if (yogaClass == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -169,19 +161,22 @@ namespace YogaManagement.Client.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var yogaClass = _context.YogaClasses.ByKey(id).GetValue();
-            if (yogaClass != null)
+
+            try
             {
-                _context.DeleteObject(yogaClass);
+                var yogaClass = _context.YogaClasses.ByKey(id).GetValue();
+                if (yogaClass != null)
+                {
+                    _context.DeleteObject(yogaClass);
+                }
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool YogaClassExists(int id)
-        {
-            return (_context.YogaClasses?.Any(e => e.Id == id)).GetValueOrDefault();
+            catch (Exception ex)
+            {
+                return RedirectToAction(nameof(Index));
+            }
         }
     }
 }

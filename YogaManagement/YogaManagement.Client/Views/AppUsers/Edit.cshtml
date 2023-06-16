@@ -1,7 +1,15 @@
 ﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
+@using YogaManagement.Domain.Enums;
 @model UserDTO
 @{
     ViewData["Title"] = "Edit";
+    var errorMessage = ViewData["Error"] as string;
+    if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">
+            @errorMessage
+        </div>
+    }
 }
 
 <h1>Edit</h1>

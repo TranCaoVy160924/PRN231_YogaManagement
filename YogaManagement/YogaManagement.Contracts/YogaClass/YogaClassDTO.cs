@@ -19,5 +19,5 @@ public class YogaClassDTO
     public int CourseId { get; set; }
 
     // Display
-    public string? CourseName { get; set; } 
+    public string? CourseName { get; set; }
 }

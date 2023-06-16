@@ -2,6 +2,13 @@
 @model YogaClassDTO
 @{
     ViewData["Title"] = "Edit";
+    var errorMessage = ViewData["Error"] as string;
+    if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">
+            @errorMessage
+        </div>
+    }
 }
 
 <h1>Edit</h1>
