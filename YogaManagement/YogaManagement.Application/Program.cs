@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
@@ -10,14 +8,14 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using YogaManagement.Application.MapperConfig;
-using YogaManagement.Business.Repositories;
 using YogaManagement.Application.Utilities;
-using YogaManagement.Database.EF;
-using YogaManagement.Domain.Models;
+using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Authority;
 using YogaManagement.Contracts.Category;
 using YogaManagement.Contracts.Course;
 using YogaManagement.Contracts.YogaClass;
+using YogaManagement.Database.EF;
+using YogaManagement.Domain.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +30,7 @@ builder.Services.AddIdentity<AppUser, AppRole>()
 
 // Repository
 builder.Services.AddScoped<MemberRepository>();
+builder.Services.AddScoped<TeacherProfileRepository>();
 builder.Services.AddScoped<YogaClassRepository>();
 builder.Services.AddScoped<CourseRepository>();
 builder.Services.AddScoped<CategoryRepository>();

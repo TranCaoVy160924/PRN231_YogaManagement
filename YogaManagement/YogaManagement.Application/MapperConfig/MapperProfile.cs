@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
-using YogaManagement.Contracts.Authority.Response;
-using YogaManagement.Domain.Models;
 using YogaManagement.Contracts.Authority;
 using YogaManagement.Contracts.Category;
 using YogaManagement.Contracts.Course;
 using YogaManagement.Contracts.YogaClass;
+using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.MapperConfig;
 

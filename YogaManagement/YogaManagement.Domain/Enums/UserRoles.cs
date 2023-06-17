@@ -1,7 +1,12 @@
-﻿namespace YogaManagement.Domain.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace YogaManagement.Domain.Enums;
 public enum UserRoles
 {
+    [Display(Name = "Member")]
+    Member,
+    [Display(Name = "Teacher")]
     Teacher,
-    Staff,
-    Member
+    [Display(Name = "Staff")]
+    Staff
 }

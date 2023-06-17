@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using YogaManagement.Contracts.Authority.Response;
 using YogaManagement.Domain.Enums;
 
 namespace YogaManagement.Contracts.Authority.Request

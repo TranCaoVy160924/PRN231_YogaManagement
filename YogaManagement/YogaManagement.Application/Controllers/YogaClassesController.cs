@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
-using Microsoft.AspNetCore.OData.Routing.Attributes;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using YogaManagement.Application.Utilities;
 using YogaManagement.Business.Repositories;
@@ -23,7 +20,7 @@ public class YogaClassesController : ODataController
         _ygClassRepo = yogaClassRepository;
     }
 
-    [EnableQuery(PageSize = 10)]
+    [EnableQuery]
     public ActionResult<IQueryable<YogaClassDTO>> Get()
     {
         return Ok(_mapper.ProjectTo<YogaClassDTO>(_ygClassRepo.GetAll()));
@@ -38,7 +35,7 @@ public class YogaClassesController : ODataController
         {
             return NotFound();
         }
-       //var ygclassout = _mapper.Map<YogaClassDTO>(ygClass);
+        //var ygclassout = _mapper.Map<YogaClassDTO>(ygClass);
 
         return Ok(_mapper.Map<YogaClassDTO>(ygClass));
     }
@@ -47,11 +44,12 @@ public class YogaClassesController : ODataController
     {
         try
         {
+            ModelState.Remove("CourseName");
             ModelState.ValidateRequest();
             var newYgClass = _mapper.Map<YogaClass>(createRequest);
             newYgClass.Status = true;
             await _ygClassRepo.CreateAsync(newYgClass);
-            return Created(newYgClass);
+            return Created(createRequest);
         }
         catch (Exception ex)
         {

@@ -22,7 +22,7 @@ public class CoursesController : ODataController
         _categoryRepo = categoryRepository;
     }
 
-    [EnableQuery(PageSize = 10)]
+
     public ActionResult<IQueryable<CourseDTO>> Get()
     {
         return Ok(_mapper.ProjectTo<CourseDTO>(_courseRepo.GetAll()));
@@ -90,13 +90,9 @@ public class CoursesController : ODataController
         }
         try
         {
-            if (existCourse.IsActive == true)
+            if (existCourse.IsActive)
             {
                 existCourse.IsActive = false;
-            }
-            else
-            {
-                existCourse.IsActive = true;
             }
 
             await _courseRepo.UpdateAsync(existCourse);
