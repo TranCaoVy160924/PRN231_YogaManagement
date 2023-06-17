@@ -183,6 +183,7 @@ public class UsersController : ODataController
             user.EmailConfirmed = true;
             user.SecurityStamp = string.Empty;
             user.Address = updateRequest.Address;
+            user.Status = updateRequest.Status;
 
             await _userManager.UpdateAsync(user);
 

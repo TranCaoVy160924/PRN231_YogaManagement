@@ -13,6 +13,9 @@ using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Authority;
 using YogaManagement.Contracts.Category;
 using YogaManagement.Contracts.Course;
+using YogaManagement.Contracts.Enrollment;
+using YogaManagement.Contracts.MemberLevel;
+using YogaManagement.Contracts.TeacherEnrollment;
 using YogaManagement.Contracts.YogaClass;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
@@ -168,6 +171,19 @@ static IEdmModel GetEdmModel()
 
     #region Category
     var category = builder.EntitySet<CategoryDTO>("Categories").EntityType;
+    #endregion
+
+    #region Enrollment
+    var enrollment = builder.EntitySet<EnrollmentDTO>("Enrollments").EntityType;
+    enrollment.HasKey(e => new { e.MemberId, e.YogaClassId });
+    #endregion
+
+    #region TeacherEnrollment
+    var teacherEnrollment = builder.EntitySet<TeacherEnrollmentDTO>("TeacherEnrollment").EntityType;
+    #endregion
+
+    #region MemberLevelDiscount
+    var memberLevelDiscount = builder.EntitySet<MemberLevelDiscountDTO>("MemberLevel").EntityType;
     #endregion
 
     return builder.GetEdmModel();

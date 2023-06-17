@@ -10,7 +10,7 @@
         <Property Name="Size" Type="Edm.Int32" Nullable="false" />
         <Property Name="Status" Type="Edm.Boolean" Nullable="false" />
         <Property Name="CourseId" Type="Edm.Int32" Nullable="false" />
-        <Property Name="CourseName" Type="Edm.String" Nullable="false" />
+        <Property Name="CourseName" Type="Edm.String" />
       </EntityType>
     </Schema>
     <Schema Namespace="YogaManagement.Contracts.Authority" xmlns="http://docs.oasis-open.org/odata/ns/edm">
@@ -55,12 +55,55 @@
         <Property Name="IsActive" Type="Edm.Boolean" Nullable="false" />
       </EntityType>
     </Schema>
+    <Schema Namespace="YogaManagement.Contracts.Enrollment" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="EnrollmentDTO">
+        <Key>
+          <PropertyRef Name="MemberId" />
+          <PropertyRef Name="YogaClassId" />
+        </Key>
+        <Property Name="MemberId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="YogaClassId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="EnrollDate" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="Discount" Type="Edm.Double" Nullable="false" />
+        <Property Name="MemberName" Type="Edm.String" />
+        <Property Name="YogaClassName" Type="Edm.String" />
+      </EntityType>
+    </Schema>
+    <Schema Namespace="YogaManagement.Contracts.TeacherEnrollment" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="TeacherEnrollmentDTO">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="IsActive" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="EndDate" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="TeacherProfileId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="YogaClassId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="TeacherName" Type="Edm.String" />
+        <Property Name="ClassName" Type="Edm.String" />
+      </EntityType>
+    </Schema>
+    <Schema Namespace="YogaManagement.Contracts.MemberLevel" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="MemberLevelDiscountDTO">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Silver" Type="Edm.Double" Nullable="false" />
+        <Property Name="Gold" Type="Edm.Double" Nullable="false" />
+        <Property Name="Platinum" Type="Edm.Double" Nullable="false" />
+      </EntityType>
+    </Schema>
     <Schema Namespace="Default" xmlns="http://docs.oasis-open.org/odata/ns/edm">
       <EntityContainer Name="Container">
         <EntitySet Name="YogaClasses" EntityType="YogaManagement.Contracts.YogaClass.YogaClassDTO" />
         <EntitySet Name="Users" EntityType="YogaManagement.Contracts.Authority.UserDTO" />
         <EntitySet Name="Courses" EntityType="YogaManagement.Contracts.Course.CourseDTO" />
         <EntitySet Name="Categories" EntityType="YogaManagement.Contracts.Category.CategoryDTO" />
+        <EntitySet Name="Enrollments" EntityType="YogaManagement.Contracts.Enrollment.EnrollmentDTO" />
+        <EntitySet Name="TeacherEnrollment" EntityType="YogaManagement.Contracts.TeacherEnrollment.TeacherEnrollmentDTO" />
+        <EntitySet Name="MemberLevel" EntityType="YogaManagement.Contracts.MemberLevel.MemberLevelDiscountDTO" />
       </EntityContainer>
     </Schema>
   </edmx:DataServices>

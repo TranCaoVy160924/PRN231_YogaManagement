@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/13/2023 10:37:08 PM
+// Generation date: 6/17/2023 8:41:25 PM
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
 {
     /// <summary>

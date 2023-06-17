@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/13/2023 10:37:08 PM
+// Generation date: 6/17/2023 8:41:25 PM
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
 {
 }
@@ -19,6 +19,15 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
 {
 }
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Category
+{
+}
+namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment
+{
+}
+namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment
+{
+}
+namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel
 {
 }
 namespace YogaManagement.Client.OdataClient.Default
@@ -60,7 +69,22 @@ namespace YogaManagement.Client.OdataClient.Default
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         protected global::System.Type ResolveTypeFromName(string typeName)
         {
-            global::System.Type resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.Authority", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority");
+            global::System.Type resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.TeacherEnrollment", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment");
+            if ((resolvedType != null))
+            {
+                return resolvedType;
+            }
+            resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.MemberLevel", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel");
+            if ((resolvedType != null))
+            {
+                return resolvedType;
+            }
+            resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.Enrollment", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment");
+            if ((resolvedType != null))
+            {
+                return resolvedType;
+            }
+            resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.Authority", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority");
             if ((resolvedType != null))
             {
                 return resolvedType;
@@ -96,6 +120,30 @@ namespace YogaManagement.Client.OdataClient.Default
         protected string ResolveNameFromType(global::System.Type clientType)
         {
             global::Microsoft.OData.Client.OriginalNameAttribute originalNameAttribute = (global::Microsoft.OData.Client.OriginalNameAttribute)global::System.Linq.Enumerable.SingleOrDefault(global::Microsoft.OData.Client.Utility.GetCustomAttributes(clientType, typeof(global::Microsoft.OData.Client.OriginalNameAttribute), true));
+            if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment", global::System.StringComparison.Ordinal))
+            {
+                if (originalNameAttribute != null)
+                {
+                    return string.Concat("YogaManagement.Contracts.TeacherEnrollment.", originalNameAttribute.OriginalName);
+                }
+                return string.Concat("YogaManagement.Contracts.TeacherEnrollment.", clientType.Name);
+            }
+            if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel", global::System.StringComparison.Ordinal))
+            {
+                if (originalNameAttribute != null)
+                {
+                    return string.Concat("YogaManagement.Contracts.MemberLevel.", originalNameAttribute.OriginalName);
+                }
+                return string.Concat("YogaManagement.Contracts.MemberLevel.", clientType.Name);
+            }
+            if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment", global::System.StringComparison.Ordinal))
+            {
+                if (originalNameAttribute != null)
+                {
+                    return string.Concat("YogaManagement.Contracts.Enrollment.", originalNameAttribute.OriginalName);
+                }
+                return string.Concat("YogaManagement.Contracts.Enrollment.", clientType.Name);
+            }
             if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority", global::System.StringComparison.Ordinal))
             {
                 if (originalNameAttribute != null)
@@ -211,6 +259,60 @@ namespace YogaManagement.Client.OdataClient.Default
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Category.CategoryDTO> _Categories;
         /// <summary>
+        /// There are no comments for Enrollments in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Enrollments")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment.EnrollmentDTO> Enrollments
+        {
+            get
+            {
+                if ((this._Enrollments == null))
+                {
+                    this._Enrollments = base.CreateQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment.EnrollmentDTO>("Enrollments");
+                }
+                return this._Enrollments;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment.EnrollmentDTO> _Enrollments;
+        /// <summary>
+        /// There are no comments for TeacherEnrollment in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("TeacherEnrollment")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment.TeacherEnrollmentDTO> TeacherEnrollment
+        {
+            get
+            {
+                if ((this._TeacherEnrollment == null))
+                {
+                    this._TeacherEnrollment = base.CreateQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment.TeacherEnrollmentDTO>("TeacherEnrollment");
+                }
+                return this._TeacherEnrollment;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment.TeacherEnrollmentDTO> _TeacherEnrollment;
+        /// <summary>
+        /// There are no comments for MemberLevel in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("MemberLevel")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel.MemberLevelDiscountDTO> MemberLevel
+        {
+            get
+            {
+                if ((this._MemberLevel == null))
+                {
+                    this._MemberLevel = base.CreateQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel.MemberLevelDiscountDTO>("MemberLevel");
+                }
+                return this._MemberLevel;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel.MemberLevelDiscountDTO> _MemberLevel;
+        /// <summary>
         /// There are no comments for YogaClasses in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
@@ -241,6 +343,30 @@ namespace YogaManagement.Client.OdataClient.Default
         public virtual void AddToCategories(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Category.CategoryDTO categoryDTO)
         {
             base.AddObject("Categories", categoryDTO);
+        }
+        /// <summary>
+        /// There are no comments for Enrollments in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual void AddToEnrollments(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment.EnrollmentDTO enrollmentDTO)
+        {
+            base.AddObject("Enrollments", enrollmentDTO);
+        }
+        /// <summary>
+        /// There are no comments for TeacherEnrollment in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual void AddToTeacherEnrollment(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment.TeacherEnrollmentDTO teacherEnrollmentDTO)
+        {
+            base.AddObject("TeacherEnrollment", teacherEnrollmentDTO);
+        }
+        /// <summary>
+        /// There are no comments for MemberLevel in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual void AddToMemberLevel(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel.MemberLevelDiscountDTO memberLevelDiscountDTO)
+        {
+            base.AddObject("MemberLevel", memberLevelDiscountDTO);
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private abstract class GeneratedEdmModel

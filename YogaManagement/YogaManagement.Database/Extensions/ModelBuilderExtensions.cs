@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using YogaManagement.Domain.Enums;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Data.Extensions;
@@ -76,7 +77,8 @@ public static class ModelBuilderExtensions
             modelBuilder.Entity<Member>().HasData(new Member
             {
                 Id = i,
-                AppUserId = i
+                AppUserId = i,
+                MemberLevel = MemberLevel.None
             });
         }
         #endregion

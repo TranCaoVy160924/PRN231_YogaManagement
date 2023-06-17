@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -7,7 +8,7 @@
 namespace YogaManagement.Database.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -215,6 +216,7 @@ namespace YogaManagement.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    MemberLevel = table.Column<int>(type: "int", nullable: false),
                     AppUserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -367,8 +369,7 @@ namespace YogaManagement.Database.Migrations
                     MemberId = table.Column<int>(type: "int", nullable: false),
                     YogaClassId = table.Column<int>(type: "int", nullable: false),
                     EnrollDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Discount = table.Column<double>(type: "float", nullable: false),
-                    Amount = table.Column<double>(type: "float", nullable: false)
+                    Discount = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -456,52 +457,52 @@ namespace YogaManagement.Database.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Email", "EmailConfirmed", "Firstname", "Lastname", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "HCM", "e3326fbd-bc1b-464c-9969-2f678e9886bf", "member1@gmail.com", true, "Name1", "LastName1", false, null, "member1@gmail.com", "usermember1", "AQAAAAIAAYagAAAAEE7fwwmQ4QDAGxp1nTx5hEyfeOT44eux3t5R5m/TGHjXocofxw0eDP6wLhXytiAHNg==", null, false, "", false, false, "UserMember1" },
-                    { 2, 0, "HCM", "387aff09-d7cb-4a9d-84c3-e0c45d21f870", "member2@gmail.com", true, "Name2", "LastName2", false, null, "member2@gmail.com", "usermember2", "AQAAAAIAAYagAAAAEJnJG+aukmln4P41F8HO7HvO/pYUJw6yw5I3ueDPncR9OdF30+1UB5wr3a6oKnuQ0Q==", null, false, "", false, false, "UserMember2" },
-                    { 3, 0, "HCM", "1faad31e-8a6d-48b9-8835-b986b06ac9f0", "member3@gmail.com", true, "Name3", "LastName3", false, null, "member3@gmail.com", "usermember3", "AQAAAAIAAYagAAAAEIVe0vVgZ/XorCdOpNM3Z6qBSt+i/TJFZPZ+RppEnW2jN+2JtlOtJrjy+JiMXSpLeg==", null, false, "", false, false, "UserMember3" },
-                    { 4, 0, "HCM", "3c4859e2-f1e6-462e-8eaf-77ffc85a81e2", "member4@gmail.com", true, "Name4", "LastName4", false, null, "member4@gmail.com", "usermember4", "AQAAAAIAAYagAAAAEB8o9OkluwpaQUaX/mrSnlahJ/e1Pc/mZ8uFeWe7xDdUVb1TIGBSkygyAOyWiQZgXQ==", null, false, "", false, false, "UserMember4" },
-                    { 5, 0, "HCM", "f70539a8-a2f4-421e-a270-77248579182b", "member5@gmail.com", true, "Name5", "LastName5", false, null, "member5@gmail.com", "usermember5", "AQAAAAIAAYagAAAAEHFjotLHlon1tK0UFhSo2kcayMV1FLAPJ3vsEL7xXyNiDC567fjcG2nnG59m0cu5MQ==", null, false, "", false, false, "UserMember5" },
-                    { 6, 0, "HCM", "1d7fe282-da22-472a-83cf-4346256b2edb", "member6@gmail.com", true, "Name6", "LastName6", false, null, "member6@gmail.com", "usermember6", "AQAAAAIAAYagAAAAEO7ObrvOWxXCu2EIbcUaR3oYEB2h92HFcv4cHZlkZB8MiRq+aprGilLAblCJmFBZ7A==", null, false, "", false, false, "UserMember6" },
-                    { 7, 0, "HCM", "764b24b3-e289-4e41-b796-a24d1ac359ea", "member7@gmail.com", true, "Name7", "LastName7", false, null, "member7@gmail.com", "usermember7", "AQAAAAIAAYagAAAAEPTxzG0LGb2F2nQCsFbEdwLeiaDvpwYtTOGTd1mZEW98RJoziLs9mkR96KC3lVrC0w==", null, false, "", false, false, "UserMember7" },
-                    { 8, 0, "HCM", "e55d603c-c40b-47e5-a3af-6aa9c4813d17", "member8@gmail.com", true, "Name8", "LastName8", false, null, "member8@gmail.com", "usermember8", "AQAAAAIAAYagAAAAEOG734asZ3DHaPVfEZDCLCzRHOKODWpmLLHeUIg04qfC5paTmDVBpccP2PgoNZo6iQ==", null, false, "", false, false, "UserMember8" },
-                    { 9, 0, "HCM", "10e3549f-cd8e-4568-8996-b441c40de1e2", "member9@gmail.com", true, "Name9", "LastName9", false, null, "member9@gmail.com", "usermember9", "AQAAAAIAAYagAAAAEElEOLZPVa0DhSRQ9b0x547qjcAUApCQJG6bCXLsWV0UBH1TW8zauIU3DOjVZcD4eA==", null, false, "", false, false, "UserMember9" },
-                    { 10, 0, "HCM", "66fcb9cd-4b59-4352-92f2-f74a328fdefe", "member10@gmail.com", true, "Name10", "LastName10", false, null, "member10@gmail.com", "usermember10", "AQAAAAIAAYagAAAAEOAu6xWNibBchDwHeRPpXOkaUO85VjBl98i1WvLok4BUfZNjODLXyRyOw48OL7mlmQ==", null, false, "", false, false, "UserMember10" },
-                    { 11, 0, "HCM", "11606e8b-8085-49e0-a967-4f48aa68d9c1", "member11@gmail.com", true, "Name11", "LastName11", false, null, "member11@gmail.com", "usermember11", "AQAAAAIAAYagAAAAEMzuW9QWst81w9TOWpJsVMM+MVAanUgo1aLCYb3jMm4auz4dlt2ZJr4yBl9RPGUQAg==", null, false, "", false, false, "UserMember11" },
-                    { 12, 0, "HCM", "cf79daeb-d307-4445-92d7-7da80b170ad9", "member12@gmail.com", true, "Name12", "LastName12", false, null, "member12@gmail.com", "usermember12", "AQAAAAIAAYagAAAAEEVX6d22FPLSWZXnLe82hvnQzChmzlWgoJE4rf2oAP3IMK7ie3e1/J1w19Ss5X+lkA==", null, false, "", false, false, "UserMember12" },
-                    { 13, 0, "HCM", "8dc2de6c-b084-49ee-95b5-c4669fa1a1fb", "member13@gmail.com", true, "Name13", "LastName13", false, null, "member13@gmail.com", "usermember13", "AQAAAAIAAYagAAAAEHco6+D9C+sNJj7C0dQ8Qm4UZSHK1S7MKj/5SPABmCxyodGfZwBbsUCSsnpGBRfv0Q==", null, false, "", false, false, "UserMember13" },
-                    { 14, 0, "HCM", "b9f080d7-8ebb-480f-9b77-9b060ff89f88", "member14@gmail.com", true, "Name14", "LastName14", false, null, "member14@gmail.com", "usermember14", "AQAAAAIAAYagAAAAEAxj1yoXf5b7lnamEhoeYYUXtyz4BlxxxsFISQ0qmphjsT1BDDEblIYKMIphShKkJw==", null, false, "", false, false, "UserMember14" },
-                    { 15, 0, "HCM", "b9ffac78-2717-43fa-bc08-1a8ecf638fe7", "member15@gmail.com", true, "Name15", "LastName15", false, null, "member15@gmail.com", "usermember15", "AQAAAAIAAYagAAAAEBymr7t+DAPubT9Fp+SQ2A62AiagsA+wnaDh2IvKCtgPkPOAXu6pR6LvTj27K87IVQ==", null, false, "", false, false, "UserMember15" },
-                    { 16, 0, "HCM", "f3fc0515-f56f-401c-8921-0543b4efeaed", "member16@gmail.com", true, "Name16", "LastName16", false, null, "member16@gmail.com", "usermember16", "AQAAAAIAAYagAAAAEOcpopOqu2hVr4KsSkMPCHaUa763puUOXjxadsXtWepCYbPf96nKsK518D2kPTTaOg==", null, false, "", false, false, "UserMember16" },
-                    { 17, 0, "HCM", "4754db0c-0772-433d-95a6-ccb2de1d0131", "member17@gmail.com", true, "Name17", "LastName17", false, null, "member17@gmail.com", "usermember17", "AQAAAAIAAYagAAAAEHAm/L/8DHvfmOBNoyotvt5+ukPGKahuzTi6mhQPLD/92h92bdO0vSdvUo0YfF5qCg==", null, false, "", false, false, "UserMember17" },
-                    { 18, 0, "HCM", "7f83bda3-c150-481b-9d99-b0c9e788663f", "member18@gmail.com", true, "Name18", "LastName18", false, null, "member18@gmail.com", "usermember18", "AQAAAAIAAYagAAAAEB81rah7ultKKzU+bVd7jDRo71AY7kYsNcVkxF/LCKX2/Ye9XSHwwUcHS0qww+lErA==", null, false, "", false, false, "UserMember18" },
-                    { 19, 0, "HCM", "4fdede92-2197-4510-a5e5-d104473c3350", "member19@gmail.com", true, "Name19", "LastName19", false, null, "member19@gmail.com", "usermember19", "AQAAAAIAAYagAAAAEBiflrlSH3UX963muRb6EdUy47dRYKo67u2WrDj8Ofuw45lUmGKmtwviyF2GLiFmyQ==", null, false, "", false, false, "UserMember19" },
-                    { 20, 0, "HCM", "9d1e51ec-0897-49a8-af86-6769923ac91e", "member20@gmail.com", true, "Name20", "LastName20", false, null, "member20@gmail.com", "usermember20", "AQAAAAIAAYagAAAAEMdjcVcFkoJnHbG92CwRWW8gTCG4tdBl8cOGHjeya6AVz2+/kpHI//QEXdcgRlMqog==", null, false, "", false, false, "UserMember20" },
-                    { 21, 0, "HCM", "7425d9b6-1272-4571-8543-bdc3078b6a0d", "member21@gmail.com", true, "Name21", "LastName21", false, null, "member21@gmail.com", "usermember21", "AQAAAAIAAYagAAAAEMawTRWf9UWeuztnnxdvXvZTh80vgZ0ygOZD9TLNG2cFrh127IsOUmpt0h3uWGoWpA==", null, false, "", false, false, "UserMember21" },
-                    { 22, 0, "HCM", "04e5f49b-c7c3-4f0d-bbeb-c03f82e7e6a6", "member22@gmail.com", true, "Name22", "LastName22", false, null, "member22@gmail.com", "usermember22", "AQAAAAIAAYagAAAAEOZNG0YoMK6M8/CC4Wc8pIn+QhFcenk4dNesc20Zdz+e0crj0pVrtQP9cMC3f81ZVg==", null, false, "", false, false, "UserMember22" },
-                    { 23, 0, "HCM", "50b24b74-420a-4bb2-a47f-d88869f00072", "member23@gmail.com", true, "Name23", "LastName23", false, null, "member23@gmail.com", "usermember23", "AQAAAAIAAYagAAAAEF6L22mAMcZgPD2i5uFzR7bf5DoLirMt1pDjgbeCRvvIv7NltSJM5DnNWmDMrtEVXg==", null, false, "", false, false, "UserMember23" },
-                    { 24, 0, "HCM", "7d2f30ae-99e2-4ab3-bfb8-f19797c4de85", "member24@gmail.com", true, "Name24", "LastName24", false, null, "member24@gmail.com", "usermember24", "AQAAAAIAAYagAAAAELWv3s7w0zfl+shTyYKwV5XKOZE9JRIf/ho+KPC9Imz9j7hR/SNwzKggGVfi9z9ATg==", null, false, "", false, false, "UserMember24" },
-                    { 25, 0, "HCM", "b064004d-d366-4d8c-a9b6-9dc2e5b74940", "member25@gmail.com", true, "Name25", "LastName25", false, null, "member25@gmail.com", "usermember25", "AQAAAAIAAYagAAAAELzZZ37qVVGzsCsH2pcPjsNezhVu0kRg20WWm4ZUqJQMFWCtNoo5HrLicDMR6p8qEg==", null, false, "", false, false, "UserMember25" },
-                    { 26, 0, "HCM", "253b578f-9c6e-4b62-8b7c-27bfdcfe7660", "member26@gmail.com", true, "Name26", "LastName26", false, null, "member26@gmail.com", "usermember26", "AQAAAAIAAYagAAAAEKyOfYzfoNdhob6RjByZVK7IhE8PqyyJfJhrDb/UnP9/UZ3l1SUUdYvahNZHoNbfeQ==", null, false, "", false, false, "UserMember26" },
-                    { 27, 0, "HCM", "d8150e3f-8b39-4b3f-b865-e87aaf764caa", "member27@gmail.com", true, "Name27", "LastName27", false, null, "member27@gmail.com", "usermember27", "AQAAAAIAAYagAAAAENbHkxL3QbiBZ7i9YeqkYOTuPINjeEV9lwt89jXr11WmgrWTqRlwaEJeGl8j9FRonw==", null, false, "", false, false, "UserMember27" },
-                    { 28, 0, "HCM", "c623031c-2c1c-4b6b-985d-bce801a25780", "member28@gmail.com", true, "Name28", "LastName28", false, null, "member28@gmail.com", "usermember28", "AQAAAAIAAYagAAAAEEPxN3vxHCl0XiMN182hPqly4lwedc1OXQD7sueil2O1QHpSaoXls2dpvqg4XpFfjg==", null, false, "", false, false, "UserMember28" },
-                    { 29, 0, "HCM", "77cb1bf5-585a-444d-bd21-419a99208321", "member29@gmail.com", true, "Name29", "LastName29", false, null, "member29@gmail.com", "usermember29", "AQAAAAIAAYagAAAAEFYvjbhXDvaUZhCkAU2VHiLKzm96+hvSHVuM/DhpkVPJ1/eoRDkYOu1R6/62lYy0xA==", null, false, "", false, false, "UserMember29" },
-                    { 30, 0, "HCM", "8efd5b52-d3d3-49dd-910f-d0d9beba1d39", "member30@gmail.com", true, "Name30", "LastName30", false, null, "member30@gmail.com", "usermember30", "AQAAAAIAAYagAAAAEAnF5dHbeninZ2p44OZd27He7Ne+vhgbG5WsZk1UifnGWXWO584az2YL+SXq+45SVw==", null, false, "", false, false, "UserMember30" },
-                    { 31, 0, "HCM", "ec4254d2-792a-4f8b-8137-1c3b222c9f8e", "teacher31@gmail.com", true, "Name31", "LastName31", false, null, "teacher31@gmail.com", "userteacher31", "AQAAAAIAAYagAAAAEEpIiAleEAj7iWhmih6ETXUx2JzHfqSHWaX1BtIuEroXY5MFzH9ETiKTy1Tj7d/eGg==", null, false, "", false, false, "UserTeacher31" },
-                    { 32, 0, "HCM", "341d12f8-9917-474c-90fc-759f069861ab", "teacher32@gmail.com", true, "Name32", "LastName32", false, null, "teacher32@gmail.com", "userteacher32", "AQAAAAIAAYagAAAAEHXaNtfEZIDhQ2rH1JiQ5Nkzb2M1CBXOdD0m6I/02B8E340q8YjNbJH6AuHQvi0UAg==", null, false, "", false, false, "UserTeacher32" },
-                    { 33, 0, "HCM", "e5b5e7b3-b65c-4a5e-a565-bda6e706be23", "teacher33@gmail.com", true, "Name33", "LastName33", false, null, "teacher33@gmail.com", "userteacher33", "AQAAAAIAAYagAAAAEOnHRKHD4L+eOoYHk0KlvpvMcQw30y6uMhBEojTopXzyJ/+znX35H+Pf0IbM8mTxKg==", null, false, "", false, false, "UserTeacher33" },
-                    { 34, 0, "HCM", "24fc858c-4c26-49ef-9bdc-d0343697efc8", "teacher34@gmail.com", true, "Name34", "LastName34", false, null, "teacher34@gmail.com", "userteacher34", "AQAAAAIAAYagAAAAEG6euWIO5q5jutHXBg5dq+0BLBbhmyWcNBisePOjRZt8QggacutoeFefgb6ARu1A2g==", null, false, "", false, false, "UserTeacher34" },
-                    { 35, 0, "HCM", "9fe5e2a4-82e5-4a5b-ba66-3450597f377a", "teacher35@gmail.com", true, "Name35", "LastName35", false, null, "teacher35@gmail.com", "userteacher35", "AQAAAAIAAYagAAAAEM4NLugbKY5ciCi0/w7m9qPcch2GyCvdBCjzCtknlwK3qr0tkao+is/HP7VCgIOtoA==", null, false, "", false, false, "UserTeacher35" },
-                    { 36, 0, "HCM", "80b90325-d48f-474a-8909-72603150dced", "teacher36@gmail.com", true, "Name36", "LastName36", false, null, "teacher36@gmail.com", "userteacher36", "AQAAAAIAAYagAAAAEL0Ganh4xVVPug1wGTvBQF7zLBG+AgZm381bDzfj+NuZrSF7ODJQbhGGtQZAqoOYYQ==", null, false, "", false, false, "UserTeacher36" },
-                    { 37, 0, "HCM", "d73efe0e-1d8c-48c3-a281-16412a796062", "teacher37@gmail.com", true, "Name37", "LastName37", false, null, "teacher37@gmail.com", "userteacher37", "AQAAAAIAAYagAAAAECuHRMDzjvltmEIHtyZx4IiZIIEXgpJ9tBBTMxqHSeA0Wi2CYmxN+gNHi4wq0BMI1Q==", null, false, "", false, false, "UserTeacher37" },
-                    { 38, 0, "HCM", "d4be2121-9c0e-40bc-92e5-3227398da332", "teacher38@gmail.com", true, "Name38", "LastName38", false, null, "teacher38@gmail.com", "userteacher38", "AQAAAAIAAYagAAAAEI16NMvFKPG4IXI99fHG5U89Y+g5RUal8ILqT7y60UAYAsEmkdbtPBrPWVMIy06KNg==", null, false, "", false, false, "UserTeacher38" },
-                    { 39, 0, "HCM", "4f2dcb70-4051-4caa-b9bb-7fe12928c3ee", "teacher39@gmail.com", true, "Name39", "LastName39", false, null, "teacher39@gmail.com", "userteacher39", "AQAAAAIAAYagAAAAENl9PJJWr0i8cdt6uUfuqz+7h3nSj+qu9ExYkWd8ywFrhEw4on+REg7CFlcYm1vZuA==", null, false, "", false, false, "UserTeacher39" },
-                    { 40, 0, "HCM", "0b009e44-01e2-45e5-ac6f-d89539c5a3eb", "teacher40@gmail.com", true, "Name40", "LastName40", false, null, "teacher40@gmail.com", "userteacher40", "AQAAAAIAAYagAAAAEChVaXWfzbRLQrqTCHYbsGmVBimGXZFaupVK4NWwvqA3EqnybnxE3FgUwDAODV4sGA==", null, false, "", false, false, "UserTeacher40" },
-                    { 41, 0, "HCM", "479dafaf-9dbb-4614-b5c8-aca8d1efacc8", "staff41@gmail.com", true, "Name41", "LastName41", false, null, "staff41@gmail.com", "userstaff41", "AQAAAAIAAYagAAAAEGp2RvaHwF0ks5QOoWz3NcnrFw2oZ5xnHV4IVo63P2W57gA1i857q9lWfr7Q60DaXw==", null, false, "", false, false, "UserStaff41" },
-                    { 42, 0, "HCM", "eff0a403-6718-4a21-88cf-10a33c8c8116", "staff42@gmail.com", true, "Name42", "LastName42", false, null, "staff42@gmail.com", "userstaff42", "AQAAAAIAAYagAAAAEFvCYa1P6N6c2y9tNl8Lpxc5vw7QFqB84nwwc0L9b5ibC2vXEF4GH3YFua2yFbcJDQ==", null, false, "", false, false, "UserStaff42" },
-                    { 43, 0, "HCM", "c8c7b032-5eb7-4208-964b-78a3032a4ba2", "staff43@gmail.com", true, "Name43", "LastName43", false, null, "staff43@gmail.com", "userstaff43", "AQAAAAIAAYagAAAAEJaFMrQyglqRO/U79zFcAG3tzQAT/Z/F9j1DXf03EBl5jxsPpU5qFvxlF5mpNdL3YA==", null, false, "", false, false, "UserStaff43" },
-                    { 44, 0, "HCM", "db57ae90-c9e5-44fc-94eb-41542d6e79fe", "staff44@gmail.com", true, "Name44", "LastName44", false, null, "staff44@gmail.com", "userstaff44", "AQAAAAIAAYagAAAAENIgQiK6kta+npln7qr3xS6yUPk6hRmm8/Q+e4BcNxhB9qSFp1jl4jedEX/ImCROWA==", null, false, "", false, false, "UserStaff44" },
-                    { 45, 0, "HCM", "65350705-87ff-4e4e-afeb-a88e2088009f", "staff45@gmail.com", true, "Name45", "LastName45", false, null, "staff45@gmail.com", "userstaff45", "AQAAAAIAAYagAAAAEKg8BQrkesnm74Hbn+fuEmw8mpvfXgpqZvV1i1qDz9XmEmtq62ejI+aL9HSe+V//2A==", null, false, "", false, false, "UserStaff45" },
-                    { 46, 0, "HCM", "3075136b-6e22-47b2-9fb2-27ce31806319", "admin46@gmail.com", true, "Name46", "LastName46", false, null, "admin46@gmail.com", "useradmin46", "AQAAAAIAAYagAAAAEFSxWMos4C5NcnjRSzAkysajrzu4+fjersR83T7/KnRVFXK106/Qbvmw3v5Wz8LK9g==", null, false, "", false, false, "UserAdmin46" }
+                    { 1, 0, "HCM", "9f0fe71e-5761-4b70-850d-a61e479aec1c", "member1@gmail.com", true, "Name1", "LastName1", false, null, "member1@gmail.com", "usermember1", "AQAAAAIAAYagAAAAEJ1LT2Kr4SLg2gGdK+2ivIkbZDuWcNxPJCBN1DIXZES76eJm926AuQCTUXz9uJkvTQ==", null, false, "", true, false, "UserMember1" },
+                    { 2, 0, "HCM", "ce7052b7-4f5d-4425-af5a-3b96f23f3985", "member2@gmail.com", true, "Name2", "LastName2", false, null, "member2@gmail.com", "usermember2", "AQAAAAIAAYagAAAAEI/VuOlG/t+rFhkWD/beOnCZNPSxJ5ZtV4OfBiHhboiKRRdTDZEPC7xmwtYy/EtSXQ==", null, false, "", true, false, "UserMember2" },
+                    { 3, 0, "HCM", "f8d6c796-b7b6-4f81-8225-5a42c307d058", "member3@gmail.com", true, "Name3", "LastName3", false, null, "member3@gmail.com", "usermember3", "AQAAAAIAAYagAAAAEP/eL/jtWIHPxPApIEz+6yZQQd2HQ0URydl/0msZWX2sBYod1YGyAbgkkaVCX9pR8w==", null, false, "", true, false, "UserMember3" },
+                    { 4, 0, "HCM", "3d25b1a2-9020-468c-bdef-b13d3e137d07", "member4@gmail.com", true, "Name4", "LastName4", false, null, "member4@gmail.com", "usermember4", "AQAAAAIAAYagAAAAEFETYcsJsWh6sZBns5elMepgP+mDHgS+97nudoCfcAp4F14UpPmqPAyP/cqcsoDI2g==", null, false, "", true, false, "UserMember4" },
+                    { 5, 0, "HCM", "437469f3-1e38-40db-90b8-cd37146c2c47", "member5@gmail.com", true, "Name5", "LastName5", false, null, "member5@gmail.com", "usermember5", "AQAAAAIAAYagAAAAECdrIz+BRafgshzvkP6iAA3F/cIXoz4m5eNBLbQhI7HAzhMyR8lCRkI1ZBCyMK/LQg==", null, false, "", true, false, "UserMember5" },
+                    { 6, 0, "HCM", "bad45fa4-d2f2-43f2-858a-031f232c32e0", "member6@gmail.com", true, "Name6", "LastName6", false, null, "member6@gmail.com", "usermember6", "AQAAAAIAAYagAAAAEKAd5As6cmN0IFlKevUYy/+/Pz7IgEvmcNWO9/CmSdotqO2A95vkbpyaValiPzKj+A==", null, false, "", true, false, "UserMember6" },
+                    { 7, 0, "HCM", "506d6096-0f4f-48ed-98ef-77e4f0a763e5", "member7@gmail.com", true, "Name7", "LastName7", false, null, "member7@gmail.com", "usermember7", "AQAAAAIAAYagAAAAECUS92u/soOvWLUWCCKTynPnANna8gQDvZzFXzXyQdix/YRyztMpXtyhWcvreAh9Dw==", null, false, "", true, false, "UserMember7" },
+                    { 8, 0, "HCM", "308c733e-71f7-4121-be54-7162dde944ce", "member8@gmail.com", true, "Name8", "LastName8", false, null, "member8@gmail.com", "usermember8", "AQAAAAIAAYagAAAAEBWV6aH1boyDfBksO4Io9rurxyv/AFenPVYZplnhtzSACBmkaB+cdM+ZGManQ0gHgg==", null, false, "", true, false, "UserMember8" },
+                    { 9, 0, "HCM", "a40d9551-0d9f-41d4-bfd7-4823bdf4b2f2", "member9@gmail.com", true, "Name9", "LastName9", false, null, "member9@gmail.com", "usermember9", "AQAAAAIAAYagAAAAEPbvdI3VABwglNuRiNjNaEbr4PJa188GSTodBUFDCV2tJglMkHO/qoXgsHeqvmhqvw==", null, false, "", true, false, "UserMember9" },
+                    { 10, 0, "HCM", "f191c007-3ab8-4ec5-923f-9bfcf024bf7a", "member10@gmail.com", true, "Name10", "LastName10", false, null, "member10@gmail.com", "usermember10", "AQAAAAIAAYagAAAAEDehhXAnuyZlPzgGGkngvafhpdposD4/8qaQgWq8MWLaC8BOiheEaHCLYTYcraDfTg==", null, false, "", true, false, "UserMember10" },
+                    { 11, 0, "HCM", "003a8cab-955b-437f-9130-3514948009a4", "member11@gmail.com", true, "Name11", "LastName11", false, null, "member11@gmail.com", "usermember11", "AQAAAAIAAYagAAAAEHydBbM3Sq2MSNl+N8zOWNwA6/2cuWK7JfRCNLa9h6z3O6veCrhkBf36RybSq2lcjA==", null, false, "", true, false, "UserMember11" },
+                    { 12, 0, "HCM", "dbfa7490-0e3e-421e-92ea-3dc8ac2cdb22", "member12@gmail.com", true, "Name12", "LastName12", false, null, "member12@gmail.com", "usermember12", "AQAAAAIAAYagAAAAEE9v7ZUEAtWfe3ry180ycw3HRPG+n4fyqgzJZ2+QdCib5SE5TsYxdbdLu1XEi5QRrQ==", null, false, "", true, false, "UserMember12" },
+                    { 13, 0, "HCM", "f558729f-55ce-4727-8009-a32369e5abb9", "member13@gmail.com", true, "Name13", "LastName13", false, null, "member13@gmail.com", "usermember13", "AQAAAAIAAYagAAAAEGqJakOQnNuvvykU4ZYyplqL9NVfce65EteG2GgUMr+2a10Q/Je7FDvQi65b/R2+hw==", null, false, "", true, false, "UserMember13" },
+                    { 14, 0, "HCM", "4db936c3-7bd1-430a-9b6b-4bb69f546de0", "member14@gmail.com", true, "Name14", "LastName14", false, null, "member14@gmail.com", "usermember14", "AQAAAAIAAYagAAAAEAN8qLMTw5Bi702TDCRlq9JJIGKaSLEhU9ondGJqvAlTlv85dbtd1t4TLqn9HBDKwA==", null, false, "", true, false, "UserMember14" },
+                    { 15, 0, "HCM", "e8097be9-1abc-4d6a-81c6-f90e4ae59fc9", "member15@gmail.com", true, "Name15", "LastName15", false, null, "member15@gmail.com", "usermember15", "AQAAAAIAAYagAAAAEFQI1M0+En1gnJZUD70u/yq+k18UVOk2YnDmGAJ5nALPH0xaLDMECq4wKNvmKtcaJw==", null, false, "", true, false, "UserMember15" },
+                    { 16, 0, "HCM", "497c684b-06fe-47ab-b295-b2c7e6615be9", "member16@gmail.com", true, "Name16", "LastName16", false, null, "member16@gmail.com", "usermember16", "AQAAAAIAAYagAAAAEC+nogR83MMaxN7rTEEwIrV9Oouo1pEFM5Mr3rwgG1N13b9ykxw8HbftrEiiJe5vAg==", null, false, "", true, false, "UserMember16" },
+                    { 17, 0, "HCM", "045a6dff-3956-4095-a49a-b4397134594a", "member17@gmail.com", true, "Name17", "LastName17", false, null, "member17@gmail.com", "usermember17", "AQAAAAIAAYagAAAAEKEeJQCPePSjBdvsMZ5Q8KjTruSET0yVkmF9gg62QjfDNjgsMNvVVsch3+g15MZcEg==", null, false, "", true, false, "UserMember17" },
+                    { 18, 0, "HCM", "2becbae8-e9c8-4d94-990a-09162edd75dc", "member18@gmail.com", true, "Name18", "LastName18", false, null, "member18@gmail.com", "usermember18", "AQAAAAIAAYagAAAAEFu3clK/63Nv/0eqL3oajzorXp12vwazE5h3ayhV8Q3W4vlW9R5Gn0aafNX9XGapjw==", null, false, "", true, false, "UserMember18" },
+                    { 19, 0, "HCM", "46de7948-c360-48cf-a527-b81ebec88fc1", "member19@gmail.com", true, "Name19", "LastName19", false, null, "member19@gmail.com", "usermember19", "AQAAAAIAAYagAAAAEJMoXvrGqRs4XqBvS2eeipZXMZdyKUaU4bDWLiuGnsXmCrBFK3wSupOxk8CU9DTtEQ==", null, false, "", true, false, "UserMember19" },
+                    { 20, 0, "HCM", "1a3c36c1-683e-464e-bc66-1ecc6dbfb121", "member20@gmail.com", true, "Name20", "LastName20", false, null, "member20@gmail.com", "usermember20", "AQAAAAIAAYagAAAAEC5rQYPdmWdXQQZfilRenaPf9O8CcVWXn7ech+4tqB6jmx5atYyUHc6CZo/yktXnnA==", null, false, "", true, false, "UserMember20" },
+                    { 21, 0, "HCM", "3d7195b1-ab41-4f71-9770-3b1ac14a711a", "member21@gmail.com", true, "Name21", "LastName21", false, null, "member21@gmail.com", "usermember21", "AQAAAAIAAYagAAAAENMwumiedQelIVHPVO9vpiyU9MaIkqYkqt2DichkwO8ZSaB+x9OLuVzzLjgd2c1RSg==", null, false, "", true, false, "UserMember21" },
+                    { 22, 0, "HCM", "d149b744-0ab2-43d0-944d-57a880b7f8e7", "member22@gmail.com", true, "Name22", "LastName22", false, null, "member22@gmail.com", "usermember22", "AQAAAAIAAYagAAAAEBewo6S8TDM13MIBt3pGqSWAZgzYXgwV8gnypB0a0vLCVuHoHCUoObPUMWhOuVZQYw==", null, false, "", true, false, "UserMember22" },
+                    { 23, 0, "HCM", "20241457-73a2-4af8-ad25-3282f989cbcc", "member23@gmail.com", true, "Name23", "LastName23", false, null, "member23@gmail.com", "usermember23", "AQAAAAIAAYagAAAAEE7uzuUkmlTeMTPxw2YB0A38s/ONz3XBWQBLT+gI7SmCm8SOQql1c6gSL5H7Ipw1qQ==", null, false, "", true, false, "UserMember23" },
+                    { 24, 0, "HCM", "51c822af-49f4-40ae-b410-e11e4ecdc353", "member24@gmail.com", true, "Name24", "LastName24", false, null, "member24@gmail.com", "usermember24", "AQAAAAIAAYagAAAAEJq9ZuIeCWwz8MTIFE8ib4p3O8TnuY9/RoK7w4PDVxzmCs+V/5w7/d0TpvXO42XIow==", null, false, "", true, false, "UserMember24" },
+                    { 25, 0, "HCM", "c779d322-5cf8-458c-b973-eeee17497fb0", "member25@gmail.com", true, "Name25", "LastName25", false, null, "member25@gmail.com", "usermember25", "AQAAAAIAAYagAAAAENrMA5uwzsOfP/fklYkIBr2b7UV/HtlIWxsTIbqvr/eajQxb1d3tLPhmgZaVLd0Lng==", null, false, "", true, false, "UserMember25" },
+                    { 26, 0, "HCM", "cc2aeffc-6e70-460c-8393-e7d5506cc302", "member26@gmail.com", true, "Name26", "LastName26", false, null, "member26@gmail.com", "usermember26", "AQAAAAIAAYagAAAAEA5+QeBFWUwfE6Y0RksLSccNmtlDLlS8dikHIm3qUU5fb+GA+TRet0w5cEENKtAKEw==", null, false, "", true, false, "UserMember26" },
+                    { 27, 0, "HCM", "529aaf27-055e-4a1c-a283-0531f5b660bf", "member27@gmail.com", true, "Name27", "LastName27", false, null, "member27@gmail.com", "usermember27", "AQAAAAIAAYagAAAAEFsTBF4ED4n8uYjxURjU2M222P/FU7gZf1Xz6TRlfUwAeKBABwYgzkGwbT3OTYeFqQ==", null, false, "", true, false, "UserMember27" },
+                    { 28, 0, "HCM", "d8909912-da21-4e22-92e3-da11bcea36d0", "member28@gmail.com", true, "Name28", "LastName28", false, null, "member28@gmail.com", "usermember28", "AQAAAAIAAYagAAAAENn5sebM9o+REBsq2+IPDBh1w3F+dFK08IkJUV/midc7XXYLSWd4yybYsA833wRY6w==", null, false, "", true, false, "UserMember28" },
+                    { 29, 0, "HCM", "dc408893-8411-4be3-87e2-d825facb3114", "member29@gmail.com", true, "Name29", "LastName29", false, null, "member29@gmail.com", "usermember29", "AQAAAAIAAYagAAAAEOrSj8PujvY69j8+DQFlUq9BcRNVNwSEPSj+2dF2koeAT6///vtvIg8+GhDFPRiulg==", null, false, "", true, false, "UserMember29" },
+                    { 30, 0, "HCM", "ad4e1f97-54a5-4718-841f-44e4f7ca97f0", "member30@gmail.com", true, "Name30", "LastName30", false, null, "member30@gmail.com", "usermember30", "AQAAAAIAAYagAAAAEML8Hqg0ZIlNQhBXWJFJX/wJz25j3jeqb00y9B7EBbewMeKCehVy8HtZ+KRJY6tqZA==", null, false, "", true, false, "UserMember30" },
+                    { 31, 0, "HCM", "cce636ea-7afd-47be-aaf8-0e4d08529233", "teacher31@gmail.com", true, "Name31", "LastName31", false, null, "teacher31@gmail.com", "userteacher31", "AQAAAAIAAYagAAAAECdlRnACeZqOyljK3HyMal7heHgLUz/EV+26Bg6fywAQ5kHkqnLAWN0IzRGvjNIDFg==", null, false, "", true, false, "UserTeacher31" },
+                    { 32, 0, "HCM", "e0838b53-f8e5-4344-a8a1-dc7f3527e346", "teacher32@gmail.com", true, "Name32", "LastName32", false, null, "teacher32@gmail.com", "userteacher32", "AQAAAAIAAYagAAAAEEMjCOyMaSHGu4ax0V9h5k/yo9k6HGH5EpdqegXHeurCGCXHua5Z2aWtiQr88cCU+g==", null, false, "", true, false, "UserTeacher32" },
+                    { 33, 0, "HCM", "c3a7e0ec-d4c0-4a05-bd45-2914f762080b", "teacher33@gmail.com", true, "Name33", "LastName33", false, null, "teacher33@gmail.com", "userteacher33", "AQAAAAIAAYagAAAAEHCg2qoPwLR19kRweHFxZY1RC/ClX2TSa8qfnRrPoc/CrFqxd0OGf8dc/8hOf8APMg==", null, false, "", true, false, "UserTeacher33" },
+                    { 34, 0, "HCM", "3afbafb9-661a-48fb-a2e4-198477097a10", "teacher34@gmail.com", true, "Name34", "LastName34", false, null, "teacher34@gmail.com", "userteacher34", "AQAAAAIAAYagAAAAEEleW/QClfENA9VFwe3vVZWHuEs/U+0QZhufLgbtfu1oNULO25C+OygpUybSx106Fw==", null, false, "", true, false, "UserTeacher34" },
+                    { 35, 0, "HCM", "939918db-5771-4910-985c-ae793c682bc5", "teacher35@gmail.com", true, "Name35", "LastName35", false, null, "teacher35@gmail.com", "userteacher35", "AQAAAAIAAYagAAAAEFIuuVxEpdltFcEZuo96BFSdDMbj/R15hC+j5z1TuV6QCjjqBenWNLWXur2ECYjc3Q==", null, false, "", true, false, "UserTeacher35" },
+                    { 36, 0, "HCM", "f4b786c3-bdb4-44b0-bec6-cc573d3bf88d", "teacher36@gmail.com", true, "Name36", "LastName36", false, null, "teacher36@gmail.com", "userteacher36", "AQAAAAIAAYagAAAAEPaJKjoghxxQvHQtKYkGcWc+g3ccpVI0mXoWKAgp32kqcYsoYgzsomusBX83g/etcQ==", null, false, "", true, false, "UserTeacher36" },
+                    { 37, 0, "HCM", "7ddc9bcc-726a-4353-acc1-19f86bb225bb", "teacher37@gmail.com", true, "Name37", "LastName37", false, null, "teacher37@gmail.com", "userteacher37", "AQAAAAIAAYagAAAAEGkpp82gyzo6TXf/fmI8gsbLzgYu4mX/tcEzIeNphyw/mvaao3D+M+a2q+El8DYydw==", null, false, "", true, false, "UserTeacher37" },
+                    { 38, 0, "HCM", "f29cd98d-fb71-458a-a55f-28e03a686614", "teacher38@gmail.com", true, "Name38", "LastName38", false, null, "teacher38@gmail.com", "userteacher38", "AQAAAAIAAYagAAAAEGguZeNIpg7URJ8G/dPdA2BwiQh9tJjlXRMXcSgskT9FSxmXvMg4CYpdzaU6/nY+Tg==", null, false, "", true, false, "UserTeacher38" },
+                    { 39, 0, "HCM", "78abeb40-9f28-4945-921f-dd42fcc8c274", "teacher39@gmail.com", true, "Name39", "LastName39", false, null, "teacher39@gmail.com", "userteacher39", "AQAAAAIAAYagAAAAEFVxnrV36wVzp4KlI29YPbLg1/RtKF6lo+y9owN98og6ibxsEBcXkMlu+zmwtYx/hQ==", null, false, "", true, false, "UserTeacher39" },
+                    { 40, 0, "HCM", "f134cb14-4bc4-4c5c-bd26-e986c6314203", "teacher40@gmail.com", true, "Name40", "LastName40", false, null, "teacher40@gmail.com", "userteacher40", "AQAAAAIAAYagAAAAEMROBfFNL85L/DMV0emo58ybQ/PplVtK2MFxC9JSQ53sFoTBv5yA2GPMKEAhNrCvlg==", null, false, "", true, false, "UserTeacher40" },
+                    { 41, 0, "HCM", "c753d101-4088-4e03-aa49-26f571060603", "staff41@gmail.com", true, "Name41", "LastName41", false, null, "staff41@gmail.com", "userstaff41", "AQAAAAIAAYagAAAAEOXZ0WO0dRqA7GDRPGhSKAr1uJCC0V/V/D6O+foOwq+K+NsUem05keLG+f9LmwWiog==", null, false, "", true, false, "UserStaff41" },
+                    { 42, 0, "HCM", "23028a95-ecf4-42eb-a1a9-a0bfcc1fe819", "staff42@gmail.com", true, "Name42", "LastName42", false, null, "staff42@gmail.com", "userstaff42", "AQAAAAIAAYagAAAAEH5U6ioTdrRc6LniKYGBDazjCjUpK2OIxhq1WhSadjP4Em4GQIWhyDp923EUXyrEIw==", null, false, "", true, false, "UserStaff42" },
+                    { 43, 0, "HCM", "be47ce73-dd7f-467c-89c3-a15e914f1568", "staff43@gmail.com", true, "Name43", "LastName43", false, null, "staff43@gmail.com", "userstaff43", "AQAAAAIAAYagAAAAEAQmOv1sBlJ2vwpFWLXq5YrW61PGpXTCeEmO4Z57QQ1DB7ykMy/qvrmbIILgz5RBmg==", null, false, "", true, false, "UserStaff43" },
+                    { 44, 0, "HCM", "070fcc20-8dfd-49c4-85c1-ec1151e766c1", "staff44@gmail.com", true, "Name44", "LastName44", false, null, "staff44@gmail.com", "userstaff44", "AQAAAAIAAYagAAAAEI1KIXALJUaYEUY2xv3k6hpInbdK/GV2fpik3+1gIL6nx1AMU2TFKDru9wN8OGoPnA==", null, false, "", true, false, "UserStaff44" },
+                    { 45, 0, "HCM", "4b29c1ef-04b9-4c04-9a53-dc3a88dee679", "staff45@gmail.com", true, "Name45", "LastName45", false, null, "staff45@gmail.com", "userstaff45", "AQAAAAIAAYagAAAAEHXxZ6qKk+HNheCNHt8VXdpdOI8b/ws8BeEUOTQosHCsSytI4xniS3VtH/wQ1g2wFA==", null, false, "", true, false, "UserStaff45" },
+                    { 46, 0, "HCM", "0517a010-e212-4108-a7e0-736af91ad298", "admin46@gmail.com", true, "Name46", "LastName46", false, null, "admin46@gmail.com", "useradmin46", "AQAAAAIAAYagAAAAED6ola8OCflqN4SoUaRhgt0nfe9ZDt/0ryeb+4PU8GwmSXTcMhfWva/rjSwFu1krrA==", null, false, "", true, false, "UserAdmin46" }
                 });
 
             migrationBuilder.InsertData(
@@ -579,53 +580,53 @@ namespace YogaManagement.Database.Migrations
                 columns: new[] { "Id", "CategoryId", "Description", "EnddDate", "IsActive", "Name", "Price", "StartDate" },
                 values: new object[,]
                 {
-                    { 1, 1, "Yoga course number 1", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course1", 100.0, new DateTime(2023, 6, 9, 13, 23, 26, 832, DateTimeKind.Local).AddTicks(5773) },
-                    { 2, 2, "Yoga course number 2", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course2", 200.0, new DateTime(2023, 6, 9, 13, 23, 26, 832, DateTimeKind.Local).AddTicks(5807) },
-                    { 3, 3, "Yoga course number 3", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course3", 300.0, new DateTime(2023, 6, 9, 13, 23, 26, 832, DateTimeKind.Local).AddTicks(5814) },
-                    { 4, 4, "Yoga course number 4", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course4", 400.0, new DateTime(2023, 6, 9, 13, 23, 26, 832, DateTimeKind.Local).AddTicks(5820) },
-                    { 5, 5, "Yoga course number 5", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course5", 500.0, new DateTime(2023, 6, 9, 13, 23, 26, 832, DateTimeKind.Local).AddTicks(5827) },
-                    { 6, 6, "Yoga course number 6", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course6", 600.0, new DateTime(2023, 6, 9, 13, 23, 26, 832, DateTimeKind.Local).AddTicks(5835) },
-                    { 7, 7, "Yoga course number 7", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course7", 700.0, new DateTime(2023, 6, 9, 13, 23, 26, 832, DateTimeKind.Local).AddTicks(5841) },
-                    { 8, 8, "Yoga course number 8", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course8", 800.0, new DateTime(2023, 6, 9, 13, 23, 26, 832, DateTimeKind.Local).AddTicks(5848) },
-                    { 9, 9, "Yoga course number 9", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course9", 900.0, new DateTime(2023, 6, 9, 13, 23, 26, 832, DateTimeKind.Local).AddTicks(5854) },
-                    { 10, 10, "Yoga course number 10", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course10", 1000.0, new DateTime(2023, 6, 9, 13, 23, 26, 832, DateTimeKind.Local).AddTicks(5862) }
+                    { 1, 1, "Yoga course number 1", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course1", 100.0, new DateTime(2023, 6, 17, 20, 54, 8, 919, DateTimeKind.Local).AddTicks(1750) },
+                    { 2, 2, "Yoga course number 2", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course2", 200.0, new DateTime(2023, 6, 17, 20, 54, 8, 919, DateTimeKind.Local).AddTicks(1772) },
+                    { 3, 3, "Yoga course number 3", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course3", 300.0, new DateTime(2023, 6, 17, 20, 54, 8, 919, DateTimeKind.Local).AddTicks(1775) },
+                    { 4, 4, "Yoga course number 4", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course4", 400.0, new DateTime(2023, 6, 17, 20, 54, 8, 919, DateTimeKind.Local).AddTicks(1779) },
+                    { 5, 5, "Yoga course number 5", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course5", 500.0, new DateTime(2023, 6, 17, 20, 54, 8, 919, DateTimeKind.Local).AddTicks(1782) },
+                    { 6, 6, "Yoga course number 6", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course6", 600.0, new DateTime(2023, 6, 17, 20, 54, 8, 919, DateTimeKind.Local).AddTicks(1888) },
+                    { 7, 7, "Yoga course number 7", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course7", 700.0, new DateTime(2023, 6, 17, 20, 54, 8, 919, DateTimeKind.Local).AddTicks(1892) },
+                    { 8, 8, "Yoga course number 8", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course8", 800.0, new DateTime(2023, 6, 17, 20, 54, 8, 919, DateTimeKind.Local).AddTicks(1895) },
+                    { 9, 9, "Yoga course number 9", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course9", 900.0, new DateTime(2023, 6, 17, 20, 54, 8, 919, DateTimeKind.Local).AddTicks(1899) },
+                    { 10, 10, "Yoga course number 10", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course10", 1000.0, new DateTime(2023, 6, 17, 20, 54, 8, 919, DateTimeKind.Local).AddTicks(1903) }
                 });
 
             migrationBuilder.InsertData(
                 table: "Members",
-                columns: new[] { "Id", "AppUserId" },
+                columns: new[] { "Id", "AppUserId", "MemberLevel" },
                 values: new object[,]
                 {
-                    { 1, 1 },
-                    { 2, 2 },
-                    { 3, 3 },
-                    { 4, 4 },
-                    { 5, 5 },
-                    { 6, 6 },
-                    { 7, 7 },
-                    { 8, 8 },
-                    { 9, 9 },
-                    { 10, 10 },
-                    { 11, 11 },
-                    { 12, 12 },
-                    { 13, 13 },
-                    { 14, 14 },
-                    { 15, 15 },
-                    { 16, 16 },
-                    { 17, 17 },
-                    { 18, 18 },
-                    { 19, 19 },
-                    { 20, 20 },
-                    { 21, 21 },
-                    { 22, 22 },
-                    { 23, 23 },
-                    { 24, 24 },
-                    { 25, 25 },
-                    { 26, 26 },
-                    { 27, 27 },
-                    { 28, 28 },
-                    { 29, 29 },
-                    { 30, 30 }
+                    { 1, 1, 0 },
+                    { 2, 2, 0 },
+                    { 3, 3, 0 },
+                    { 4, 4, 0 },
+                    { 5, 5, 0 },
+                    { 6, 6, 0 },
+                    { 7, 7, 0 },
+                    { 8, 8, 0 },
+                    { 9, 9, 0 },
+                    { 10, 10, 0 },
+                    { 11, 11, 0 },
+                    { 12, 12, 0 },
+                    { 13, 13, 0 },
+                    { 14, 14, 0 },
+                    { 15, 15, 0 },
+                    { 16, 16, 0 },
+                    { 17, 17, 0 },
+                    { 18, 18, 0 },
+                    { 19, 19, 0 },
+                    { 20, 20, 0 },
+                    { 21, 21, 0 },
+                    { 22, 22, 0 },
+                    { 23, 23, 0 },
+                    { 24, 24, 0 },
+                    { 25, 25, 0 },
+                    { 26, 26, 0 },
+                    { 27, 27, 0 },
+                    { 28, 28, 0 },
+                    { 29, 29, 0 },
+                    { 30, 30, 0 }
                 });
 
             migrationBuilder.InsertData(

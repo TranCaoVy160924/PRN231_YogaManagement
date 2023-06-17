@@ -125,7 +125,7 @@ namespace YogaManagement.Client.Controllers
                 updateUser.Address = appUser.Address;
                 updateUser.Email = appUser.Email;
                 updateUser.Role = updateUser.Role;
-                updateUser.Status = updateUser.Status;
+                updateUser.Status = appUser.Status;
 
                 _context.UpdateObject(updateUser);
                 await _context.SaveChangesAsync();
