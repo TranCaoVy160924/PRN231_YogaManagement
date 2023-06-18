@@ -37,6 +37,7 @@ builder.Services.AddScoped<TeacherProfileRepository>();
 builder.Services.AddScoped<YogaClassRepository>();
 builder.Services.AddScoped<CourseRepository>();
 builder.Services.AddScoped<CategoryRepository>();
+builder.Services.AddScoped<MemberLevelDiscountRepository>();
 
 // Utilities
 builder.Services.AddSingleton<JwtHelper>();
@@ -183,7 +184,7 @@ static IEdmModel GetEdmModel()
     #endregion
 
     #region MemberLevelDiscount
-    var memberLevelDiscount = builder.EntitySet<MemberLevelDiscountDTO>("MemberLevel").EntityType;
+    var memberLevelDiscount = builder.EntitySet<MemberLevelDiscountDTO>("MemberLevels").EntityType;
     #endregion
 
     return builder.GetEdmModel();
