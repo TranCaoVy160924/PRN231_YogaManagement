@@ -8,6 +8,7 @@ public interface IAuthorityClient
 {
     [Post("/Authority/auth")]
     Task RegisterAsync([Body] RegisterRequest registerRequest);
-    [Post("/Authority/auth/token")]
+
+    [Post("/Users/auth")]
     Task<string> AuthenticateAsync([Body] LoginRequest loginRequest);
 }

@@ -17,18 +17,21 @@ public class UsersController : ODataController
     private readonly UserManager<AppUser> _userManager;
     private readonly MemberRepository _mRepo;
     private readonly TeacherProfileRepository _tRepo;
+    private readonly WalletRepository _walletRepo;
     private readonly JwtHelper _jwtHelper;
     private readonly IMapper _mapper;
 
     public UsersController(UserManager<AppUser> userManager,
         MemberRepository mRepo,
         TeacherProfileRepository tRepo,
+        WalletRepository walletRepo,
         IMapper mapper,
         JwtHelper jwtHelper)
     {
         _userManager = userManager;
         _mRepo = mRepo;
         _tRepo = tRepo;
+        _walletRepo = walletRepo;
         _mapper = mapper;
         _jwtHelper = jwtHelper;
     }
@@ -106,6 +109,7 @@ public class UsersController : ODataController
                 UserName = firstName + lastName,
                 Email = registerRequest.Email,
                 EmailConfirmed = true,
+                Status = true,
                 SecurityStamp = string.Empty,
                 Address = registerRequest.Address,
             };
@@ -124,6 +128,13 @@ public class UsersController : ODataController
                         AppUserId = user.Id
                     };
                     await _mRepo.CreateAsync(newMember);
+
+                    await _walletRepo.CreateAsync(new Wallet
+                    {
+                        MemberId = newMember.Id,
+                        Balance = 0,
+                        Transactions = new List<Transaction>()
+                    });
                 }
                 else if (chosenRole == "Teacher")
                 {

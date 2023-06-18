@@ -12,6 +12,7 @@ public class CourseController : Controller
     public CourseController(Container context)
     {
         _context = context;
+        //_context.BuildingRequest += (sender, e) => OnBuildingRequest(sender, e, "");
     }
 
     // GET: Courses
