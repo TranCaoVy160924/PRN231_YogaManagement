@@ -2,6 +2,7 @@
 using YogaManagement.Contracts.Authority;
 using YogaManagement.Contracts.Category;
 using YogaManagement.Contracts.Course;
+using YogaManagement.Contracts.TeacherEnrollment;
 using YogaManagement.Contracts.YogaClass;
 using YogaManagement.Domain.Models;
 
@@ -35,6 +36,20 @@ public class MapperProfile : Profile
 
         #region Category
         CreateMap<Category, CategoryDTO>();
+        #endregion
+
+        #region TeacherEnrollment
+        CreateMap<TeacherEnrollment, TeacherEnrollmentDTO>()
+            .ForMember(dest => dest.TeacherName, otp =>
+        {
+            otp.MapFrom(src => src.TeacherProfile.AppUser.Firstname + " " + src.TeacherProfile.AppUser.Lastname);
+        })
+            .ForMember(dest => dest.ClassName, otp =>
+        {
+            otp.MapFrom(src => src.YogaClass.Name);
+        });
+        CreateMap<TeacherEnrollmentDTO, TeacherEnrollment>();
+        
         #endregion
     }
 

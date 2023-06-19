@@ -69,9 +69,13 @@ public class YogaClassesController : ODataController
         {
             try
             {
-                var ygClass = _mapper.Map(updateRequest, existClass);
-                await _ygClassRepo.UpdateAsync(ygClass);
-                return Updated(ygClass);
+                //var ygClass = _mapper.Map(updateRequest, existClass);
+                existClass.CourseId = updateRequest.CourseId;
+                existClass.Status = updateRequest.Status;
+                existClass.Size = updateRequest.Size;
+                existClass.Name = updateRequest.Name;
+                await _ygClassRepo.UpdateAsync(existClass);
+                return Updated(existClass);
             }
             catch (Exception ex)
             {

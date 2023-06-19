@@ -37,6 +37,7 @@ builder.Services.AddScoped<TeacherProfileRepository>();
 builder.Services.AddScoped<YogaClassRepository>();
 builder.Services.AddScoped<CourseRepository>();
 builder.Services.AddScoped<CategoryRepository>();
+builder.Services.AddScoped<TeacherEnrollmentRepository>();
 
 // Utilities
 builder.Services.AddSingleton<JwtHelper>();
