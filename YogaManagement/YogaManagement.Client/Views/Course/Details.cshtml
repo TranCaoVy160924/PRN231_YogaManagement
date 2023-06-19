@@ -1,5 +1,7 @@
-﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course;
+﻿@using YogaManagement.Client.Helper;
+@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course;
 @model CourseDTO
+@inject JwtManager _jwtManager;
 
 @{
     ViewData["Title"] = "Details";
@@ -55,7 +57,16 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@if (_jwtManager.IsStaff())
+{
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
+@if (_jwtManager.IsMember())
+{
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+}

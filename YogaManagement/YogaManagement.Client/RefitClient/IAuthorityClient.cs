@@ -1,5 +1,6 @@
 ﻿using Refit;
 using YogaManagement.Contracts.Authority.Request;
+using YogaManagement.Contracts.Authority.Response;
 
 namespace YogaManagement.Client.RefitClient;
 [Headers("Content-Type: application/json")]
@@ -10,5 +11,5 @@ public interface IAuthorityClient
     Task RegisterAsync([Body] RegisterRequest registerRequest);
 
     [Post("/Users/auth")]
-    Task<string> AuthenticateAsync([Body] LoginRequest loginRequest);
+    Task<LoginResponse> AuthenticateAsync([Body] LoginRequest loginRequest);
 }

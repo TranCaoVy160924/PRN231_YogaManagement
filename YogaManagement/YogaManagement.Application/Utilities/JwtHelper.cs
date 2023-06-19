@@ -28,6 +28,7 @@ public class JwtHelper
     {
         return new List<Claim>
             {
+                new Claim(ClaimTypes.Sid, user.Id.ToString()),
                 new Claim(ClaimTypes.GivenName, $"{user.Firstname} {user.Lastname}"),
                 new Claim(ClaimTypes.Email, email),
                 new Claim(ClaimTypes.Role, role),

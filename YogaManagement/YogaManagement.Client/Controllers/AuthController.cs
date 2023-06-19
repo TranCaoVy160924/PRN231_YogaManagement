@@ -5,17 +5,22 @@ using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
 using YogaManagement.Client.RefitClient;
 using YogaManagement.Contracts.Authority.Request;
+using YogaManagement.Contracts.Authority.Response;
 
 namespace EbookStore.Client.Controllers;
 public class AuthController : Controller
 {
     private readonly IAuthorityClient _userClient;
     private readonly Container _context;
+    private readonly JwtManager _jwtManager;
 
-    public AuthController(IAuthorityClient userClient, Container context)
+    public AuthController(IAuthorityClient userClient,
+        Container context,
+        JwtManager jwtManager)
     {
         _userClient = userClient;
         _context = context;
+        _jwtManager = jwtManager;
     }
 
     public IActionResult Login()
@@ -38,21 +43,18 @@ public class AuthController : Controller
 
         try
         {
-            string token = await _userClient.AuthenticateAsync(request);
+            LoginResponse response = await _userClient.AuthenticateAsync(request);
+            _jwtManager.Login(response.Token);
+            var principles = _jwtManager.TryGetPriciples();
+            await HttpContext.SignInAsync(principles);
 
-            // Http login
-            JwtManager jwtManager = new JwtManager();
-            jwtManager.SetToken(token);
-            //var claimsPrinciple = jwtManager.GetPriciples();
-            //await HttpContext.SignInAsync(claimsPrinciple);
-
-            if (!jwtManager.IsAuthenticated)
+            if (_jwtManager.IsMember())
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Course");
             }
             else
             {
-                return RedirectToAction("Index", "Course");
+                return RedirectToAction("Index", "Home");
             }
         }
         catch (Exception ex)
@@ -85,15 +87,16 @@ public class AuthController : Controller
         }
     }
 
-    [HttpPost]
     public async Task<IActionResult> Logout()
     {
+        _jwtManager.Logout();
         await HttpContext.SignOutAsync();
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Login", "Auth");
     }
 
     public IActionResult AccessDenied()
     {
-        return RedirectToAction("Login", "Auth");
+        //return RedirectToAction("Login", "Auth");
+        return View();
     }
 }

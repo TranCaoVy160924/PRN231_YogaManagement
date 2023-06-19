@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course;
 
 namespace YogaManagement.Client.Controllers;
+
+[Authorize(Roles = "Member,Staff")]
 public class CourseController : Controller
 {
     private readonly Container _context;
@@ -40,6 +43,7 @@ public class CourseController : Controller
     }
 
     // GET: Courses/Create
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Create()
     {
         var categories = await _context.Categories.ExecuteAsync();
@@ -52,6 +56,7 @@ public class CourseController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Create([Bind("Id,Name,Description,Price, StartDate,EnddDate,IsActive,CategoryId")] CourseDTO course)
     {
         try
@@ -76,7 +81,9 @@ public class CourseController : Controller
             return View(course);
         }
     }
+
     // GET: Courses/Edit/5
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Edit(int? id)
     {
         if (id == null || _context.Courses == null)
@@ -94,11 +101,13 @@ public class CourseController : Controller
         }
         return View(course);
     }
+
     // POST: Courses/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price, StartDate,EnddDate,IsActive,CategoryId")] CourseDTO course)
     {
         if (id != course.Id)
@@ -137,6 +146,7 @@ public class CourseController : Controller
     }
 
     // GET: Courses/Delete/5
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null || _context.Courses == null)
@@ -154,6 +164,7 @@ public class CourseController : Controller
     }
 
     // POST: Courses/Delete/5
+    [Authorize(Roles = "Staff")]
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)

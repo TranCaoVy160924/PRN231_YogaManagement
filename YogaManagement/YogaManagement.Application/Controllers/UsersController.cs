@@ -75,7 +75,6 @@ public class UsersController : ODataController
             }
 
             var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
-            //var role = await _dbContext.AppRoles.FindAsync(user.RoleId);
             StaticValues.Usernames.Add(request.Email);
             return Ok(new LoginResponse { Token = _jwtHelper.CreateToken(user, request.Email, role), Role = role });
         }
