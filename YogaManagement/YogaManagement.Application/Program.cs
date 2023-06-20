@@ -16,6 +16,7 @@ using YogaManagement.Contracts.Course;
 using YogaManagement.Contracts.Enrollment;
 using YogaManagement.Contracts.MemberLevel;
 using YogaManagement.Contracts.TeacherEnrollment;
+using YogaManagement.Contracts.TimeSlot;
 using YogaManagement.Contracts.YogaClass;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
@@ -38,6 +39,9 @@ builder.Services.AddScoped<YogaClassRepository>();
 builder.Services.AddScoped<CourseRepository>();
 builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<TeacherEnrollmentRepository>();
+builder.Services.AddScoped<WalletRepository>();
+builder.Services.AddScoped<MemberLevelDiscountRepository>();
+builder.Services.AddScoped<TimeSlotRepository>();
 
 // Utilities
 builder.Services.AddSingleton<JwtHelper>();
@@ -184,7 +188,11 @@ static IEdmModel GetEdmModel()
     #endregion
 
     #region MemberLevelDiscount
-    var memberLevelDiscount = builder.EntitySet<MemberLevelDiscountDTO>("MemberLevel").EntityType;
+    var memberLevelDiscount = builder.EntitySet<MemberLevelDiscountDTO>("MemberLevels").EntityType;
+    #endregion
+
+    #region TimeSlot
+    var timeSlot = builder.EntitySet<TimeSlotDTO>("TimeSlots").EntityType;
     #endregion
 
     return builder.GetEdmModel();

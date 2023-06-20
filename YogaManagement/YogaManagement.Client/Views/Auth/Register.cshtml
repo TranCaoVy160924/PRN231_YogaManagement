@@ -1,8 +1,9 @@
-﻿@using YogaManagement.Contracts.Authority.Request;
+﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
+@using YogaManagement.Contracts.Authority.Request;
 @{
     Layout = "_EmptyLayout";
 }
-@model RegisterRequest
+@model UserDTO
 
 <div style="margin-top: 5vh">
     <div class="container-fluid h-custom">
@@ -36,6 +37,13 @@
                         </div>
                     </div>
 
+                    <div class="form-outline mb-4">
+                        <label class="form-label">Address</label>
+                        <input asp-for="Address" type="text" class="form-control form-control-lg"
+                               placeholder="Enter Address" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
                     <div class="form-outline mb-4 row">
                         <div class="col-lg-6">
                             <label class="form-label">Password</label>
@@ -51,6 +59,9 @@
                             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         </div>
                     </div>
+
+                    <input hidden asp-for="Role" type="text" class="form-control form-control-lg"
+                           value="Member" />
 
                     <span style="align-self: center" class="text-danger">@(TempData["RegisterErrorMessage"])</span>
                     <div class="text-center text-lg-start mt-4 pt-2">

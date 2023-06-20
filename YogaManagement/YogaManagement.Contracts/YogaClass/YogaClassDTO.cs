@@ -13,7 +13,7 @@ public class YogaClassDTO
     public int Size { get; set; }
 
     [Required]
-    public bool Status { get; set; }
+    public string YogaClassStatus { get; set; }
 
     [Required]
     public int CourseId { get; set; }

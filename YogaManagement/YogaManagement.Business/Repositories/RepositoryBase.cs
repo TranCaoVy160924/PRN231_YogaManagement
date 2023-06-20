@@ -16,7 +16,7 @@ public abstract class RepositoryBase<T> where T : class
 
     public IQueryable<T> GetAll() => Data.AsQueryable();
 
-    public async Task<T> Get(int id) => await Data.FindAsync(id);
+    public virtual async Task<T> Get(int id) => await Data.FindAsync(id);
 
     public async Task CreateAsync(T entity)
     {

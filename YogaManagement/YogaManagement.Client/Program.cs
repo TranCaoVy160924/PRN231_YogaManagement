@@ -1,11 +1,18 @@
+using AspNetCoreHero.ToastNotification;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Refit;
+using YogaManagement.Client.Filters;
+using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.RefitClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<JwtManager>();
+
+builder.Services.AddScoped<AuthFilter>();
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(opt =>
     {
@@ -41,8 +48,11 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddMvcCore()
-    .AddAuthorization();
+builder.Services.AddMvcCore().AddAuthorization();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
 
 var app = builder.Build();
 
@@ -68,6 +78,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}");
+    pattern: "{controller=Auth}/{action=Login}");
 
 app.Run();

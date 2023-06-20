@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace YogaManagement.Contracts.MemberLevel;
+﻿namespace YogaManagement.Contracts.MemberLevel;
 public class MemberLevelDiscountDTO
 {
     public int Id { get; set; }

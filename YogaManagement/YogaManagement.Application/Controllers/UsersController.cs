@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using YogaManagement.Application.Utilities;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Authority;
@@ -17,18 +20,21 @@ public class UsersController : ODataController
     private readonly UserManager<AppUser> _userManager;
     private readonly MemberRepository _mRepo;
     private readonly TeacherProfileRepository _tRepo;
+    private readonly WalletRepository _walletRepo;
     private readonly JwtHelper _jwtHelper;
     private readonly IMapper _mapper;
 
     public UsersController(UserManager<AppUser> userManager,
         MemberRepository mRepo,
         TeacherProfileRepository tRepo,
+        WalletRepository walletRepo,
         IMapper mapper,
         JwtHelper jwtHelper)
     {
         _userManager = userManager;
         _mRepo = mRepo;
         _tRepo = tRepo;
+        _walletRepo = walletRepo;
         _mapper = mapper;
         _jwtHelper = jwtHelper;
     }
@@ -36,18 +42,24 @@ public class UsersController : ODataController
     [EnableQuery]
     public ActionResult<IQueryable<UserDTO>> Get()
     {
-        var result = _mapper.ProjectTo<UserDTO>(_userManager.Users);
+        var users = _userManager.Users
+            .Include(u => u.TeacherProfile)
+            .Include(u => u.Member);
+        var result = _mapper.ProjectTo<UserDTO>(users);
         return Ok(result);
     }
 
     [EnableQuery]
     public async Task<ActionResult<UserDTO>> Get([FromRoute] int key)
     {
-        var member = await _userManager.FindByIdAsync(key.ToString());
+        var member = await _userManager.Users
+            .Include(u => u.TeacherProfile)
+            .Include(u => u.Member)
+            .FirstOrDefaultAsync(u => u.Id == key);
 
         if (member == null)
         {
-            return NotFound();
+            return NotFound("Not found");
         }
 
         return Ok(_mapper.Map<UserDTO>(member));
@@ -72,7 +84,6 @@ public class UsersController : ODataController
             }
 
             var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
-            //var role = await _dbContext.AppRoles.FindAsync(user.RoleId);
             StaticValues.Usernames.Add(request.Email);
             return Ok(new LoginResponse { Token = _jwtHelper.CreateToken(user, request.Email, role), Role = role });
         }
@@ -84,17 +95,19 @@ public class UsersController : ODataController
 
     public async Task<IActionResult> Post([FromBody] UserDTO registerRequest)
     {
+        if (registerRequest.Role != "Member")
+        {
+            var claims = User.Claims;
+            var role = claims.Where(c => c.Type == ClaimTypes.Role).SingleOrDefault();
+            if (role == null || role.Value != "Admin")
+            {
+                return Unauthorized();
+            }
+        }
+
         try
         {
             ModelState.ValidateRequest();
-            if (registerRequest.Role == "Member")
-            {
-                if (registerRequest.Password != registerRequest.ConfirmPassword)
-                {
-                    throw new Exception("Confirm password must match password");
-                }
-            }
-
             var hasher = new PasswordHasher<AppUser>();
             string firstName = registerRequest.FirstName.Trim();
             string lastName = registerRequest.LastName.Trim();
@@ -102,10 +115,11 @@ public class UsersController : ODataController
             {
                 Firstname = firstName,
                 Lastname = lastName,
-                PasswordHash = hasher.HashPassword(null, "12345678"),
-                UserName = firstName + lastName,
+                PasswordHash = hasher.HashPassword(null, registerRequest.Password),
+                UserName = registerRequest.Email,
                 Email = registerRequest.Email,
                 EmailConfirmed = true,
+                Status = true,
                 SecurityStamp = string.Empty,
                 Address = registerRequest.Address,
             };
@@ -124,6 +138,13 @@ public class UsersController : ODataController
                         AppUserId = user.Id
                     };
                     await _mRepo.CreateAsync(newMember);
+
+                    await _walletRepo.CreateAsync(new Wallet
+                    {
+                        MemberId = newMember.Id,
+                        Balance = 0,
+                        Transactions = new List<Transaction>()
+                    });
                 }
                 else if (chosenRole == "Teacher")
                 {
@@ -145,21 +166,32 @@ public class UsersController : ODataController
         }
     }
 
-    //[Authorize(Roles = "Teacher, Staff")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult> Delete([FromRoute] int key)
     {
-        var user = await _userManager.FindByIdAsync(key.ToString());
-
-        if (user != null)
+        try
         {
-            user.Status = false;
-            await _userManager.UpdateAsync(user);
-        }
+            var user = await _userManager.FindByIdAsync(key.ToString());
+            if (user != null)
+            {
+                if ((await _userManager.GetRolesAsync(user)).SingleOrDefault() == "Admin")
+                {
+                    return Unauthorized();
+                }
 
-        return NoContent();
+                user.Status = false;
+                await _userManager.UpdateAsync(user);
+            }
+
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
-    //[Authorize(Roles = "Teacher, Staff")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult> Patch([FromRoute] int key, [FromBody] Delta<UserDTO> delta)
     {
         try
@@ -169,7 +201,12 @@ public class UsersController : ODataController
 
             if (user == null)
             {
-                return NotFound();
+                return NotFound("Not found");
+            }
+
+            if ((await _userManager.GetRolesAsync(user)).SingleOrDefault() == "Admin")
+            {
+                return Unauthorized();
             }
 
             var hasher = new PasswordHasher<AppUser>();
@@ -194,6 +231,7 @@ public class UsersController : ODataController
             return BadRequest(ex.Message);
         }
     }
+
     //[HttpPost("auth/change-password/")]
     //[Authorize]
     //public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request)
