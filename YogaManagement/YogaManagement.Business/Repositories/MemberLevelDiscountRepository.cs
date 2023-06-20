@@ -40,7 +40,7 @@ public class MemberLevelDiscountRepository
             { "Id", "1" },
             { "Silver", level.Silver.ToString() },
             { "Gold", level.Gold.ToString() },
-            { "Platium", level.Platinum.ToString() }
+            { "Platinum", level.Platinum.ToString() }
         };
         UpdateAppSetting("MemberLevelPrivilege", updateData);
 
