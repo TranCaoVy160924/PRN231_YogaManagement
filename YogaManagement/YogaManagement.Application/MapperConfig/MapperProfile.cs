@@ -2,6 +2,7 @@
 using YogaManagement.Contracts.Authority;
 using YogaManagement.Contracts.Category;
 using YogaManagement.Contracts.Course;
+using YogaManagement.Contracts.TimeSlot;
 using YogaManagement.Contracts.YogaClass;
 using YogaManagement.Domain.Models;
 
@@ -35,6 +36,10 @@ public class MapperProfile : Profile
 
         #region Category
         CreateMap<Category, CategoryDTO>();
+        #endregion
+
+        #region TimeSlot
+        CreateMap<TimeSlot, TimeSlotDTO>();
         #endregion
     }
 

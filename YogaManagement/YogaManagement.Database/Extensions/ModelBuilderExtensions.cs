@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic;
+using System.Globalization;
 using YogaManagement.Domain.Enums;
 using YogaManagement.Domain.Models;
 
@@ -206,6 +210,104 @@ public static class ModelBuilderExtensions
                 Size = 20 - i,
                 Status = true,
                 CourseId = i
+            });
+        }
+        #endregion
+
+        #region Time slot
+
+        var day = DayOfWeek.Monday;
+
+        DateTime inputTime(string time)
+        {
+            string timeInput = time;
+            DateTime defaultDate = DateTime.MinValue; // or any other desired default date
+
+            string combinedDateTimeInput = defaultDate.ToString("yyyy-MM-dd") + " " + timeInput;
+            DateTime dateTime = DateTime.ParseExact(combinedDateTimeInput, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+            return dateTime;
+        }
+
+        for (int i = 1; i <= 7; i++)
+        {
+            switch (i)
+            {
+                case 2: { day = DayOfWeek.Tuesday; }; break;
+                case 3: { day = DayOfWeek.Wednesday; }; break;
+                case 4: { day = DayOfWeek.Thursday; }; break;
+                case 5: { day = DayOfWeek.Friday; }; break;
+                case 6: { day = DayOfWeek.Saturday; }; break;
+                case 7: { day = DayOfWeek.Sunday; }; break;
+            }
+
+            modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
+            {
+                Id = i*10 + 1,
+                DayOfWeek = day,
+                StartTime = inputTime("06:00:00"),
+                EndTime = inputTime("07:00:00"),
+                Room = 101,
+                Status = true
+            });
+
+            modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
+            {
+                Id = i * 10 + 2,
+                DayOfWeek = day,
+                StartTime = inputTime("07:30:00"),
+                EndTime = inputTime("08:30:00"),
+                Room = 202,
+                Status = true
+            });
+
+            modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
+            {
+                Id = i * 10 + 3,
+                DayOfWeek = day,
+                StartTime = inputTime("09:00:00"),
+                EndTime = inputTime("10:00:00"),
+                Room = 303,
+                Status = true
+            });
+
+            modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
+            {
+                Id = i * 10 + 4,
+                DayOfWeek = day,
+                StartTime = inputTime("15:30:00"),
+                EndTime = inputTime("16:30:00"),
+                Room = 404,
+                Status = true
+            });
+
+            modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
+            {
+                Id = i * 10 + 5,
+                DayOfWeek = day,
+                StartTime = inputTime("17:00:00"),
+                EndTime = inputTime("18:00:00"),
+                Room = 505,
+                Status = true
+            });
+
+            modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
+            {
+                Id = i * 10 + 6,
+                DayOfWeek = day,
+                StartTime = inputTime("18:30:00"),
+                EndTime = inputTime("19:30:00"),
+                Room = 606,
+                Status = true
+            });
+
+            modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
+            {
+                Id = i * 10 + 7,
+                DayOfWeek = day,
+                StartTime = inputTime("20:00:00"),
+                EndTime = inputTime("21:00:00"),
+                Room = 707,
+                Status = true
             });
         }
         #endregion
