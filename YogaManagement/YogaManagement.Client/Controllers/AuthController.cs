@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
@@ -13,14 +14,17 @@ public class AuthController : Controller
     private readonly IAuthorityClient _userClient;
     private readonly Container _context;
     private readonly JwtManager _jwtManager;
+    private readonly INotyfService _notyf;
 
     public AuthController(IAuthorityClient userClient,
         Container context,
-        JwtManager jwtManager)
+        JwtManager jwtManager,
+        INotyfService notyf)
     {
         _userClient = userClient;
         _context = context;
         _jwtManager = jwtManager;
+        _notyf = notyf;
     }
 
     public IActionResult Login()
@@ -48,14 +52,8 @@ public class AuthController : Controller
             var principles = _jwtManager.TryGetPriciples();
             await HttpContext.SignInAsync(principles);
 
-            if (_jwtManager.IsMember())
-            {
-                return RedirectToAction("Index", "Course");
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            _notyf.Success("Hello " + _jwtManager.GetEmail());
+            return RedirectToAction("Index", "Home");
         }
         catch (Exception ex)
         {

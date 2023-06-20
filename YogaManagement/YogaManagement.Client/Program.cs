@@ -1,4 +1,6 @@
+using AspNetCoreHero.ToastNotification;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using NToastNotify;
 using Refit;
 using YogaManagement.Client.Filters;
 using YogaManagement.Client.Helper;
@@ -50,6 +52,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddMvcCore().AddAuthorization();
 
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
 
 var app = builder.Build();
 

@@ -55,7 +55,7 @@ public class JwtManager
     private string GetUserRole()
         => IsAuthenticated ? SecureToken.Claims.Where(c => c.Type == ClaimTypes.Role).SingleOrDefault().Value : "";
 
-    private string GetEmail()
+    public string GetEmail()
         => IsAuthenticated ? SecureToken.Claims.Where(c => c.Type == ClaimTypes.Email).SingleOrDefault().Value : "";
 
 
