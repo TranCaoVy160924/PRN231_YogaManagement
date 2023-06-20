@@ -17,7 +17,7 @@ namespace YogaManagement.Database.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "7.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -539,7 +539,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "fdafbb99-348f-47d1-87fc-7105e6e3095e",
+                            ConcurrencyStamp = "c225d397-faa0-44ee-bff2-299bbb5972d8",
                             Email = "member1@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name1",
@@ -547,7 +547,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member1@gmail.com",
                             NormalizedUserName = "usermember1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOckDzhZn1Aj82lfJbHHt2h+1M8m+cNgM03NjWmg67beJvITeJNK1cq2R080St6Nkg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC4I1z7W5PrryTtQpXEownYVTHn4YtoDBLj5NeY9tBhixocEi99zeZBoGY/BkUCYuw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -559,7 +559,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 2,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "78b42ecf-baaf-47ac-a6dc-490e373641f7",
+                            ConcurrencyStamp = "397090ce-6e96-49ae-8c1d-3bf5c5dbda31",
                             Email = "member2@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name2",
@@ -567,7 +567,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member2@gmail.com",
                             NormalizedUserName = "usermember2",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBtDGuk3SdkPbgKPzT+MgElbjpQOY0AyYF+hajm3nzKpK17DM3Q8Mpw1XcwgpA0izw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECrmByJ5HQEsi1NA0zbQx8wcWuhDJwjUK6iSTabemEPc1eoHs93Niwqxq2QSEqjzRw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -579,7 +579,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 3,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "6cfa5c3b-b0c0-4f9c-8aea-4074e6201c21",
+                            ConcurrencyStamp = "63962fdb-34d6-474d-8d48-e1a85dee0bcc",
                             Email = "member3@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name3",
@@ -587,7 +587,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member3@gmail.com",
                             NormalizedUserName = "usermember3",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAAaudVBiMQQezhmYxZt4LRl2/ajFy+OLpMsWAuQFCsb5O2VnF8shuoZQ2dgMRr5Ig==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHiQOmCGTFoeW10TNHcXhmnFFMYgs3ezyHHOxfqyU0EvkovJt5VKShuwZmdHN+Hadg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -599,7 +599,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 4,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "63f5e5d4-0704-4a66-92f0-c0c3e5e59270",
+                            ConcurrencyStamp = "ac522d43-e48b-4b87-88fc-b427f52c7a2a",
                             Email = "member4@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name4",
@@ -607,7 +607,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member4@gmail.com",
                             NormalizedUserName = "usermember4",
-                            PasswordHash = "AQAAAAIAAYagAAAAEF0t2CBtLTU6pABGQV6KKKRlkFPAJQv5v98yAbFIcYDD6oEncwSodDD3pEZM7Nug3g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEA9ICsPTpdVw3+1WAKOfXze3VZewOGH9dcEgQHplcAc/i1Ceqh5lseswKMfN3i6ag==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -619,7 +619,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 5,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "d4a69183-d21c-4bc9-ada8-1b73f3b6e880",
+                            ConcurrencyStamp = "768375aa-cdb2-4694-bb17-9dfbe40339b0",
                             Email = "member5@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name5",
@@ -627,7 +627,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member5@gmail.com",
                             NormalizedUserName = "usermember5",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL/IPjEw88MzkKL+PvyST+PhSwpg8gQ9aUfxfHzL8We3ST/8/yOW9zpbWMsrBDav5w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEH59NshKAk3nsLazOcdYh/J5ykMjA0iO46lKX+V6SfOtVU8YXBQ2sLknPWsX99KwxA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -639,7 +639,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 6,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "41bca441-c828-4012-b9d2-2dacfbbf6933",
+                            ConcurrencyStamp = "e35488f7-4f45-427f-af37-5747edfe6826",
                             Email = "member6@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name6",
@@ -647,7 +647,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member6@gmail.com",
                             NormalizedUserName = "usermember6",
-                            PasswordHash = "AQAAAAIAAYagAAAAEE1wBBopEnCFoq21E1i0zZ4x/cW9IDMmyK9GbV2osWf7WJU+BMBuFAoTI6PAZxnjuQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFTWzT65nuClZt+RuXf7D0//n+ZWhkYJvj7ZejQdhZs8mB2PGnfosxgOoho5RBwn0w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -659,7 +659,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 7,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "99b0bd7d-8602-4ba5-a665-ceb6c6d2f7af",
+                            ConcurrencyStamp = "9d8ed0af-af76-4952-bc42-9e25f072fd7c",
                             Email = "member7@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name7",
@@ -667,7 +667,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member7@gmail.com",
                             NormalizedUserName = "usermember7",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGLMkAPwVFBp2t53A+Z2T4aULH4xoeSRtbfPjpnSFswrBQSfEr5GEj1urk72C7x+BQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIc7boMFRhJIDl9daBi9qj/8Wl1w+8Ac17QhZ8GqNJLVcC0VA1i2wYuJZ3y+2TJ8Pg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -679,7 +679,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 8,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "b5a0d4b4-8fa4-4a1f-9598-48fc3d973556",
+                            ConcurrencyStamp = "5751bcfb-6cc1-40d5-a287-e9a84792086a",
                             Email = "member8@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name8",
@@ -687,7 +687,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member8@gmail.com",
                             NormalizedUserName = "usermember8",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM56LBG5oz2CxUTQFstHLUycM63PvRCWJi+S5av4QRqNTySqao3lGjIevoXYzflXwQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFI8kIJ479z7cW8shBUsV07IanuV6XQUTDPqb3+zf0KbgAGMQTheYM/IWGs58/8Ozg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -699,7 +699,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 9,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "e5429bce-b2cd-47a5-a755-d4c1e9417ae4",
+                            ConcurrencyStamp = "55236333-a97d-4d5e-ba79-035aa8b361e5",
                             Email = "member9@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name9",
@@ -707,7 +707,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member9@gmail.com",
                             NormalizedUserName = "usermember9",
-                            PasswordHash = "AQAAAAIAAYagAAAAENMRapL1Upanx3QcJHWUqvvNpF6uXarDyLwwvS4fU7B0bCXb3gqyl3choK00OVRIpQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEM8s8tLv0k1DJ6FE8wfhC2sS4oG1vt1C8D6BDDqBMfAYhBcCWT2AwwPSYhK1tXeAmQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -719,7 +719,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 10,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "209930f9-a0d6-4e8d-bc7d-5a6ad7b9ab8a",
+                            ConcurrencyStamp = "a2908bc9-8030-4434-b6cc-c53815de5a61",
                             Email = "member10@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name10",
@@ -727,7 +727,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member10@gmail.com",
                             NormalizedUserName = "usermember10",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJlb4C6JGS8LSBGFzBA3R79RXu7M2VkLDqXkhiZI6oerrr46EtfxoDlLHJTz8q1kNQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECamzwy9zOyly1nw4fkWprYodiwFn5FaDuNG8+FivxJeCk25/X0BeMiOhTsIQk1OEw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -739,7 +739,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 11,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "94fcdfdd-3663-4037-95ce-10c35853f1cd",
+                            ConcurrencyStamp = "81087c83-f45b-468d-a35a-1a058153a533",
                             Email = "member11@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name11",
@@ -747,7 +747,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member11@gmail.com",
                             NormalizedUserName = "usermember11",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPWUFWTn93ikz7lsSdVvpK0zfePeyPO76Vd3V7pTdXNNpMKBh1wnK+AOVgtbrN5iXg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED2rvqHpKt7yPHhsNvsiuK18mvF+fDTj+Dc0E4fn1ouE0cMPc/eQrDAbhIYrR6p2yA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -759,7 +759,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 12,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "aa45de2e-fc37-49ef-8036-2b21d366a56e",
+                            ConcurrencyStamp = "c194ea3d-7f83-4b69-a7e5-a7ffc3e583e1",
                             Email = "member12@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name12",
@@ -767,7 +767,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member12@gmail.com",
                             NormalizedUserName = "usermember12",
-                            PasswordHash = "AQAAAAIAAYagAAAAENXRCKdMavuwCKhreJoxx/B0CQqQJw6SluE3uhvQy4cP+o1tpiU8X3isxDYSgX9d1w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEI/Wr0ubRTex7BQHeEcdd1Dwq0JzBSa/TJinhKBuY72V2pl3xiYZESRSa8Wq8AzmYQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -779,7 +779,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 13,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "98d8d9be-98ca-490f-a786-3875f9792350",
+                            ConcurrencyStamp = "cffd9ed4-a7b7-46ce-9bad-d8a54b4dfe2c",
                             Email = "member13@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name13",
@@ -787,7 +787,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member13@gmail.com",
                             NormalizedUserName = "usermember13",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKi5WBSvvMhwv39gZWGWPiW1990Z/sRGgWX/ODNZKW22alHGorrbNRrGwux7celR4A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMUiRr1ptljIHndrHRrMtRW3FmUkQm5YKHvhsImcP+abeq1cFVcVP8ui34bz2YCdvA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -799,7 +799,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 14,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "1f501ecb-60b8-480a-9bb8-a952f5deb1c6",
+                            ConcurrencyStamp = "18689702-db88-4c2e-8ac8-219d128de8a9",
                             Email = "member14@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name14",
@@ -807,7 +807,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member14@gmail.com",
                             NormalizedUserName = "usermember14",
-                            PasswordHash = "AQAAAAIAAYagAAAAEICY10j2cLAlLUsUZ0Aue2pnH0c8g0j/CmRgMdx93I+Q11QuVyWK7hOWpGQa9G5MXg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMGc9iJjlV+Sr0dlm8+/zm5neXkyC4OSXp38BD66xCqsScpGlHuBojR8y7oH0vDbpg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -819,7 +819,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 15,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "819897fc-ac15-4cdc-a042-5bb964087f7e",
+                            ConcurrencyStamp = "66042d8a-40bc-4ae4-bb5b-42c1d385eb14",
                             Email = "member15@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name15",
@@ -827,7 +827,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member15@gmail.com",
                             NormalizedUserName = "usermember15",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPNIH89VuLMZiET+iIM1j+fsrNV5OACPlk/fWAFUYVDVaYXlixWSkaLgGJcERXy1+A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO7d30fa9Kj1EjrmeSswU2dq4uFu5X6N8E5GqSVZ+zIuO8y7nRMpqCfbcmXxnpp1/A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -839,7 +839,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 16,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "ba22e297-4026-49ca-806f-01bffd046efe",
+                            ConcurrencyStamp = "a2c29440-23b0-41f0-bb12-db9f32f0ed15",
                             Email = "member16@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name16",
@@ -847,7 +847,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member16@gmail.com",
                             NormalizedUserName = "usermember16",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMkFBDYuum2L69glZcJFCm15nt6BvmYzSmWE5L+ju583X6rOds9r6kPjD9LU2rq1oQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFOTcfmjog2gJkEtLLcNvLTQt2CYHAxVXxpx42p4Qtx0RSN6UIg6rQyLNXCVp9svlQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -859,7 +859,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 17,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "7401a07a-2787-4a27-a870-855b40385934",
+                            ConcurrencyStamp = "81c71f8d-094d-4517-8cf4-ddd664094c5c",
                             Email = "member17@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name17",
@@ -867,7 +867,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member17@gmail.com",
                             NormalizedUserName = "usermember17",
-                            PasswordHash = "AQAAAAIAAYagAAAAENP8XP1M49M+UxFUKt4Vlk7zMtmO/Xrf4zm0fnxFjnchRP4q9Ms1pvJBBnsCsPDnoQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBaTTbrkRnNGRtLlP5gipt2LEqLILcQUUHitf/vnPoiOXsRz4CLhsTpI7frrQ0hszA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -879,7 +879,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 18,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "524790f3-c0ee-4d8b-9655-efd0a3d09ce8",
+                            ConcurrencyStamp = "348dc881-054b-4507-9af4-e9f8ea95abea",
                             Email = "member18@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name18",
@@ -887,7 +887,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member18@gmail.com",
                             NormalizedUserName = "usermember18",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMfQErszccqf3wdFgKvHtcYb3/944hfjK4AtE/Om3rBgvjXqAdy15HhzqnWK4V/P7A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENUKJHiMVTvoBrve58P7Usm5vf9eag6lXcCNOdLHrrdhRZ88FLOovIz2eIEQmY6flQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -899,7 +899,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 19,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "7a3d8824-533b-45da-94c4-68eb99417344",
+                            ConcurrencyStamp = "fb8e08ca-1a47-422d-81c0-2e6b8a1e228a",
                             Email = "member19@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name19",
@@ -907,7 +907,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member19@gmail.com",
                             NormalizedUserName = "usermember19",
-                            PasswordHash = "AQAAAAIAAYagAAAAECIJ/xos8aeOvHuZdy7K0Dz6Zyz/LQNDRYMsPThOqH3H71fc3Lj/0kc4ZKb84riJOQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFg8pHmjRVWHaNUyBJfTkkHBqri2KMZFQRORVMQPcSas2A/31A+3o5oEwVbzjJl56A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -919,7 +919,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 20,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "38dab200-d4f4-4e36-a746-b7fbabf1b938",
+                            ConcurrencyStamp = "281f458b-5982-4376-b050-0197e89c81a5",
                             Email = "member20@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name20",
@@ -927,7 +927,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member20@gmail.com",
                             NormalizedUserName = "usermember20",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOu4kwZO3ldoYY18gJX5ahvtOuYky0f0QjGn58QNMk5kb75PJK/gM2BcMvrg6bi1MQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMdphJKBC1Neq/VXP21NaF1PmSvF8VFncjqa7KjeSwYG2w+Wrx1ge2Sj+/N3Tlkcrw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -939,7 +939,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 21,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "86a53ff6-e86b-4196-ab3a-e46e4a874814",
+                            ConcurrencyStamp = "6d237951-46f7-40d7-ab10-96485e0f7235",
                             Email = "member21@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name21",
@@ -947,7 +947,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member21@gmail.com",
                             NormalizedUserName = "usermember21",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJjLAGtMEb6hwQZVR01PsuNg6E5JhiVxIiMs+EinllRBHoiJOu1UKFnYAFOgBVFFJQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDX1QaXRliv6rMwglAkCqex38mxWX0yN/dUqX8Z1RuLG4mjxIQVHyosIr64ttGUdrA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -959,7 +959,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 22,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "dbfa1b77-99e7-4672-aef7-899aa8050265",
+                            ConcurrencyStamp = "390d8bea-77a4-4538-8217-0cab5b10bb66",
                             Email = "member22@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name22",
@@ -967,7 +967,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member22@gmail.com",
                             NormalizedUserName = "usermember22",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPOPAHH3eDof/+OzEuGqvfnKdIMLnCPvB+eyvSEcV6J8/GD/SfUDtNOnV3YpTcJlwQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEF15ZRSO8H6PzyrhuniVnDLILPBDtzVYNLn6y6JjoEKTbxmps0wIT9nfGzCxzBOy3A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -979,7 +979,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 23,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "4a73d583-656f-4839-88ca-b9834ffc9a40",
+                            ConcurrencyStamp = "60f3e8a6-6ef5-4ba9-b5ca-aa68dd100d39",
                             Email = "member23@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name23",
@@ -987,7 +987,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member23@gmail.com",
                             NormalizedUserName = "usermember23",
-                            PasswordHash = "AQAAAAIAAYagAAAAEF1ml42Zi7JZU7IvMGeKayGwiDkJqI/Eb8Hi3mUR2bDzqTIBRbytBDzCdOI6cbFnOw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJp2Dca5JgV9fn+qCDpY15PgE+UqfqNwcWNU7nDbHXYZ52XfrcbBmq54no9DoV1Icw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -999,7 +999,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 24,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "a34b81fe-196a-4b27-b932-0192aa0e610c",
+                            ConcurrencyStamp = "40097d09-03fe-4b69-880c-0954f4cd2ff7",
                             Email = "member24@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name24",
@@ -1007,7 +1007,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member24@gmail.com",
                             NormalizedUserName = "usermember24",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAD3I5QLC/+l9uglbdh1Bu/lr3TQ24q+7xmt2XeNVkPUT1Xxo0CKoF0PCZ2mVdYUMw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELXL6sfHEwFXsMBHP4tPMF8wfKKPvsrZSdj5QwuH7AKYNd8/HDwZ7AnkthZCDR+w9w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1019,7 +1019,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 25,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "b139cd73-e670-487a-9c90-219490d1690e",
+                            ConcurrencyStamp = "e5d57c93-c97a-4318-ac03-c9dfde669c37",
                             Email = "member25@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name25",
@@ -1027,7 +1027,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member25@gmail.com",
                             NormalizedUserName = "usermember25",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFQQWF+XbjpFJyejbl2cm9bEGvkQ78QKrr0F5y9JYwdxwifVS5nGmvJ/UT28+8l9Nw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG4RiECn/2zy6BUDLcm3ui4mIUj8nXfm/SPOiTms0hQUKfVFDsnQAbHQszosG8bVOw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1039,7 +1039,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 26,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "60ec90db-baa4-4122-9252-f22b45cc921c",
+                            ConcurrencyStamp = "9b10fc5f-456a-4ad3-b628-73f69a61b655",
                             Email = "member26@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name26",
@@ -1047,7 +1047,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member26@gmail.com",
                             NormalizedUserName = "usermember26",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPLO/bNRwVutLDZtV8GbGu6gQ6peqD0fQqw+pip+goRlCDF30D48K9//RhLEcF7HOg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAgynsZXMutrBa0iWvDfp61bLK2JzExL1X4gNnzJZ3myJRRxp9ykwbmJ13g7PvxbZg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1059,7 +1059,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 27,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "19c7e767-954f-48ba-b7ba-e7a635bdb52a",
+                            ConcurrencyStamp = "52cb90ba-2500-4c15-b812-a9ecfd444b6c",
                             Email = "member27@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name27",
@@ -1067,7 +1067,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member27@gmail.com",
                             NormalizedUserName = "usermember27",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHT0clrSmC49OyFVaEbrw27ck24vdIFmJUEJDNSMBBB9w8p3JVjQP3vWuAbruwfZJA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHnKj1nbl4xSNtm86miSFzQ9Ei8fVqzNgh4OfN3bNgNA8RWN5g96dOvxIt4x/DawcQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1079,7 +1079,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 28,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "f5069def-bda2-4267-80a3-77a3f3015fc7",
+                            ConcurrencyStamp = "59c40c2e-c357-42c0-8049-e49ed0de33bc",
                             Email = "member28@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name28",
@@ -1087,7 +1087,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member28@gmail.com",
                             NormalizedUserName = "usermember28",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGLPdj8uX0CyjTS6ZsXhtDxYz46XHAseK2/ZmqmSk8vS5LsijtiaIsNib3nt7+RUIg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAaz59uLgCWNBcCUFWx0UJO3tdGwLAGo/13HfgLseYz9sXWJurdUwrLhHhuK9xEtgQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1099,7 +1099,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 29,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "ead3807a-2d24-47c3-8bae-d71bd6600d57",
+                            ConcurrencyStamp = "04d46b7d-cda1-427d-a3c1-ff0b6de9e213",
                             Email = "member29@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name29",
@@ -1107,7 +1107,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member29@gmail.com",
                             NormalizedUserName = "usermember29",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDHmoL8BosTMvDCW/CI9tKb5QXk4MOHBOP1Qocqa/xh4sfjxCJ6BI+qi+D2e6npYPA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAlkeEppFoJ7OqaoQiSvtsE5Keyv8QJ6ZBHCtOmZeHYnfwf5hYjdi1aZ0hdOo7xhHQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1119,7 +1119,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 30,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "67d4a9b1-e834-4aa4-aa8f-6a49acdef5a9",
+                            ConcurrencyStamp = "fad9af76-5774-42f7-82b5-e83a7361fbc7",
                             Email = "member30@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name30",
@@ -1127,7 +1127,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member30@gmail.com",
                             NormalizedUserName = "usermember30",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIa3YkIvnYBGuEW9XyZWYKwVg1472/J8ySSb09Z13YcTXjg3zkDdBBA2mIndhp8nLw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKb3b/X+2VAbzDZx1jncxE960117liQxxDNtDsJmheQrI/I36SAmAtWZf/Q45B/lMg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1139,7 +1139,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 31,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "c81bab77-6c7e-416d-bf70-ad0df0bd27e1",
+                            ConcurrencyStamp = "15b77a1a-537d-4d67-b871-5dd8d1a5b517",
                             Email = "teacher31@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name31",
@@ -1147,7 +1147,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher31@gmail.com",
                             NormalizedUserName = "userteacher31",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMqgmKbLoYE2TMaqH/M81Uk7b2QJ9+7pLyiSHP5MPSW1q+rPHghdezYqfBC2uE/LOw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGPjuYEysmemr9/uAABWm2UkzwI0TJ1WXtD5tqJKaVtLAkVHwZsITpjjU17ebwFHJA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1159,7 +1159,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 32,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "953bb74b-2a02-42cf-a85b-9f28368555fc",
+                            ConcurrencyStamp = "a2f16274-8698-4815-8a14-8bfdfd7b824f",
                             Email = "teacher32@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name32",
@@ -1167,7 +1167,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher32@gmail.com",
                             NormalizedUserName = "userteacher32",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAEeEUD9zD1SMTxIyDt9xryTWXQxKLZeg0iGn8yWluIrnOqvG8rFlQojOJa5JWebyg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMprAwdWHiK8jeNgLvyaWX0tK8ZiLdRKvY0MrrE1ipnIp1KMrg7T48nYQ2D6ASWOvQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1179,7 +1179,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 33,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "43a7470d-0ef9-442c-bc9b-9e5a717be7fa",
+                            ConcurrencyStamp = "469fbc0e-8ec8-48bd-8b64-26669a00ddfd",
                             Email = "teacher33@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name33",
@@ -1187,7 +1187,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher33@gmail.com",
                             NormalizedUserName = "userteacher33",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKxHX4a6nujJaZWCh+iYtdCmwB/2OZbD/p3azKviAbLnBGSGdd2XOtTzH5k2kMsLLA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJBHyV12MZKPKLXKuW1BdG4juUQt4QdO4FdzyGfxeCbdjodux+MA17jnXPqbHLLA4A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1199,7 +1199,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 34,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "0a8be2fc-5843-4f67-a766-c2a4b7b94118",
+                            ConcurrencyStamp = "bb50f826-1d9b-40b8-9708-a26060d7f102",
                             Email = "teacher34@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name34",
@@ -1207,7 +1207,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher34@gmail.com",
                             NormalizedUserName = "userteacher34",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDesVrh9Yl0zQBJB1xoVJfhItNUwCnl2QJup6cdoj7lJlmxL6jTVWX+n3BZ2FpiIug==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENgzN/mACcuDZEAaRDngiqsh2EQWtM4wfWzFs6qtdsRQa1pZcvkHJ05uiT10q1lzAg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1219,7 +1219,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 35,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "dd741904-a58c-43a3-8471-61a32b5f619b",
+                            ConcurrencyStamp = "afbe7b6a-6cdc-4d99-a191-bcf7ec96ee79",
                             Email = "teacher35@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name35",
@@ -1227,7 +1227,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher35@gmail.com",
                             NormalizedUserName = "userteacher35",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI6xEWObONrZXBozKqSTyuY0z3/Lp/s5EQPKytgJuLiD/sxjkvrMPKEVeagwQzewIg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDWXFOGVSGOrLKrF6O+vyzgRhx70JlcO6+j+nZiL7KNA2pUdKLXVS7jjtht3ZZ9oPA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1239,7 +1239,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 36,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "3b5bbfbd-249d-49e6-89df-4e73c728a0df",
+                            ConcurrencyStamp = "1cb04979-21f2-4247-b2ad-008a7f176c58",
                             Email = "teacher36@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name36",
@@ -1247,7 +1247,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher36@gmail.com",
                             NormalizedUserName = "userteacher36",
-                            PasswordHash = "AQAAAAIAAYagAAAAELK9VKfEU/LuPnhBaPKRDa512FxqI17aCcJcKkhK3dWdLurZeBclAGfI3DYeBtaRMw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJZtLDXgjTYOmlBKxT2VlI1ibKt3wv1PFm79+p+eXa/gRBUXalL9glflkxpnihe3kg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1259,7 +1259,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 37,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "c035be8f-5e1c-4fea-b1b3-dec1d0b9ae02",
+                            ConcurrencyStamp = "7015266c-6bb5-4ba8-a93f-a02d621867d0",
                             Email = "teacher37@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name37",
@@ -1267,7 +1267,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher37@gmail.com",
                             NormalizedUserName = "userteacher37",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIi1qKMROl8bjTt/VRpTWBPM+oq4xLGyRDx12zOo3T+rSXDLCWGiAxRViDCRcKWgPA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO0z4bFoUU5DXJOf2+EQW/XV3/ZOQiwJL2qhUES56gJ6eE6qUhT7twc5FcAR9J9YIg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1279,7 +1279,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 38,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "5e3718c1-ae81-4c90-b852-7730e71a60c9",
+                            ConcurrencyStamp = "fece090f-d940-433d-824f-096d9427a733",
                             Email = "teacher38@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name38",
@@ -1287,7 +1287,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher38@gmail.com",
                             NormalizedUserName = "userteacher38",
-                            PasswordHash = "AQAAAAIAAYagAAAAELD4w9XR+z33uVFm5w3v7nZpPQPA392roab2FM7Cbxoqiv7HJq/9o1WWJt3SFtvsYw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOzYQbsPQAF0vaMsuXOiTuRY7aGf8GmahljqFuBPVRRf2iaRczujQ8g+AQeuBocWqQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1299,7 +1299,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 39,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "41c23093-0ef9-42e0-b66a-81f635d0c34e",
+                            ConcurrencyStamp = "944840a2-1d43-468a-ac45-1995acd745b5",
                             Email = "teacher39@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name39",
@@ -1307,7 +1307,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher39@gmail.com",
                             NormalizedUserName = "userteacher39",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOZ91wuAMxn2H3q4Fr0Ip8yjSoD5Os4afpyHw5tT8FtJLlZlKTgpUHMH3jEMt2ouLw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEE2ha3K53RWQrJGVAUibhFKSx291Cc7sJJhKnUk/QOo2NszOKr3g6WZElYtYgSK00A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1319,7 +1319,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 40,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "1c6868cd-ae8e-4611-b28e-80bd9eb33d52",
+                            ConcurrencyStamp = "bb6c5ee0-f5fe-419b-bb29-7f440614665a",
                             Email = "teacher40@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name40",
@@ -1327,7 +1327,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher40@gmail.com",
                             NormalizedUserName = "userteacher40",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAwkFT65NaURyEiNbZlZRgweQum3L2TUTc51hyaX+5QSITe4w+bt8sTjdj05NUVODQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIAymWo80Ol6ieFhlaqdodc90Gx7t5rpbd3iY6sP9gMHTvabL7enVvm03liaZGKCxg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1339,7 +1339,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 41,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "b4b07828-8cdd-4c5c-8503-3d00e2257b4d",
+                            ConcurrencyStamp = "ff9af491-28bf-4571-93eb-b496012604c5",
                             Email = "staff41@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name41",
@@ -1347,7 +1347,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "staff41@gmail.com",
                             NormalizedUserName = "userstaff41",
-                            PasswordHash = "AQAAAAIAAYagAAAAEA/OaDTngq0k7X8jBjhVnvNfPtI5VEjqDK0wGW6yCSV2TgKSIORVdE/NXmYf04pWzg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECdhqOQGBaMdtSPFCvihJZ7FbDkqvuyKw2uNu++BXy6w2BqHDxSmKddYwMFCQ3/a6g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1359,7 +1359,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 42,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "87c4c261-07e2-4a06-a2b2-79a9e0a31668",
+                            ConcurrencyStamp = "e905d94d-18ff-432a-b17c-a4bd26bb6794",
                             Email = "staff42@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name42",
@@ -1367,7 +1367,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "staff42@gmail.com",
                             NormalizedUserName = "userstaff42",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPbS3KUlCK+edArgTpXD7V7vJZyh+YLYuiPzIuoKPy74z7LPfx5DVS1VKDgNX/DHpg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEwCza9KTEPaE16H6jluYNmZaZ2Wd7EpQb0vX9v9v2ueKefZIjhgnUiDSaKblN0Axg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1379,7 +1379,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 43,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "79353c4b-3d64-4c01-90db-0d9717fa2be6",
+                            ConcurrencyStamp = "98e9dc71-fffa-4874-9df1-01f5be68d4c0",
                             Email = "staff43@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name43",
@@ -1387,7 +1387,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "staff43@gmail.com",
                             NormalizedUserName = "userstaff43",
-                            PasswordHash = "AQAAAAIAAYagAAAAEH6MUcd2QnrqLM+KAr5cON6S8xA/AK6KapJSXBCfi3RHjw8Ay/aSYrfUcj1DbUdlUQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIHrVJRwlHRBGIE84Ua3WclQWynx2I0fmrB8KH9w/Dcn/0eJSR7xhwLMhyJAhcmnBw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1399,7 +1399,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 44,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "867a1d41-9d24-48b3-8354-e5723d5c480c",
+                            ConcurrencyStamp = "19a6a070-ea78-49cf-9d3b-7c29ac9d549f",
                             Email = "staff44@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name44",
@@ -1407,7 +1407,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "staff44@gmail.com",
                             NormalizedUserName = "userstaff44",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOrFxlSYHA7HqfGF1MbXqnBfIQreabosOWKlG1ZptF2lpYiHpSOA2hPsac2aTeYVZg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHn6YKRQYrcP9YkJd4Qf5Lpf5Hl527el8vDburGae3eDEKhgmMtlJkIa+xf3d2lvXg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1419,7 +1419,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 45,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "774eba3d-3307-4a16-b43c-9bfd2e2d9720",
+                            ConcurrencyStamp = "f2d285a8-0ca7-483c-a0f5-99ba2c842e76",
                             Email = "staff45@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name45",
@@ -1427,7 +1427,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "staff45@gmail.com",
                             NormalizedUserName = "userstaff45",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMH+QO08Tgq1rML4tKanLYcx8aZY7e7N5LorfMQO0u4syEmNOKhH2cnTPdmJal77Nw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDh1JOqxnce9h40+Ohd3PCe0MdH3uoQHPeiRAPQxh4oQdrXBkt0V+Bby6davZ+6TNw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1439,7 +1439,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 46,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "f94a4b0b-36a5-4225-a07e-6dd49f656deb",
+                            ConcurrencyStamp = "782038e0-ebb1-4b64-b735-8545c6cfc3f5",
                             Email = "admin46@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name46",
@@ -1447,7 +1447,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin46@gmail.com",
                             NormalizedUserName = "useradmin46",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBSZ/lAaK9YUfL6/mRccOBXv/ZYBvwJDZChbWhJ5sfaQUQab94flJkryb6bZAbzkGw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEK4Rr5fv7J3ltPFenMgcpwu5W0jpOhXgopGXjCHQk3GC4Ka7Yf4B0CH6Hw8ZUQVw0Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1585,7 +1585,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course1",
                             Price = 100.0,
-                            StartDate = new DateTime(2023, 6, 20, 9, 4, 26, 19, DateTimeKind.Local).AddTicks(7907)
+                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6358)
                         },
                         new
                         {
@@ -1596,7 +1596,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course2",
                             Price = 200.0,
-                            StartDate = new DateTime(2023, 6, 20, 9, 4, 26, 19, DateTimeKind.Local).AddTicks(7926)
+                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6378)
                         },
                         new
                         {
@@ -1607,7 +1607,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course3",
                             Price = 300.0,
-                            StartDate = new DateTime(2023, 6, 20, 9, 4, 26, 19, DateTimeKind.Local).AddTicks(7930)
+                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6382)
                         },
                         new
                         {
@@ -1618,7 +1618,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course4",
                             Price = 400.0,
-                            StartDate = new DateTime(2023, 6, 20, 9, 4, 26, 19, DateTimeKind.Local).AddTicks(7934)
+                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6386)
                         },
                         new
                         {
@@ -1629,7 +1629,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course5",
                             Price = 500.0,
-                            StartDate = new DateTime(2023, 6, 20, 9, 4, 26, 19, DateTimeKind.Local).AddTicks(7938)
+                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6389)
                         },
                         new
                         {
@@ -1640,7 +1640,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course6",
                             Price = 600.0,
-                            StartDate = new DateTime(2023, 6, 20, 9, 4, 26, 19, DateTimeKind.Local).AddTicks(7942)
+                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6393)
                         },
                         new
                         {
@@ -1651,7 +1651,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course7",
                             Price = 700.0,
-                            StartDate = new DateTime(2023, 6, 20, 9, 4, 26, 19, DateTimeKind.Local).AddTicks(7946)
+                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6396)
                         },
                         new
                         {
@@ -1662,7 +1662,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course8",
                             Price = 800.0,
-                            StartDate = new DateTime(2023, 6, 20, 9, 4, 26, 19, DateTimeKind.Local).AddTicks(7950)
+                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6400)
                         },
                         new
                         {
@@ -1673,7 +1673,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course9",
                             Price = 900.0,
-                            StartDate = new DateTime(2023, 6, 20, 9, 4, 26, 19, DateTimeKind.Local).AddTicks(7953)
+                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6403)
                         },
                         new
                         {
@@ -1684,7 +1684,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course10",
                             Price = 1000.0,
-                            StartDate = new DateTime(2023, 6, 20, 9, 4, 26, 19, DateTimeKind.Local).AddTicks(7958)
+                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6408)
                         });
                 });
 
@@ -2061,6 +2061,449 @@ namespace YogaManagement.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TimeSlots");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 11,
+                            DayOfWeek = 1,
+                            EndTime = new DateTime(1, 1, 1, 7, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 101,
+                            StartTime = new DateTime(1, 1, 1, 6, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DayOfWeek = 1,
+                            EndTime = new DateTime(1, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 202,
+                            StartTime = new DateTime(1, 1, 1, 7, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DayOfWeek = 1,
+                            EndTime = new DateTime(1, 1, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 303,
+                            StartTime = new DateTime(1, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DayOfWeek = 1,
+                            EndTime = new DateTime(1, 1, 1, 16, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 404,
+                            StartTime = new DateTime(1, 1, 1, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DayOfWeek = 1,
+                            EndTime = new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 505,
+                            StartTime = new DateTime(1, 1, 1, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DayOfWeek = 1,
+                            EndTime = new DateTime(1, 1, 1, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 606,
+                            StartTime = new DateTime(1, 1, 1, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 17,
+                            DayOfWeek = 1,
+                            EndTime = new DateTime(1, 1, 1, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 707,
+                            StartTime = new DateTime(1, 1, 1, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 21,
+                            DayOfWeek = 2,
+                            EndTime = new DateTime(1, 1, 1, 7, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 101,
+                            StartTime = new DateTime(1, 1, 1, 6, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 22,
+                            DayOfWeek = 2,
+                            EndTime = new DateTime(1, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 202,
+                            StartTime = new DateTime(1, 1, 1, 7, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 23,
+                            DayOfWeek = 2,
+                            EndTime = new DateTime(1, 1, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 303,
+                            StartTime = new DateTime(1, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 24,
+                            DayOfWeek = 2,
+                            EndTime = new DateTime(1, 1, 1, 16, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 404,
+                            StartTime = new DateTime(1, 1, 1, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 25,
+                            DayOfWeek = 2,
+                            EndTime = new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 505,
+                            StartTime = new DateTime(1, 1, 1, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 26,
+                            DayOfWeek = 2,
+                            EndTime = new DateTime(1, 1, 1, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 606,
+                            StartTime = new DateTime(1, 1, 1, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 27,
+                            DayOfWeek = 2,
+                            EndTime = new DateTime(1, 1, 1, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 707,
+                            StartTime = new DateTime(1, 1, 1, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 31,
+                            DayOfWeek = 3,
+                            EndTime = new DateTime(1, 1, 1, 7, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 101,
+                            StartTime = new DateTime(1, 1, 1, 6, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 32,
+                            DayOfWeek = 3,
+                            EndTime = new DateTime(1, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 202,
+                            StartTime = new DateTime(1, 1, 1, 7, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 33,
+                            DayOfWeek = 3,
+                            EndTime = new DateTime(1, 1, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 303,
+                            StartTime = new DateTime(1, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 34,
+                            DayOfWeek = 3,
+                            EndTime = new DateTime(1, 1, 1, 16, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 404,
+                            StartTime = new DateTime(1, 1, 1, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 35,
+                            DayOfWeek = 3,
+                            EndTime = new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 505,
+                            StartTime = new DateTime(1, 1, 1, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 36,
+                            DayOfWeek = 3,
+                            EndTime = new DateTime(1, 1, 1, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 606,
+                            StartTime = new DateTime(1, 1, 1, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 37,
+                            DayOfWeek = 3,
+                            EndTime = new DateTime(1, 1, 1, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 707,
+                            StartTime = new DateTime(1, 1, 1, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 41,
+                            DayOfWeek = 4,
+                            EndTime = new DateTime(1, 1, 1, 7, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 101,
+                            StartTime = new DateTime(1, 1, 1, 6, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 42,
+                            DayOfWeek = 4,
+                            EndTime = new DateTime(1, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 202,
+                            StartTime = new DateTime(1, 1, 1, 7, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 43,
+                            DayOfWeek = 4,
+                            EndTime = new DateTime(1, 1, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 303,
+                            StartTime = new DateTime(1, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 44,
+                            DayOfWeek = 4,
+                            EndTime = new DateTime(1, 1, 1, 16, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 404,
+                            StartTime = new DateTime(1, 1, 1, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 45,
+                            DayOfWeek = 4,
+                            EndTime = new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 505,
+                            StartTime = new DateTime(1, 1, 1, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 46,
+                            DayOfWeek = 4,
+                            EndTime = new DateTime(1, 1, 1, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 606,
+                            StartTime = new DateTime(1, 1, 1, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 47,
+                            DayOfWeek = 4,
+                            EndTime = new DateTime(1, 1, 1, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 707,
+                            StartTime = new DateTime(1, 1, 1, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 51,
+                            DayOfWeek = 5,
+                            EndTime = new DateTime(1, 1, 1, 7, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 101,
+                            StartTime = new DateTime(1, 1, 1, 6, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 52,
+                            DayOfWeek = 5,
+                            EndTime = new DateTime(1, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 202,
+                            StartTime = new DateTime(1, 1, 1, 7, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 53,
+                            DayOfWeek = 5,
+                            EndTime = new DateTime(1, 1, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 303,
+                            StartTime = new DateTime(1, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 54,
+                            DayOfWeek = 5,
+                            EndTime = new DateTime(1, 1, 1, 16, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 404,
+                            StartTime = new DateTime(1, 1, 1, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 55,
+                            DayOfWeek = 5,
+                            EndTime = new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 505,
+                            StartTime = new DateTime(1, 1, 1, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 56,
+                            DayOfWeek = 5,
+                            EndTime = new DateTime(1, 1, 1, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 606,
+                            StartTime = new DateTime(1, 1, 1, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 57,
+                            DayOfWeek = 5,
+                            EndTime = new DateTime(1, 1, 1, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 707,
+                            StartTime = new DateTime(1, 1, 1, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 61,
+                            DayOfWeek = 6,
+                            EndTime = new DateTime(1, 1, 1, 7, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 101,
+                            StartTime = new DateTime(1, 1, 1, 6, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 62,
+                            DayOfWeek = 6,
+                            EndTime = new DateTime(1, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 202,
+                            StartTime = new DateTime(1, 1, 1, 7, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 63,
+                            DayOfWeek = 6,
+                            EndTime = new DateTime(1, 1, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 303,
+                            StartTime = new DateTime(1, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 64,
+                            DayOfWeek = 6,
+                            EndTime = new DateTime(1, 1, 1, 16, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 404,
+                            StartTime = new DateTime(1, 1, 1, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 65,
+                            DayOfWeek = 6,
+                            EndTime = new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 505,
+                            StartTime = new DateTime(1, 1, 1, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 66,
+                            DayOfWeek = 6,
+                            EndTime = new DateTime(1, 1, 1, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 606,
+                            StartTime = new DateTime(1, 1, 1, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 67,
+                            DayOfWeek = 6,
+                            EndTime = new DateTime(1, 1, 1, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 707,
+                            StartTime = new DateTime(1, 1, 1, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 71,
+                            DayOfWeek = 0,
+                            EndTime = new DateTime(1, 1, 1, 7, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 101,
+                            StartTime = new DateTime(1, 1, 1, 6, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 72,
+                            DayOfWeek = 0,
+                            EndTime = new DateTime(1, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 202,
+                            StartTime = new DateTime(1, 1, 1, 7, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 73,
+                            DayOfWeek = 0,
+                            EndTime = new DateTime(1, 1, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 303,
+                            StartTime = new DateTime(1, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 74,
+                            DayOfWeek = 0,
+                            EndTime = new DateTime(1, 1, 1, 16, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 404,
+                            StartTime = new DateTime(1, 1, 1, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 75,
+                            DayOfWeek = 0,
+                            EndTime = new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 505,
+                            StartTime = new DateTime(1, 1, 1, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 76,
+                            DayOfWeek = 0,
+                            EndTime = new DateTime(1, 1, 1, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            Room = 606,
+                            StartTime = new DateTime(1, 1, 1, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 77,
+                            DayOfWeek = 0,
+                            EndTime = new DateTime(1, 1, 1, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            Room = 707,
+                            StartTime = new DateTime(1, 1, 1, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true
+                        });
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.Transaction", b =>
