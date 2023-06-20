@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
+using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
+using AuthorizeAttribute = Microsoft.AspNetCore.Authorization.AuthorizeAttribute;
 
 namespace YogaManagement.Client.Controllers;
 
@@ -9,10 +11,17 @@ namespace YogaManagement.Client.Controllers;
 public class AppUsersController : Controller
 {
     private readonly Container _context;
+    private readonly INotyfService _notyf;
+    private readonly JwtManager _jwtManager;
 
-    public AppUsersController(Container context)
+    public AppUsersController(Container context,
+        INotyfService notyf,
+        JwtManager jwtManager)
     {
         _context = context;
+        _notyf = notyf;
+        _jwtManager = jwtManager;
+        _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
     }
 
     // GET: AppUsers
@@ -25,20 +34,30 @@ public class AppUsersController : Controller
     // GET: AppUsers/Details/5
     public async Task<IActionResult> Details(int? id)
     {
-        if (id == null || _context.Users == null)
+        try
         {
+            if (id == null || _context.Users == null)
+            {
+                throw new Exception("Not Found");
+            }
+
+            var appUser = await _context.Users.ByKey(id.Value).GetValueAsync();
+            if (appUser == null)
+            {
+                throw new Exception("Not Found");
+            }
+            return View(appUser);
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
             return RedirectToAction(nameof(Index));
         }
-
-        var appUser = _context.Users
-            .Where(u => u.Id == id)
-            .SingleOrDefault();
-        if (appUser == null)
+        catch (Exception ex)
         {
+            _notyf.Error(ex.Message);
             return RedirectToAction(nameof(Index));
         }
-
-        return View(appUser);
     }
 
     // GET: AppUsers/Create
@@ -76,11 +95,17 @@ public class AppUsersController : Controller
             _context.AddToUsers(appUser);
 
             await _context.SaveChangesAsync();
+            _notyf.Success("New user created");
             return RedirectToAction(nameof(Index));
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+            return View(appUser);
         }
         catch (Exception ex)
         {
-            ViewData["Error"] = ex.Message;
+            _notyf.Warning(ex.Message);
             return View(appUser);
         }
     }
@@ -88,17 +113,30 @@ public class AppUsersController : Controller
     // GET: AppUsers/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
-        if (id == null || _context.Users == null)
+        try
         {
-            return RedirectToAction(nameof(Index));
-        }
+            if (id == null || _context.Users == null)
+            {
+                throw new Exception("Not Found");
+            }
 
-        var appUser = await _context.Users.ByKey(id.Value).GetValueAsync();
-        if (appUser == null)
+            var appUser = await _context.Users.ByKey(id.Value).GetValueAsync();
+            if (appUser == null)
+            {
+                throw new Exception("Not Found");
+            }
+            return View(appUser);
+        }
+        catch (InvalidOperationException ex)
         {
+            _notyf.Error(ex.ReadOdataErrorMessage());
             return RedirectToAction(nameof(Index));
         }
-        return View(appUser);
+        catch (Exception ex)
+        {
+            _notyf.Error(ex.Message);
+            return RedirectToAction(nameof(Index));
+        }
     }
 
     // POST: AppUsers/Edit/5
@@ -110,6 +148,7 @@ public class AppUsersController : Controller
     {
         if (id != appUser.Id)
         {
+            _notyf.Warning("Invalid update target");
             return RedirectToAction(nameof(Index));
         }
 
@@ -131,11 +170,17 @@ public class AppUsersController : Controller
 
             _context.UpdateObject(updateUser);
             await _context.SaveChangesAsync();
+            _notyf.Success("User updated");
             return RedirectToAction(nameof(Index));
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+            return View(appUser);
         }
         catch (Exception ex)
         {
-            ViewData["Error"] = ex.Message;
+            _notyf.Warning(ex.Message);
             return View(appUser);
         }
     }
@@ -143,19 +188,30 @@ public class AppUsersController : Controller
     // GET: AppUsers/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
-        if (id == null || _context.Users == null)
+        try
         {
+            if (id == null || _context.Users == null)
+            {
+                throw new Exception("Not Found");
+            }
+
+            var appUser = await _context.Users.ByKey(id.Value).GetValueAsync();
+            if (appUser == null)
+            {
+                throw new Exception("Not Found");
+            }
+            return View(appUser);
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
             return RedirectToAction(nameof(Index));
         }
-
-        var appUser = await _context.Users
-            .ByKey(id.Value).GetValueAsync();
-        if (appUser == null)
+        catch (Exception ex)
         {
+            _notyf.Error(ex.Message);
             return RedirectToAction(nameof(Index));
         }
-
-        return View(appUser);
     }
 
     // POST: AppUsers/Delete/5
@@ -172,10 +228,17 @@ public class AppUsersController : Controller
             }
 
             await _context.SaveChangesAsync();
+            _notyf.Success("User deleted");
             return RedirectToAction(nameof(Index));
         }
-        catch (Exception)
+        catch (InvalidOperationException ex)
         {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception ex)
+        {
+            _notyf.Warning(ex.Message);
             return RedirectToAction(nameof(Index));
         }
     }

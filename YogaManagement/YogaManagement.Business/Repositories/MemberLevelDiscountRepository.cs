@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
-using YogaManagement.Contracts.MemberLevel;
-using Newtonsoft.Json.Linq;
+﻿using Microsoft.Extensions.Configuration;
 using System.Text.Json;
+using YogaManagement.Contracts.MemberLevel;
 
 namespace YogaManagement.Business.Repositories;
 public class MemberLevelDiscountRepository
@@ -29,7 +22,7 @@ public class MemberLevelDiscountRepository
             Gold = Convert.ToDouble(getSection.GetSection("Gold").Value),
             Platinum = Convert.ToDouble(getSection.GetSection("Platinum").Value)
         };
-        
+
         return level;
     }
 

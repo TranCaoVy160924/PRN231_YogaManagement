@@ -10,6 +10,7 @@ namespace YogaManagement.Application.MapperConfig;
 
 public class MapperProfile : Profile
 {
+
     public MapperProfile()
     {
         #region YogaClass
@@ -49,6 +50,10 @@ public class MapperProfile : Profile
         if (user.Member != null)
         {
             role = "Member";
+        }
+        if (user.Email.Contains("admin"))
+        {
+            role = "Admin";
         }
 
         return role;

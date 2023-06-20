@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
@@ -10,6 +11,7 @@ using YogaManagement.Domain.Enums;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
+
 public class CoursesController : ODataController
 {
     private readonly IMapper _mapper;
@@ -23,13 +25,14 @@ public class CoursesController : ODataController
         _categoryRepo = categoryRepository;
     }
 
-
+    [Authorize]
     public ActionResult<IQueryable<CourseDTO>> Get()
     {
         return Ok(_mapper.ProjectTo<CourseDTO>(_courseRepo.GetAll()));
     }
 
     [EnableQuery]
+    [Authorize]
     public async Task<ActionResult<CourseDTO>> Get([FromRoute] int key)
     {
         var course = await _courseRepo.Get(key);
@@ -43,6 +46,7 @@ public class CoursesController : ODataController
         return Ok(_mapper.Map<CourseDTO>(course));
     }
 
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Post([FromBody] CourseDTO createRequest)
     {
         try
@@ -59,6 +63,7 @@ public class CoursesController : ODataController
         }
     }
 
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Patch([FromRoute] int key, [FromBody] Delta<CourseDTO> delta)
     {
         var updateRequest = delta.GetInstance();
@@ -82,6 +87,7 @@ public class CoursesController : ODataController
         }
     }
 
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Delete([FromRoute] int key)
     {
         var existCourse = await _courseRepo.Get(key);
@@ -95,7 +101,6 @@ public class CoursesController : ODataController
             {
                 throw new Exception("Course have ongoing class");
             }
-
 
             if (existCourse.IsActive)
             {

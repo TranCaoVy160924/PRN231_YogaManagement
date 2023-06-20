@@ -1,5 +1,7 @@
-﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
+﻿@using YogaManagement.Client.Helper;
+@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
 @model IEnumerable<UserDTO>
+@inject JwtManager _jwtManager;
 
 @{
     ViewData["Title"] = "Index";
@@ -62,11 +64,22 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Role)
                 </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
+                @if (item.Role == "Admin")
+                {
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a class="btn-link disabled" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a class="btn-link disabled" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
             </tr>
         }
     </tbody>

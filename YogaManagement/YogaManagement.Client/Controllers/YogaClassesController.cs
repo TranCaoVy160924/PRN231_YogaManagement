@@ -1,8 +1,11 @@
+using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass;
+using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Client.Controllers;
 
@@ -10,10 +13,17 @@ namespace YogaManagement.Client.Controllers;
 public class YogaClassesController : Controller
 {
     private readonly Container _context;
+    private readonly INotyfService _notyf;
+    private readonly JwtManager _jwtManager;
 
-    public YogaClassesController(Container context)
+    public YogaClassesController(Container context,
+        INotyfService notyf,
+        JwtManager jwtManager)
     {
         _context = context;
+        _jwtManager = jwtManager;
+        _notyf = notyf;
+        _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
     }
 
     // GET: YogaClasses
@@ -26,19 +36,32 @@ public class YogaClassesController : Controller
     // GET: YogaClasses/Details/5
     public IActionResult Details(int? id)
     {
-        if (id == null || _context.YogaClasses == null)
+        try
         {
+            if (id == null || _context.YogaClasses == null)
+            {
+                throw new Exception("Not found");
+            }
+
+            var yogaClass = _context.YogaClasses
+               .Where(y => y.Id == id).SingleOrDefault();
+            if (yogaClass == null)
+            {
+                throw new Exception("Not found");
+            }
+
+            return View(yogaClass);
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
             return RedirectToAction(nameof(Index));
         }
-
-        var yogaClass = _context.YogaClasses
-           .Where(y => y.Id == id).SingleOrDefault();
-        if (yogaClass == null)
+        catch (Exception ex)
         {
+            _notyf.Error(ex.Message);
             return RedirectToAction(nameof(Index));
         }
-
-        return View(yogaClass);
     }
 
     // GET: YogaClasses/Create
@@ -72,11 +95,15 @@ public class YogaClassesController : Controller
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+            return View(yogaClass);
         }
         catch (Exception ex)
         {
-            ViewData["Error"] = ex.Message;
+            _notyf.Error(ex.Message);
             return View(yogaClass);
         }
     }
@@ -105,8 +132,14 @@ public class YogaClassesController : Controller
             }
             return View(yogaClass);
         }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+            return RedirectToAction(nameof(Index));
+        }
         catch (Exception ex)
         {
+            _notyf.Error(ex.Message);
             return RedirectToAction(nameof(Index));
         }
     }
@@ -119,13 +152,9 @@ public class YogaClassesController : Controller
     [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Size,YogaClassStatus,CourseId")] YogaClassDTO yogaClass)
     {
-        if (id != yogaClass.Id)
+        if (id != yogaClass.Id || yogaClass.YogaClassStatus == "Active")
         {
-            return RedirectToAction(nameof(Index));
-        }
-
-        if (yogaClass.YogaClassStatus == "Active")
-        {
+            _notyf.Error("Class cannot be update");
             return RedirectToAction(nameof(Index));
         }
 
@@ -145,33 +174,53 @@ public class YogaClassesController : Controller
 
             _context.UpdateObject(ygClass);
             await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        catch (InvalidOperationException ex)
+        {
 
+            _notyf.Error(ex.ReadOdataErrorMessage());
+            return View(yogaClass);
         }
         catch (Exception ex)
         {
-            ViewData["Error"] = ex.Message;
+            _notyf.Error(ex.Message);
             return View(yogaClass);
         }
-        return RedirectToAction(nameof(Index));
     }
 
     // GET: YogaClasses/Delete/5
     [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Delete(int? id)
     {
-        if (id == null || _context.YogaClasses == null)
+        try
         {
+            if (id == null || _context.YogaClasses == null)
+            {
+                throw new Exception("Invalid class");
+            }
+
+            var yogaClass = await _context.YogaClasses.ByKey(id.Value).GetValueAsync();
+            if (yogaClass == null)
+            {
+                throw new Exception("No class found");
+            }
+            if (yogaClass.YogaClassStatus == "Active")
+            {
+                throw new Exception("Cannot update ongoing class");
+            }
+            return View(yogaClass);
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
             return RedirectToAction(nameof(Index));
         }
-
-        var yogaClass = await _context.YogaClasses.ByKey(id.Value).GetValueAsync();
-
-        if (yogaClass == null)
+        catch (Exception ex)
         {
+            _notyf.Error(ex.Message);
             return RedirectToAction(nameof(Index));
         }
-
-        return View(yogaClass);
     }
 
     // POST: YogaClasses/Delete/5
@@ -196,8 +245,14 @@ public class YogaClassesController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+            return RedirectToAction(nameof(Index));
+        }
         catch (Exception ex)
         {
+            _notyf.Error(ex.Message);
             return RedirectToAction(nameof(Index));
         }
     }

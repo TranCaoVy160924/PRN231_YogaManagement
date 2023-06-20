@@ -1,6 +1,5 @@
 using AspNetCoreHero.ToastNotification;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using NToastNotify;
 using Refit;
 using YogaManagement.Client.Filters;
 using YogaManagement.Client.Helper;

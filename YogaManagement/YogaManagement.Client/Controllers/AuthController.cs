@@ -1,6 +1,7 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Refit;
 using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
@@ -40,13 +41,13 @@ public class AuthController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(LoginRequest request)
     {
-        if (!ModelState.IsValid)
-        {
-            return View(request);
-        }
-
         try
         {
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("Invalid input");
+            }
+
             LoginResponse response = await _userClient.AuthenticateAsync(request);
             _jwtManager.Login(response.Token);
             var principles = _jwtManager.TryGetPriciples();
@@ -55,9 +56,14 @@ public class AuthController : Controller
             _notyf.Success("Hello " + _jwtManager.GetEmail());
             return RedirectToAction("Index", "Home");
         }
+        catch (ApiException ex)
+        {
+            _notyf.Error(ex.ReadApiErrorMessage());
+            return View(request);
+        }
         catch (Exception ex)
         {
-            TempData["LoginErrorMessage"] = "Password or Email is invalid";
+            _notyf.Warning(ex.Message);
             return View(request);
         }
     }
@@ -65,23 +71,27 @@ public class AuthController : Controller
     [HttpPost]
     public async Task<IActionResult> Register(UserDTO request)
     {
-        if (!ModelState.IsValid)
-        {
-            return View(request);
-        }
-
         try
         {
-            //await _userClient.RegisterAsync(request);
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("Invalid input");
+            }
+
             _context.AddToUsers(request);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Login", "Auth");
         }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+            return View(request);
+        }
         catch (Exception ex)
         {
-            TempData["RegisterErrorMessage"] = ex.Message;
-            return RedirectToAction("Register", "Auth");
+            _notyf.Warning(ex.Message);
+            return View(request);
         }
     }
 
@@ -94,7 +104,6 @@ public class AuthController : Controller
 
     public IActionResult AccessDenied()
     {
-        //return RedirectToAction("Login", "Auth");
         return View();
     }
 }

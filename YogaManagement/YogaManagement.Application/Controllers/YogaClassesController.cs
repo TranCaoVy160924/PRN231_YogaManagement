@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
@@ -26,12 +27,14 @@ public class YogaClassesController : ODataController
     }
 
     [EnableQuery]
+    [Authorize]
     public ActionResult<IQueryable<YogaClassDTO>> Get()
     {
         return Ok(_mapper.ProjectTo<YogaClassDTO>(_ygClassRepo.GetAll()));
     }
 
     [EnableQuery]
+    [Authorize]
     public async Task<ActionResult<YogaClassDTO>> Get([FromRoute] int key)
     {
         var ygClass = await _ygClassRepo.Get(key);
@@ -45,6 +48,7 @@ public class YogaClassesController : ODataController
         return Ok(_mapper.Map<YogaClassDTO>(ygClass));
     }
 
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Post([FromBody] YogaClassDTO createRequest)
     {
         try
@@ -57,7 +61,7 @@ public class YogaClassesController : ODataController
             {
                 throw new Exception("Course is inactive");
             }
-            if (course.StartDate < DateTime.Today &&  course.EnddDate > DateTime.Today)
+            if (course.StartDate < DateTime.Today && course.EnddDate > DateTime.Today)
             {
                 throw new Exception("Course already started");
             }
@@ -77,6 +81,7 @@ public class YogaClassesController : ODataController
         }
     }
 
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Patch([FromRoute] int key, [FromBody] Delta<YogaClassDTO> delta)
     {
         var updateRequest = delta.GetInstance();
@@ -105,6 +110,7 @@ public class YogaClassesController : ODataController
         }
     }
 
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Delete(int key)
     {
         var existClass = await _ygClassRepo.Get(key);
@@ -115,7 +121,7 @@ public class YogaClassesController : ODataController
 
         try
         {
-            if (existClass.YogaClassStatus == YogaClassStatus.Active)
+            if (existClass.YogaClassStatus == YogaClassStatus.Active && existClass.Course.EnddDate < DateTime.Today)
             {
                 throw new Exception("Cannot delete ongoing class");
             }
