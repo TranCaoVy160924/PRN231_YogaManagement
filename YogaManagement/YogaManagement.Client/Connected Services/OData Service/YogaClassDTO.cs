@@ -9,6 +9,8 @@
 //------------------------------------------------------------------------------
 
 // Generation date: 6/13/2023 10:37:08 PM
+using System.ComponentModel.DataAnnotations;
+
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
 {
     /// <summary>
@@ -21,19 +23,19 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
         /// Initialize a new YogaClassDTOSingle object.
         /// </summary>
         public YogaClassDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
-            : base(context, path) {}
+            : base(context, path) { }
 
         /// <summary>
         /// Initialize a new YogaClassDTOSingle object.
         /// </summary>
         public YogaClassDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
-            : base(context, path, isComposable) {}
+            : base(context, path, isComposable) { }
 
         /// <summary>
         /// Initialize a new YogaClassDTOSingle object.
         /// </summary>
         public YogaClassDTOSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<YogaClassDTO> query)
-            : base(query) {}
+            : base(query) { }
 
     }
     /// <summary>
@@ -56,22 +58,24 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
         /// <param name="courseId">Initial value of CourseId.</param>
         /// <param name="courseName">Initial value of CourseName.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static YogaClassDTO CreateYogaClassDTO(int ID, 
-                    string name, 
-                    int size, 
-                    bool status, 
-                    int courseId, 
+        public static YogaClassDTO CreateYogaClassDTO(int ID,
+                    string name,
+                    int size,
+                    string yogaClassStatus,
+                    int courseId,
                     string courseName)
         {
             YogaClassDTO yogaClassDTO = new YogaClassDTO();
             yogaClassDTO.Id = ID;
             yogaClassDTO.Name = name;
             yogaClassDTO.Size = size;
-            yogaClassDTO.Status = status;
+            yogaClassDTO.YogaClassStatus = yogaClassStatus;
             yogaClassDTO.CourseId = courseId;
             yogaClassDTO.CourseName = courseName;
             return yogaClassDTO;
         }
+
+        #region Id
         /// <summary>
         /// There are no comments for Property Id in the schema.
         /// </summary>
@@ -97,6 +101,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
         private int _Id;
         partial void OnIdChanging(int value);
         partial void OnIdChanged();
+        #endregion
+
+        #region Name
         /// <summary>
         /// There are no comments for Property Name in the schema.
         /// </summary>
@@ -104,6 +111,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("Name")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Name is required.")]
+        [MaxLength(50, ErrorMessage = "Course name must be between 1-50 character")]
         public virtual string Name
         {
             get
@@ -122,6 +130,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
         private string _Name;
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
+        #endregion
+
+        #region Size
         /// <summary>
         /// There are no comments for Property Size in the schema.
         /// </summary>
@@ -129,6 +140,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("Size")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Size is required.")]
+        [Range(10, 20, ErrorMessage = "Class must be between 10 to 20 people")]
         public virtual int Size
         {
             get
@@ -147,31 +159,37 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
         private int _Size;
         partial void OnSizeChanging(int value);
         partial void OnSizeChanged();
+        #endregion
+
+        #region YogaClassStatus
         /// <summary>
-        /// There are no comments for Property Status in the schema.
+        /// There are no comments for Property Name in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
 
-        [global::Microsoft.OData.Client.OriginalNameAttribute("Status")]
-        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Status is required.")]
-        public virtual bool Status
+        [global::Microsoft.OData.Client.OriginalNameAttribute("YogaClassStatus")]
+        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "YogaClassStatus is required.")]
+        public virtual string YogaClassStatus
         {
             get
             {
-                return this._Status;
+                return this._YogaClassStatus;
             }
             set
             {
-                this.OnStatusChanging(value);
-                this._Status = value;
-                this.OnStatusChanged();
-                this.OnPropertyChanged("Status");
+                this.OnYogaClassStatusChanging(value);
+                this._YogaClassStatus = value;
+                this.OnYogaClassStatusChanged();
+                this.OnPropertyChanged("YogaClassStatus");
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private bool _Status;
-        partial void OnStatusChanging(bool value);
-        partial void OnStatusChanged();
+        private string _YogaClassStatus;
+        partial void OnYogaClassStatusChanging(string value);
+        partial void OnYogaClassStatusChanged();
+        #endregion
+
+        #region CourseId
         /// <summary>
         /// There are no comments for Property CourseId in the schema.
         /// </summary>
@@ -179,6 +197,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("CourseId")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "CourseId is required.")]
+        [Range(minimum: 1, maximum: int.MaxValue)]
         public virtual int CourseId
         {
             get
@@ -197,13 +216,15 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
         private int _CourseId;
         partial void OnCourseIdChanging(int value);
         partial void OnCourseIdChanged();
+        #endregion
+
+        #region CourseName
         /// <summary>
         /// There are no comments for Property CourseName in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("CourseName")]
-        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "CourseName is required.")]
         public virtual string CourseName
         {
             get
@@ -222,6 +243,8 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
         private string _CourseName;
         partial void OnCourseNameChanging(string value);
         partial void OnCourseNameChanged();
+        #endregion
+
         /// <summary>
         /// This event is raised when the value of the property is changed
         /// </summary>

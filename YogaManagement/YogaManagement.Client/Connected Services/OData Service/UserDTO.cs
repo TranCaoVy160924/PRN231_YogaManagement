@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 // Generation date: 6/13/2023 10:37:08 PM
+using System.ComponentModel.DataAnnotations;
+using YogaManagement.Client.ValidationAttributes;
+
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
 {
     /// <summary>
@@ -21,19 +24,19 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
         /// Initialize a new UserDTOSingle object.
         /// </summary>
         public UserDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
-            : base(context, path) {}
+            : base(context, path) { }
 
         /// <summary>
         /// Initialize a new UserDTOSingle object.
         /// </summary>
         public UserDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
-            : base(context, path, isComposable) {}
+            : base(context, path, isComposable) { }
 
         /// <summary>
         /// Initialize a new UserDTOSingle object.
         /// </summary>
         public UserDTOSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<UserDTO> query)
-            : base(query) {}
+            : base(query) { }
 
     }
     /// <summary>
@@ -59,14 +62,14 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
         /// <param name="password">Initial value of Password.</param>
         /// <param name="confirmPassword">Initial value of ConfirmPassword.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static UserDTO CreateUserDTO(int ID, 
-                    string firstName, 
-                    string lastName, 
-                    bool status, 
-                    string address, 
-                    string email, 
-                    string role, 
-                    string password, 
+        public static UserDTO CreateUserDTO(int ID,
+                    string firstName,
+                    string lastName,
+                    bool status,
+                    string address,
+                    string email,
+                    string role,
+                    string password,
                     string confirmPassword)
         {
             UserDTO userDTO = new UserDTO();
@@ -81,11 +84,12 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
             userDTO.ConfirmPassword = confirmPassword;
             return userDTO;
         }
+
+        #region Id
         /// <summary>
         /// There are no comments for Property Id in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-
         [global::Microsoft.OData.Client.OriginalNameAttribute("Id")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Id is required.")]
         public virtual int Id
@@ -106,6 +110,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
         private int _Id;
         partial void OnIdChanging(int value);
         partial void OnIdChanged();
+        #endregion
+
+        #region FirstName
         /// <summary>
         /// There are no comments for Property FirstName in the schema.
         /// </summary>
@@ -113,6 +120,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("FirstName")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "FirstName is required.")]
+        [MaxLength(50, ErrorMessage = "Firstname must be between 1-50 character")]
         public virtual string FirstName
         {
             get
@@ -131,13 +139,16 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
         private string _FirstName;
         partial void OnFirstNameChanging(string value);
         partial void OnFirstNameChanged();
+        #endregion
+
+        #region LastName
         /// <summary>
         /// There are no comments for Property LastName in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-
         [global::Microsoft.OData.Client.OriginalNameAttribute("LastName")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "LastName is required.")]
+        [MaxLength(50, ErrorMessage = "Lastname must be between 1-50 character")]
         public virtual string LastName
         {
             get
@@ -156,6 +167,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
         private string _LastName;
         partial void OnLastNameChanging(string value);
         partial void OnLastNameChanged();
+        #endregion
+
+        #region Status
         /// <summary>
         /// There are no comments for Property Status in the schema.
         /// </summary>
@@ -181,6 +195,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
         private bool _Status;
         partial void OnStatusChanging(bool value);
         partial void OnStatusChanged();
+        #endregion
+
+        #region Address
         /// <summary>
         /// There are no comments for Property Address in the schema.
         /// </summary>
@@ -206,6 +223,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
         private string _Address;
         partial void OnAddressChanging(string value);
         partial void OnAddressChanged();
+        #endregion
+
+        #region Email
         /// <summary>
         /// There are no comments for Property Email in the schema.
         /// </summary>
@@ -213,6 +233,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("Email")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Email is required.")]
+        [EmailAddress]
         public virtual string Email
         {
             get
@@ -231,6 +252,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
         private string _Email;
         partial void OnEmailChanging(string value);
         partial void OnEmailChanged();
+        #endregion
+
+        #region Role
         /// <summary>
         /// There are no comments for Property Role in the schema.
         /// </summary>
@@ -256,6 +280,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
         private string _Role;
         partial void OnRoleChanging(string value);
         partial void OnRoleChanged();
+        #endregion
+
+        #region PasswordAndConfirm
         /// <summary>
         /// There are no comments for Property Password in the schema.
         /// </summary>
@@ -263,6 +290,8 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("Password")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Password is required.")]
+        [MinLength(6, ErrorMessage = "Password must be between 6 to 25 character")]
+        [MaxLength(25, ErrorMessage = "Password must be between 6 to 25 character")]
         public virtual string Password
         {
             get
@@ -288,6 +317,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("ConfirmPassword")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "ConfirmPassword is required.")]
+        [StringMatchAttribute("Password", ErrorMessage = "Confirm password must match password")]
         public virtual string ConfirmPassword
         {
             get
@@ -306,6 +336,8 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority
         private string _ConfirmPassword;
         partial void OnConfirmPasswordChanging(string value);
         partial void OnConfirmPasswordChanged();
+        #endregion
+
         /// <summary>
         /// This event is raised when the value of the property is changed
         /// </summary>

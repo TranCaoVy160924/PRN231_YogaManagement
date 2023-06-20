@@ -204,7 +204,7 @@ public static class ModelBuilderExtensions
                 Id = i,
                 Name = "Class" + i.ToString(),
                 Size = 20 - i,
-                Status = true,
+                YogaClassStatus = i % 2 == 0 ? YogaClassStatus.Pending : YogaClassStatus.Active,
                 CourseId = i
             });
         }

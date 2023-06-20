@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.OData.Routing.Controllers;
 using YogaManagement.Application.Utilities;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Course;
+using YogaManagement.Domain.Enums;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
@@ -90,6 +91,12 @@ public class CoursesController : ODataController
         }
         try
         {
+            if (existCourse.YogaClasses.Any(c => c.YogaClassStatus == YogaClassStatus.Active))
+            {
+                throw new Exception("Course have ongoing class");
+            }
+
+
             if (existCourse.IsActive)
             {
                 existCourse.IsActive = false;

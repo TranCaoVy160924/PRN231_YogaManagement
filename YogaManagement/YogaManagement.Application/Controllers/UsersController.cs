@@ -89,14 +89,6 @@ public class UsersController : ODataController
         try
         {
             ModelState.ValidateRequest();
-            if (registerRequest.Role == "Member")
-            {
-                if (registerRequest.Password != registerRequest.ConfirmPassword)
-                {
-                    throw new Exception("Confirm password must match password");
-                }
-            }
-
             var hasher = new PasswordHasher<AppUser>();
             string firstName = registerRequest.FirstName.Trim();
             string lastName = registerRequest.LastName.Trim();
@@ -104,7 +96,7 @@ public class UsersController : ODataController
             {
                 Firstname = firstName,
                 Lastname = lastName,
-                PasswordHash = hasher.HashPassword(null, "12345678"),
+                PasswordHash = hasher.HashPassword(null, registerRequest.Password),
                 UserName = firstName + lastName,
                 Email = registerRequest.Email,
                 EmailConfirmed = true,

@@ -69,7 +69,7 @@ public class AuthController : Controller
     {
         if (!ModelState.IsValid)
         {
-            return RedirectToAction("Register", "Auth");
+            return View(request);
         }
 
         try

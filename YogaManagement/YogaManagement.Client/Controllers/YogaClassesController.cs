@@ -20,7 +20,7 @@ public class YogaClassesController : Controller
     public async Task<IActionResult> Index()
     {
         var ygClasses = await _context.YogaClasses.ExecuteAsync();
-        return View(ygClasses);
+        return View(ygClasses.ToList());
     }
 
     // GET: YogaClasses/Details/5
@@ -56,7 +56,7 @@ public class YogaClassesController : Controller
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Roles = "Staff")]
-    public async Task<IActionResult> Create([Bind("Id,Name,Size,Status,CourseId")] YogaClassDTO yogaClass)
+    public async Task<IActionResult> Create([Bind("Id,Name,Size,YogaClassStatus,CourseId")] YogaClassDTO yogaClass)
     {
         try
         {
@@ -85,19 +85,30 @@ public class YogaClassesController : Controller
     [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Edit(int? id)
     {
-        if (id == null || _context.YogaClasses == null)
+        try
         {
-            return RedirectToAction(nameof(Index));
-        }
+            if (id == null || _context.YogaClasses == null)
+            {
+                throw new Exception("Invalid class");
+            }
 
-        var yogaClass = await _context.YogaClasses.ByKey(id.Value).GetValueAsync();
-        var course = await _context.Courses.ExecuteAsync();
-        ViewBag.Courses = new SelectList(course, "Id", "Name");
-        if (yogaClass == null)
+            var yogaClass = await _context.YogaClasses.ByKey(id.Value).GetValueAsync();
+            var course = await _context.Courses.ExecuteAsync();
+            ViewBag.Courses = new SelectList(course, "Id", "Name");
+            if (yogaClass == null)
+            {
+                throw new Exception("No class found");
+            }
+            if (yogaClass.YogaClassStatus == "Active")
+            {
+                throw new Exception("Cannot update ongoing class");
+            }
+            return View(yogaClass);
+        }
+        catch (Exception ex)
         {
             return RedirectToAction(nameof(Index));
         }
-        return View(yogaClass);
     }
 
     // POST: YogaClasses/Edit/5
@@ -106,9 +117,14 @@ public class YogaClassesController : Controller
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Roles = "Staff")]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Size,Status,CourseId")] YogaClassDTO yogaClass)
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Size,YogaClassStatus,CourseId")] YogaClassDTO yogaClass)
     {
         if (id != yogaClass.Id)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        if (yogaClass.YogaClassStatus == "Active")
         {
             return RedirectToAction(nameof(Index));
         }
@@ -124,9 +140,8 @@ public class YogaClassesController : Controller
             }
             var ygClass = _context.YogaClasses.ByKey(id).GetValue();
             ygClass.Name = yogaClass.Name;
-            ygClass.Status = yogaClass.Status;
+            ygClass.YogaClassStatus = yogaClass.YogaClassStatus;
             ygClass.Size = yogaClass.Size;
-            ygClass.CourseId = yogaClass.CourseId;
 
             _context.UpdateObject(ygClass);
             await _context.SaveChangesAsync();

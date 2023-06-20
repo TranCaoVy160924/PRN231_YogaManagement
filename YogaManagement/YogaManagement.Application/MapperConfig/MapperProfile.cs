@@ -3,6 +3,7 @@ using YogaManagement.Contracts.Authority;
 using YogaManagement.Contracts.Category;
 using YogaManagement.Contracts.Course;
 using YogaManagement.Contracts.YogaClass;
+using YogaManagement.Domain.Enums;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.MapperConfig;
@@ -12,11 +13,11 @@ public class MapperProfile : Profile
     public MapperProfile()
     {
         #region YogaClass
-        CreateMap<YogaClass, YogaClassDTO>().ForMember(dest => dest.CourseName, otp =>
-        {
-            otp.MapFrom(src => src.Course.Name);
-        });
-        CreateMap<YogaClassDTO, YogaClass>();
+        CreateMap<YogaClass, YogaClassDTO>()
+            .ForMember(dest => dest.CourseName, otp => otp.MapFrom(src => src.Course.Name))
+            .ForMember(dest => dest.YogaClassStatus, otp => otp.MapFrom(src => src.YogaClassStatus.ToString()));
+        CreateMap<YogaClassDTO, YogaClass>()
+            .ForMember(dest => dest.YogaClassStatus, otp => otp.MapFrom(src => GetYogaClassStatus(src.YogaClassStatus)));
         #endregion
 
         #region AppUser
@@ -51,5 +52,11 @@ public class MapperProfile : Profile
         }
 
         return role;
+    }
+
+    private static YogaClassStatus GetYogaClassStatus(string statusString)
+    {
+        Enum.TryParse(statusString, out YogaClassStatus yogaClassStatus);
+        return yogaClassStatus;
     }
 }

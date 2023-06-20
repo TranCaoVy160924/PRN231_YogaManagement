@@ -25,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.Size)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                Status
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CourseName)
@@ -44,18 +44,29 @@
                     @Html.DisplayFor(modelItem => item.Size)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @Html.DisplayFor(modelItem => item.YogaClassStatus)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CourseName)
                 </td>
                 @if (_jwtManager.IsStaff())
                 {
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
+                    @if (item.YogaClassStatus != "Active")
+                    {
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a class="btn-link disabled" href="#">Edit</a> |
+                            <a class="btn-link disabled" href="#">Delete</a>
+                        </td>
+                    }
                 }
                 @if (_jwtManager.IsMember())
                 {

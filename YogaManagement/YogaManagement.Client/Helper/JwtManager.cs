@@ -45,9 +45,9 @@ public class JwtManager
 
     public bool IsTeacher() => GetUserRole() == "Teacher";
 
-    public bool IsStaff() => GetUserRole() == "IsStaff";
+    public bool IsStaff() => GetUserRole() == "Staff";
 
-    public bool IsAdmin() => GetUserRole() == "IsAdmin";
+    public bool IsAdmin() => GetUserRole() == "Admin";
 
     private string GetUserId()
         => IsAuthenticated ? SecureToken.Claims.Where(c => c.Type == ClaimTypes.Sid).SingleOrDefault().Value : "";
