@@ -71,10 +71,12 @@ public class AppUsersController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id, FirstName, LastName, Status, Address, Email, Password, ConfirmPassword, Role")] UserDTO appUser)
+    public async Task<IActionResult> Create([Bind("Id, FirstName, LastName, Status, Address, Email, Password, Role")] UserDTO appUser)
     {
         try
         {
+            ModelState.Remove("Id");
+            ModelState.Remove("ConfirmPassword");
             if (!ModelState.IsValid)
             {
                 throw new Exception("Invalid input");
@@ -92,7 +94,7 @@ public class AppUsersController : Controller
                 Status = true
             };
 
-            _context.AddToUsers(appUser);
+            _context.AddToUsers(newUser);
 
             await _context.SaveChangesAsync();
             _notyf.Success("New user created");
@@ -124,6 +126,12 @@ public class AppUsersController : Controller
             if (appUser == null)
             {
                 throw new Exception("Not Found");
+            }
+
+            if (appUser.Role == "Member" || appUser.Role == "Admin")
+            {
+                _notyf.Warning("Member or admin cannot be updated");
+                return RedirectToAction(nameof(Index));
             }
             return View(appUser);
         }
@@ -199,6 +207,12 @@ public class AppUsersController : Controller
             if (appUser == null)
             {
                 throw new Exception("Not Found");
+            }
+
+            if (appUser.Role == "Member" || appUser.Role == "Admin")
+            {
+                _notyf.Warning("Member and admin cannot be updated");
+                return RedirectToAction(nameof(Index));
             }
             return View(appUser);
         }

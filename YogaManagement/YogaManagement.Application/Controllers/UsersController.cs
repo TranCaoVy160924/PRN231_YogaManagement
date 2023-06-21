@@ -174,7 +174,8 @@ public class UsersController : ODataController
             var user = await _userManager.FindByIdAsync(key.ToString());
             if (user != null)
             {
-                if ((await _userManager.GetRolesAsync(user)).SingleOrDefault() == "Admin")
+                var role = (await _userManager.GetRolesAsync(user)).SingleOrDefault();
+                if (role == "Admin" || role == "Member")
                 {
                     return Unauthorized();
                 }
@@ -216,8 +217,6 @@ public class UsersController : ODataController
 
             user.Firstname = firstName;
             user.Lastname = lastName;
-            user.UserName = firstName + lastName;
-            user.Email = updateRequest.Email;
             user.EmailConfirmed = true;
             user.SecurityStamp = string.Empty;
             user.Address = updateRequest.Address;

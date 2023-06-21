@@ -12,6 +12,10 @@
     }
 }
 
+@{
+
+}
+
 <h1>Edit</h1>
 
 <h4>AppUser</h4>
@@ -27,6 +31,12 @@
             </div>*@
             <input class="form-check-input" asp-for="Status" type="hidden" value="true" />
             <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input disabled class="form-control" value="@Model.Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <input hidden asp-for="Email" class="form-control" value="@Model.Email" />
+            <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
@@ -41,16 +51,7 @@
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
-                </label>
-            </div>
+            <input hidden class="form-check-input" asp-for="Status" value=@true/>
             <input hidden asp-for="Password" class="form-control" value="12345678" />
             <input hidden asp-for="ConfirmPassword" class="form-control" value="12345678" />
             <input asp-for="Role" class="form-control" type="hidden" value="Member" />
@@ -65,6 +66,12 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script>
+    $('form input[type="text"]').on('change', function () {
+        EnableButtons();
+    });
+</script>
 
 @section Scripts {
     @{
