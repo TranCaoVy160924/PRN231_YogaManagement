@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
@@ -16,11 +17,13 @@ public class EnrollmentsController : ODataController
 {
     private readonly IMapper _mapper;
     private readonly EnrollmentRepository _Repo;
+    private readonly YogaClassRepository _yogaRepo;
 
-    public EnrollmentsController(IMapper mapper, EnrollmentRepository repo)
+    public EnrollmentsController(IMapper mapper, EnrollmentRepository repo, YogaClassRepository yogaRepo)
     {
         _mapper = mapper;
         _Repo = repo;
+        _yogaRepo= yogaRepo;
     }
 
     [EnableQuery]
@@ -29,9 +32,9 @@ public class EnrollmentsController : ODataController
         return Ok(_mapper.ProjectTo<EnrollmentDTO>(_Repo.GetAll()));
     }
     [EnableQuery]
-    public async Task<ActionResult<EnrollmentDTO>> Get([FromRoute] int key)
+    public async Task<ActionResult<EnrollmentDTO>> Get([FromRoute] int keyMemberId, [FromRoute] int keyYogaClassId)
     {
-        var Enr = await _Repo.Get(key);
+        var Enr = _Repo.GetEnrollment(keyMemberId, keyYogaClassId);
 
         if (Enr == null)
         {
@@ -57,10 +60,10 @@ public class EnrollmentsController : ODataController
             return BadRequest(ex.Message);
         }
     }
-    public async Task<IActionResult> Patch([FromRoute] int key, [FromBody] Delta<EnrollmentDTO> delta)
+    public async Task<IActionResult> Patch([FromRoute] int keyMemberId, [FromRoute] int keyYogaClassId, [FromBody] Delta<EnrollmentDTO> delta)
     {
         var updateRequest = delta.GetInstance();
-        var existEnroll = await _Repo.Get(key);
+        var existEnroll =  _Repo.GetEnrollment(keyMemberId, keyYogaClassId);
         if (existEnroll == null)
         {
             return NotFound();
@@ -69,13 +72,13 @@ public class EnrollmentsController : ODataController
         {
             try
             {
-                //var tcEnroll = _mapper.Map(updateRequest, existEnroll);
-                existEnroll.EnrollDate = updateRequest.EnrollDate;
-                existEnroll.Discount = updateRequest.Discount;
-                existEnroll.MemberId = updateRequest.MemberId;
-                existEnroll.YogaClassId = updateRequest.YogaClassId;
-                await _Repo.UpdateAsync(existEnroll);
-                return Updated(existEnroll);
+                var Enroll = _mapper.Map(updateRequest, existEnroll);
+                //existEnroll.EnrollDate = updateRequest.EnrollDate;
+                //existEnroll.Discount = updateRequest.Discount;
+                //existEnroll.MemberId = updateRequest.MemberId;
+                //existEnroll.YogaClassId = updateRequest.YogaClassId;
+                await _Repo.UpdateAsync(Enroll);
+                return Updated(updateRequest);
             }
             catch (Exception ex)
             {
@@ -83,10 +86,10 @@ public class EnrollmentsController : ODataController
             }
         }
     }
-    [HttpDelete()]
-    public async Task<IActionResult> Delete(int key)
+    
+    public async Task<IActionResult> Delete([FromRoute] int keyMemberId, [FromRoute] int keyYogaClassId)
     {
-        var existEnroll = await _Repo.Get(key);
+        var existEnroll =  _Repo.GetEnrollment(keyMemberId, keyYogaClassId);
         if (existEnroll == null)
         {
             return NotFound();

@@ -17,7 +17,7 @@ public class MemberLevelsController : ODataController
     {
         _mldRepo = mldRepo;
     }
-
+    [HttpGet]
     public ActionResult<MemberLevelDiscountDTO> Get()
     {
         var memberLevel = _mldRepo.Get();
@@ -25,12 +25,12 @@ public class MemberLevelsController : ODataController
         return Ok(memberLevel);
     }
 
-    public IActionResult Patch([FromRoute] int key, [FromBody] Delta<MemberLevelDiscountDTO> delta)
-    {
-        var updateRequest = delta.GetInstance();
+    //public IActionResult Patch([FromRoute] int key, [FromBody] Delta<MemberLevelDiscountDTO> delta)
+    //{
+    //    var updateRequest = delta.GetInstance();
 
-        _mldRepo.Edit(updateRequest);
+    //    _mldRepo.Edit(updateRequest);
 
-        return Ok(updateRequest);
-    }
+    //    return Ok(updateRequest);
+    //}
 }
