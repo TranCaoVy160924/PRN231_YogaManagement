@@ -6,8 +6,6 @@ using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.MemberLevel;
 
 namespace YogaManagement.Application.Controllers;
-[Route("api/[controller]")]
-[ApiController]
 [Authorize(Roles = "Admin")]
 public class MemberLevelsController : ODataController
 {
