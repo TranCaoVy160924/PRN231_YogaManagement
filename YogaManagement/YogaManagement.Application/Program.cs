@@ -184,7 +184,7 @@ static IEdmModel GetEdmModel()
     #endregion
 
     #region TeacherEnrollment
-    var teacherEnrollment = builder.EntitySet<TeacherEnrollmentDTO>("TeacherEnrollment").EntityType;
+    var teacherEnrollment = builder.EntitySet<TeacherEnrollmentDTO>("TeacherEnrollments").EntityType;
     #endregion
 
     #region MemberLevelDiscount
