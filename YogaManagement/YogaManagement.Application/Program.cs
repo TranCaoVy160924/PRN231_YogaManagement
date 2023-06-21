@@ -42,6 +42,7 @@ builder.Services.AddScoped<TeacherEnrollmentRepository>();
 builder.Services.AddScoped<WalletRepository>();
 builder.Services.AddScoped<MemberLevelDiscountRepository>();
 builder.Services.AddScoped<TimeSlotRepository>();
+builder.Services.AddScoped<EnrollmentRepository>();
 
 // Utilities
 builder.Services.AddSingleton<JwtHelper>();

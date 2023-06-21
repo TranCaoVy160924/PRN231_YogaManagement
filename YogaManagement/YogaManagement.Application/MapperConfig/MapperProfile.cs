@@ -2,6 +2,7 @@
 using YogaManagement.Contracts.Authority;
 using YogaManagement.Contracts.Category;
 using YogaManagement.Contracts.Course;
+using YogaManagement.Contracts.Enrollment;
 using YogaManagement.Contracts.TeacherEnrollment;
 using YogaManagement.Contracts.TimeSlot;
 using YogaManagement.Contracts.YogaClass;
@@ -56,6 +57,18 @@ public class MapperProfile : Profile
         
         #region TimeSlot
         CreateMap<TimeSlot, TimeSlotDTO>();
+        #endregion
+        #region Enrollment
+        CreateMap<Enrollment, EnrollmentDTO>()
+            .ForMember(dest => dest.MemberName, otp =>
+            {
+                otp.MapFrom(src => src.Member.AppUser.Firstname + " " + src.Member.AppUser.Lastname);
+            })
+            .ForMember(dest => dest.YogaClassName, otp =>
+            {
+                otp.MapFrom(src => src.YogaClass.Name);
+            });
+        CreateMap<EnrollmentDTO, Enrollment>();
         #endregion
     }
 
