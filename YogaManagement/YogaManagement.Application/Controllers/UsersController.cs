@@ -204,7 +204,8 @@ public class UsersController : ODataController
                 return NotFound("Not found");
             }
 
-            if ((await _userManager.GetRolesAsync(user)).SingleOrDefault() == "Admin")
+            var role = (await _userManager.GetRolesAsync(user)).SingleOrDefault();
+            if (role == "Admin" || role == "Member")
             {
                 return Unauthorized();
             }
