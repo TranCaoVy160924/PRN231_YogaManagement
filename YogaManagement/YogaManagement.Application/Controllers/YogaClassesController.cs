@@ -99,7 +99,6 @@ public class YogaClassesController : ODataController
                     throw new Exception("Course cannot be change");
                 }
 
-                existClass.Status = updateRequest.Status;
                 existClass.Size = updateRequest.Size;
                 existClass.Name = updateRequest.Name;
                 await _ygClassRepo.UpdateAsync(existClass);
