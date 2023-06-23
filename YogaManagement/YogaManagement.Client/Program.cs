@@ -5,6 +5,7 @@ using YogaManagement.Client.Filters;
 using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.RefitClient;
+using YogaManagement.Database.EF;
 
 var builder = WebApplication.CreateBuilder(args);
 
