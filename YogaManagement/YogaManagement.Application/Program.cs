@@ -17,6 +17,8 @@ using YogaManagement.Contracts.Enrollment;
 using YogaManagement.Contracts.MemberLevel;
 using YogaManagement.Contracts.TeacherEnrollment;
 using YogaManagement.Contracts.TimeSlot;
+using YogaManagement.Contracts.Transaction;
+using YogaManagement.Contracts.Wallet;
 using YogaManagement.Contracts.YogaClass;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
@@ -42,6 +44,7 @@ builder.Services.AddScoped<TeacherEnrollmentRepository>();
 builder.Services.AddScoped<WalletRepository>();
 builder.Services.AddScoped<MemberLevelDiscountRepository>();
 builder.Services.AddScoped<TimeSlotRepository>();
+builder.Services.AddScoped<TransactionRepository>();
 
 // Utilities
 builder.Services.AddSingleton<JwtHelper>();
@@ -114,22 +117,22 @@ builder.Services.AddSwaggerGen(c =>
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-                  {
-                    {
-                      new OpenApiSecurityScheme
-                      {
-                        Reference = new OpenApiReference
-                          {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                          },
-                          Scheme = "oauth2",
-                          Name = "Bearer",
-                          In = ParameterLocation.Header,
-                        },
-                        new List<string>()
-                      }
-                    });
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header,
+            },
+            new List<string>()
+        }
+    });
 });
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
@@ -193,6 +196,14 @@ static IEdmModel GetEdmModel()
 
     #region TimeSlot
     var timeSlot = builder.EntitySet<TimeSlotDTO>("TimeSlots").EntityType;
+    #endregion
+
+    #region Wallet
+    var wallet = builder.EntitySet<WalletDTO>("Wallets").EntityType;
+    #endregion
+
+    #region Transaction
+    var transaction = builder.EntitySet<TransactionDTO>("Transactions").EntityType;
     #endregion
 
     return builder.GetEdmModel();

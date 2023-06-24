@@ -137,14 +137,7 @@ public class UsersController : ODataController
                     {
                         AppUserId = user.Id
                     };
-                    await _mRepo.CreateAsync(newMember);
-
-                    await _walletRepo.CreateAsync(new Wallet
-                    {
-                        MemberId = newMember.Id,
-                        Balance = 0,
-                        Transactions = new List<Transaction>()
-                    });
+                    await _mRepo.CreateAsync(newMember);                
                 }
                 else if (chosenRole == "Teacher")
                 {
@@ -154,6 +147,13 @@ public class UsersController : ODataController
                     };
                     await _tRepo.CreateAsync(newTeacher);
                 }
+
+                await _walletRepo.CreateAsync(new Wallet
+                {
+                    AppUserId = user.Id,
+                    Balance = 0,
+                    Transactions = new List<Transaction>()
+                });
 
                 return Created(registerRequest);
             }
