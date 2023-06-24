@@ -24,6 +24,10 @@ public class YogaManagementDbContext : IdentityDbContext<AppUser, AppRole, int>
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Enrollment>()
             .HasKey(sc => new { sc.MemberId, sc.YogaClassId });
+        modelBuilder.Entity<Schedule>()
+            .HasKey(sc => new { sc.TimeSlotId, sc.YogaClassId });
+        modelBuilder.Entity<TeacherSchedule>()
+            .HasKey(sc => new { sc.TimeSlotId, sc.TeacherProfileId });
         modelBuilder.Seed();
     }
 
@@ -40,4 +44,6 @@ public class YogaManagementDbContext : IdentityDbContext<AppUser, AppRole, int>
     public DbSet<TeacherEnrollment> TeacherEnrollments { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
     public DbSet<SystemWallet> SystemWallet { get; set; }
+    public DbSet<Schedule> Schedule { get; set; }
+    public DbSet<TeacherSchedule> TeacherSchedule { get; set; }
 }
