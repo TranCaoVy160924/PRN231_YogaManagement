@@ -9,59 +9,59 @@
 //------------------------------------------------------------------------------
 
 // Generation date: 6/25/2023 3:40:15 PM
-namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel
+namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Wallet
 {
     /// <summary>
-    /// There are no comments for MemberLevelDiscountDTOSingle in the schema.
+    /// There are no comments for WalletDTOSingle in the schema.
     /// </summary>
-    [global::Microsoft.OData.Client.OriginalNameAttribute("MemberLevelDiscountDTOSingle")]
-    public partial class MemberLevelDiscountDTOSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<MemberLevelDiscountDTO>
+    [global::Microsoft.OData.Client.OriginalNameAttribute("WalletDTOSingle")]
+    public partial class WalletDTOSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<WalletDTO>
     {
         /// <summary>
-        /// Initialize a new MemberLevelDiscountDTOSingle object.
+        /// Initialize a new WalletDTOSingle object.
         /// </summary>
-        public MemberLevelDiscountDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
+        public WalletDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
             : base(context, path) {}
 
         /// <summary>
-        /// Initialize a new MemberLevelDiscountDTOSingle object.
+        /// Initialize a new WalletDTOSingle object.
         /// </summary>
-        public MemberLevelDiscountDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
+        public WalletDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
             : base(context, path, isComposable) {}
 
         /// <summary>
-        /// Initialize a new MemberLevelDiscountDTOSingle object.
+        /// Initialize a new WalletDTOSingle object.
         /// </summary>
-        public MemberLevelDiscountDTOSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<MemberLevelDiscountDTO> query)
+        public WalletDTOSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<WalletDTO> query)
             : base(query) {}
 
     }
     /// <summary>
-    /// There are no comments for MemberLevelDiscountDTO in the schema.
+    /// There are no comments for WalletDTO in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
     [global::Microsoft.OData.Client.Key("Id")]
-    [global::Microsoft.OData.Client.OriginalNameAttribute("MemberLevelDiscountDTO")]
-    public partial class MemberLevelDiscountDTO : global::Microsoft.OData.Client.BaseEntityType, global::System.ComponentModel.INotifyPropertyChanged
+    [global::Microsoft.OData.Client.OriginalNameAttribute("WalletDTO")]
+    public partial class WalletDTO : global::Microsoft.OData.Client.BaseEntityType, global::System.ComponentModel.INotifyPropertyChanged
     {
         /// <summary>
-        /// Create a new MemberLevelDiscountDTO object.
+        /// Create a new WalletDTO object.
         /// </summary>
         /// <param name="ID">Initial value of Id.</param>
-        /// <param name="silver">Initial value of Silver.</param>
-        /// <param name="gold">Initial value of Gold.</param>
-        /// <param name="platinum">Initial value of Platinum.</param>
+        /// <param name="balance">Initial value of Balance.</param>
+        /// <param name="isAdminWallet">Initial value of IsAdminWallet.</param>
+        /// <param name="appUserId">Initial value of AppUserId.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static MemberLevelDiscountDTO CreateMemberLevelDiscountDTO(int ID, double silver, double gold, double platinum)
+        public static WalletDTO CreateWalletDTO(int ID, double balance, bool isAdminWallet, int appUserId)
         {
-            MemberLevelDiscountDTO memberLevelDiscountDTO = new MemberLevelDiscountDTO();
-            memberLevelDiscountDTO.Id = ID;
-            memberLevelDiscountDTO.Silver = silver;
-            memberLevelDiscountDTO.Gold = gold;
-            memberLevelDiscountDTO.Platinum = platinum;
-            return memberLevelDiscountDTO;
+            WalletDTO walletDTO = new WalletDTO();
+            walletDTO.Id = ID;
+            walletDTO.Balance = balance;
+            walletDTO.IsAdminWallet = isAdminWallet;
+            walletDTO.AppUserId = appUserId;
+            return walletDTO;
         }
         /// <summary>
         /// There are no comments for Property Id in the schema.
@@ -89,80 +89,80 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel
         partial void OnIdChanging(int value);
         partial void OnIdChanged();
         /// <summary>
-        /// There are no comments for Property Silver in the schema.
+        /// There are no comments for Property Balance in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
 
-        [global::Microsoft.OData.Client.OriginalNameAttribute("Silver")]
-        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Silver is required.")]
-        public virtual double Silver
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Balance")]
+        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Balance is required.")]
+        public virtual double Balance
         {
             get
             {
-                return this._Silver;
+                return this._Balance;
             }
             set
             {
-                this.OnSilverChanging(value);
-                this._Silver = value;
-                this.OnSilverChanged();
-                this.OnPropertyChanged("Silver");
+                this.OnBalanceChanging(value);
+                this._Balance = value;
+                this.OnBalanceChanged();
+                this.OnPropertyChanged("Balance");
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private double _Silver;
-        partial void OnSilverChanging(double value);
-        partial void OnSilverChanged();
+        private double _Balance;
+        partial void OnBalanceChanging(double value);
+        partial void OnBalanceChanged();
         /// <summary>
-        /// There are no comments for Property Gold in the schema.
+        /// There are no comments for Property IsAdminWallet in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
 
-        [global::Microsoft.OData.Client.OriginalNameAttribute("Gold")]
-        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Gold is required.")]
-        public virtual double Gold
+        [global::Microsoft.OData.Client.OriginalNameAttribute("IsAdminWallet")]
+        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "IsAdminWallet is required.")]
+        public virtual bool IsAdminWallet
         {
             get
             {
-                return this._Gold;
+                return this._IsAdminWallet;
             }
             set
             {
-                this.OnGoldChanging(value);
-                this._Gold = value;
-                this.OnGoldChanged();
-                this.OnPropertyChanged("Gold");
+                this.OnIsAdminWalletChanging(value);
+                this._IsAdminWallet = value;
+                this.OnIsAdminWalletChanged();
+                this.OnPropertyChanged("IsAdminWallet");
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private double _Gold;
-        partial void OnGoldChanging(double value);
-        partial void OnGoldChanged();
+        private bool _IsAdminWallet;
+        partial void OnIsAdminWalletChanging(bool value);
+        partial void OnIsAdminWalletChanged();
         /// <summary>
-        /// There are no comments for Property Platinum in the schema.
+        /// There are no comments for Property AppUserId in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
 
-        [global::Microsoft.OData.Client.OriginalNameAttribute("Platinum")]
-        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Platinum is required.")]
-        public virtual double Platinum
+        [global::Microsoft.OData.Client.OriginalNameAttribute("AppUserId")]
+        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "AppUserId is required.")]
+        public virtual int AppUserId
         {
             get
             {
-                return this._Platinum;
+                return this._AppUserId;
             }
             set
             {
-                this.OnPlatinumChanging(value);
-                this._Platinum = value;
-                this.OnPlatinumChanged();
-                this.OnPropertyChanged("Platinum");
+                this.OnAppUserIdChanging(value);
+                this._AppUserId = value;
+                this.OnAppUserIdChanged();
+                this.OnPropertyChanged("AppUserId");
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private double _Platinum;
-        partial void OnPlatinumChanging(double value);
-        partial void OnPlatinumChanged();
+        private int _AppUserId;
+        partial void OnAppUserIdChanging(int value);
+        partial void OnAppUserIdChanged();
         /// <summary>
         /// This event is raised when the value of the property is changed
         /// </summary>

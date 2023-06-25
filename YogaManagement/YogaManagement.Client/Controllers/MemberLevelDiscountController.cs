@@ -26,12 +26,24 @@ public class MemberLevelDiscountController : Controller
         _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
     }
 
+    //get
+    public async Task<IActionResult> Index()
+    {
+        var memberLevel = await _context.MemberLevels.ExecuteAsync();
+        return View(memberLevel);
+    }
+
     //detail
-    public async Task<IActionResult> Details()
+    public async Task<IActionResult> Details(int? id)
     {
         try
         {
-            var memberLevel = await _context.MemberLevel.ByKey(1).GetValueAsync();
+            if (id == null || _context.Courses == null)
+            {
+                throw new Exception("Not found");
+            }
+
+            var memberLevel = await _context.MemberLevels.ByKey(id.Value).GetValueAsync();
             return View(memberLevel);
         }
         catch(Exception ex)
@@ -50,11 +62,7 @@ public class MemberLevelDiscountController : Controller
                 throw new Exception("Not Found");
             }
 
-            var memberLevel = _context.MemberLevel.ByKey(id.Value).GetValueAsync();
-            if (memberLevel == null)
-            {
-                throw new Exception("Not Found");
-            }
+            var memberLevel = await _context.MemberLevels.ByKey(id.Value).GetValueAsync();
             return View(memberLevel);
         }
         catch (InvalidOperationException ex)
@@ -72,7 +80,7 @@ public class MemberLevelDiscountController : Controller
     //edit response
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Sliver, Gold, Platinum")] MemberLevelDiscountDTO memberLevel)
+    public async Task<IActionResult> Edit(int id, [Bind("Id, Silver, Gold, Platinum")] MemberLevelDiscountDTO memberLevel)
     {
         if (id != memberLevel.Id)
         {
@@ -87,8 +95,9 @@ public class MemberLevelDiscountController : Controller
                 throw new Exception("Invalid input");
             }
 
-            var updateLevel = _context.MemberLevel.ByKey(id).GetValue();
+            var updateLevel = _context.MemberLevels.ByKey(id).GetValue();
 
+            updateLevel.Id = 1;
             updateLevel.Silver = memberLevel.Silver;
             updateLevel.Gold = memberLevel.Gold;
             updateLevel.Platinum = memberLevel.Platinum;

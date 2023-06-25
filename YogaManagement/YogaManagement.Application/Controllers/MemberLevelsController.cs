@@ -23,6 +23,13 @@ public class MemberLevelsController : ODataController
         return Ok(memberLevel);
     }
 
+    public ActionResult<MemberLevelDiscountDTO> Get([FromRoute] int key)
+    {
+        var memberLevel = _mldRepo.Get();
+
+        return Ok(memberLevel);
+    }
+
     public IActionResult Patch([FromRoute] int key, [FromBody] Delta<MemberLevelDiscountDTO> delta)
     {
         var updateRequest = delta.GetInstance();

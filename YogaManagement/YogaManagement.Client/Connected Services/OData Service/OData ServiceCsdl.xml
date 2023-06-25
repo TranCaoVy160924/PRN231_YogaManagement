@@ -8,7 +8,7 @@
         <Property Name="Id" Type="Edm.Int32" Nullable="false" />
         <Property Name="Name" Type="Edm.String" Nullable="false" />
         <Property Name="Size" Type="Edm.Int32" Nullable="false" />
-        <Property Name="Status" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="YogaClassStatus" Type="Edm.String" Nullable="false" />
         <Property Name="CourseId" Type="Edm.Int32" Nullable="false" />
         <Property Name="CourseName" Type="Edm.String" />
       </EntityType>
@@ -95,6 +95,53 @@
         <Property Name="Platinum" Type="Edm.Double" Nullable="false" />
       </EntityType>
     </Schema>
+    <Schema Namespace="YogaManagement.Contracts.TimeSlot" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="TimeSlotDTO">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DayOfWeek" Type="System.DayOfWeek" Nullable="false" />
+        <Property Name="StartTime" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="EndTime" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="Room" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Status" Type="Edm.Boolean" Nullable="false" />
+      </EntityType>
+    </Schema>
+    <Schema Namespace="YogaManagement.Contracts.Wallet" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="WalletDTO">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Balance" Type="Edm.Double" Nullable="false" />
+        <Property Name="IsAdminWallet" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AppUserId" Type="Edm.Int32" Nullable="false" />
+      </EntityType>
+    </Schema>
+    <Schema Namespace="YogaManagement.Contracts.Transaction" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="TransactionDTO">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Amount" Type="Edm.Double" Nullable="false" />
+        <Property Name="CreatedDate" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="TransactionType" Type="Edm.String" Nullable="false" />
+        <Property Name="WalletId" Type="Edm.Int32" Nullable="false" />
+      </EntityType>
+    </Schema>
+    <Schema Namespace="System" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EnumType Name="DayOfWeek">
+        <Member Name="Sunday" Value="0" />
+        <Member Name="Monday" Value="1" />
+        <Member Name="Tuesday" Value="2" />
+        <Member Name="Wednesday" Value="3" />
+        <Member Name="Thursday" Value="4" />
+        <Member Name="Friday" Value="5" />
+        <Member Name="Saturday" Value="6" />
+      </EnumType>
+    </Schema>
     <Schema Namespace="Default" xmlns="http://docs.oasis-open.org/odata/ns/edm">
       <EntityContainer Name="Container">
         <EntitySet Name="YogaClasses" EntityType="YogaManagement.Contracts.YogaClass.YogaClassDTO" />
@@ -102,8 +149,12 @@
         <EntitySet Name="Courses" EntityType="YogaManagement.Contracts.Course.CourseDTO" />
         <EntitySet Name="Categories" EntityType="YogaManagement.Contracts.Category.CategoryDTO" />
         <EntitySet Name="Enrollments" EntityType="YogaManagement.Contracts.Enrollment.EnrollmentDTO" />
-        <EntitySet Name="TeacherEnrollment" EntityType="YogaManagement.Contracts.TeacherEnrollment.TeacherEnrollmentDTO" />
-        <EntitySet Name="MemberLevel" EntityType="YogaManagement.Contracts.MemberLevel.MemberLevelDiscountDTO" />
+        <EntitySet Name="TeacherEnrollments" EntityType="YogaManagement.Contracts.TeacherEnrollment.TeacherEnrollmentDTO" />
+        <EntitySet Name="MemberLevels" EntityType="YogaManagement.Contracts.MemberLevel.MemberLevelDiscountDTO" />
+        <EntitySet Name="MemberLevelConditons" EntityType="YogaManagement.Contracts.MemberLevel.MemberLevelDiscountDTO" />
+        <EntitySet Name="TimeSlots" EntityType="YogaManagement.Contracts.TimeSlot.TimeSlotDTO" />
+        <EntitySet Name="Wallets" EntityType="YogaManagement.Contracts.Wallet.WalletDTO" />
+        <EntitySet Name="Transactions" EntityType="YogaManagement.Contracts.Transaction.TransactionDTO" />
       </EntityContainer>
     </Schema>
   </edmx:DataServices>

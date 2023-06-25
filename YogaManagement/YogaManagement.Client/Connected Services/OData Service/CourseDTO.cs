@@ -8,10 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/13/2023 10:37:08 PM
-using System.ComponentModel.DataAnnotations;
-using YogaManagement.Client.ValidationAttributes;
-
+// Generation date: 6/25/2023 3:40:15 PM
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
 {
     /// <summary>
@@ -24,19 +21,19 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
         /// Initialize a new CourseDTOSingle object.
         /// </summary>
         public CourseDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
-            : base(context, path) { }
+            : base(context, path) {}
 
         /// <summary>
         /// Initialize a new CourseDTOSingle object.
         /// </summary>
         public CourseDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
-            : base(context, path, isComposable) { }
+            : base(context, path, isComposable) {}
 
         /// <summary>
         /// Initialize a new CourseDTOSingle object.
         /// </summary>
         public CourseDTOSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<CourseDTO> query)
-            : base(query) { }
+            : base(query) {}
 
     }
     /// <summary>
@@ -62,14 +59,14 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
         /// <param name="categoryId">Initial value of CategoryId.</param>
         /// <param name="categoryName">Initial value of CategoryName.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static CourseDTO CreateCourseDTO(int ID,
-                    string name,
-                    string description,
-                    double price,
-                    global::System.DateTimeOffset startDate,
-                    global::System.DateTimeOffset enddDate,
-                    bool isActive,
-                    int categoryId,
+        public static CourseDTO CreateCourseDTO(int ID, 
+                    string name, 
+                    string description, 
+                    double price, 
+                    global::System.DateTimeOffset startDate, 
+                    global::System.DateTimeOffset enddDate, 
+                    bool isActive, 
+                    int categoryId, 
                     string categoryName)
         {
             CourseDTO courseDTO = new CourseDTO();
@@ -84,8 +81,6 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
             courseDTO.CategoryName = categoryName;
             return courseDTO;
         }
-
-        #region Id
         /// <summary>
         /// There are no comments for Property Id in the schema.
         /// </summary>
@@ -111,9 +106,6 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
         private int _Id;
         partial void OnIdChanging(int value);
         partial void OnIdChanged();
-        #endregion
-
-        #region Name
         /// <summary>
         /// There are no comments for Property Name in the schema.
         /// </summary>
@@ -139,9 +131,6 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
         private string _Name;
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
-        #endregion
-
-        #region Description
         /// <summary>
         /// There are no comments for Property Description in the schema.
         /// </summary>
@@ -167,9 +156,6 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
         private string _Description;
         partial void OnDescriptionChanging(string value);
         partial void OnDescriptionChanged();
-        #endregion
-
-        #region Price
         /// <summary>
         /// There are no comments for Property Price in the schema.
         /// </summary>
@@ -177,7 +163,6 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("Price")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Price is required.")]
-        [Range(1, double.MaxValue, ErrorMessage = "Price must be positive")]
         public virtual double Price
         {
             get
@@ -196,9 +181,6 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
         private double _Price;
         partial void OnPriceChanging(double value);
         partial void OnPriceChanged();
-        #endregion
-
-        #region StartDate and EndDate
         /// <summary>
         /// There are no comments for Property StartDate in the schema.
         /// </summary>
@@ -206,7 +188,6 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("StartDate")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "StartDate is required.")]
-        [MinDateToday(ErrorMessage = "Start date must be later than today")]
         public virtual global::System.DateTimeOffset StartDate
         {
             get
@@ -225,7 +206,6 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
         private global::System.DateTimeOffset _StartDate;
         partial void OnStartDateChanging(global::System.DateTimeOffset value);
         partial void OnStartDateChanged();
-
         /// <summary>
         /// There are no comments for Property EnddDate in the schema.
         /// </summary>
@@ -233,8 +213,6 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("EnddDate")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "EnddDate is required.")]
-        [DateMoreThan("StartDate", ErrorMessage = "End date must be later than start date")]
-        [MinDateToday(ErrorMessage = "End date must be later than today")]
         public virtual global::System.DateTimeOffset EnddDate
         {
             get
@@ -253,8 +231,6 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course
         private global::System.DateTimeOffset _EnddDate;
         partial void OnEnddDateChanging(global::System.DateTimeOffset value);
         partial void OnEnddDateChanged();
-        #endregion
-
         /// <summary>
         /// There are no comments for Property IsActive in the schema.
         /// </summary>

@@ -1,6 +1,5 @@
-﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
-@using YogaManagement.Domain.Enums;
-@model UserDTO
+﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel;
+@model MemberLevelDiscountDTO
 @{
     ViewData["Title"] = "Edit";
     var errorMessage = ViewData["Error"] as string;
@@ -12,51 +11,32 @@
     }
 }
 
-@{
-
-}
-
 <h1>Edit</h1>
 
-<h4>AppUser</h4>
+<h4>Membership level</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group form-check">
-            <label class="form-check-label">
-            <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
-            </label>
-            </div>*@
-            <input class="form-check-input" asp-for="Status" type="hidden" value="true" />
+            <input asp-for="Id" type = "hidden" value = 1 class="form-control" />
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input disabled class="form-control" value="@Model.Email" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <input hidden asp-for="Email" class="form-control" value="@Model.Email" />
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <label asp-for="Silver" class="control-label"></label>
+                <input asp-for="Silver" class="form-control" />
+                <span asp-validation-for="Silver" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+                <label asp-for="Gold" class="control-label"></label>
+                <input asp-for="Gold" class="form-control" />
+                <span asp-validation-for="Gold" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
+                <label asp-for="Platinum" class="control-label"></label>
+                <input asp-for="Platinum" class="form-control" />
+                <span asp-validation-for="Platinum" class="text-danger"></span>
             </div>
-            <input hidden class="form-check-input" asp-for="Status" value=@true/>
-            <input hidden asp-for="Password" class="form-control" value="12345678" />
-            <input hidden asp-for="ConfirmPassword" class="form-control" value="12345678" />
-            <input asp-for="Role" class="form-control" type="hidden" value="Member" />
             <div class="form-group">
-                <input hidden name="Id" value=@Model.Id />
+                <input hidden name="Id" value=1 />
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -64,7 +44,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to Index</a>
 </div>
 
 <script>
