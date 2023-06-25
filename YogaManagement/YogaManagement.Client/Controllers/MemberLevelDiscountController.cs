@@ -26,39 +26,17 @@ public class MemberLevelDiscountController : Controller
         _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
     }
 
-    //get
-    public async Task<IActionResult> Index()
-    {
-        var memberLevel = await _context.MemberLevel.ExecuteAsync();
-        return View(memberLevel);
-    }
-
     //detail
-    public async Task<IActionResult> Details(int? id)
+    public async Task<IActionResult> Details()
     {
         try
         {
-            if (id == null || _context.Users == null)
-            {
-                throw new Exception("Not Found");
-            }
-
-            var memberLevel = _context.MemberLevel.ByKey(id.Value).GetValueAsync();
-            if (memberLevel == null)
-            {
-                throw new Exception("Not Found");
-            }
+            var memberLevel = await _context.MemberLevel.ByKey(1).GetValueAsync();
             return View(memberLevel);
         }
-        catch (InvalidOperationException ex)
+        catch(Exception ex)
         {
-            _notyf.Error(ex.ReadOdataErrorMessage());
-            return RedirectToAction(nameof(Index));
-        }
-        catch (Exception ex)
-        {
-            _notyf.Error(ex.Message);
-            return RedirectToAction(nameof(Index));
+            throw new Exception(ex.Message, ex);
         }
     }
 

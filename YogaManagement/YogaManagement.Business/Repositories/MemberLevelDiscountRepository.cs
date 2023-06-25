@@ -26,7 +26,7 @@ public class MemberLevelDiscountRepository
         return level;
     }
 
-    public MemberLevelDiscountDTO Edit(MemberLevelDiscountDTO level)
+    public void Edit(MemberLevelDiscountDTO level)
     {
         var updateData = new Dictionary<string, object>
         {
@@ -36,8 +36,6 @@ public class MemberLevelDiscountRepository
             { "Platinum", level.Platinum.ToString() }
         };
         UpdateAppSetting("MemberLevelPrivilege", updateData);
-
-        return level;
     }
 
     #region update helper

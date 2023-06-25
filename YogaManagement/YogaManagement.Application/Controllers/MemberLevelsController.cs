@@ -29,6 +29,6 @@ public class MemberLevelsController : ODataController
 
         _mldRepo.Edit(updateRequest);
 
-        return Ok(updateRequest);
+        return Updated(updateRequest);
     }
 }
