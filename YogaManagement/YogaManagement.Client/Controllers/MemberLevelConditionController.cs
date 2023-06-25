@@ -68,14 +68,8 @@ public class MemberLevelConditionController : Controller
     //edit response
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id, Silver, Gold, Platinum")] MemberLevelDiscountDTO memberLevel)
+    public async Task<IActionResult> Edit(int id, [Bind("Silver, Gold, Platinum")] MemberLevelDiscountDTO memberLevel)
     {
-        if (id != memberLevel.Id)
-        {
-            _notyf.Warning("Invalid update target");
-            return RedirectToAction(nameof(Index));
-        }
-
         try
         {
             if (!ModelState.IsValid)
@@ -92,8 +86,8 @@ public class MemberLevelConditionController : Controller
 
             _context.UpdateObject(updateLevel);
             await _context.SaveChangesAsync();
-            _notyf.Success("Member level updated");
-            return RedirectToAction(nameof(Index));
+            _notyf.Success("Member level Condition updated");
+            return RedirectToAction("Index", "MemberLevelDiscount");
         }
         catch (InvalidOperationException ex)
         {
