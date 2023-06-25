@@ -381,7 +381,7 @@ namespace YogaManagement.Client.OdataClient.Default
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         [global::Microsoft.OData.Client.OriginalNameAttribute("MemberLevelConditons")]
-        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel.MemberLevelDiscountDTO> MemberLevelConditons
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel.MemberLevelDiscountDTO> MemberLevels
         {
             get
             {

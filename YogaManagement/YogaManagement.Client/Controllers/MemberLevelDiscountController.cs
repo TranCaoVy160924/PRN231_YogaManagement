@@ -46,7 +46,7 @@ public class MemberLevelDiscountController : Controller
             var memberLevel = await _context.MemberLevels.ByKey(id.Value).GetValueAsync();
             return View(memberLevel);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception(ex.Message, ex);
         }

@@ -1,12 +1,10 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
+using YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel;
 
 namespace YogaManagement.Client.Controllers;
-[Authorize(Roles = "Admin")]
 public class MemberLevelConditionController : Controller
 {
     private readonly Container _context;
@@ -26,7 +24,7 @@ public class MemberLevelConditionController : Controller
     //get
     public async Task<IActionResult> Index()
     {
-        var memberLevel = await _context.MemberLevels.ExecuteAsync();
+        var memberLevel = await _context.MemberLevelConditons.ExecuteAsync();
         return View(memberLevel);
     }
 
@@ -40,7 +38,7 @@ public class MemberLevelConditionController : Controller
                 throw new Exception("Not found");
             }
 
-            var memberLevel = await _context.MemberLevels.ByKey(id.Value).GetValueAsync();
+            var memberLevel = await _context.MemberLevelConditons.ByKey(id.Value).GetValueAsync();
             return View(memberLevel);
         }
         catch (Exception ex)
@@ -59,7 +57,7 @@ public class MemberLevelConditionController : Controller
                 throw new Exception("Not Found");
             }
 
-            var memberLevel = await _context.MemberLevels.ByKey(id.Value).GetValueAsync();
+            var memberLevel = await _context.MemberLevelConditons.ByKey(id.Value).GetValueAsync();
             return View(memberLevel);
         }
         catch (InvalidOperationException ex)
@@ -92,7 +90,7 @@ public class MemberLevelConditionController : Controller
                 throw new Exception("Invalid input");
             }
 
-            var updateLevel = _context.MemberLevels.ByKey(id).GetValue();
+            var updateLevel = _context.MemberLevelConditons.ByKey(id).GetValue();
 
             updateLevel.Id = 1;
             updateLevel.Silver = memberLevel.Silver;
