@@ -21,13 +21,6 @@ public class MemberLevelConditionController : Controller
         _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
     }
 
-    //get
-    public async Task<IActionResult> Index()
-    {
-        var memberLevel = await _context.MemberLevelConditons.ExecuteAsync();
-        return View(memberLevel);
-    }
-
     //detail
     public async Task<IActionResult> Details(int? id)
     {

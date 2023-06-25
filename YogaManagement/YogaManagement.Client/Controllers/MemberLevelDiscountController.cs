@@ -29,8 +29,7 @@ public class MemberLevelDiscountController : Controller
     //get
     public async Task<IActionResult> Index()
     {
-        var memberLevel = await _context.MemberLevels.ExecuteAsync();
-        return View(memberLevel);
+        return View();
     }
 
     //detail

@@ -1,47 +1,31 @@
 ﻿@using YogaManagement.Client.Helper;
-@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel;
-@model IEnumerable<MemberLevelDiscountDTO>
 @inject JwtManager _jwtManager;
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Manage privilege discount</h1>
+<h1>Index</h1>
 
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Silver)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gold)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Platinum)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Silver)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gold)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Platinum)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id=1>Details</a> |
-                    <a asp-action="Edit" asp-route-id=1>Edit</a> 
-                </td>
-            </tr>
-        }
+        <tr>
+            <td>
+                <h3>Manage Privilege Discount</h3>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="1">Details</a> |
+                <a asp-action="Edit" asp-route-id="1">Edit</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <h3>Manage Condition for Privilege </h3>
+            </td>
+            <td>
+                <a asp-controller="MemberLevelCondition" asp-action="Details" asp-route-id=1>Details</a> |
+                <a asp-controller="MemberLevelCondition" asp-action="Edit" asp-route-id=1>Edit</a>
+            </td>
+        </tr>
     </tbody>
 </table>
