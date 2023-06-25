@@ -1,0 +1,47 @@
+﻿@using YogaManagement.Client.Helper;
+@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel;
+@model IEnumerable<MemberLevelDiscountDTO>
+@inject JwtManager _jwtManager;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Silver)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gold)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Platinum)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Silver)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gold)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Platinum)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

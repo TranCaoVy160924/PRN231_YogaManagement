@@ -43,6 +43,7 @@ builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<TeacherEnrollmentRepository>();
 builder.Services.AddScoped<WalletRepository>();
 builder.Services.AddScoped<MemberLevelDiscountRepository>();
+builder.Services.AddScoped<MemberLevelConditonRepository>();
 builder.Services.AddScoped<TimeSlotRepository>();
 builder.Services.AddScoped<TransactionRepository>();
 
@@ -192,6 +193,10 @@ static IEdmModel GetEdmModel()
 
     #region MemberLevelDiscount
     var memberLevelDiscount = builder.EntitySet<MemberLevelDiscountDTO>("MemberLevels").EntityType;
+    #endregion
+
+    #region MemberLevelCondition
+    var memberLevelCondition = builder.EntitySet<MemberLevelDiscountDTO>("MemberLevelConditons").EntityType;
     #endregion
 
     #region TimeSlot
