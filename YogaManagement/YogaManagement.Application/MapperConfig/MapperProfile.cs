@@ -55,11 +55,12 @@ public class MapperProfile : Profile
             otp.MapFrom(src => src.YogaClass.Name);
         });
         CreateMap<TeacherEnrollmentDTO, TeacherEnrollment>();
-         #endregion
-        
+        #endregion
+
         #region TimeSlot
-        CreateMap<TimeSlot, TimeSlotDTO>();
-        CreateMap<TimeSlotDTO, TimeSlot>();
+        CreateMap<TimeSlot, TimeSlotDTO>()
+            .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartTime.ToString("HH:mm")));
+        //CreateMap<TimeSlotDTO, TimeSlot>();
         #endregion
 
         #region Schedule

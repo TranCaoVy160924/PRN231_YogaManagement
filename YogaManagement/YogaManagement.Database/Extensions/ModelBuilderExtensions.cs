@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic;
 using System.Globalization;
 using YogaManagement.Domain.Enums;
 using YogaManagement.Domain.Models;

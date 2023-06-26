@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Wallet;
-using YogaManagement.Contracts.YogaClass;
 
 namespace YogaManagement.Application.Controllers;
 public class WalletsController : ODataController

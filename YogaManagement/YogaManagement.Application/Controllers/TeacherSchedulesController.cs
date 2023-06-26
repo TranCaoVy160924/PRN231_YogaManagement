@@ -22,7 +22,7 @@ public class TeacherSchedulesController : ODataController
     [EnableQuery]
     public ActionResult<IQueryable<TeacherScheduleDTO>> Get(int keyTeacherProfileId)
     {
-        
+
         return Ok(_mapper.ProjectTo<TeacherScheduleDTO>(_Repo.GetScheduleOfATeacher(keyTeacherProfileId)));
     }
     public async Task<IActionResult> Post([FromBody] TeacherScheduleDTO createRequest)
@@ -42,7 +42,7 @@ public class TeacherSchedulesController : ODataController
     }
     //update istaken when a teacher is asgined to a  class
     [HttpPut("odata/TeacherSchedules")]
-    public async Task<IActionResult> Update(int keyTimeSlotId,int keyTeacherProfileId)
+    public async Task<IActionResult> Update(int keyTimeSlotId, int keyTeacherProfileId)
     {
         var existSchedule = _Repo.GetSchedule(keyTimeSlotId, keyTeacherProfileId);
         if (existSchedule == null)

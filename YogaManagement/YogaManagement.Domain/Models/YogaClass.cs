@@ -12,5 +12,5 @@ public class YogaClass
     public virtual Course Course { get; set; }
     public virtual ICollection<TeacherEnrollment>? TeacherEnrollments { get; set; }
     public virtual ICollection<Enrollment>? Enrollments { get; set; }
-    public virtual ICollection<TimeSlot> TimeSlots { get; set; }
+    public virtual ICollection<Schedule> Schedule { get; set; }
 }

@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
-using System.Data;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.MemberLevel;
 

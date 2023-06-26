@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using YogaManagement.Database.EF;
@@ -161,14 +157,14 @@ namespace YogaManagement.Client.Controllers
             {
                 _context.Enrollments.Remove(enrollment);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EnrollmentExists(int id)
         {
-          return (_context.Enrollments?.Any(e => e.MemberId == id)).GetValueOrDefault();
+            return (_context.Enrollments?.Any(e => e.MemberId == id)).GetValueOrDefault();
         }
     }
 }

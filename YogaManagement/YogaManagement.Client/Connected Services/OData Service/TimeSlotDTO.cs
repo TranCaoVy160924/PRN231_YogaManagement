@@ -58,8 +58,8 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         public static TimeSlotDTO CreateTimeSlotDTO(int ID, 
                     global::YogaManagement.Client.OdataClient.System.DayOfWeek dayOfWeek, 
-                    global::System.DateTimeOffset startTime, 
-                    global::System.DateTimeOffset endTime, 
+                    string startTime, 
+                    string endTime, 
                     int room, 
                     bool status)
         {
@@ -129,7 +129,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("StartTime")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "StartTime is required.")]
-        public virtual global::System.DateTimeOffset StartTime
+        public virtual string StartTime
         {
             get
             {
@@ -144,8 +144,8 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::System.DateTimeOffset _StartTime;
-        partial void OnStartTimeChanging(global::System.DateTimeOffset value);
+        private string _StartTime;
+        partial void OnStartTimeChanging(string value);
         partial void OnStartTimeChanged();
         /// <summary>
         /// There are no comments for Property EndTime in the schema.
@@ -154,7 +154,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("EndTime")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "EndTime is required.")]
-        public virtual global::System.DateTimeOffset EndTime
+        public virtual string EndTime
         {
             get
             {
@@ -169,8 +169,8 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::System.DateTimeOffset _EndTime;
-        partial void OnEndTimeChanging(global::System.DateTimeOffset value);
+        private string _EndTime;
+        partial void OnEndTimeChanging(string value);
         partial void OnEndTimeChanged();
         /// <summary>
         /// There are no comments for Property Room in the schema.

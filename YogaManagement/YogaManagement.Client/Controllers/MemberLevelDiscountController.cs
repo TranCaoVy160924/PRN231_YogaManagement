@@ -1,7 +1,6 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel;

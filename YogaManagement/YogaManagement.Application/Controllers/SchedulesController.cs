@@ -11,26 +11,27 @@ namespace YogaManagement.Application.Controllers;
 public class SchedulesController : ODataController
 {
     private readonly IMapper _mapper;
-    private readonly ScheduleRepository _Repo;
+    private readonly ScheduleRepository _scheduleRepo;
 
     public SchedulesController(ScheduleRepository Repo, IMapper mapper)
     {
         _mapper = mapper;
-        _Repo = Repo;
+        _scheduleRepo = Repo;
     }
     //get schedules of a class
     [EnableQuery]
-    public ActionResult<IQueryable<ScheduleDTO>> Get(int YogaClassId)
+    public ActionResult<IQueryable<ScheduleDTO>> Get()
     {
-        return Ok(_mapper.ProjectTo<ScheduleDTO>(_Repo.GetScheduleOfAClass(YogaClassId)));
+        return Ok(_mapper.ProjectTo<ScheduleDTO>(_scheduleRepo.GetAll()));
     }
+
     public async Task<IActionResult> Post([FromBody] ScheduleDTO createRequest)
     {
         try
         {
             ModelState.ValidateRequest();
             var newSchedule = _mapper.Map<Schedule>(createRequest);
-            await _Repo.CreateAsync(newSchedule);
+            await _scheduleRepo.CreateAsync(newSchedule);
             return Created(createRequest);
         }
         catch (Exception ex)
@@ -38,17 +39,18 @@ public class SchedulesController : ODataController
             return BadRequest(ex.Message);
         }
     }
+
     // delete 1 slot 
     public async Task<IActionResult> Delete([FromRoute] int keyTimeSlotId, [FromRoute] int keyYogaClassId)
     {
-        var existSchedule = _Repo.GetSchedule(keyTimeSlotId,keyYogaClassId);
+        var existSchedule = _scheduleRepo.GetSchedule(keyTimeSlotId, keyYogaClassId);
         if (existSchedule == null)
         {
             return NotFound();
         }
         try
-        {           
-            await _Repo.DeleteAsync(existSchedule);
+        {
+            await _scheduleRepo.DeleteAsync(existSchedule);
             return NoContent();
         }
         catch (Exception ex)
@@ -56,20 +58,21 @@ public class SchedulesController : ODataController
             return BadRequest(ex.Message);
         }
     }
+
     // delete all time slot of 1 class
     [HttpDelete("odata/Schedules/yogaClassId")]
     public async Task<IActionResult> Delete(int keyYogaClassId)
     {
-        var listSchedule = _Repo.GetScheduleOfAClass(keyYogaClassId);
+        var listSchedule = _scheduleRepo.GetScheduleOfAClass(keyYogaClassId);
         if (listSchedule == null)
         {
             return NotFound();
         }
         try
         {
-            foreach(var schedule in listSchedule)
+            foreach (var schedule in listSchedule)
             {
-                await _Repo.DeleteAsync(schedule);
+                await _scheduleRepo.DeleteAsync(schedule);
             }
             return NoContent();
         }

@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
@@ -8,8 +6,6 @@ using Microsoft.AspNetCore.OData.Routing.Controllers;
 using YogaManagement.Application.Utilities;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Enrollment;
-using YogaManagement.Contracts.TeacherEnrollment;
-using YogaManagement.Contracts.YogaClass;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
@@ -23,7 +19,7 @@ public class EnrollmentsController : ODataController
     {
         _mapper = mapper;
         _Repo = repo;
-        _yogaRepo= yogaRepo;
+        _yogaRepo = yogaRepo;
     }
 
     [EnableQuery]
@@ -63,7 +59,7 @@ public class EnrollmentsController : ODataController
     public async Task<IActionResult> Patch([FromRoute] int keyMemberId, [FromRoute] int keyYogaClassId, [FromBody] Delta<EnrollmentDTO> delta)
     {
         var updateRequest = delta.GetInstance();
-        var existEnroll =  _Repo.GetEnrollment(keyMemberId, keyYogaClassId);
+        var existEnroll = _Repo.GetEnrollment(keyMemberId, keyYogaClassId);
         if (existEnroll == null)
         {
             return NotFound();
@@ -86,10 +82,10 @@ public class EnrollmentsController : ODataController
             }
         }
     }
-    
+
     public async Task<IActionResult> Delete([FromRoute] int keyMemberId, [FromRoute] int keyYogaClassId)
     {
-        var existEnroll =  _Repo.GetEnrollment(keyMemberId, keyYogaClassId);
+        var existEnroll = _Repo.GetEnrollment(keyMemberId, keyYogaClassId);
         if (existEnroll == null)
         {
             return NotFound();

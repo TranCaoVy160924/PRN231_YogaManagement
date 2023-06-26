@@ -137,7 +137,7 @@ public class UsersController : ODataController
                     {
                         AppUserId = user.Id
                     };
-                    await _mRepo.CreateAsync(newMember);                
+                    await _mRepo.CreateAsync(newMember);
                 }
                 else if (chosenRole == "Teacher")
                 {

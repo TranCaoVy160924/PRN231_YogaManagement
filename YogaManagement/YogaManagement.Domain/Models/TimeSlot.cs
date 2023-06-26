@@ -10,6 +10,6 @@ public class TimeSlot
     public int Room { get; set; }
     public bool Status { get; set; }
 
-    public virtual ICollection<YogaClass>? YogaClasses { get; set; }
+    public virtual ICollection<Schedule>? Schedule { get; set; }
     public virtual ICollection<TeacherProfile>? AvailableTeacher { get; set; }
 }

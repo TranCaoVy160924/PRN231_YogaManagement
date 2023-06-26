@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass;
-using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Client.Controllers;
 

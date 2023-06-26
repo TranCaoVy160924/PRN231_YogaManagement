@@ -7,7 +7,6 @@ using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text.Json.Serialization;
-using YogaManagement.Application.Controllers;
 using YogaManagement.Application.MapperConfig;
 using YogaManagement.Application.Utilities;
 using YogaManagement.Business.Repositories;

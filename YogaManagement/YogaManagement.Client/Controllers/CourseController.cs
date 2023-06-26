@@ -179,7 +179,7 @@ public class CourseController : Controller
         }
         catch (InvalidOperationException ex)
         {
-            
+
             _notyf.Error(ex.ReadOdataErrorMessage());
             return View(course);
         }
