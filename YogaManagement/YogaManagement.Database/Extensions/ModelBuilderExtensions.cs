@@ -59,8 +59,8 @@ public static class ModelBuilderExtensions
             modelBuilder.Entity<AppUser>().HasData(new AppUser
             {
                 Id = i,
-                UserName = "UserMember" + i.ToString(),
-                NormalizedUserName = "usermember" + i.ToString(),
+                UserName = "member" + i.ToString() + "@gmail.com",
+                NormalizedUserName = "member" + i.ToString() + "@gmail.com",
                 Email = "member" + i.ToString() + "@gmail.com",
                 NormalizedEmail = "member" + i.ToString() + "@gmail.com",
                 EmailConfirmed = true,
@@ -93,8 +93,8 @@ public static class ModelBuilderExtensions
             modelBuilder.Entity<AppUser>().HasData(new AppUser
             {
                 Id = i,
-                UserName = "UserTeacher" + i.ToString(),
-                NormalizedUserName = "userteacher" + i.ToString(),
+                UserName = "teacher" + i.ToString() + "@gmail.com",
+                NormalizedUserName = "teacher" + i.ToString() + "@gmail.com",
                 Email = "teacher" + i.ToString() + "@gmail.com",
                 NormalizedEmail = "teacher" + i.ToString() + "@gmail.com",
                 EmailConfirmed = true,
@@ -126,8 +126,8 @@ public static class ModelBuilderExtensions
             modelBuilder.Entity<AppUser>().HasData(new AppUser
             {
                 Id = i,
-                UserName = "UserStaff" + i.ToString(),
-                NormalizedUserName = "userstaff" + i.ToString(),
+                UserName = "staff" + i.ToString() + "@gmail.com",
+                NormalizedUserName = "staff" + i.ToString() + "@gmail.com",
                 Email = "staff" + i.ToString() + "@gmail.com",
                 NormalizedEmail = "staff" + i.ToString() + "@gmail.com",
                 EmailConfirmed = true,
@@ -151,8 +151,8 @@ public static class ModelBuilderExtensions
         modelBuilder.Entity<AppUser>().HasData(new AppUser
         {
             Id = 46,
-            UserName = "UserAdmin46",
-            NormalizedUserName = "useradmin46",
+            UserName = "admin46" + "@gmail.com",
+            NormalizedUserName = "admin46" + "@gmail.com",
             Email = "admin46" + "@gmail.com",
             NormalizedEmail = "admin46" + "@gmail.com",
             EmailConfirmed = true,
@@ -242,7 +242,7 @@ public static class ModelBuilderExtensions
 
             modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
             {
-                Id = i*10 + 1,
+                Id = i * 10 + 1,
                 DayOfWeek = day,
                 StartTime = inputTime("06:00:00"),
                 EndTime = inputTime("07:00:00"),
@@ -308,6 +308,19 @@ public static class ModelBuilderExtensions
                 EndTime = inputTime("21:00:00"),
                 Room = 707,
                 Status = true
+            });
+        }
+        #endregion
+
+        #region Wallet
+        for (int i = 1; i <= 46; i++)
+        {
+            modelBuilder.Entity<Wallet>().HasData(new Wallet
+            {
+                Id = i,
+                Balance = 0,
+                IsAdminWallet = i == 46 ? true : false,
+                AppUserId = i
             });
         }
         #endregion

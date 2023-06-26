@@ -112,6 +112,7 @@ public class YogaClassesController : ODataController
     }
 
     [Authorize(Roles = "Staff")]
+    [HttpDelete]
     public async Task<IActionResult> Delete(int key)
     {
         var existClass = await _ygClassRepo.Get(key);

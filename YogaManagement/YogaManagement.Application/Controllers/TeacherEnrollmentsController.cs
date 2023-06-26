@@ -11,12 +11,12 @@ using YogaManagement.Contracts.YogaClass;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
-public class TeacherEnrollmentController : ODataController
+public class TeacherEnrollmentsController : ODataController
 {
     private readonly IMapper _mapper;
     private readonly TeacherEnrollmentRepository _tcErRepo ;
 
-    public TeacherEnrollmentController(IMapper mapper, TeacherEnrollmentRepository tcrepo)
+    public TeacherEnrollmentsController(IMapper mapper, TeacherEnrollmentRepository tcrepo)
     {
         _mapper = mapper;
         _tcErRepo = tcrepo;
@@ -87,7 +87,6 @@ public class TeacherEnrollmentController : ODataController
         }
     }
 
-    [HttpDelete()]
     public async Task<IActionResult> Delete(int key)
     {
         var existEnroll = await _tcErRepo.Get(key);

@@ -10,7 +10,5 @@ public class Member
     public int AppUserId { get; set; }
     public virtual AppUser AppUser { get; set; }
 
-    public virtual Wallet? Wallet { get; set; }
-
     public virtual ICollection<Enrollment> Enrollments { get; set; }
 }

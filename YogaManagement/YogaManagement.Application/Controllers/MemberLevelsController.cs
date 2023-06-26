@@ -6,8 +6,6 @@ using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.MemberLevel;
 
 namespace YogaManagement.Application.Controllers;
-[Route("api/[controller]")]
-[ApiController]
 [Authorize(Roles = "Admin")]
 public class MemberLevelsController : ODataController
 {
@@ -25,12 +23,17 @@ public class MemberLevelsController : ODataController
         return Ok(memberLevel);
     }
 
-    //public IActionResult Patch([FromRoute] int key, [FromBody] Delta<MemberLevelDiscountDTO> delta)
-    //{
-    //    var updateRequest = delta.GetInstance();
+    public ActionResult<MemberLevelDiscountDTO> Get([FromRoute] int key)
+    {
+        var memberLevel = _mldRepo.Get();
 
-    //    _mldRepo.Edit(updateRequest);
+        return Ok(memberLevel);
+    }
 
-    //    return Ok(updateRequest);
-    //}
+    public IActionResult Patch([FromRoute] int key, [FromBody] Delta<MemberLevelDiscountDTO> delta)
+    {
+        var updateRequest = delta.GetInstance();
+
+        return Updated(updateRequest);
+    }
 }

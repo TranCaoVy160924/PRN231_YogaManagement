@@ -5,6 +5,8 @@ using YogaManagement.Contracts.Course;
 using YogaManagement.Contracts.Enrollment;
 using YogaManagement.Contracts.TeacherEnrollment;
 using YogaManagement.Contracts.TimeSlot;
+using YogaManagement.Contracts.Transaction;
+using YogaManagement.Contracts.Wallet;
 using YogaManagement.Contracts.YogaClass;
 using YogaManagement.Domain.Enums;
 using YogaManagement.Domain.Models;
@@ -57,6 +59,29 @@ public class MapperProfile : Profile
         
         #region TimeSlot
         CreateMap<TimeSlot, TimeSlotDTO>();
+        CreateMap<TimeSlotDTO, TimeSlot>();
+        #endregion
+
+        #region Schedule
+        CreateMap<Schedule, ScheduleDTO>();
+        CreateMap<ScheduleDTO, Schedule>();
+        #endregion
+
+        #region Teacher Schedule
+        CreateMap<TeacherSchedule, TeacherScheduleDTO>();
+        CreateMap<TeacherScheduleDTO, TeacherSchedule>();
+        #endregion
+
+        #region Transaction
+        CreateMap<Transaction, TransactionDTO>()
+            .ForMember(dest => dest.TransactionType, otp => otp.MapFrom(src => src.TransactionType.ToString()));
+        CreateMap<TransactionDTO, Transaction>()
+            .ForMember(dest => dest.TransactionType, otp => otp.MapFrom(src => GetTransactionType(src.TransactionType)));
+        #endregion
+
+        #region Wallet
+        CreateMap<Wallet, WalletDTO>();
+        CreateMap<WalletDTO, Wallet>();
         #endregion
         #region Enrollment
         CreateMap<Enrollment, EnrollmentDTO>()
@@ -95,5 +120,11 @@ public class MapperProfile : Profile
     {
         Enum.TryParse(statusString, out YogaClassStatus yogaClassStatus);
         return yogaClassStatus;
+    }
+
+    private static TransactionType GetTransactionType(string transacTypeString)
+    {
+        Enum.TryParse(transacTypeString, out TransactionType transactionType);
+        return transactionType;
     }
 }

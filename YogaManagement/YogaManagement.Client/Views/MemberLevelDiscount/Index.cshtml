@@ -1,0 +1,31 @@
+﻿@using YogaManagement.Client.Helper;
+@inject JwtManager _jwtManager;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <td>
+                <h3>Manage Privilege Discount</h3>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="1">Details</a> |
+                <a asp-action="Edit" asp-route-id="1">Edit</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <h3>Manage Condition for Privilege </h3>
+            </td>
+            <td>
+                <a asp-controller="MemberLevelCondition" asp-action="Details" asp-route-id=1>Details</a> |
+                <a asp-controller="MemberLevelCondition" asp-action="Edit" asp-route-id=1>Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -64,12 +64,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Role)
                 </td>
-                @if (item.Role == "Admin")
+                @if (item.Role == "Admin" || item.Role == "Member")
                 {
                     <td>
                         <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a class="btn-link disabled" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a class="btn-link disabled" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a class="btn-link disabled">Edit</a> |
+                        <a class="btn-link disabled">Delete</a>
                     </td>
                 }
                 else

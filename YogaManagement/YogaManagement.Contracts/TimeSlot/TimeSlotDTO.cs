@@ -13,6 +13,5 @@ public class TimeSlotDTO
     // Time only
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
-    public int Room { get; set; }
     public bool Status { get; set; }
 }

@@ -5,6 +5,7 @@ using YogaManagement.Client.Filters;
 using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.RefitClient;
+using YogaManagement.Database.EF;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,10 +32,10 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json")
             .Build();
-//var cntString = configuration.GetConnectionString("YogaManagement");
+var cntString = configuration.GetConnectionString("YogaManagement");
 var odataRoot = configuration.GetConnectionString("Odata");
 builder.Services.AddScoped(x => new Container(new Uri(odataRoot + "/")));
-//builder.Services.AddSqlServer<YogaManagementDbContext>(cntString);
+builder.Services.AddSqlServer<YogaManagementDbContext>(cntString);
 
 string baseUrl = odataRoot;
 builder.Services.AddRefitClient<IAuthorityClient>()

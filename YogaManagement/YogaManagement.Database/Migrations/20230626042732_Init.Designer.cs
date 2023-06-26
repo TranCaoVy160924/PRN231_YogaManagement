@@ -12,8 +12,8 @@ using YogaManagement.Database.EF;
 namespace YogaManagement.Database.Migrations
 {
     [DbContext(typeof(YogaManagementDbContext))]
-    [Migration("20230620161400_Initial")]
-    partial class Initial
+    [Migration("20230626042732_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -542,920 +542,920 @@ namespace YogaManagement.Database.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "c225d397-faa0-44ee-bff2-299bbb5972d8",
+                            ConcurrencyStamp = "1fed863e-a3ec-4bd4-8534-3790f09d891a",
                             Email = "member1@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name1",
                             Lastname = "LastName1",
                             LockoutEnabled = false,
                             NormalizedEmail = "member1@gmail.com",
-                            NormalizedUserName = "usermember1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEC4I1z7W5PrryTtQpXEownYVTHn4YtoDBLj5NeY9tBhixocEi99zeZBoGY/BkUCYuw==",
+                            NormalizedUserName = "member1@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEdOuZsp2Ru2bSnfymhLsIYvLK8kAxcRtmHLOef3hGOmslZrAvgLEqgFnCvTdVNECQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember1"
+                            UserName = "member1@gmail.com"
                         },
                         new
                         {
                             Id = 2,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "397090ce-6e96-49ae-8c1d-3bf5c5dbda31",
+                            ConcurrencyStamp = "183987fc-e532-4a06-8161-dc9893e4ae21",
                             Email = "member2@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name2",
                             Lastname = "LastName2",
                             LockoutEnabled = false,
                             NormalizedEmail = "member2@gmail.com",
-                            NormalizedUserName = "usermember2",
-                            PasswordHash = "AQAAAAIAAYagAAAAECrmByJ5HQEsi1NA0zbQx8wcWuhDJwjUK6iSTabemEPc1eoHs93Niwqxq2QSEqjzRw==",
+                            NormalizedUserName = "member2@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAECV5fXMzQDi9dohsPGI8isR2BHEbKhTNujmcyzwRCR+mg1isfegMUEin95wdLfJr6A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember2"
+                            UserName = "member2@gmail.com"
                         },
                         new
                         {
                             Id = 3,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "63962fdb-34d6-474d-8d48-e1a85dee0bcc",
+                            ConcurrencyStamp = "33dbca09-aeb1-4f80-a2b7-f256fb4bebaf",
                             Email = "member3@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name3",
                             Lastname = "LastName3",
                             LockoutEnabled = false,
                             NormalizedEmail = "member3@gmail.com",
-                            NormalizedUserName = "usermember3",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHiQOmCGTFoeW10TNHcXhmnFFMYgs3ezyHHOxfqyU0EvkovJt5VKShuwZmdHN+Hadg==",
+                            NormalizedUserName = "member3@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKY9aZ6oWqDl7Fn0Gd3JtfTwgXsRvoi0LNftiXcQpvikEBgcaxdWXXD2ukAq8jwMoA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember3"
+                            UserName = "member3@gmail.com"
                         },
                         new
                         {
                             Id = 4,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "ac522d43-e48b-4b87-88fc-b427f52c7a2a",
+                            ConcurrencyStamp = "fc2e3eea-9778-4a6f-bdd1-5e10992ed233",
                             Email = "member4@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name4",
                             Lastname = "LastName4",
                             LockoutEnabled = false,
                             NormalizedEmail = "member4@gmail.com",
-                            NormalizedUserName = "usermember4",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEA9ICsPTpdVw3+1WAKOfXze3VZewOGH9dcEgQHplcAc/i1Ceqh5lseswKMfN3i6ag==",
+                            NormalizedUserName = "member4@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPQ0WD6cv9WzUqnBJWP+7lUJLlDjNoFTVt/Myx73bMIlAWQxgBf7n2pDHyp8w3Oh1Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember4"
+                            UserName = "member4@gmail.com"
                         },
                         new
                         {
                             Id = 5,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "768375aa-cdb2-4694-bb17-9dfbe40339b0",
+                            ConcurrencyStamp = "5e851e25-55ba-43f3-9856-e59bc1fe747d",
                             Email = "member5@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name5",
                             Lastname = "LastName5",
                             LockoutEnabled = false,
                             NormalizedEmail = "member5@gmail.com",
-                            NormalizedUserName = "usermember5",
-                            PasswordHash = "AQAAAAIAAYagAAAAEH59NshKAk3nsLazOcdYh/J5ykMjA0iO46lKX+V6SfOtVU8YXBQ2sLknPWsX99KwxA==",
+                            NormalizedUserName = "member5@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKhmVr7EgpW7uTgk/pw6r/MhGsMH/p9WvTsuxyPSSx8hGWYvqp1Tu7oqdVBS0oGfxw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember5"
+                            UserName = "member5@gmail.com"
                         },
                         new
                         {
                             Id = 6,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "e35488f7-4f45-427f-af37-5747edfe6826",
+                            ConcurrencyStamp = "e5470176-d2f6-45c8-925a-8129dfc03ff0",
                             Email = "member6@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name6",
                             Lastname = "LastName6",
                             LockoutEnabled = false,
                             NormalizedEmail = "member6@gmail.com",
-                            NormalizedUserName = "usermember6",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFTWzT65nuClZt+RuXf7D0//n+ZWhkYJvj7ZejQdhZs8mB2PGnfosxgOoho5RBwn0w==",
+                            NormalizedUserName = "member6@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAkywam5t2vlm10myxUBxLs6WVGsqc25CfZxshlAQNBRi4YicbaK0a+JCSVDhNUr4w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember6"
+                            UserName = "member6@gmail.com"
                         },
                         new
                         {
                             Id = 7,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "9d8ed0af-af76-4952-bc42-9e25f072fd7c",
+                            ConcurrencyStamp = "f71a0e1e-9464-4a22-b8aa-d67e7b87fb7c",
                             Email = "member7@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name7",
                             Lastname = "LastName7",
                             LockoutEnabled = false,
                             NormalizedEmail = "member7@gmail.com",
-                            NormalizedUserName = "usermember7",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIc7boMFRhJIDl9daBi9qj/8Wl1w+8Ac17QhZ8GqNJLVcC0VA1i2wYuJZ3y+2TJ8Pg==",
+                            NormalizedUserName = "member7@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPEnDnfMC7bYc3snQIFf3QYDL7GeX5w/XVi1yca+U10afhC2Ypz+Ghzl8zPEJX2/tA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember7"
+                            UserName = "member7@gmail.com"
                         },
                         new
                         {
                             Id = 8,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "5751bcfb-6cc1-40d5-a287-e9a84792086a",
+                            ConcurrencyStamp = "c64ce08c-697e-49c8-a1b9-ce264a55b2f6",
                             Email = "member8@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name8",
                             Lastname = "LastName8",
                             LockoutEnabled = false,
                             NormalizedEmail = "member8@gmail.com",
-                            NormalizedUserName = "usermember8",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFI8kIJ479z7cW8shBUsV07IanuV6XQUTDPqb3+zf0KbgAGMQTheYM/IWGs58/8Ozg==",
+                            NormalizedUserName = "member8@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBua9UxZ7HougoMv3lHFq4EURL7WRYPfSOB4cqwxYJroccyL4Boq/sKh6xLtn3qrzA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember8"
+                            UserName = "member8@gmail.com"
                         },
                         new
                         {
                             Id = 9,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "55236333-a97d-4d5e-ba79-035aa8b361e5",
+                            ConcurrencyStamp = "fca3cf0b-70e7-40de-ba05-cefff3e826d7",
                             Email = "member9@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name9",
                             Lastname = "LastName9",
                             LockoutEnabled = false,
                             NormalizedEmail = "member9@gmail.com",
-                            NormalizedUserName = "usermember9",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM8s8tLv0k1DJ6FE8wfhC2sS4oG1vt1C8D6BDDqBMfAYhBcCWT2AwwPSYhK1tXeAmQ==",
+                            NormalizedUserName = "member9@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEP/i7V40tCiSqNTUw5mOP8fJ+NhfeLlEnuDm9rj1hU/MtqcWJS940j6wL4Qalu0fpw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember9"
+                            UserName = "member9@gmail.com"
                         },
                         new
                         {
                             Id = 10,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "a2908bc9-8030-4434-b6cc-c53815de5a61",
+                            ConcurrencyStamp = "c26237f5-5ff7-4b99-938c-a61bf6587611",
                             Email = "member10@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name10",
                             Lastname = "LastName10",
                             LockoutEnabled = false,
                             NormalizedEmail = "member10@gmail.com",
-                            NormalizedUserName = "usermember10",
-                            PasswordHash = "AQAAAAIAAYagAAAAECamzwy9zOyly1nw4fkWprYodiwFn5FaDuNG8+FivxJeCk25/X0BeMiOhTsIQk1OEw==",
+                            NormalizedUserName = "member10@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHIzdBBOGY6TgNxeNcO4pZGlb7hE79q2sAqj005y7X2qWouCSfo4XUOONggUyQa48Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember10"
+                            UserName = "member10@gmail.com"
                         },
                         new
                         {
                             Id = 11,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "81087c83-f45b-468d-a35a-1a058153a533",
+                            ConcurrencyStamp = "e22ebe66-51bf-4339-9781-653b59302f8c",
                             Email = "member11@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name11",
                             Lastname = "LastName11",
                             LockoutEnabled = false,
                             NormalizedEmail = "member11@gmail.com",
-                            NormalizedUserName = "usermember11",
-                            PasswordHash = "AQAAAAIAAYagAAAAED2rvqHpKt7yPHhsNvsiuK18mvF+fDTj+Dc0E4fn1ouE0cMPc/eQrDAbhIYrR6p2yA==",
+                            NormalizedUserName = "member11@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMOog9C8jGdmSdZpk3UVKuvDtynsNwAy4bNiOLuADfLoz8wLyX3aP8ePbObQUtMy8A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember11"
+                            UserName = "member11@gmail.com"
                         },
                         new
                         {
                             Id = 12,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "c194ea3d-7f83-4b69-a7e5-a7ffc3e583e1",
+                            ConcurrencyStamp = "e7f28444-9299-4f45-9784-46144df3f74b",
                             Email = "member12@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name12",
                             Lastname = "LastName12",
                             LockoutEnabled = false,
                             NormalizedEmail = "member12@gmail.com",
-                            NormalizedUserName = "usermember12",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI/Wr0ubRTex7BQHeEcdd1Dwq0JzBSa/TJinhKBuY72V2pl3xiYZESRSa8Wq8AzmYQ==",
+                            NormalizedUserName = "member12@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEM6wdubBnN+noJQg0Kolx4V63PVBuXt11wxeUS7V/T5AJzAuj16TAGPjcU6dllm9Zw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember12"
+                            UserName = "member12@gmail.com"
                         },
                         new
                         {
                             Id = 13,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "cffd9ed4-a7b7-46ce-9bad-d8a54b4dfe2c",
+                            ConcurrencyStamp = "a459d597-2609-4c32-a2ca-2da0a04ea7ce",
                             Email = "member13@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name13",
                             Lastname = "LastName13",
                             LockoutEnabled = false,
                             NormalizedEmail = "member13@gmail.com",
-                            NormalizedUserName = "usermember13",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMUiRr1ptljIHndrHRrMtRW3FmUkQm5YKHvhsImcP+abeq1cFVcVP8ui34bz2YCdvA==",
+                            NormalizedUserName = "member13@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAENOHZBsqVgSFx6KPqLus1Z9zmfWbZEzOJGcERnuEZPXST8C+J+wfXZUkYU2C85yCcQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember13"
+                            UserName = "member13@gmail.com"
                         },
                         new
                         {
                             Id = 14,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "18689702-db88-4c2e-8ac8-219d128de8a9",
+                            ConcurrencyStamp = "07ec0257-ec19-419d-9445-99a7fc829e68",
                             Email = "member14@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name14",
                             Lastname = "LastName14",
                             LockoutEnabled = false,
                             NormalizedEmail = "member14@gmail.com",
-                            NormalizedUserName = "usermember14",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMGc9iJjlV+Sr0dlm8+/zm5neXkyC4OSXp38BD66xCqsScpGlHuBojR8y7oH0vDbpg==",
+                            NormalizedUserName = "member14@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBm7w3dyxEbZ6xID6UB9IX/f3Ypb4a20g+9g0XSGSRzFGNwkbB0QFSiD7pFaXAHuEw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember14"
+                            UserName = "member14@gmail.com"
                         },
                         new
                         {
                             Id = 15,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "66042d8a-40bc-4ae4-bb5b-42c1d385eb14",
+                            ConcurrencyStamp = "43116717-3b4a-437a-8773-3876ab211469",
                             Email = "member15@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name15",
                             Lastname = "LastName15",
                             LockoutEnabled = false,
                             NormalizedEmail = "member15@gmail.com",
-                            NormalizedUserName = "usermember15",
-                            PasswordHash = "AQAAAAIAAYagAAAAEO7d30fa9Kj1EjrmeSswU2dq4uFu5X6N8E5GqSVZ+zIuO8y7nRMpqCfbcmXxnpp1/A==",
+                            NormalizedUserName = "member15@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO9J7nWBGZaEOi7X9VuWPdI5urjNoaWjoX5fzSWDXVeLNRRPdlZGkU0O39Etd7HY3g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember15"
+                            UserName = "member15@gmail.com"
                         },
                         new
                         {
                             Id = 16,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "a2c29440-23b0-41f0-bb12-db9f32f0ed15",
+                            ConcurrencyStamp = "2cfd4a82-2390-4f01-ae6f-fe68967937ce",
                             Email = "member16@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name16",
                             Lastname = "LastName16",
                             LockoutEnabled = false,
                             NormalizedEmail = "member16@gmail.com",
-                            NormalizedUserName = "usermember16",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFOTcfmjog2gJkEtLLcNvLTQt2CYHAxVXxpx42p4Qtx0RSN6UIg6rQyLNXCVp9svlQ==",
+                            NormalizedUserName = "member16@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBIj2R1JrQEWpRegAlLjrcSsuW1SYUr9dlAtrXuOIYVQZd7AZF6NR1exlMOQhybnAQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember16"
+                            UserName = "member16@gmail.com"
                         },
                         new
                         {
                             Id = 17,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "81c71f8d-094d-4517-8cf4-ddd664094c5c",
+                            ConcurrencyStamp = "0748853c-28cd-4834-aeb2-b05c568c097f",
                             Email = "member17@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name17",
                             Lastname = "LastName17",
                             LockoutEnabled = false,
                             NormalizedEmail = "member17@gmail.com",
-                            NormalizedUserName = "usermember17",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBaTTbrkRnNGRtLlP5gipt2LEqLILcQUUHitf/vnPoiOXsRz4CLhsTpI7frrQ0hszA==",
+                            NormalizedUserName = "member17@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPCTcwInCqft5YBSvxj22QD+2zTpLkak7zn7XcThoMcWGzUcjvOZBvRUqpZFlWvQKA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember17"
+                            UserName = "member17@gmail.com"
                         },
                         new
                         {
                             Id = 18,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "348dc881-054b-4507-9af4-e9f8ea95abea",
+                            ConcurrencyStamp = "c8c7e322-8283-49e8-883c-3f92d52c4570",
                             Email = "member18@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name18",
                             Lastname = "LastName18",
                             LockoutEnabled = false,
                             NormalizedEmail = "member18@gmail.com",
-                            NormalizedUserName = "usermember18",
-                            PasswordHash = "AQAAAAIAAYagAAAAENUKJHiMVTvoBrve58P7Usm5vf9eag6lXcCNOdLHrrdhRZ88FLOovIz2eIEQmY6flQ==",
+                            NormalizedUserName = "member18@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFwmYkyj3SftA16fVveL+ppd89TsaC9C4FNM8Ck0rTtpvGg/qY7S4rK516DCJ6aNRg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember18"
+                            UserName = "member18@gmail.com"
                         },
                         new
                         {
                             Id = 19,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "fb8e08ca-1a47-422d-81c0-2e6b8a1e228a",
+                            ConcurrencyStamp = "f05320e5-38ba-4d2e-8053-408d76422b9f",
                             Email = "member19@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name19",
                             Lastname = "LastName19",
                             LockoutEnabled = false,
                             NormalizedEmail = "member19@gmail.com",
-                            NormalizedUserName = "usermember19",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFg8pHmjRVWHaNUyBJfTkkHBqri2KMZFQRORVMQPcSas2A/31A+3o5oEwVbzjJl56A==",
+                            NormalizedUserName = "member19@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHORWVMx/meFT2T3/prZYC0sAQ1uiJCsH+GFmnBK/01z5MgwCQHVev4EY0lkYbb8pA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember19"
+                            UserName = "member19@gmail.com"
                         },
                         new
                         {
                             Id = 20,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "281f458b-5982-4376-b050-0197e89c81a5",
+                            ConcurrencyStamp = "4958e7f0-2a1c-4544-b605-84c180d6a58e",
                             Email = "member20@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name20",
                             Lastname = "LastName20",
                             LockoutEnabled = false,
                             NormalizedEmail = "member20@gmail.com",
-                            NormalizedUserName = "usermember20",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMdphJKBC1Neq/VXP21NaF1PmSvF8VFncjqa7KjeSwYG2w+Wrx1ge2Sj+/N3Tlkcrw==",
+                            NormalizedUserName = "member20@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAECWJgpOGUkPhCz1iImcdQojHwysSCh16YjHK/DhyO4PK2vGkpbL4hzvSIIg08DF31w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember20"
+                            UserName = "member20@gmail.com"
                         },
                         new
                         {
                             Id = 21,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "6d237951-46f7-40d7-ab10-96485e0f7235",
+                            ConcurrencyStamp = "d1c20886-5667-486d-b585-311ac3a14750",
                             Email = "member21@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name21",
                             Lastname = "LastName21",
                             LockoutEnabled = false,
                             NormalizedEmail = "member21@gmail.com",
-                            NormalizedUserName = "usermember21",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDX1QaXRliv6rMwglAkCqex38mxWX0yN/dUqX8Z1RuLG4mjxIQVHyosIr64ttGUdrA==",
+                            NormalizedUserName = "member21@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFegtDDh2Intpq9e04gmJZnR4s8NMvEE6Gk9t5oPpfDai9zruJys1AQjFsHk5szm6w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember21"
+                            UserName = "member21@gmail.com"
                         },
                         new
                         {
                             Id = 22,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "390d8bea-77a4-4538-8217-0cab5b10bb66",
+                            ConcurrencyStamp = "068ddf31-1637-4fab-a1ce-74c16d05241c",
                             Email = "member22@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name22",
                             Lastname = "LastName22",
                             LockoutEnabled = false,
                             NormalizedEmail = "member22@gmail.com",
-                            NormalizedUserName = "usermember22",
-                            PasswordHash = "AQAAAAIAAYagAAAAEF15ZRSO8H6PzyrhuniVnDLILPBDtzVYNLn6y6JjoEKTbxmps0wIT9nfGzCxzBOy3A==",
+                            NormalizedUserName = "member22@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFlqRcHIl1rZBIYSDBKWru48nzULTMUVRrQ+W/OxFlmzXdPnLeqoKmd/eXa4FIb7LQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember22"
+                            UserName = "member22@gmail.com"
                         },
                         new
                         {
                             Id = 23,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "60f3e8a6-6ef5-4ba9-b5ca-aa68dd100d39",
+                            ConcurrencyStamp = "72492f91-1cf1-4b01-9745-4a29fb6f242e",
                             Email = "member23@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name23",
                             Lastname = "LastName23",
                             LockoutEnabled = false,
                             NormalizedEmail = "member23@gmail.com",
-                            NormalizedUserName = "usermember23",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJp2Dca5JgV9fn+qCDpY15PgE+UqfqNwcWNU7nDbHXYZ52XfrcbBmq54no9DoV1Icw==",
+                            NormalizedUserName = "member23@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAECmW6cv9WfASXAhEMXArQb5ZU3g2kF9APbVUwVX5vWTAAdS5upJAAy0mk2x72Cg84g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember23"
+                            UserName = "member23@gmail.com"
                         },
                         new
                         {
                             Id = 24,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "40097d09-03fe-4b69-880c-0954f4cd2ff7",
+                            ConcurrencyStamp = "ea9b75ed-482e-4555-82a5-9456a01517cf",
                             Email = "member24@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name24",
                             Lastname = "LastName24",
                             LockoutEnabled = false,
                             NormalizedEmail = "member24@gmail.com",
-                            NormalizedUserName = "usermember24",
-                            PasswordHash = "AQAAAAIAAYagAAAAELXL6sfHEwFXsMBHP4tPMF8wfKKPvsrZSdj5QwuH7AKYNd8/HDwZ7AnkthZCDR+w9w==",
+                            NormalizedUserName = "member24@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOcRYDqHkODqL9CzZRK99iZIPIW2/qUVUnj+jojFdsZFptLwzNGKrX8RfWiozdHwcg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember24"
+                            UserName = "member24@gmail.com"
                         },
                         new
                         {
                             Id = 25,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "e5d57c93-c97a-4318-ac03-c9dfde669c37",
+                            ConcurrencyStamp = "3e5334ce-c3de-4f20-b74d-e779da12cf00",
                             Email = "member25@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name25",
                             Lastname = "LastName25",
                             LockoutEnabled = false,
                             NormalizedEmail = "member25@gmail.com",
-                            NormalizedUserName = "usermember25",
-                            PasswordHash = "AQAAAAIAAYagAAAAEG4RiECn/2zy6BUDLcm3ui4mIUj8nXfm/SPOiTms0hQUKfVFDsnQAbHQszosG8bVOw==",
+                            NormalizedUserName = "member25@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMWop247ubA/YLMM+FBe3nsMMk9zLEIWBrUN4R/E1JLd3GBbA1ttkAEfiU9ITdFfFQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember25"
+                            UserName = "member25@gmail.com"
                         },
                         new
                         {
                             Id = 26,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "9b10fc5f-456a-4ad3-b628-73f69a61b655",
+                            ConcurrencyStamp = "4adb5981-3be9-46d5-a1db-f9f0cb52d760",
                             Email = "member26@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name26",
                             Lastname = "LastName26",
                             LockoutEnabled = false,
                             NormalizedEmail = "member26@gmail.com",
-                            NormalizedUserName = "usermember26",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAgynsZXMutrBa0iWvDfp61bLK2JzExL1X4gNnzJZ3myJRRxp9ykwbmJ13g7PvxbZg==",
+                            NormalizedUserName = "member26@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEE6NWPyMLOkai+rnZ7J0/N+ATw6ewGOrzXgkrBkfC/ieOKBJ/P0PtbURTGRf0b540Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember26"
+                            UserName = "member26@gmail.com"
                         },
                         new
                         {
                             Id = 27,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "52cb90ba-2500-4c15-b812-a9ecfd444b6c",
+                            ConcurrencyStamp = "4841fcab-3824-4f58-a4b6-b0a2dda2ce0e",
                             Email = "member27@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name27",
                             Lastname = "LastName27",
                             LockoutEnabled = false,
                             NormalizedEmail = "member27@gmail.com",
-                            NormalizedUserName = "usermember27",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHnKj1nbl4xSNtm86miSFzQ9Ei8fVqzNgh4OfN3bNgNA8RWN5g96dOvxIt4x/DawcQ==",
+                            NormalizedUserName = "member27@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMp1867rtAvFd16LcHUfGHkgt5gBnk2QGV/03zxQTJtK0Iv2CQO7UTK+9jRYQ0ouKg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember27"
+                            UserName = "member27@gmail.com"
                         },
                         new
                         {
                             Id = 28,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "59c40c2e-c357-42c0-8049-e49ed0de33bc",
+                            ConcurrencyStamp = "fd83b081-4654-4352-8269-a9a491941301",
                             Email = "member28@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name28",
                             Lastname = "LastName28",
                             LockoutEnabled = false,
                             NormalizedEmail = "member28@gmail.com",
-                            NormalizedUserName = "usermember28",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAaz59uLgCWNBcCUFWx0UJO3tdGwLAGo/13HfgLseYz9sXWJurdUwrLhHhuK9xEtgQ==",
+                            NormalizedUserName = "member28@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEB+UbAo1/f+Hmx6YkFY/XEny9Mp2klzJ4/92aEkFxrJPwfIO+Imv/zQ+NsFs17f7vQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember28"
+                            UserName = "member28@gmail.com"
                         },
                         new
                         {
                             Id = 29,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "04d46b7d-cda1-427d-a3c1-ff0b6de9e213",
+                            ConcurrencyStamp = "87361fe4-c3b7-48b0-bd1f-ce06d42c0e20",
                             Email = "member29@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name29",
                             Lastname = "LastName29",
                             LockoutEnabled = false,
                             NormalizedEmail = "member29@gmail.com",
-                            NormalizedUserName = "usermember29",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAlkeEppFoJ7OqaoQiSvtsE5Keyv8QJ6ZBHCtOmZeHYnfwf5hYjdi1aZ0hdOo7xhHQ==",
+                            NormalizedUserName = "member29@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAECzMBk1mTwgPMyE+jWeDKRRPHM3aFFWyfi1oWsIuI+l8DL3IiLYNHL+Mly7fSvLJow==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember29"
+                            UserName = "member29@gmail.com"
                         },
                         new
                         {
                             Id = 30,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "fad9af76-5774-42f7-82b5-e83a7361fbc7",
+                            ConcurrencyStamp = "c33d9f3e-1ddd-4e04-995f-e6452214da31",
                             Email = "member30@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name30",
                             Lastname = "LastName30",
                             LockoutEnabled = false,
                             NormalizedEmail = "member30@gmail.com",
-                            NormalizedUserName = "usermember30",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKb3b/X+2VAbzDZx1jncxE960117liQxxDNtDsJmheQrI/I36SAmAtWZf/Q45B/lMg==",
+                            NormalizedUserName = "member30@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAED4XA+o+L6DgztON5Iogr0/LIXkqqCyLYDmNDc+aOj8bfDbjMhcBBMrJ8w/FxSZ9fA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserMember30"
+                            UserName = "member30@gmail.com"
                         },
                         new
                         {
                             Id = 31,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "15b77a1a-537d-4d67-b871-5dd8d1a5b517",
+                            ConcurrencyStamp = "a0990dcf-eb45-4643-a591-985a8b8f934a",
                             Email = "teacher31@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name31",
                             Lastname = "LastName31",
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher31@gmail.com",
-                            NormalizedUserName = "userteacher31",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGPjuYEysmemr9/uAABWm2UkzwI0TJ1WXtD5tqJKaVtLAkVHwZsITpjjU17ebwFHJA==",
+                            NormalizedUserName = "teacher31@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPEI+DcKoG+ImQsfySNpuf/SooMmonLunh+e2hH3MLqv/dItII6GmdVpQgHdmO5kfg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserTeacher31"
+                            UserName = "teacher31@gmail.com"
                         },
                         new
                         {
                             Id = 32,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "a2f16274-8698-4815-8a14-8bfdfd7b824f",
+                            ConcurrencyStamp = "07901a54-6b36-4dba-b9c8-7c7a1361b81a",
                             Email = "teacher32@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name32",
                             Lastname = "LastName32",
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher32@gmail.com",
-                            NormalizedUserName = "userteacher32",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMprAwdWHiK8jeNgLvyaWX0tK8ZiLdRKvY0MrrE1ipnIp1KMrg7T48nYQ2D6ASWOvQ==",
+                            NormalizedUserName = "teacher32@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAELTEgNof/Xji8uIY7NTO4ZTmsMrNMUw84DHi8fH5DuPlOTec5V0Ti5tOCNbNmiHFiw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserTeacher32"
+                            UserName = "teacher32@gmail.com"
                         },
                         new
                         {
                             Id = 33,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "469fbc0e-8ec8-48bd-8b64-26669a00ddfd",
+                            ConcurrencyStamp = "277acb5b-8e37-4a66-9efb-4cfacc18cdf1",
                             Email = "teacher33@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name33",
                             Lastname = "LastName33",
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher33@gmail.com",
-                            NormalizedUserName = "userteacher33",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJBHyV12MZKPKLXKuW1BdG4juUQt4QdO4FdzyGfxeCbdjodux+MA17jnXPqbHLLA4A==",
+                            NormalizedUserName = "teacher33@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEClCninLHXz7PM2m83X5mDVNom+wjteKBiaxZc/fqV/J4S6ZA3yxfa1AOBfIHjdTDA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserTeacher33"
+                            UserName = "teacher33@gmail.com"
                         },
                         new
                         {
                             Id = 34,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "bb50f826-1d9b-40b8-9708-a26060d7f102",
+                            ConcurrencyStamp = "eccf6133-8462-45ee-9c8d-3c758adf83d3",
                             Email = "teacher34@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name34",
                             Lastname = "LastName34",
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher34@gmail.com",
-                            NormalizedUserName = "userteacher34",
-                            PasswordHash = "AQAAAAIAAYagAAAAENgzN/mACcuDZEAaRDngiqsh2EQWtM4wfWzFs6qtdsRQa1pZcvkHJ05uiT10q1lzAg==",
+                            NormalizedUserName = "teacher34@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAgabVT679L1PwoK/8XrhJTBCVwXD5x3bQEHwcSga0pCFyKvBxxs3tR4tMX1ZyAWLg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserTeacher34"
+                            UserName = "teacher34@gmail.com"
                         },
                         new
                         {
                             Id = 35,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "afbe7b6a-6cdc-4d99-a191-bcf7ec96ee79",
+                            ConcurrencyStamp = "6cb718b2-c7a8-4808-ae26-7dd2edbded40",
                             Email = "teacher35@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name35",
                             Lastname = "LastName35",
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher35@gmail.com",
-                            NormalizedUserName = "userteacher35",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDWXFOGVSGOrLKrF6O+vyzgRhx70JlcO6+j+nZiL7KNA2pUdKLXVS7jjtht3ZZ9oPA==",
+                            NormalizedUserName = "teacher35@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBa/3qfg39Rnhu4KyKFaxanFbtLY2i5a1ER8UEqGaTDh6O8mY1GxYrQ5X+avRUdQZQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserTeacher35"
+                            UserName = "teacher35@gmail.com"
                         },
                         new
                         {
                             Id = 36,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "1cb04979-21f2-4247-b2ad-008a7f176c58",
+                            ConcurrencyStamp = "a9ff8820-82a3-4486-a926-8b70fd6c7ed9",
                             Email = "teacher36@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name36",
                             Lastname = "LastName36",
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher36@gmail.com",
-                            NormalizedUserName = "userteacher36",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJZtLDXgjTYOmlBKxT2VlI1ibKt3wv1PFm79+p+eXa/gRBUXalL9glflkxpnihe3kg==",
+                            NormalizedUserName = "teacher36@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAELs6mQIG+7dsukGg/j06yMz/ynriXkLsP/40inBR9nhBF4AfyVR/SG5SXz+l5QJSOA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserTeacher36"
+                            UserName = "teacher36@gmail.com"
                         },
                         new
                         {
                             Id = 37,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "7015266c-6bb5-4ba8-a93f-a02d621867d0",
+                            ConcurrencyStamp = "2029bb2e-58ac-4ca1-9b36-cedf283a28c2",
                             Email = "teacher37@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name37",
                             Lastname = "LastName37",
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher37@gmail.com",
-                            NormalizedUserName = "userteacher37",
-                            PasswordHash = "AQAAAAIAAYagAAAAEO0z4bFoUU5DXJOf2+EQW/XV3/ZOQiwJL2qhUES56gJ6eE6qUhT7twc5FcAR9J9YIg==",
+                            NormalizedUserName = "teacher37@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHpZqAg9oBaw7J2gssz6sHOt22K7AFhsveeRGmDVE5Rcs0LrMiE1C6MC/FdvjZ0acw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserTeacher37"
+                            UserName = "teacher37@gmail.com"
                         },
                         new
                         {
                             Id = 38,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "fece090f-d940-433d-824f-096d9427a733",
+                            ConcurrencyStamp = "9479ea77-8aad-4fd4-84bc-cad679f252fb",
                             Email = "teacher38@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name38",
                             Lastname = "LastName38",
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher38@gmail.com",
-                            NormalizedUserName = "userteacher38",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOzYQbsPQAF0vaMsuXOiTuRY7aGf8GmahljqFuBPVRRf2iaRczujQ8g+AQeuBocWqQ==",
+                            NormalizedUserName = "teacher38@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDp+obl/8pOZ6RsXpKRude/3Mlm75YISb1naIsn3fZ84szpDqnksvq4Xic0+5CHuPg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserTeacher38"
+                            UserName = "teacher38@gmail.com"
                         },
                         new
                         {
                             Id = 39,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "944840a2-1d43-468a-ac45-1995acd745b5",
+                            ConcurrencyStamp = "e09d9528-e046-4fca-94a3-220f555a6d64",
                             Email = "teacher39@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name39",
                             Lastname = "LastName39",
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher39@gmail.com",
-                            NormalizedUserName = "userteacher39",
-                            PasswordHash = "AQAAAAIAAYagAAAAEE2ha3K53RWQrJGVAUibhFKSx291Cc7sJJhKnUk/QOo2NszOKr3g6WZElYtYgSK00A==",
+                            NormalizedUserName = "teacher39@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMa3+TiWefH+kaeOzK1/8Efh+f1Thq4Yp+FXa+jjNy4FyFt8FiLmGF89wf4sXT3JkQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserTeacher39"
+                            UserName = "teacher39@gmail.com"
                         },
                         new
                         {
                             Id = 40,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "bb6c5ee0-f5fe-419b-bb29-7f440614665a",
+                            ConcurrencyStamp = "f5302274-a9fa-4a15-8b02-4873322d359e",
                             Email = "teacher40@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name40",
                             Lastname = "LastName40",
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher40@gmail.com",
-                            NormalizedUserName = "userteacher40",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIAymWo80Ol6ieFhlaqdodc90Gx7t5rpbd3iY6sP9gMHTvabL7enVvm03liaZGKCxg==",
+                            NormalizedUserName = "teacher40@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL5EXjS2d+oyljEDVrDezM6+alCuI0MoyUqAojCXTABCdXbwLOpRGJDhml2+ABoUmQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserTeacher40"
+                            UserName = "teacher40@gmail.com"
                         },
                         new
                         {
                             Id = 41,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "ff9af491-28bf-4571-93eb-b496012604c5",
+                            ConcurrencyStamp = "fe3e0a7f-d38f-4c02-b2eb-05e38fabe9d6",
                             Email = "staff41@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name41",
                             Lastname = "LastName41",
                             LockoutEnabled = false,
                             NormalizedEmail = "staff41@gmail.com",
-                            NormalizedUserName = "userstaff41",
-                            PasswordHash = "AQAAAAIAAYagAAAAECdhqOQGBaMdtSPFCvihJZ7FbDkqvuyKw2uNu++BXy6w2BqHDxSmKddYwMFCQ3/a6g==",
+                            NormalizedUserName = "staff41@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO5z4k1Pic8g+zN3IWSpRZXTjtouDVVKwl402GsWJKv9QUD0GAnhbyVt7BgkO/78aw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserStaff41"
+                            UserName = "staff41@gmail.com"
                         },
                         new
                         {
                             Id = 42,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "e905d94d-18ff-432a-b17c-a4bd26bb6794",
+                            ConcurrencyStamp = "94e4dd14-8db4-4bbd-80a6-73f600c0d36b",
                             Email = "staff42@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name42",
                             Lastname = "LastName42",
                             LockoutEnabled = false,
                             NormalizedEmail = "staff42@gmail.com",
-                            NormalizedUserName = "userstaff42",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEwCza9KTEPaE16H6jluYNmZaZ2Wd7EpQb0vX9v9v2ueKefZIjhgnUiDSaKblN0Axg==",
+                            NormalizedUserName = "staff42@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHNZJCmCnOnHE8pwkwQHdft41Lf7MTZoJCNUv4qbRD/xKMkThrntmd3Dy89GvdJ3dQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserStaff42"
+                            UserName = "staff42@gmail.com"
                         },
                         new
                         {
                             Id = 43,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "98e9dc71-fffa-4874-9df1-01f5be68d4c0",
+                            ConcurrencyStamp = "4cde2bb6-ba11-46a4-98a0-a2bafcf54ca0",
                             Email = "staff43@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name43",
                             Lastname = "LastName43",
                             LockoutEnabled = false,
                             NormalizedEmail = "staff43@gmail.com",
-                            NormalizedUserName = "userstaff43",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIHrVJRwlHRBGIE84Ua3WclQWynx2I0fmrB8KH9w/Dcn/0eJSR7xhwLMhyJAhcmnBw==",
+                            NormalizedUserName = "staff43@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAENM1FhRv7zetLUggrogcvecmzvgCSJeIvdOeh5raVWo5ps0FMchx/6klbibnmgBVPA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserStaff43"
+                            UserName = "staff43@gmail.com"
                         },
                         new
                         {
                             Id = 44,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "19a6a070-ea78-49cf-9d3b-7c29ac9d549f",
+                            ConcurrencyStamp = "fe2f444b-2c04-494a-a81e-1d6e825cce7d",
                             Email = "staff44@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name44",
                             Lastname = "LastName44",
                             LockoutEnabled = false,
                             NormalizedEmail = "staff44@gmail.com",
-                            NormalizedUserName = "userstaff44",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHn6YKRQYrcP9YkJd4Qf5Lpf5Hl527el8vDburGae3eDEKhgmMtlJkIa+xf3d2lvXg==",
+                            NormalizedUserName = "staff44@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAMKgMcrp0veE3o0KpoMbMV0k3MHvY5xuNeJzqOZIH7u4B+DnUzdXVwzhUznB1HUOg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserStaff44"
+                            UserName = "staff44@gmail.com"
                         },
                         new
                         {
                             Id = 45,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "f2d285a8-0ca7-483c-a0f5-99ba2c842e76",
+                            ConcurrencyStamp = "6aa9ecfd-b02c-47bb-9989-7a87d124c99f",
                             Email = "staff45@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name45",
                             Lastname = "LastName45",
                             LockoutEnabled = false,
                             NormalizedEmail = "staff45@gmail.com",
-                            NormalizedUserName = "userstaff45",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDh1JOqxnce9h40+Ohd3PCe0MdH3uoQHPeiRAPQxh4oQdrXBkt0V+Bby6davZ+6TNw==",
+                            NormalizedUserName = "staff45@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMGQrpnJ4u8Or0WJ7h8wqTTdsdL0OI3daygYU0mA5Rir2FwT6uDeGz8uf1jhONKmLA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserStaff45"
+                            UserName = "staff45@gmail.com"
                         },
                         new
                         {
                             Id = 46,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "782038e0-ebb1-4b64-b735-8545c6cfc3f5",
+                            ConcurrencyStamp = "9a1f7e5a-e539-4fbf-8f7d-51a9b0b53cae",
                             Email = "admin46@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name46",
                             Lastname = "LastName46",
                             LockoutEnabled = false,
                             NormalizedEmail = "admin46@gmail.com",
-                            NormalizedUserName = "useradmin46",
-                            PasswordHash = "AQAAAAIAAYagAAAAEK4Rr5fv7J3ltPFenMgcpwu5W0jpOhXgopGXjCHQk3GC4Ka7Yf4B0CH6Hw8ZUQVw0Q==",
+                            NormalizedUserName = "admin46@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPKyrs7cRLZwUysa15419A3NLCH1CD1Zu+uLEiVcFuCKlJSu/KkHRvflE79CfsCa8Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
                             TwoFactorEnabled = false,
-                            UserName = "UserAdmin46"
+                            UserName = "admin46@gmail.com"
                         });
                 });
 
@@ -1588,7 +1588,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course1",
                             Price = 100.0,
-                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6358)
+                            StartDate = new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2648)
                         },
                         new
                         {
@@ -1599,7 +1599,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course2",
                             Price = 200.0,
-                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6378)
+                            StartDate = new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2720)
                         },
                         new
                         {
@@ -1610,7 +1610,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course3",
                             Price = 300.0,
-                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6382)
+                            StartDate = new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2756)
                         },
                         new
                         {
@@ -1621,7 +1621,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course4",
                             Price = 400.0,
-                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6386)
+                            StartDate = new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2760)
                         },
                         new
                         {
@@ -1632,7 +1632,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course5",
                             Price = 500.0,
-                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6389)
+                            StartDate = new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2763)
                         },
                         new
                         {
@@ -1643,7 +1643,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course6",
                             Price = 600.0,
-                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6393)
+                            StartDate = new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2768)
                         },
                         new
                         {
@@ -1654,7 +1654,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course7",
                             Price = 700.0,
-                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6396)
+                            StartDate = new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2771)
                         },
                         new
                         {
@@ -1665,7 +1665,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course8",
                             Price = 800.0,
-                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6400)
+                            StartDate = new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2774)
                         },
                         new
                         {
@@ -1676,7 +1676,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course9",
                             Price = 900.0,
-                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6403)
+                            StartDate = new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2778)
                         },
                         new
                         {
@@ -1687,7 +1687,7 @@ namespace YogaManagement.Database.Migrations
                             IsActive = true,
                             Name = "Course10",
                             Price = 1000.0,
-                            StartDate = new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6408)
+                            StartDate = new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2782)
                         });
                 });
 
@@ -1916,23 +1916,19 @@ namespace YogaManagement.Database.Migrations
                         });
                 });
 
-            modelBuilder.Entity("YogaManagement.Domain.Models.SystemWallet", b =>
+            modelBuilder.Entity("YogaManagement.Domain.Models.Schedule", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("TimeSlotId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<int>("YogaClassId")
+                        .HasColumnType("int");
 
-                    b.Property<double>("Balance")
-                        .HasColumnType("float");
+                    b.HasKey("TimeSlotId", "YogaClassId");
 
-                    b.Property<DateTime>("LastUpdated")
-                        .HasColumnType("datetime2");
+                    b.HasIndex("YogaClassId");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("SystemWallet");
+                    b.ToTable("Schedule");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.TeacherEnrollment", b =>
@@ -2036,6 +2032,24 @@ namespace YogaManagement.Database.Migrations
                             Id = 40,
                             AppUserId = 40
                         });
+                });
+
+            modelBuilder.Entity("YogaManagement.Domain.Models.TeacherSchedule", b =>
+                {
+                    b.Property<int>("TimeSlotId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsTaken")
+                        .HasColumnType("bit");
+
+                    b.HasKey("TimeSlotId", "TeacherProfileId");
+
+                    b.HasIndex("TeacherProfileId");
+
+                    b.ToTable("TeacherSchedule");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.TimeSlot", b =>
@@ -2520,6 +2534,10 @@ namespace YogaManagement.Database.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -2544,18 +2562,345 @@ namespace YogaManagement.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Balance")
                         .HasColumnType("float");
 
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsAdminWallet")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MemberId")
+                    b.HasIndex("AppUserId")
                         .IsUnique();
 
                     b.ToTable("Wallets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AppUserId = 1,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AppUserId = 2,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AppUserId = 3,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AppUserId = 4,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AppUserId = 5,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AppUserId = 6,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AppUserId = 7,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AppUserId = 8,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AppUserId = 9,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AppUserId = 10,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AppUserId = 11,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AppUserId = 12,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AppUserId = 13,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AppUserId = 14,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AppUserId = 15,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 16,
+                            AppUserId = 16,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 17,
+                            AppUserId = 17,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 18,
+                            AppUserId = 18,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 19,
+                            AppUserId = 19,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 20,
+                            AppUserId = 20,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 21,
+                            AppUserId = 21,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 22,
+                            AppUserId = 22,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 23,
+                            AppUserId = 23,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 24,
+                            AppUserId = 24,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 25,
+                            AppUserId = 25,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 26,
+                            AppUserId = 26,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 27,
+                            AppUserId = 27,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 28,
+                            AppUserId = 28,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 29,
+                            AppUserId = 29,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 30,
+                            AppUserId = 30,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 31,
+                            AppUserId = 31,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 32,
+                            AppUserId = 32,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 33,
+                            AppUserId = 33,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 34,
+                            AppUserId = 34,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 35,
+                            AppUserId = 35,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 36,
+                            AppUserId = 36,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 37,
+                            AppUserId = 37,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 38,
+                            AppUserId = 38,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 39,
+                            AppUserId = 39,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 40,
+                            AppUserId = 40,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 41,
+                            AppUserId = 41,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 42,
+                            AppUserId = 42,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 43,
+                            AppUserId = 43,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 44,
+                            AppUserId = 44,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 45,
+                            AppUserId = 45,
+                            Balance = 0.0,
+                            IsAdminWallet = false
+                        },
+                        new
+                        {
+                            Id = 46,
+                            AppUserId = 46,
+                            Balance = 0.0,
+                            IsAdminWallet = true
+                        });
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.YogaClass", b =>
@@ -2790,6 +3135,25 @@ namespace YogaManagement.Database.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("YogaManagement.Domain.Models.Schedule", b =>
+                {
+                    b.HasOne("YogaManagement.Domain.Models.TimeSlot", "TimeSlot")
+                        .WithMany()
+                        .HasForeignKey("TimeSlotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YogaManagement.Domain.Models.YogaClass", "YogaClass")
+                        .WithMany()
+                        .HasForeignKey("YogaClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TimeSlot");
+
+                    b.Navigation("YogaClass");
+                });
+
             modelBuilder.Entity("YogaManagement.Domain.Models.TeacherEnrollment", b =>
                 {
                     b.HasOne("YogaManagement.Domain.Models.TeacherProfile", "TeacherProfile")
@@ -2820,6 +3184,25 @@ namespace YogaManagement.Database.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("YogaManagement.Domain.Models.TeacherSchedule", b =>
+                {
+                    b.HasOne("YogaManagement.Domain.Models.TeacherProfile", "TeacherProfile")
+                        .WithMany()
+                        .HasForeignKey("TeacherProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YogaManagement.Domain.Models.TimeSlot", "TimeSlot")
+                        .WithMany()
+                        .HasForeignKey("TimeSlotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TeacherProfile");
+
+                    b.Navigation("TimeSlot");
+                });
+
             modelBuilder.Entity("YogaManagement.Domain.Models.Transaction", b =>
                 {
                     b.HasOne("YogaManagement.Domain.Models.Wallet", "Wallet")
@@ -2833,13 +3216,13 @@ namespace YogaManagement.Database.Migrations
 
             modelBuilder.Entity("YogaManagement.Domain.Models.Wallet", b =>
                 {
-                    b.HasOne("YogaManagement.Domain.Models.Member", "Member")
+                    b.HasOne("YogaManagement.Domain.Models.AppUser", "AppUser")
                         .WithOne("Wallet")
-                        .HasForeignKey("YogaManagement.Domain.Models.Wallet", "MemberId")
+                        .HasForeignKey("YogaManagement.Domain.Models.Wallet", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Member");
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.YogaClass", b =>
@@ -2858,6 +3241,8 @@ namespace YogaManagement.Database.Migrations
                     b.Navigation("Member");
 
                     b.Navigation("TeacherProfile");
+
+                    b.Navigation("Wallet");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.Category", b =>
@@ -2873,8 +3258,6 @@ namespace YogaManagement.Database.Migrations
             modelBuilder.Entity("YogaManagement.Domain.Models.Member", b =>
                 {
                     b.Navigation("Enrollments");
-
-                    b.Navigation("Wallet");
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.TeacherProfile", b =>

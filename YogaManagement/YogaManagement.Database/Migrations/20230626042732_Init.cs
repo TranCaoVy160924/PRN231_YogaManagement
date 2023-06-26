@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace YogaManagement.Database.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -71,20 +71,6 @@ namespace YogaManagement.Database.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SystemWallet",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Balance = table.Column<double>(type: "float", nullable: false),
-                    LastUpdated = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SystemWallet", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -250,6 +236,27 @@ namespace YogaManagement.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Wallets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Balance = table.Column<double>(type: "float", nullable: false),
+                    IsAdminWallet = table.Column<bool>(type: "bit", nullable: false),
+                    AppUserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Wallets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Wallets_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Courses",
                 columns: table => new
                 {
@@ -270,26 +277,6 @@ namespace YogaManagement.Database.Migrations
                         name: "FK_Courses_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Wallets",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Balance = table.Column<double>(type: "float", nullable: false),
-                    MemberId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Wallets", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Wallets_Members_MemberId",
-                        column: x => x.MemberId,
-                        principalTable: "Members",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -319,6 +306,54 @@ namespace YogaManagement.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TeacherSchedule",
+                columns: table => new
+                {
+                    TimeSlotId = table.Column<int>(type: "int", nullable: false),
+                    TeacherProfileId = table.Column<int>(type: "int", nullable: false),
+                    IsTaken = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TeacherSchedule", x => new { x.TimeSlotId, x.TeacherProfileId });
+                    table.ForeignKey(
+                        name: "FK_TeacherSchedule_TeacherProfiles_TeacherProfileId",
+                        column: x => x.TeacherProfileId,
+                        principalTable: "TeacherProfiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TeacherSchedule_TimeSlots_TimeSlotId",
+                        column: x => x.TimeSlotId,
+                        principalTable: "TimeSlots",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Transactions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Amount = table.Column<double>(type: "float", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TransactionType = table.Column<int>(type: "int", nullable: false),
+                    WalletId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Wallets_WalletId",
+                        column: x => x.WalletId,
+                        principalTable: "Wallets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "YogaClasses",
                 columns: table => new
                 {
@@ -336,28 +371,6 @@ namespace YogaManagement.Database.Migrations
                         name: "FK_YogaClasses_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Transactions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Amount = table.Column<double>(type: "float", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TransactionType = table.Column<int>(type: "int", nullable: false),
-                    WalletId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transactions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Transactions_Wallets_WalletId",
-                        column: x => x.WalletId,
-                        principalTable: "Wallets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -382,6 +395,30 @@ namespace YogaManagement.Database.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Enrollments_YogaClasses_YogaClassId",
+                        column: x => x.YogaClassId,
+                        principalTable: "YogaClasses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Schedule",
+                columns: table => new
+                {
+                    TimeSlotId = table.Column<int>(type: "int", nullable: false),
+                    YogaClassId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Schedule", x => new { x.TimeSlotId, x.YogaClassId });
+                    table.ForeignKey(
+                        name: "FK_Schedule_TimeSlots_TimeSlotId",
+                        column: x => x.TimeSlotId,
+                        principalTable: "TimeSlots",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Schedule_YogaClasses_YogaClassId",
                         column: x => x.YogaClassId,
                         principalTable: "YogaClasses",
                         principalColumn: "Id",
@@ -457,52 +494,52 @@ namespace YogaManagement.Database.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Email", "EmailConfirmed", "Firstname", "Lastname", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "HCM", "c225d397-faa0-44ee-bff2-299bbb5972d8", "member1@gmail.com", true, "Name1", "LastName1", false, null, "member1@gmail.com", "usermember1", "AQAAAAIAAYagAAAAEC4I1z7W5PrryTtQpXEownYVTHn4YtoDBLj5NeY9tBhixocEi99zeZBoGY/BkUCYuw==", null, false, "", true, false, "UserMember1" },
-                    { 2, 0, "HCM", "397090ce-6e96-49ae-8c1d-3bf5c5dbda31", "member2@gmail.com", true, "Name2", "LastName2", false, null, "member2@gmail.com", "usermember2", "AQAAAAIAAYagAAAAECrmByJ5HQEsi1NA0zbQx8wcWuhDJwjUK6iSTabemEPc1eoHs93Niwqxq2QSEqjzRw==", null, false, "", true, false, "UserMember2" },
-                    { 3, 0, "HCM", "63962fdb-34d6-474d-8d48-e1a85dee0bcc", "member3@gmail.com", true, "Name3", "LastName3", false, null, "member3@gmail.com", "usermember3", "AQAAAAIAAYagAAAAEHiQOmCGTFoeW10TNHcXhmnFFMYgs3ezyHHOxfqyU0EvkovJt5VKShuwZmdHN+Hadg==", null, false, "", true, false, "UserMember3" },
-                    { 4, 0, "HCM", "ac522d43-e48b-4b87-88fc-b427f52c7a2a", "member4@gmail.com", true, "Name4", "LastName4", false, null, "member4@gmail.com", "usermember4", "AQAAAAIAAYagAAAAEEA9ICsPTpdVw3+1WAKOfXze3VZewOGH9dcEgQHplcAc/i1Ceqh5lseswKMfN3i6ag==", null, false, "", true, false, "UserMember4" },
-                    { 5, 0, "HCM", "768375aa-cdb2-4694-bb17-9dfbe40339b0", "member5@gmail.com", true, "Name5", "LastName5", false, null, "member5@gmail.com", "usermember5", "AQAAAAIAAYagAAAAEH59NshKAk3nsLazOcdYh/J5ykMjA0iO46lKX+V6SfOtVU8YXBQ2sLknPWsX99KwxA==", null, false, "", true, false, "UserMember5" },
-                    { 6, 0, "HCM", "e35488f7-4f45-427f-af37-5747edfe6826", "member6@gmail.com", true, "Name6", "LastName6", false, null, "member6@gmail.com", "usermember6", "AQAAAAIAAYagAAAAEFTWzT65nuClZt+RuXf7D0//n+ZWhkYJvj7ZejQdhZs8mB2PGnfosxgOoho5RBwn0w==", null, false, "", true, false, "UserMember6" },
-                    { 7, 0, "HCM", "9d8ed0af-af76-4952-bc42-9e25f072fd7c", "member7@gmail.com", true, "Name7", "LastName7", false, null, "member7@gmail.com", "usermember7", "AQAAAAIAAYagAAAAEIc7boMFRhJIDl9daBi9qj/8Wl1w+8Ac17QhZ8GqNJLVcC0VA1i2wYuJZ3y+2TJ8Pg==", null, false, "", true, false, "UserMember7" },
-                    { 8, 0, "HCM", "5751bcfb-6cc1-40d5-a287-e9a84792086a", "member8@gmail.com", true, "Name8", "LastName8", false, null, "member8@gmail.com", "usermember8", "AQAAAAIAAYagAAAAEFI8kIJ479z7cW8shBUsV07IanuV6XQUTDPqb3+zf0KbgAGMQTheYM/IWGs58/8Ozg==", null, false, "", true, false, "UserMember8" },
-                    { 9, 0, "HCM", "55236333-a97d-4d5e-ba79-035aa8b361e5", "member9@gmail.com", true, "Name9", "LastName9", false, null, "member9@gmail.com", "usermember9", "AQAAAAIAAYagAAAAEM8s8tLv0k1DJ6FE8wfhC2sS4oG1vt1C8D6BDDqBMfAYhBcCWT2AwwPSYhK1tXeAmQ==", null, false, "", true, false, "UserMember9" },
-                    { 10, 0, "HCM", "a2908bc9-8030-4434-b6cc-c53815de5a61", "member10@gmail.com", true, "Name10", "LastName10", false, null, "member10@gmail.com", "usermember10", "AQAAAAIAAYagAAAAECamzwy9zOyly1nw4fkWprYodiwFn5FaDuNG8+FivxJeCk25/X0BeMiOhTsIQk1OEw==", null, false, "", true, false, "UserMember10" },
-                    { 11, 0, "HCM", "81087c83-f45b-468d-a35a-1a058153a533", "member11@gmail.com", true, "Name11", "LastName11", false, null, "member11@gmail.com", "usermember11", "AQAAAAIAAYagAAAAED2rvqHpKt7yPHhsNvsiuK18mvF+fDTj+Dc0E4fn1ouE0cMPc/eQrDAbhIYrR6p2yA==", null, false, "", true, false, "UserMember11" },
-                    { 12, 0, "HCM", "c194ea3d-7f83-4b69-a7e5-a7ffc3e583e1", "member12@gmail.com", true, "Name12", "LastName12", false, null, "member12@gmail.com", "usermember12", "AQAAAAIAAYagAAAAEI/Wr0ubRTex7BQHeEcdd1Dwq0JzBSa/TJinhKBuY72V2pl3xiYZESRSa8Wq8AzmYQ==", null, false, "", true, false, "UserMember12" },
-                    { 13, 0, "HCM", "cffd9ed4-a7b7-46ce-9bad-d8a54b4dfe2c", "member13@gmail.com", true, "Name13", "LastName13", false, null, "member13@gmail.com", "usermember13", "AQAAAAIAAYagAAAAEMUiRr1ptljIHndrHRrMtRW3FmUkQm5YKHvhsImcP+abeq1cFVcVP8ui34bz2YCdvA==", null, false, "", true, false, "UserMember13" },
-                    { 14, 0, "HCM", "18689702-db88-4c2e-8ac8-219d128de8a9", "member14@gmail.com", true, "Name14", "LastName14", false, null, "member14@gmail.com", "usermember14", "AQAAAAIAAYagAAAAEMGc9iJjlV+Sr0dlm8+/zm5neXkyC4OSXp38BD66xCqsScpGlHuBojR8y7oH0vDbpg==", null, false, "", true, false, "UserMember14" },
-                    { 15, 0, "HCM", "66042d8a-40bc-4ae4-bb5b-42c1d385eb14", "member15@gmail.com", true, "Name15", "LastName15", false, null, "member15@gmail.com", "usermember15", "AQAAAAIAAYagAAAAEO7d30fa9Kj1EjrmeSswU2dq4uFu5X6N8E5GqSVZ+zIuO8y7nRMpqCfbcmXxnpp1/A==", null, false, "", true, false, "UserMember15" },
-                    { 16, 0, "HCM", "a2c29440-23b0-41f0-bb12-db9f32f0ed15", "member16@gmail.com", true, "Name16", "LastName16", false, null, "member16@gmail.com", "usermember16", "AQAAAAIAAYagAAAAEFOTcfmjog2gJkEtLLcNvLTQt2CYHAxVXxpx42p4Qtx0RSN6UIg6rQyLNXCVp9svlQ==", null, false, "", true, false, "UserMember16" },
-                    { 17, 0, "HCM", "81c71f8d-094d-4517-8cf4-ddd664094c5c", "member17@gmail.com", true, "Name17", "LastName17", false, null, "member17@gmail.com", "usermember17", "AQAAAAIAAYagAAAAEBaTTbrkRnNGRtLlP5gipt2LEqLILcQUUHitf/vnPoiOXsRz4CLhsTpI7frrQ0hszA==", null, false, "", true, false, "UserMember17" },
-                    { 18, 0, "HCM", "348dc881-054b-4507-9af4-e9f8ea95abea", "member18@gmail.com", true, "Name18", "LastName18", false, null, "member18@gmail.com", "usermember18", "AQAAAAIAAYagAAAAENUKJHiMVTvoBrve58P7Usm5vf9eag6lXcCNOdLHrrdhRZ88FLOovIz2eIEQmY6flQ==", null, false, "", true, false, "UserMember18" },
-                    { 19, 0, "HCM", "fb8e08ca-1a47-422d-81c0-2e6b8a1e228a", "member19@gmail.com", true, "Name19", "LastName19", false, null, "member19@gmail.com", "usermember19", "AQAAAAIAAYagAAAAEFg8pHmjRVWHaNUyBJfTkkHBqri2KMZFQRORVMQPcSas2A/31A+3o5oEwVbzjJl56A==", null, false, "", true, false, "UserMember19" },
-                    { 20, 0, "HCM", "281f458b-5982-4376-b050-0197e89c81a5", "member20@gmail.com", true, "Name20", "LastName20", false, null, "member20@gmail.com", "usermember20", "AQAAAAIAAYagAAAAEMdphJKBC1Neq/VXP21NaF1PmSvF8VFncjqa7KjeSwYG2w+Wrx1ge2Sj+/N3Tlkcrw==", null, false, "", true, false, "UserMember20" },
-                    { 21, 0, "HCM", "6d237951-46f7-40d7-ab10-96485e0f7235", "member21@gmail.com", true, "Name21", "LastName21", false, null, "member21@gmail.com", "usermember21", "AQAAAAIAAYagAAAAEDX1QaXRliv6rMwglAkCqex38mxWX0yN/dUqX8Z1RuLG4mjxIQVHyosIr64ttGUdrA==", null, false, "", true, false, "UserMember21" },
-                    { 22, 0, "HCM", "390d8bea-77a4-4538-8217-0cab5b10bb66", "member22@gmail.com", true, "Name22", "LastName22", false, null, "member22@gmail.com", "usermember22", "AQAAAAIAAYagAAAAEF15ZRSO8H6PzyrhuniVnDLILPBDtzVYNLn6y6JjoEKTbxmps0wIT9nfGzCxzBOy3A==", null, false, "", true, false, "UserMember22" },
-                    { 23, 0, "HCM", "60f3e8a6-6ef5-4ba9-b5ca-aa68dd100d39", "member23@gmail.com", true, "Name23", "LastName23", false, null, "member23@gmail.com", "usermember23", "AQAAAAIAAYagAAAAEJp2Dca5JgV9fn+qCDpY15PgE+UqfqNwcWNU7nDbHXYZ52XfrcbBmq54no9DoV1Icw==", null, false, "", true, false, "UserMember23" },
-                    { 24, 0, "HCM", "40097d09-03fe-4b69-880c-0954f4cd2ff7", "member24@gmail.com", true, "Name24", "LastName24", false, null, "member24@gmail.com", "usermember24", "AQAAAAIAAYagAAAAELXL6sfHEwFXsMBHP4tPMF8wfKKPvsrZSdj5QwuH7AKYNd8/HDwZ7AnkthZCDR+w9w==", null, false, "", true, false, "UserMember24" },
-                    { 25, 0, "HCM", "e5d57c93-c97a-4318-ac03-c9dfde669c37", "member25@gmail.com", true, "Name25", "LastName25", false, null, "member25@gmail.com", "usermember25", "AQAAAAIAAYagAAAAEG4RiECn/2zy6BUDLcm3ui4mIUj8nXfm/SPOiTms0hQUKfVFDsnQAbHQszosG8bVOw==", null, false, "", true, false, "UserMember25" },
-                    { 26, 0, "HCM", "9b10fc5f-456a-4ad3-b628-73f69a61b655", "member26@gmail.com", true, "Name26", "LastName26", false, null, "member26@gmail.com", "usermember26", "AQAAAAIAAYagAAAAEAgynsZXMutrBa0iWvDfp61bLK2JzExL1X4gNnzJZ3myJRRxp9ykwbmJ13g7PvxbZg==", null, false, "", true, false, "UserMember26" },
-                    { 27, 0, "HCM", "52cb90ba-2500-4c15-b812-a9ecfd444b6c", "member27@gmail.com", true, "Name27", "LastName27", false, null, "member27@gmail.com", "usermember27", "AQAAAAIAAYagAAAAEHnKj1nbl4xSNtm86miSFzQ9Ei8fVqzNgh4OfN3bNgNA8RWN5g96dOvxIt4x/DawcQ==", null, false, "", true, false, "UserMember27" },
-                    { 28, 0, "HCM", "59c40c2e-c357-42c0-8049-e49ed0de33bc", "member28@gmail.com", true, "Name28", "LastName28", false, null, "member28@gmail.com", "usermember28", "AQAAAAIAAYagAAAAEAaz59uLgCWNBcCUFWx0UJO3tdGwLAGo/13HfgLseYz9sXWJurdUwrLhHhuK9xEtgQ==", null, false, "", true, false, "UserMember28" },
-                    { 29, 0, "HCM", "04d46b7d-cda1-427d-a3c1-ff0b6de9e213", "member29@gmail.com", true, "Name29", "LastName29", false, null, "member29@gmail.com", "usermember29", "AQAAAAIAAYagAAAAEAlkeEppFoJ7OqaoQiSvtsE5Keyv8QJ6ZBHCtOmZeHYnfwf5hYjdi1aZ0hdOo7xhHQ==", null, false, "", true, false, "UserMember29" },
-                    { 30, 0, "HCM", "fad9af76-5774-42f7-82b5-e83a7361fbc7", "member30@gmail.com", true, "Name30", "LastName30", false, null, "member30@gmail.com", "usermember30", "AQAAAAIAAYagAAAAEKb3b/X+2VAbzDZx1jncxE960117liQxxDNtDsJmheQrI/I36SAmAtWZf/Q45B/lMg==", null, false, "", true, false, "UserMember30" },
-                    { 31, 0, "HCM", "15b77a1a-537d-4d67-b871-5dd8d1a5b517", "teacher31@gmail.com", true, "Name31", "LastName31", false, null, "teacher31@gmail.com", "userteacher31", "AQAAAAIAAYagAAAAEGPjuYEysmemr9/uAABWm2UkzwI0TJ1WXtD5tqJKaVtLAkVHwZsITpjjU17ebwFHJA==", null, false, "", true, false, "UserTeacher31" },
-                    { 32, 0, "HCM", "a2f16274-8698-4815-8a14-8bfdfd7b824f", "teacher32@gmail.com", true, "Name32", "LastName32", false, null, "teacher32@gmail.com", "userteacher32", "AQAAAAIAAYagAAAAEMprAwdWHiK8jeNgLvyaWX0tK8ZiLdRKvY0MrrE1ipnIp1KMrg7T48nYQ2D6ASWOvQ==", null, false, "", true, false, "UserTeacher32" },
-                    { 33, 0, "HCM", "469fbc0e-8ec8-48bd-8b64-26669a00ddfd", "teacher33@gmail.com", true, "Name33", "LastName33", false, null, "teacher33@gmail.com", "userteacher33", "AQAAAAIAAYagAAAAEJBHyV12MZKPKLXKuW1BdG4juUQt4QdO4FdzyGfxeCbdjodux+MA17jnXPqbHLLA4A==", null, false, "", true, false, "UserTeacher33" },
-                    { 34, 0, "HCM", "bb50f826-1d9b-40b8-9708-a26060d7f102", "teacher34@gmail.com", true, "Name34", "LastName34", false, null, "teacher34@gmail.com", "userteacher34", "AQAAAAIAAYagAAAAENgzN/mACcuDZEAaRDngiqsh2EQWtM4wfWzFs6qtdsRQa1pZcvkHJ05uiT10q1lzAg==", null, false, "", true, false, "UserTeacher34" },
-                    { 35, 0, "HCM", "afbe7b6a-6cdc-4d99-a191-bcf7ec96ee79", "teacher35@gmail.com", true, "Name35", "LastName35", false, null, "teacher35@gmail.com", "userteacher35", "AQAAAAIAAYagAAAAEDWXFOGVSGOrLKrF6O+vyzgRhx70JlcO6+j+nZiL7KNA2pUdKLXVS7jjtht3ZZ9oPA==", null, false, "", true, false, "UserTeacher35" },
-                    { 36, 0, "HCM", "1cb04979-21f2-4247-b2ad-008a7f176c58", "teacher36@gmail.com", true, "Name36", "LastName36", false, null, "teacher36@gmail.com", "userteacher36", "AQAAAAIAAYagAAAAEJZtLDXgjTYOmlBKxT2VlI1ibKt3wv1PFm79+p+eXa/gRBUXalL9glflkxpnihe3kg==", null, false, "", true, false, "UserTeacher36" },
-                    { 37, 0, "HCM", "7015266c-6bb5-4ba8-a93f-a02d621867d0", "teacher37@gmail.com", true, "Name37", "LastName37", false, null, "teacher37@gmail.com", "userteacher37", "AQAAAAIAAYagAAAAEO0z4bFoUU5DXJOf2+EQW/XV3/ZOQiwJL2qhUES56gJ6eE6qUhT7twc5FcAR9J9YIg==", null, false, "", true, false, "UserTeacher37" },
-                    { 38, 0, "HCM", "fece090f-d940-433d-824f-096d9427a733", "teacher38@gmail.com", true, "Name38", "LastName38", false, null, "teacher38@gmail.com", "userteacher38", "AQAAAAIAAYagAAAAEOzYQbsPQAF0vaMsuXOiTuRY7aGf8GmahljqFuBPVRRf2iaRczujQ8g+AQeuBocWqQ==", null, false, "", true, false, "UserTeacher38" },
-                    { 39, 0, "HCM", "944840a2-1d43-468a-ac45-1995acd745b5", "teacher39@gmail.com", true, "Name39", "LastName39", false, null, "teacher39@gmail.com", "userteacher39", "AQAAAAIAAYagAAAAEE2ha3K53RWQrJGVAUibhFKSx291Cc7sJJhKnUk/QOo2NszOKr3g6WZElYtYgSK00A==", null, false, "", true, false, "UserTeacher39" },
-                    { 40, 0, "HCM", "bb6c5ee0-f5fe-419b-bb29-7f440614665a", "teacher40@gmail.com", true, "Name40", "LastName40", false, null, "teacher40@gmail.com", "userteacher40", "AQAAAAIAAYagAAAAEIAymWo80Ol6ieFhlaqdodc90Gx7t5rpbd3iY6sP9gMHTvabL7enVvm03liaZGKCxg==", null, false, "", true, false, "UserTeacher40" },
-                    { 41, 0, "HCM", "ff9af491-28bf-4571-93eb-b496012604c5", "staff41@gmail.com", true, "Name41", "LastName41", false, null, "staff41@gmail.com", "userstaff41", "AQAAAAIAAYagAAAAECdhqOQGBaMdtSPFCvihJZ7FbDkqvuyKw2uNu++BXy6w2BqHDxSmKddYwMFCQ3/a6g==", null, false, "", true, false, "UserStaff41" },
-                    { 42, 0, "HCM", "e905d94d-18ff-432a-b17c-a4bd26bb6794", "staff42@gmail.com", true, "Name42", "LastName42", false, null, "staff42@gmail.com", "userstaff42", "AQAAAAIAAYagAAAAEEwCza9KTEPaE16H6jluYNmZaZ2Wd7EpQb0vX9v9v2ueKefZIjhgnUiDSaKblN0Axg==", null, false, "", true, false, "UserStaff42" },
-                    { 43, 0, "HCM", "98e9dc71-fffa-4874-9df1-01f5be68d4c0", "staff43@gmail.com", true, "Name43", "LastName43", false, null, "staff43@gmail.com", "userstaff43", "AQAAAAIAAYagAAAAEIHrVJRwlHRBGIE84Ua3WclQWynx2I0fmrB8KH9w/Dcn/0eJSR7xhwLMhyJAhcmnBw==", null, false, "", true, false, "UserStaff43" },
-                    { 44, 0, "HCM", "19a6a070-ea78-49cf-9d3b-7c29ac9d549f", "staff44@gmail.com", true, "Name44", "LastName44", false, null, "staff44@gmail.com", "userstaff44", "AQAAAAIAAYagAAAAEHn6YKRQYrcP9YkJd4Qf5Lpf5Hl527el8vDburGae3eDEKhgmMtlJkIa+xf3d2lvXg==", null, false, "", true, false, "UserStaff44" },
-                    { 45, 0, "HCM", "f2d285a8-0ca7-483c-a0f5-99ba2c842e76", "staff45@gmail.com", true, "Name45", "LastName45", false, null, "staff45@gmail.com", "userstaff45", "AQAAAAIAAYagAAAAEDh1JOqxnce9h40+Ohd3PCe0MdH3uoQHPeiRAPQxh4oQdrXBkt0V+Bby6davZ+6TNw==", null, false, "", true, false, "UserStaff45" },
-                    { 46, 0, "HCM", "782038e0-ebb1-4b64-b735-8545c6cfc3f5", "admin46@gmail.com", true, "Name46", "LastName46", false, null, "admin46@gmail.com", "useradmin46", "AQAAAAIAAYagAAAAEK4Rr5fv7J3ltPFenMgcpwu5W0jpOhXgopGXjCHQk3GC4Ka7Yf4B0CH6Hw8ZUQVw0Q==", null, false, "", true, false, "UserAdmin46" }
+                    { 1, 0, "HCM", "1fed863e-a3ec-4bd4-8534-3790f09d891a", "member1@gmail.com", true, "Name1", "LastName1", false, null, "member1@gmail.com", "member1@gmail.com", "AQAAAAIAAYagAAAAEEdOuZsp2Ru2bSnfymhLsIYvLK8kAxcRtmHLOef3hGOmslZrAvgLEqgFnCvTdVNECQ==", null, false, "", true, false, "member1@gmail.com" },
+                    { 2, 0, "HCM", "183987fc-e532-4a06-8161-dc9893e4ae21", "member2@gmail.com", true, "Name2", "LastName2", false, null, "member2@gmail.com", "member2@gmail.com", "AQAAAAIAAYagAAAAECV5fXMzQDi9dohsPGI8isR2BHEbKhTNujmcyzwRCR+mg1isfegMUEin95wdLfJr6A==", null, false, "", true, false, "member2@gmail.com" },
+                    { 3, 0, "HCM", "33dbca09-aeb1-4f80-a2b7-f256fb4bebaf", "member3@gmail.com", true, "Name3", "LastName3", false, null, "member3@gmail.com", "member3@gmail.com", "AQAAAAIAAYagAAAAEKY9aZ6oWqDl7Fn0Gd3JtfTwgXsRvoi0LNftiXcQpvikEBgcaxdWXXD2ukAq8jwMoA==", null, false, "", true, false, "member3@gmail.com" },
+                    { 4, 0, "HCM", "fc2e3eea-9778-4a6f-bdd1-5e10992ed233", "member4@gmail.com", true, "Name4", "LastName4", false, null, "member4@gmail.com", "member4@gmail.com", "AQAAAAIAAYagAAAAEPQ0WD6cv9WzUqnBJWP+7lUJLlDjNoFTVt/Myx73bMIlAWQxgBf7n2pDHyp8w3Oh1Q==", null, false, "", true, false, "member4@gmail.com" },
+                    { 5, 0, "HCM", "5e851e25-55ba-43f3-9856-e59bc1fe747d", "member5@gmail.com", true, "Name5", "LastName5", false, null, "member5@gmail.com", "member5@gmail.com", "AQAAAAIAAYagAAAAEKhmVr7EgpW7uTgk/pw6r/MhGsMH/p9WvTsuxyPSSx8hGWYvqp1Tu7oqdVBS0oGfxw==", null, false, "", true, false, "member5@gmail.com" },
+                    { 6, 0, "HCM", "e5470176-d2f6-45c8-925a-8129dfc03ff0", "member6@gmail.com", true, "Name6", "LastName6", false, null, "member6@gmail.com", "member6@gmail.com", "AQAAAAIAAYagAAAAEAkywam5t2vlm10myxUBxLs6WVGsqc25CfZxshlAQNBRi4YicbaK0a+JCSVDhNUr4w==", null, false, "", true, false, "member6@gmail.com" },
+                    { 7, 0, "HCM", "f71a0e1e-9464-4a22-b8aa-d67e7b87fb7c", "member7@gmail.com", true, "Name7", "LastName7", false, null, "member7@gmail.com", "member7@gmail.com", "AQAAAAIAAYagAAAAEPEnDnfMC7bYc3snQIFf3QYDL7GeX5w/XVi1yca+U10afhC2Ypz+Ghzl8zPEJX2/tA==", null, false, "", true, false, "member7@gmail.com" },
+                    { 8, 0, "HCM", "c64ce08c-697e-49c8-a1b9-ce264a55b2f6", "member8@gmail.com", true, "Name8", "LastName8", false, null, "member8@gmail.com", "member8@gmail.com", "AQAAAAIAAYagAAAAEBua9UxZ7HougoMv3lHFq4EURL7WRYPfSOB4cqwxYJroccyL4Boq/sKh6xLtn3qrzA==", null, false, "", true, false, "member8@gmail.com" },
+                    { 9, 0, "HCM", "fca3cf0b-70e7-40de-ba05-cefff3e826d7", "member9@gmail.com", true, "Name9", "LastName9", false, null, "member9@gmail.com", "member9@gmail.com", "AQAAAAIAAYagAAAAEP/i7V40tCiSqNTUw5mOP8fJ+NhfeLlEnuDm9rj1hU/MtqcWJS940j6wL4Qalu0fpw==", null, false, "", true, false, "member9@gmail.com" },
+                    { 10, 0, "HCM", "c26237f5-5ff7-4b99-938c-a61bf6587611", "member10@gmail.com", true, "Name10", "LastName10", false, null, "member10@gmail.com", "member10@gmail.com", "AQAAAAIAAYagAAAAEHIzdBBOGY6TgNxeNcO4pZGlb7hE79q2sAqj005y7X2qWouCSfo4XUOONggUyQa48Q==", null, false, "", true, false, "member10@gmail.com" },
+                    { 11, 0, "HCM", "e22ebe66-51bf-4339-9781-653b59302f8c", "member11@gmail.com", true, "Name11", "LastName11", false, null, "member11@gmail.com", "member11@gmail.com", "AQAAAAIAAYagAAAAEMOog9C8jGdmSdZpk3UVKuvDtynsNwAy4bNiOLuADfLoz8wLyX3aP8ePbObQUtMy8A==", null, false, "", true, false, "member11@gmail.com" },
+                    { 12, 0, "HCM", "e7f28444-9299-4f45-9784-46144df3f74b", "member12@gmail.com", true, "Name12", "LastName12", false, null, "member12@gmail.com", "member12@gmail.com", "AQAAAAIAAYagAAAAEM6wdubBnN+noJQg0Kolx4V63PVBuXt11wxeUS7V/T5AJzAuj16TAGPjcU6dllm9Zw==", null, false, "", true, false, "member12@gmail.com" },
+                    { 13, 0, "HCM", "a459d597-2609-4c32-a2ca-2da0a04ea7ce", "member13@gmail.com", true, "Name13", "LastName13", false, null, "member13@gmail.com", "member13@gmail.com", "AQAAAAIAAYagAAAAENOHZBsqVgSFx6KPqLus1Z9zmfWbZEzOJGcERnuEZPXST8C+J+wfXZUkYU2C85yCcQ==", null, false, "", true, false, "member13@gmail.com" },
+                    { 14, 0, "HCM", "07ec0257-ec19-419d-9445-99a7fc829e68", "member14@gmail.com", true, "Name14", "LastName14", false, null, "member14@gmail.com", "member14@gmail.com", "AQAAAAIAAYagAAAAEBm7w3dyxEbZ6xID6UB9IX/f3Ypb4a20g+9g0XSGSRzFGNwkbB0QFSiD7pFaXAHuEw==", null, false, "", true, false, "member14@gmail.com" },
+                    { 15, 0, "HCM", "43116717-3b4a-437a-8773-3876ab211469", "member15@gmail.com", true, "Name15", "LastName15", false, null, "member15@gmail.com", "member15@gmail.com", "AQAAAAIAAYagAAAAEO9J7nWBGZaEOi7X9VuWPdI5urjNoaWjoX5fzSWDXVeLNRRPdlZGkU0O39Etd7HY3g==", null, false, "", true, false, "member15@gmail.com" },
+                    { 16, 0, "HCM", "2cfd4a82-2390-4f01-ae6f-fe68967937ce", "member16@gmail.com", true, "Name16", "LastName16", false, null, "member16@gmail.com", "member16@gmail.com", "AQAAAAIAAYagAAAAEBIj2R1JrQEWpRegAlLjrcSsuW1SYUr9dlAtrXuOIYVQZd7AZF6NR1exlMOQhybnAQ==", null, false, "", true, false, "member16@gmail.com" },
+                    { 17, 0, "HCM", "0748853c-28cd-4834-aeb2-b05c568c097f", "member17@gmail.com", true, "Name17", "LastName17", false, null, "member17@gmail.com", "member17@gmail.com", "AQAAAAIAAYagAAAAEPCTcwInCqft5YBSvxj22QD+2zTpLkak7zn7XcThoMcWGzUcjvOZBvRUqpZFlWvQKA==", null, false, "", true, false, "member17@gmail.com" },
+                    { 18, 0, "HCM", "c8c7e322-8283-49e8-883c-3f92d52c4570", "member18@gmail.com", true, "Name18", "LastName18", false, null, "member18@gmail.com", "member18@gmail.com", "AQAAAAIAAYagAAAAEFwmYkyj3SftA16fVveL+ppd89TsaC9C4FNM8Ck0rTtpvGg/qY7S4rK516DCJ6aNRg==", null, false, "", true, false, "member18@gmail.com" },
+                    { 19, 0, "HCM", "f05320e5-38ba-4d2e-8053-408d76422b9f", "member19@gmail.com", true, "Name19", "LastName19", false, null, "member19@gmail.com", "member19@gmail.com", "AQAAAAIAAYagAAAAEHORWVMx/meFT2T3/prZYC0sAQ1uiJCsH+GFmnBK/01z5MgwCQHVev4EY0lkYbb8pA==", null, false, "", true, false, "member19@gmail.com" },
+                    { 20, 0, "HCM", "4958e7f0-2a1c-4544-b605-84c180d6a58e", "member20@gmail.com", true, "Name20", "LastName20", false, null, "member20@gmail.com", "member20@gmail.com", "AQAAAAIAAYagAAAAECWJgpOGUkPhCz1iImcdQojHwysSCh16YjHK/DhyO4PK2vGkpbL4hzvSIIg08DF31w==", null, false, "", true, false, "member20@gmail.com" },
+                    { 21, 0, "HCM", "d1c20886-5667-486d-b585-311ac3a14750", "member21@gmail.com", true, "Name21", "LastName21", false, null, "member21@gmail.com", "member21@gmail.com", "AQAAAAIAAYagAAAAEFegtDDh2Intpq9e04gmJZnR4s8NMvEE6Gk9t5oPpfDai9zruJys1AQjFsHk5szm6w==", null, false, "", true, false, "member21@gmail.com" },
+                    { 22, 0, "HCM", "068ddf31-1637-4fab-a1ce-74c16d05241c", "member22@gmail.com", true, "Name22", "LastName22", false, null, "member22@gmail.com", "member22@gmail.com", "AQAAAAIAAYagAAAAEFlqRcHIl1rZBIYSDBKWru48nzULTMUVRrQ+W/OxFlmzXdPnLeqoKmd/eXa4FIb7LQ==", null, false, "", true, false, "member22@gmail.com" },
+                    { 23, 0, "HCM", "72492f91-1cf1-4b01-9745-4a29fb6f242e", "member23@gmail.com", true, "Name23", "LastName23", false, null, "member23@gmail.com", "member23@gmail.com", "AQAAAAIAAYagAAAAECmW6cv9WfASXAhEMXArQb5ZU3g2kF9APbVUwVX5vWTAAdS5upJAAy0mk2x72Cg84g==", null, false, "", true, false, "member23@gmail.com" },
+                    { 24, 0, "HCM", "ea9b75ed-482e-4555-82a5-9456a01517cf", "member24@gmail.com", true, "Name24", "LastName24", false, null, "member24@gmail.com", "member24@gmail.com", "AQAAAAIAAYagAAAAEOcRYDqHkODqL9CzZRK99iZIPIW2/qUVUnj+jojFdsZFptLwzNGKrX8RfWiozdHwcg==", null, false, "", true, false, "member24@gmail.com" },
+                    { 25, 0, "HCM", "3e5334ce-c3de-4f20-b74d-e779da12cf00", "member25@gmail.com", true, "Name25", "LastName25", false, null, "member25@gmail.com", "member25@gmail.com", "AQAAAAIAAYagAAAAEMWop247ubA/YLMM+FBe3nsMMk9zLEIWBrUN4R/E1JLd3GBbA1ttkAEfiU9ITdFfFQ==", null, false, "", true, false, "member25@gmail.com" },
+                    { 26, 0, "HCM", "4adb5981-3be9-46d5-a1db-f9f0cb52d760", "member26@gmail.com", true, "Name26", "LastName26", false, null, "member26@gmail.com", "member26@gmail.com", "AQAAAAIAAYagAAAAEE6NWPyMLOkai+rnZ7J0/N+ATw6ewGOrzXgkrBkfC/ieOKBJ/P0PtbURTGRf0b540Q==", null, false, "", true, false, "member26@gmail.com" },
+                    { 27, 0, "HCM", "4841fcab-3824-4f58-a4b6-b0a2dda2ce0e", "member27@gmail.com", true, "Name27", "LastName27", false, null, "member27@gmail.com", "member27@gmail.com", "AQAAAAIAAYagAAAAEMp1867rtAvFd16LcHUfGHkgt5gBnk2QGV/03zxQTJtK0Iv2CQO7UTK+9jRYQ0ouKg==", null, false, "", true, false, "member27@gmail.com" },
+                    { 28, 0, "HCM", "fd83b081-4654-4352-8269-a9a491941301", "member28@gmail.com", true, "Name28", "LastName28", false, null, "member28@gmail.com", "member28@gmail.com", "AQAAAAIAAYagAAAAEB+UbAo1/f+Hmx6YkFY/XEny9Mp2klzJ4/92aEkFxrJPwfIO+Imv/zQ+NsFs17f7vQ==", null, false, "", true, false, "member28@gmail.com" },
+                    { 29, 0, "HCM", "87361fe4-c3b7-48b0-bd1f-ce06d42c0e20", "member29@gmail.com", true, "Name29", "LastName29", false, null, "member29@gmail.com", "member29@gmail.com", "AQAAAAIAAYagAAAAECzMBk1mTwgPMyE+jWeDKRRPHM3aFFWyfi1oWsIuI+l8DL3IiLYNHL+Mly7fSvLJow==", null, false, "", true, false, "member29@gmail.com" },
+                    { 30, 0, "HCM", "c33d9f3e-1ddd-4e04-995f-e6452214da31", "member30@gmail.com", true, "Name30", "LastName30", false, null, "member30@gmail.com", "member30@gmail.com", "AQAAAAIAAYagAAAAED4XA+o+L6DgztON5Iogr0/LIXkqqCyLYDmNDc+aOj8bfDbjMhcBBMrJ8w/FxSZ9fA==", null, false, "", true, false, "member30@gmail.com" },
+                    { 31, 0, "HCM", "a0990dcf-eb45-4643-a591-985a8b8f934a", "teacher31@gmail.com", true, "Name31", "LastName31", false, null, "teacher31@gmail.com", "teacher31@gmail.com", "AQAAAAIAAYagAAAAEPEI+DcKoG+ImQsfySNpuf/SooMmonLunh+e2hH3MLqv/dItII6GmdVpQgHdmO5kfg==", null, false, "", true, false, "teacher31@gmail.com" },
+                    { 32, 0, "HCM", "07901a54-6b36-4dba-b9c8-7c7a1361b81a", "teacher32@gmail.com", true, "Name32", "LastName32", false, null, "teacher32@gmail.com", "teacher32@gmail.com", "AQAAAAIAAYagAAAAELTEgNof/Xji8uIY7NTO4ZTmsMrNMUw84DHi8fH5DuPlOTec5V0Ti5tOCNbNmiHFiw==", null, false, "", true, false, "teacher32@gmail.com" },
+                    { 33, 0, "HCM", "277acb5b-8e37-4a66-9efb-4cfacc18cdf1", "teacher33@gmail.com", true, "Name33", "LastName33", false, null, "teacher33@gmail.com", "teacher33@gmail.com", "AQAAAAIAAYagAAAAEClCninLHXz7PM2m83X5mDVNom+wjteKBiaxZc/fqV/J4S6ZA3yxfa1AOBfIHjdTDA==", null, false, "", true, false, "teacher33@gmail.com" },
+                    { 34, 0, "HCM", "eccf6133-8462-45ee-9c8d-3c758adf83d3", "teacher34@gmail.com", true, "Name34", "LastName34", false, null, "teacher34@gmail.com", "teacher34@gmail.com", "AQAAAAIAAYagAAAAEAgabVT679L1PwoK/8XrhJTBCVwXD5x3bQEHwcSga0pCFyKvBxxs3tR4tMX1ZyAWLg==", null, false, "", true, false, "teacher34@gmail.com" },
+                    { 35, 0, "HCM", "6cb718b2-c7a8-4808-ae26-7dd2edbded40", "teacher35@gmail.com", true, "Name35", "LastName35", false, null, "teacher35@gmail.com", "teacher35@gmail.com", "AQAAAAIAAYagAAAAEBa/3qfg39Rnhu4KyKFaxanFbtLY2i5a1ER8UEqGaTDh6O8mY1GxYrQ5X+avRUdQZQ==", null, false, "", true, false, "teacher35@gmail.com" },
+                    { 36, 0, "HCM", "a9ff8820-82a3-4486-a926-8b70fd6c7ed9", "teacher36@gmail.com", true, "Name36", "LastName36", false, null, "teacher36@gmail.com", "teacher36@gmail.com", "AQAAAAIAAYagAAAAELs6mQIG+7dsukGg/j06yMz/ynriXkLsP/40inBR9nhBF4AfyVR/SG5SXz+l5QJSOA==", null, false, "", true, false, "teacher36@gmail.com" },
+                    { 37, 0, "HCM", "2029bb2e-58ac-4ca1-9b36-cedf283a28c2", "teacher37@gmail.com", true, "Name37", "LastName37", false, null, "teacher37@gmail.com", "teacher37@gmail.com", "AQAAAAIAAYagAAAAEHpZqAg9oBaw7J2gssz6sHOt22K7AFhsveeRGmDVE5Rcs0LrMiE1C6MC/FdvjZ0acw==", null, false, "", true, false, "teacher37@gmail.com" },
+                    { 38, 0, "HCM", "9479ea77-8aad-4fd4-84bc-cad679f252fb", "teacher38@gmail.com", true, "Name38", "LastName38", false, null, "teacher38@gmail.com", "teacher38@gmail.com", "AQAAAAIAAYagAAAAEDp+obl/8pOZ6RsXpKRude/3Mlm75YISb1naIsn3fZ84szpDqnksvq4Xic0+5CHuPg==", null, false, "", true, false, "teacher38@gmail.com" },
+                    { 39, 0, "HCM", "e09d9528-e046-4fca-94a3-220f555a6d64", "teacher39@gmail.com", true, "Name39", "LastName39", false, null, "teacher39@gmail.com", "teacher39@gmail.com", "AQAAAAIAAYagAAAAEMa3+TiWefH+kaeOzK1/8Efh+f1Thq4Yp+FXa+jjNy4FyFt8FiLmGF89wf4sXT3JkQ==", null, false, "", true, false, "teacher39@gmail.com" },
+                    { 40, 0, "HCM", "f5302274-a9fa-4a15-8b02-4873322d359e", "teacher40@gmail.com", true, "Name40", "LastName40", false, null, "teacher40@gmail.com", "teacher40@gmail.com", "AQAAAAIAAYagAAAAEL5EXjS2d+oyljEDVrDezM6+alCuI0MoyUqAojCXTABCdXbwLOpRGJDhml2+ABoUmQ==", null, false, "", true, false, "teacher40@gmail.com" },
+                    { 41, 0, "HCM", "fe3e0a7f-d38f-4c02-b2eb-05e38fabe9d6", "staff41@gmail.com", true, "Name41", "LastName41", false, null, "staff41@gmail.com", "staff41@gmail.com", "AQAAAAIAAYagAAAAEO5z4k1Pic8g+zN3IWSpRZXTjtouDVVKwl402GsWJKv9QUD0GAnhbyVt7BgkO/78aw==", null, false, "", true, false, "staff41@gmail.com" },
+                    { 42, 0, "HCM", "94e4dd14-8db4-4bbd-80a6-73f600c0d36b", "staff42@gmail.com", true, "Name42", "LastName42", false, null, "staff42@gmail.com", "staff42@gmail.com", "AQAAAAIAAYagAAAAEHNZJCmCnOnHE8pwkwQHdft41Lf7MTZoJCNUv4qbRD/xKMkThrntmd3Dy89GvdJ3dQ==", null, false, "", true, false, "staff42@gmail.com" },
+                    { 43, 0, "HCM", "4cde2bb6-ba11-46a4-98a0-a2bafcf54ca0", "staff43@gmail.com", true, "Name43", "LastName43", false, null, "staff43@gmail.com", "staff43@gmail.com", "AQAAAAIAAYagAAAAENM1FhRv7zetLUggrogcvecmzvgCSJeIvdOeh5raVWo5ps0FMchx/6klbibnmgBVPA==", null, false, "", true, false, "staff43@gmail.com" },
+                    { 44, 0, "HCM", "fe2f444b-2c04-494a-a81e-1d6e825cce7d", "staff44@gmail.com", true, "Name44", "LastName44", false, null, "staff44@gmail.com", "staff44@gmail.com", "AQAAAAIAAYagAAAAEAMKgMcrp0veE3o0KpoMbMV0k3MHvY5xuNeJzqOZIH7u4B+DnUzdXVwzhUznB1HUOg==", null, false, "", true, false, "staff44@gmail.com" },
+                    { 45, 0, "HCM", "6aa9ecfd-b02c-47bb-9989-7a87d124c99f", "staff45@gmail.com", true, "Name45", "LastName45", false, null, "staff45@gmail.com", "staff45@gmail.com", "AQAAAAIAAYagAAAAEMGQrpnJ4u8Or0WJ7h8wqTTdsdL0OI3daygYU0mA5Rir2FwT6uDeGz8uf1jhONKmLA==", null, false, "", true, false, "staff45@gmail.com" },
+                    { 46, 0, "HCM", "9a1f7e5a-e539-4fbf-8f7d-51a9b0b53cae", "admin46@gmail.com", true, "Name46", "LastName46", false, null, "admin46@gmail.com", "admin46@gmail.com", "AQAAAAIAAYagAAAAEPKyrs7cRLZwUysa15419A3NLCH1CD1Zu+uLEiVcFuCKlJSu/KkHRvflE79CfsCa8Q==", null, false, "", true, false, "admin46@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -636,16 +673,16 @@ namespace YogaManagement.Database.Migrations
                 columns: new[] { "Id", "CategoryId", "Description", "EnddDate", "IsActive", "Name", "Price", "StartDate" },
                 values: new object[,]
                 {
-                    { 1, 1, "Yoga course number 1", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course1", 100.0, new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6358) },
-                    { 2, 2, "Yoga course number 2", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course2", 200.0, new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6378) },
-                    { 3, 3, "Yoga course number 3", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course3", 300.0, new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6382) },
-                    { 4, 4, "Yoga course number 4", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course4", 400.0, new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6386) },
-                    { 5, 5, "Yoga course number 5", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course5", 500.0, new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6389) },
-                    { 6, 6, "Yoga course number 6", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course6", 600.0, new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6393) },
-                    { 7, 7, "Yoga course number 7", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course7", 700.0, new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6396) },
-                    { 8, 8, "Yoga course number 8", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course8", 800.0, new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6400) },
-                    { 9, 9, "Yoga course number 9", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course9", 900.0, new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6403) },
-                    { 10, 10, "Yoga course number 10", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course10", 1000.0, new DateTime(2023, 6, 20, 23, 14, 0, 584, DateTimeKind.Local).AddTicks(6408) }
+                    { 1, 1, "Yoga course number 1", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course1", 100.0, new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2648) },
+                    { 2, 2, "Yoga course number 2", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course2", 200.0, new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2720) },
+                    { 3, 3, "Yoga course number 3", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course3", 300.0, new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2756) },
+                    { 4, 4, "Yoga course number 4", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course4", 400.0, new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2760) },
+                    { 5, 5, "Yoga course number 5", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course5", 500.0, new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2763) },
+                    { 6, 6, "Yoga course number 6", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course6", 600.0, new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2768) },
+                    { 7, 7, "Yoga course number 7", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course7", 700.0, new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2771) },
+                    { 8, 8, "Yoga course number 8", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course8", 800.0, new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2774) },
+                    { 9, 9, "Yoga course number 9", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course9", 900.0, new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2778) },
+                    { 10, 10, "Yoga course number 10", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), true, "Course10", 1000.0, new DateTime(2023, 6, 26, 11, 27, 32, 737, DateTimeKind.Local).AddTicks(2782) }
                 });
 
             migrationBuilder.InsertData(
@@ -700,6 +737,59 @@ namespace YogaManagement.Database.Migrations
                     { 38, 38 },
                     { 39, 39 },
                     { 40, 40 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Wallets",
+                columns: new[] { "Id", "AppUserId", "Balance", "IsAdminWallet" },
+                values: new object[,]
+                {
+                    { 1, 1, 0.0, false },
+                    { 2, 2, 0.0, false },
+                    { 3, 3, 0.0, false },
+                    { 4, 4, 0.0, false },
+                    { 5, 5, 0.0, false },
+                    { 6, 6, 0.0, false },
+                    { 7, 7, 0.0, false },
+                    { 8, 8, 0.0, false },
+                    { 9, 9, 0.0, false },
+                    { 10, 10, 0.0, false },
+                    { 11, 11, 0.0, false },
+                    { 12, 12, 0.0, false },
+                    { 13, 13, 0.0, false },
+                    { 14, 14, 0.0, false },
+                    { 15, 15, 0.0, false },
+                    { 16, 16, 0.0, false },
+                    { 17, 17, 0.0, false },
+                    { 18, 18, 0.0, false },
+                    { 19, 19, 0.0, false },
+                    { 20, 20, 0.0, false },
+                    { 21, 21, 0.0, false },
+                    { 22, 22, 0.0, false },
+                    { 23, 23, 0.0, false },
+                    { 24, 24, 0.0, false },
+                    { 25, 25, 0.0, false },
+                    { 26, 26, 0.0, false },
+                    { 27, 27, 0.0, false },
+                    { 28, 28, 0.0, false },
+                    { 29, 29, 0.0, false },
+                    { 30, 30, 0.0, false },
+                    { 31, 31, 0.0, false },
+                    { 32, 32, 0.0, false },
+                    { 33, 33, 0.0, false },
+                    { 34, 34, 0.0, false },
+                    { 35, 35, 0.0, false },
+                    { 36, 36, 0.0, false },
+                    { 37, 37, 0.0, false },
+                    { 38, 38, 0.0, false },
+                    { 39, 39, 0.0, false },
+                    { 40, 40, 0.0, false },
+                    { 41, 41, 0.0, false },
+                    { 42, 42, 0.0, false },
+                    { 43, 43, 0.0, false },
+                    { 44, 44, 0.0, false },
+                    { 45, 45, 0.0, false },
+                    { 46, 46, 0.0, true }
                 });
 
             migrationBuilder.InsertData(
@@ -775,6 +865,11 @@ namespace YogaManagement.Database.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Schedule_YogaClassId",
+                table: "Schedule",
+                column: "YogaClassId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TeacherEnrollments_TeacherProfileId",
                 table: "TeacherEnrollments",
                 column: "TeacherProfileId");
@@ -796,6 +891,11 @@ namespace YogaManagement.Database.Migrations
                 column: "AvailableTeacherId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TeacherSchedule_TeacherProfileId",
+                table: "TeacherSchedule",
+                column: "TeacherProfileId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TimeSlotYogaClass_YogaClassesId",
                 table: "TimeSlotYogaClass",
                 column: "YogaClassesId");
@@ -806,9 +906,9 @@ namespace YogaManagement.Database.Migrations
                 column: "WalletId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Wallets_MemberId",
+                name: "IX_Wallets_AppUserId",
                 table: "Wallets",
-                column: "MemberId",
+                column: "AppUserId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -839,13 +939,16 @@ namespace YogaManagement.Database.Migrations
                 name: "Enrollments");
 
             migrationBuilder.DropTable(
-                name: "SystemWallet");
+                name: "Schedule");
 
             migrationBuilder.DropTable(
                 name: "TeacherEnrollments");
 
             migrationBuilder.DropTable(
                 name: "TeacherProfileTimeSlot");
+
+            migrationBuilder.DropTable(
+                name: "TeacherSchedule");
 
             migrationBuilder.DropTable(
                 name: "TimeSlotYogaClass");
@@ -855,6 +958,9 @@ namespace YogaManagement.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Members");
 
             migrationBuilder.DropTable(
                 name: "TeacherProfiles");
@@ -872,13 +978,10 @@ namespace YogaManagement.Database.Migrations
                 name: "Courses");
 
             migrationBuilder.DropTable(
-                name: "Members");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Categories");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
         }
     }
 }
