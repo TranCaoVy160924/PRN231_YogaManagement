@@ -312,6 +312,68 @@ public static class ModelBuilderExtensions
         }
         #endregion
 
+        #region Schedule
+        var timeSlotId = 0;
+        for (int i = 1; i <= 10; i++)
+        {
+            if (i < 8 && i % 2 == 0)
+            {
+                timeSlotId = 10 + i;
+            }
+            else if (i < 8 && i % 2 != 0)
+            {
+                timeSlotId = 20 + i;
+            }
+            else
+            {
+                timeSlotId = 60 + 10-i + 1;
+            }
+
+            modelBuilder.Entity<Schedule>().HasData(new Schedule
+            {
+                YogaClassId = i,
+                TimeSlotId = timeSlotId,
+            });
+
+            if (i < 8 && i % 2 == 0)
+            {
+                timeSlotId = 30 + i;
+            }
+            else if (i < 8 && i % 2 != 0)
+            {
+                timeSlotId = 40 + i;
+            }
+            else
+            {
+                timeSlotId = 70 + 10 - i + 1;
+            }
+
+            modelBuilder.Entity<Schedule>().HasData(new Schedule
+            {
+                YogaClassId = i,
+                TimeSlotId = timeSlotId,
+            });
+            
+            if(i < 8)
+            {
+                if (i % 2 == 0)
+                {
+                    timeSlotId = 50 + i;
+                }
+                else if (i % 2 != 0)
+                {
+                    timeSlotId = 60 + i;
+                }
+
+                modelBuilder.Entity<Schedule>().HasData(new Schedule
+                {
+                    YogaClassId = i,
+                    TimeSlotId = timeSlotId,
+                });
+            }
+        }
+        #endregion
+
         #region Wallet
         for (int i = 1; i <= 46; i++)
         {
