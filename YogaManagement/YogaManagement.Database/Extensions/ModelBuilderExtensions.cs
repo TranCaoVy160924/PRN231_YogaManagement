@@ -216,7 +216,8 @@ public static class ModelBuilderExtensions
 
         #region Time slot
 
-        var day = DayOfWeek.Monday;
+        var StartTime = inputTime("06:30:00");
+        var EndTime = inputTime("08:00:00");
 
         DateTime inputTime(string time)
         {
@@ -228,150 +229,193 @@ public static class ModelBuilderExtensions
             return dateTime;
         }
 
-        for (int i = 1; i <= 7; i++)
+        for (int i = 1; i <= 3; i++)
         {
             switch (i)
             {
-                case 2: { day = DayOfWeek.Tuesday; }; break;
-                case 3: { day = DayOfWeek.Wednesday; }; break;
-                case 4: { day = DayOfWeek.Thursday; }; break;
-                case 5: { day = DayOfWeek.Friday; }; break;
-                case 6: { day = DayOfWeek.Saturday; }; break;
-                case 7: { day = DayOfWeek.Sunday; }; break;
+                case 2: { StartTime = inputTime("09:00:00"); EndTime = inputTime("10:30:00"); }; break;
+                case 3: { StartTime = inputTime("15:00:00"); EndTime = inputTime("16:30:00"); }; break;
             }
 
             modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
             {
                 Id = i * 10 + 1,
-                DayOfWeek = day,
-                StartTime = inputTime("06:00:00"),
-                EndTime = inputTime("07:00:00"),
-                Room = 101,
+                DayOfWeek = DayOfWeek.Monday,
+                StartTime = StartTime,
+                EndTime = EndTime,
+                Room = 101 * i,
                 Status = true
             });
 
             modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
             {
                 Id = i * 10 + 2,
-                DayOfWeek = day,
-                StartTime = inputTime("07:30:00"),
-                EndTime = inputTime("08:30:00"),
-                Room = 202,
+                DayOfWeek = DayOfWeek.Tuesday,
+                StartTime = StartTime,
+                EndTime = EndTime,
+                Room = 101 * i,
                 Status = true
             });
 
             modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
             {
                 Id = i * 10 + 3,
-                DayOfWeek = day,
-                StartTime = inputTime("09:00:00"),
-                EndTime = inputTime("10:00:00"),
-                Room = 303,
+                DayOfWeek = DayOfWeek.Wednesday,
+                StartTime = StartTime,
+                EndTime = EndTime,
+                Room = 101 * i,
                 Status = true
             });
 
             modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
             {
                 Id = i * 10 + 4,
-                DayOfWeek = day,
-                StartTime = inputTime("15:30:00"),
-                EndTime = inputTime("16:30:00"),
-                Room = 404,
+                DayOfWeek = DayOfWeek.Thursday,
+                StartTime = StartTime,
+                EndTime = EndTime,
+                Room = 101 * i,
                 Status = true
             });
 
             modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
             {
                 Id = i * 10 + 5,
-                DayOfWeek = day,
-                StartTime = inputTime("17:00:00"),
-                EndTime = inputTime("18:00:00"),
-                Room = 505,
+                DayOfWeek = DayOfWeek.Friday,
+                StartTime = StartTime,
+                EndTime = EndTime,
+                Room = 101 * i,
                 Status = true
             });
 
             modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
             {
                 Id = i * 10 + 6,
-                DayOfWeek = day,
-                StartTime = inputTime("18:30:00"),
-                EndTime = inputTime("19:30:00"),
-                Room = 606,
+                DayOfWeek = DayOfWeek.Saturday,
+                StartTime = StartTime,
+                EndTime = EndTime,
+                Room = 101 * i,
                 Status = true
             });
 
             modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
             {
                 Id = i * 10 + 7,
-                DayOfWeek = day,
-                StartTime = inputTime("20:00:00"),
-                EndTime = inputTime("21:00:00"),
-                Room = 707,
+                DayOfWeek = DayOfWeek.Sunday,
+                StartTime = StartTime,
+                EndTime = EndTime,
+                Room = 101 * i,
                 Status = true
             });
         }
         #endregion
 
         #region Schedule
-        var timeSlotId = 0;
-        for (int i = 1; i <= 10; i++)
+        //1
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
         {
-            if (i < 8 && i % 2 == 0)
-            {
-                timeSlotId = 10 + i;
-            }
-            else if (i < 8 && i % 2 != 0)
-            {
-                timeSlotId = 20 + i;
-            }
-            else
-            {
-                timeSlotId = 60 + 10-i + 1;
-            }
-
-            modelBuilder.Entity<Schedule>().HasData(new Schedule
-            {
-                YogaClassId = i,
-                TimeSlotId = timeSlotId,
-            });
-
-            if (i < 8 && i % 2 == 0)
-            {
-                timeSlotId = 30 + i;
-            }
-            else if (i < 8 && i % 2 != 0)
-            {
-                timeSlotId = 40 + i;
-            }
-            else
-            {
-                timeSlotId = 70 + 10 - i + 1;
-            }
-
-            modelBuilder.Entity<Schedule>().HasData(new Schedule
-            {
-                YogaClassId = i,
-                TimeSlotId = timeSlotId,
-            });
-            
-            if(i < 8)
-            {
-                if (i % 2 == 0)
-                {
-                    timeSlotId = 50 + i;
-                }
-                else if (i % 2 != 0)
-                {
-                    timeSlotId = 60 + i;
-                }
-
-                modelBuilder.Entity<Schedule>().HasData(new Schedule
-                {
-                    YogaClassId = i,
-                    TimeSlotId = timeSlotId,
-                });
-            }
-        }
+            YogaClassId = 1,
+            TimeSlotId = 11,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 1,
+            TimeSlotId = 13,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 1,
+            TimeSlotId = 15,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 2,
+            TimeSlotId = 12,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 2,
+            TimeSlotId = 14,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 3,
+            TimeSlotId = 21,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 3,
+            TimeSlotId = 23,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 3,
+            TimeSlotId = 25,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 4,
+            TimeSlotId = 22,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 4,
+            TimeSlotId = 24,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 5,
+            TimeSlotId = 31,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 5,
+            TimeSlotId = 33,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 5,
+            TimeSlotId = 35,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 6,
+            TimeSlotId = 32,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 6,
+            TimeSlotId = 34,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 7,
+            TimeSlotId = 16,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 7,
+            TimeSlotId = 17,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 8,
+            TimeSlotId = 26,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 8,
+            TimeSlotId = 27,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 9,
+            TimeSlotId = 36,
+        });
+        modelBuilder.Entity<Schedule>().HasData(new Schedule
+        {
+            YogaClassId = 10,
+            TimeSlotId = 37,
+        });
         #endregion
 
         #region Wallet
