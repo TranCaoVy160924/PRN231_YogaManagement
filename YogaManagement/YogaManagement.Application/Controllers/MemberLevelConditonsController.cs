@@ -1,17 +1,19 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using System.Data;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.MemberLevel;
 
 namespace YogaManagement.Application.Controllers;
 [Authorize(Roles = "Admin")]
-public class MemberLevelsController : ODataController
+public class MemberLevelConditonsController : ODataController
 {
-    private readonly MemberLevelDiscountRepository _mldRepo;
+    private readonly MemberLevelConditonRepository _mldRepo;
 
-    public MemberLevelsController(MemberLevelDiscountRepository mldRepo)
+    public MemberLevelConditonsController(MemberLevelConditonRepository mldRepo)
     {
         _mldRepo = mldRepo;
     }
@@ -36,6 +38,7 @@ public class MemberLevelsController : ODataController
 
         _mldRepo.Edit(updateRequest);
 
-        return Updated(updateRequest);
+        return Ok(updateRequest);
     }
 }
+

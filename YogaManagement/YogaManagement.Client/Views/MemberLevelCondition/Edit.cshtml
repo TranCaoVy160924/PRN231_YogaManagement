@@ -1,0 +1,60 @@
+﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel;
+@model MemberLevelDiscountDTO
+@{
+    ViewData["Title"] = "Edit";
+    var errorMessage = ViewData["Error"] as string;
+    if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">
+            @errorMessage
+        </div>
+    }
+}
+
+<h1>Edit</h1>
+
+<h4>Membership Condition</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id" type = "hidden" value=1 class="form-control" />
+            <div class="form-group">
+                <label asp-for="Silver" class="control-label"></label>
+                <input asp-for="Silver" class="form-control" />
+                <span asp-validation-for="Silver" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gold" class="control-label"></label>
+                <input asp-for="Gold" class="form-control" />
+                <span asp-validation-for="Gold" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Platinum" class="control-label"></label>
+                <input asp-for="Platinum" class="form-control" />
+                <span asp-validation-for="Platinum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input hidden name="Id" value=1 />
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="MemberLevelDiscount" asp-action="Index">Back to Index</a>
+</div>
+
+<script>
+    $('form input[type="text"]').on('change', function () {
+        EnableButtons();
+    });
+</script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
