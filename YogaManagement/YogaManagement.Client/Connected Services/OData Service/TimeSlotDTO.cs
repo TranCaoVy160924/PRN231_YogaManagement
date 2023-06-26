@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/25/2023 3:40:15 PM
+// Generation date: 6/26/2023 4:10:29 PM
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
 {
     /// <summary>
@@ -53,22 +53,15 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
         /// <param name="dayOfWeek">Initial value of DayOfWeek.</param>
         /// <param name="startTime">Initial value of StartTime.</param>
         /// <param name="endTime">Initial value of EndTime.</param>
-        /// <param name="room">Initial value of Room.</param>
         /// <param name="status">Initial value of Status.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static TimeSlotDTO CreateTimeSlotDTO(int ID, 
-                    global::YogaManagement.Client.OdataClient.System.DayOfWeek dayOfWeek, 
-                    string startTime, 
-                    string endTime, 
-                    int room, 
-                    bool status)
+        public static TimeSlotDTO CreateTimeSlotDTO(int ID, global::YogaManagement.Client.OdataClient.System.DayOfWeek dayOfWeek, string startTime, string endTime, bool status)
         {
             TimeSlotDTO timeSlotDTO = new TimeSlotDTO();
             timeSlotDTO.Id = ID;
             timeSlotDTO.DayOfWeek = dayOfWeek;
             timeSlotDTO.StartTime = startTime;
             timeSlotDTO.EndTime = endTime;
-            timeSlotDTO.Room = room;
             timeSlotDTO.Status = status;
             return timeSlotDTO;
         }
@@ -172,31 +165,6 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
         private string _EndTime;
         partial void OnEndTimeChanging(string value);
         partial void OnEndTimeChanged();
-        /// <summary>
-        /// There are no comments for Property Room in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-
-        [global::Microsoft.OData.Client.OriginalNameAttribute("Room")]
-        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Room is required.")]
-        public virtual int Room
-        {
-            get
-            {
-                return this._Room;
-            }
-            set
-            {
-                this.OnRoomChanging(value);
-                this._Room = value;
-                this.OnRoomChanged();
-                this.OnPropertyChanged("Room");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private int _Room;
-        partial void OnRoomChanging(int value);
-        partial void OnRoomChanged();
         /// <summary>
         /// There are no comments for Property Status in the schema.
         /// </summary>

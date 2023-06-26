@@ -102,8 +102,8 @@
         </Key>
         <Property Name="Id" Type="Edm.Int32" Nullable="false" />
         <Property Name="DayOfWeek" Type="System.DayOfWeek" Nullable="false" />
-        <Property Name="StartTime" Type="Edm.DateTimeOffset" Nullable="false" />
-        <Property Name="EndTime" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="StartTime" Type="Edm.String" Nullable="false" />
+        <Property Name="EndTime" Type="Edm.String" Nullable="false" />
         <Property Name="Status" Type="Edm.Boolean" Nullable="false" />
       </EntityType>
       <EntityType Name="ScheduleDTO">
