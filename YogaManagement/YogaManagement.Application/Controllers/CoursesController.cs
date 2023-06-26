@@ -49,6 +49,16 @@ public class CoursesController : ODataController
     [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Post([FromBody] CourseDTO createRequest)
     {
+        if (createRequest.StartDate > DateTime.Today.AddDays(-7))
+        {
+            return BadRequest("Start date must be at least 1 week before today");
+        }
+
+        if (createRequest.EnddDate < createRequest.StartDate.AddMonths(1))
+        {
+            return BadRequest("End date must be atleast 1 month later than start date");
+        }
+
         try
         {
             ModelState.ValidateRequest();
@@ -76,6 +86,11 @@ public class CoursesController : ODataController
         {
             try
             {
+                if (existCourse.YogaClasses.Any(c => c.YogaClassStatus == YogaClassStatus.Active))
+                {
+                    throw new Exception("Course have ongoing class");
+                }
+
                 var course = _mapper.Map(updateRequest, existCourse);
                 await _courseRepo.UpdateAsync(course);
                 return Updated(updateRequest);
