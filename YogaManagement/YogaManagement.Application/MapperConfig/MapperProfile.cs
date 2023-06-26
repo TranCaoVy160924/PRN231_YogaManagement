@@ -58,6 +58,17 @@ public class MapperProfile : Profile
         
         #region TimeSlot
         CreateMap<TimeSlot, TimeSlotDTO>();
+        CreateMap<TimeSlotDTO, TimeSlot>();
+        #endregion
+
+        #region Schedule
+        CreateMap<Schedule, ScheduleDTO>();
+        CreateMap<ScheduleDTO, Schedule>();
+        #endregion
+
+        #region Teacher Schedule
+        CreateMap<TeacherSchedule, TeacherScheduleDTO>();
+        CreateMap<TeacherScheduleDTO, TeacherSchedule>();
         #endregion
 
         #region Transaction

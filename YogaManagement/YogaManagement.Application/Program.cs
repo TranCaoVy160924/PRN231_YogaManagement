@@ -7,6 +7,7 @@ using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using YogaManagement.Application.Controllers;
 using YogaManagement.Application.MapperConfig;
 using YogaManagement.Application.Utilities;
 using YogaManagement.Business.Repositories;
@@ -45,6 +46,8 @@ builder.Services.AddScoped<WalletRepository>();
 builder.Services.AddScoped<MemberLevelDiscountRepository>();
 builder.Services.AddScoped<MemberLevelConditonRepository>();
 builder.Services.AddScoped<TimeSlotRepository>();
+builder.Services.AddScoped<TeacherScheduleRepository>();
+builder.Services.AddScoped<ScheduleRepository>();
 builder.Services.AddScoped<TransactionRepository>();
 
 // Utilities
@@ -205,6 +208,17 @@ static IEdmModel GetEdmModel()
     #region TimeSlot
     var timeSlot = builder.EntitySet<TimeSlotDTO>("TimeSlots").EntityType;
     #endregion
+
+    #region Schedule
+    var schedule = builder.EntitySet<ScheduleDTO>("Schedules").EntityType;
+    schedule.HasKey(e => new { e.TimeSlotId, e.YogaClassId });
+    #endregion
+
+    #region Teacher
+    var teacherSchedule = builder.EntitySet<TeacherScheduleDTO>("TeacherSchedules").EntityType;
+    teacherSchedule.HasKey(e => new { e.TimeSlotId, e.TeacherProfileId });
+    #endregion
+
 
     #region Wallet
     var wallet = builder.EntitySet<WalletDTO>("Wallets").EntityType;

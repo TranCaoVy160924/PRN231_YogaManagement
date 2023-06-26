@@ -40,4 +40,10 @@
     <ProjectReference Include="..\YogaManagement.Contracts\YogaManagement.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
