@@ -1,54 +1,28 @@
 ﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot;
-@model TimeSlotDTO;
+@using YogaManagement.Client.OdataClient.System;
+@model ScheduleViewModel;
 
 @{
     ViewData["Title"] = "Create";
+    int id = (int)ViewData["classId"];
 }
 
-<h1>Create</h1>
-
-<h4>TimeSlot</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="DayOfWeek" class="control-label"></label>
-                <select asp-for="DayOfWeek" class="form-control"></select>
-                <span asp-validation-for="DayOfWeek" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartTime" class="control-label"></label>
-                <input asp-for="StartTime" class="form-control" />
-                <span asp-validation-for="StartTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndTime" class="control-label"></label>
-                <input asp-for="EndTime" class="form-control" />
-                <span asp-validation-for="EndTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Room" class="control-label"></label>
-                <input asp-for="Room" class="form-control" />
-                <span asp-validation-for="Room" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<h2>Choose date</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Id)
+    <div>
+        @Html.EditorFor(m=>m.TimeSlots)
     </div>
-</div>
+    <input type="submit" value="Submit" />
+}
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-route-id="@id">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

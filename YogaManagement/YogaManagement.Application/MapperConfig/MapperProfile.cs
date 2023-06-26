@@ -59,7 +59,10 @@ public class MapperProfile : Profile
 
         #region TimeSlot
         CreateMap<TimeSlot, TimeSlotDTO>()
-            .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartTime.ToString("HH:mm")));
+            .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src =>
+                src.StartTime.ToString("HH:mm")))
+            .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src =>
+                src.EndTime.ToString("HH:mm")));
         //CreateMap<TimeSlotDTO, TimeSlot>();
         #endregion
 

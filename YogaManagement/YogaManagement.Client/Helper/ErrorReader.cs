@@ -25,12 +25,28 @@ public static class ErrorReader
     {
         try
         {
-            var content = JsonConvert.DeserializeObject<ApiError>(ex.InnerException.Message);
+            ApiError content;
+            if (ex.InnerException != null)
+            {
+                content = JsonConvert.DeserializeObject<ApiError>(ex.InnerException.Message);
+            }
+            else
+            {
+                content = JsonConvert.DeserializeObject<ApiError>(ex.Message);
+            }
+
             return content.Error.Message;
         }
         catch
         {
-            return ex.InnerException.Message;
+            if (ex.InnerException != null)
+            {
+                return ex.InnerException.Message;
+            }
+            else
+            {
+                return ex.Message;
+            }
         }
     }
 }

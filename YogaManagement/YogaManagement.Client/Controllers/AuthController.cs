@@ -54,6 +54,11 @@ public class AuthController : Controller
             await HttpContext.SignInAsync(principles);
 
             _notyf.Success("Hello " + _jwtManager.GetEmail());
+
+            if (_jwtManager.IsStaff())
+            {
+                return RedirectToAction("Index", "YogaClasses");
+            }
             return RedirectToAction("Index", "Home");
         }
         catch (ApiException ex)

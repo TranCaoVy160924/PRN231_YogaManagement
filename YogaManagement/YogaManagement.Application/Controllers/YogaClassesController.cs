@@ -90,13 +90,19 @@ public class YogaClassesController : ODataController
         {
             return NotFound();
         }
+
         else
         {
             try
             {
                 if (updateRequest.CourseId != existClass.CourseId)
                 {
-                    throw new Exception("Course cannot be change");
+                    throw new Exception("Invalid course change request");
+                }
+
+                if (existClass.YogaClassStatus == YogaClassStatus.Active && existClass.Course.EnddDate < DateTime.Today)
+                {
+                    throw new Exception("Cannot delete ongoing class");
                 }
 
                 existClass.Size = updateRequest.Size;
