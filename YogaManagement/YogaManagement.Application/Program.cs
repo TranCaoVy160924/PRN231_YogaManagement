@@ -18,6 +18,8 @@ using YogaManagement.Contracts.Enrollment;
 using YogaManagement.Contracts.MemberLevel;
 using YogaManagement.Contracts.TeacherEnrollment;
 using YogaManagement.Contracts.TimeSlot;
+using YogaManagement.Contracts.Transaction;
+using YogaManagement.Contracts.Wallet;
 using YogaManagement.Contracts.YogaClass;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
@@ -42,9 +44,11 @@ builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<TeacherEnrollmentRepository>();
 builder.Services.AddScoped<WalletRepository>();
 builder.Services.AddScoped<MemberLevelDiscountRepository>();
+builder.Services.AddScoped<MemberLevelConditonRepository>();
 builder.Services.AddScoped<TimeSlotRepository>();
 builder.Services.AddScoped<TeacherScheduleRepository>();
 builder.Services.AddScoped<ScheduleRepository>();
+builder.Services.AddScoped<TransactionRepository>();
 
 // Utilities
 builder.Services.AddSingleton<JwtHelper>();
@@ -117,22 +121,22 @@ builder.Services.AddSwaggerGen(c =>
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-                  {
-                    {
-                      new OpenApiSecurityScheme
-                      {
-                        Reference = new OpenApiReference
-                          {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                          },
-                          Scheme = "oauth2",
-                          Name = "Bearer",
-                          In = ParameterLocation.Header,
-                        },
-                        new List<string>()
-                      }
-                    });
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header,
+            },
+            new List<string>()
+        }
+    });
 });
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
@@ -146,7 +150,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(o =>
+    {
+        o.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+    });
 }
 
 app.UseCors("corsapp");
@@ -194,6 +201,10 @@ static IEdmModel GetEdmModel()
     var memberLevelDiscount = builder.EntitySet<MemberLevelDiscountDTO>("MemberLevels").EntityType;
     #endregion
 
+    #region MemberLevelCondition
+    var memberLevelCondition = builder.EntitySet<MemberLevelDiscountDTO>("MemberLevelConditons").EntityType;
+    #endregion
+
     #region TimeSlot
     var timeSlot = builder.EntitySet<TimeSlotDTO>("TimeSlots").EntityType;
     #endregion
@@ -203,11 +214,19 @@ static IEdmModel GetEdmModel()
     schedule.HasKey(e => new { e.TimeSlotId, e.YogaClassId });
     #endregion
 
-    #region Teacher Schedule
+    #region Teacher
     var teacherSchedule = builder.EntitySet<TeacherScheduleDTO>("TeacherSchedules").EntityType;
     teacherSchedule.HasKey(e => new { e.TimeSlotId, e.TeacherProfileId });
     #endregion
 
+
+    #region Wallet
+    var wallet = builder.EntitySet<WalletDTO>("Wallets").EntityType;
+    #endregion
+
+    #region Transaction
+    var transaction = builder.EntitySet<TransactionDTO>("Transactions").EntityType;
+    #endregion
 
     return builder.GetEdmModel();
 }

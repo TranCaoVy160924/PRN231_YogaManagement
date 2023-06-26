@@ -242,7 +242,7 @@ public static class ModelBuilderExtensions
 
             modelBuilder.Entity<TimeSlot>().HasData(new TimeSlot
             {
-                Id = i*10 + 1,
+                Id = i * 10 + 1,
                 DayOfWeek = day,
                 StartTime = inputTime("06:00:00"),
                 EndTime = inputTime("07:00:00"),
@@ -308,6 +308,19 @@ public static class ModelBuilderExtensions
                 EndTime = inputTime("21:00:00"),
                 Room = 707,
                 Status = true
+            });
+        }
+        #endregion
+
+        #region Wallet
+        for (int i = 1; i <= 46; i++)
+        {
+            modelBuilder.Entity<Wallet>().HasData(new Wallet
+            {
+                Id = i,
+                Balance = 0,
+                IsAdminWallet = i == 46 ? true : false,
+                AppUserId = i
             });
         }
         #endregion

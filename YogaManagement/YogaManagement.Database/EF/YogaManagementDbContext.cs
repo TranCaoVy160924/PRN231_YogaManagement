@@ -43,7 +43,6 @@ public class YogaManagementDbContext : IdentityDbContext<AppUser, AppRole, int>
     public DbSet<YogaClass> YogaClasses { get; set; }
     public DbSet<TeacherEnrollment> TeacherEnrollments { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
-    public DbSet<SystemWallet> SystemWallet { get; set; }
     public DbSet<Schedule> Schedule { get; set; }
     public DbSet<TeacherSchedule> TeacherSchedule { get; set; }
 }

@@ -1,20 +1,25 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 using YogaManagement.Contracts.MemberLevel;
 
 namespace YogaManagement.Business.Repositories;
-public class MemberLevelDiscountRepository
+public class MemberLevelConditonRepository
 {
     private readonly IConfiguration _configuration;
 
-    public MemberLevelDiscountRepository(IConfiguration configuration)
+    public MemberLevelConditonRepository(IConfiguration configuration)
     {
         _configuration = configuration;
     }
 
     public MemberLevelDiscountDTO Get()
     {
-        var getSection = _configuration.GetSection("MemberLevelPrivilege");
+        var getSection = _configuration.GetSection("PrivilegeCondition");
         var level = new MemberLevelDiscountDTO()
         {
             Id = Convert.ToInt32(getSection.GetSection("Id").Value),
@@ -26,7 +31,7 @@ public class MemberLevelDiscountRepository
         return level;
     }
 
-    public void Edit(MemberLevelDiscountDTO level)
+    public MemberLevelDiscountDTO Edit(MemberLevelDiscountDTO level)
     {
         var updateData = new Dictionary<string, object>
         {
@@ -35,7 +40,9 @@ public class MemberLevelDiscountRepository
             { "Gold", level.Gold.ToString() },
             { "Platinum", level.Platinum.ToString() }
         };
-        UpdateAppSetting("MemberLevelPrivilege", updateData);
+        UpdateAppSetting("PrivilegeCondition", updateData);
+
+        return level;
     }
 
     #region update helper
@@ -55,4 +62,3 @@ public class MemberLevelDiscountRepository
     }
     #endregion
 }
-

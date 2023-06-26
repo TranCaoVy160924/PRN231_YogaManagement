@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/17/2023 8:41:25 PM
+// Generation date: 6/25/2023 3:40:15 PM
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment
 {
     /// <summary>
