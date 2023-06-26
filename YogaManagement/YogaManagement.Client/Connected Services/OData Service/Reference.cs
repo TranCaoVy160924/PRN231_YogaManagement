@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/25/2023 3:40:15 PM
+// Generation date: 6/26/2023 11:47:55 AM
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
 {
 }
@@ -413,6 +413,42 @@ namespace YogaManagement.Client.OdataClient.Default
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.TimeSlotDTO> _TimeSlots;
         /// <summary>
+        /// There are no comments for Schedules in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Schedules")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ScheduleDTO> Schedules
+        {
+            get
+            {
+                if ((this._Schedules == null))
+                {
+                    this._Schedules = base.CreateQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ScheduleDTO>("Schedules");
+                }
+                return this._Schedules;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ScheduleDTO> _Schedules;
+        /// <summary>
+        /// There are no comments for TeacherSchedules in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("TeacherSchedules")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.TeacherScheduleDTO> TeacherSchedules
+        {
+            get
+            {
+                if ((this._TeacherSchedules == null))
+                {
+                    this._TeacherSchedules = base.CreateQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.TeacherScheduleDTO>("TeacherSchedules");
+                }
+                return this._TeacherSchedules;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.TeacherScheduleDTO> _TeacherSchedules;
+        /// <summary>
         /// There are no comments for Wallets in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
@@ -519,6 +555,22 @@ namespace YogaManagement.Client.OdataClient.Default
         public virtual void AddToTimeSlots(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.TimeSlotDTO timeSlotDTO)
         {
             base.AddObject("TimeSlots", timeSlotDTO);
+        }
+        /// <summary>
+        /// There are no comments for Schedules in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual void AddToSchedules(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ScheduleDTO scheduleDTO)
+        {
+            base.AddObject("Schedules", scheduleDTO);
+        }
+        /// <summary>
+        /// There are no comments for TeacherSchedules in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual void AddToTeacherSchedules(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.TeacherScheduleDTO teacherScheduleDTO)
+        {
+            base.AddObject("TeacherSchedules", teacherScheduleDTO);
         }
         /// <summary>
         /// There are no comments for Wallets in the schema.
