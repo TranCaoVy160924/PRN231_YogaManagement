@@ -1,7 +1,7 @@
 ﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot;
 @model TimeSlotDTO
 <div class="card-body">
-    @if ((Model.Id - 1) % 10 == 0)
+    @if (Model.Id < 20)
     {
         <div>@Model.DayOfWeek.ToString()</div>
     }

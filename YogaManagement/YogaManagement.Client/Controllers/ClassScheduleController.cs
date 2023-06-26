@@ -84,8 +84,9 @@ public class ClassScheduleController : Controller
             .ToList()
             .Select(x => x.TimeSlotId);
 
-        var classTimeSlots = (await _context.TimeSlots
-            .ExecuteAsync()).ToList();
+        var classTimeSlots =  _context.TimeSlots
+            .OrderBy(x => x.DayOfWeek)
+            .ToList();
         foreach (var timeSlot in classTimeSlots)
         {
             timeSlot.Status = false;
