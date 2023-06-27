@@ -83,7 +83,9 @@ public class MapperProfile : Profile
             .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src =>
                 src.YogaClass.Name))
             .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src =>
-                src.YogaClass.Course.Name));
+                src.YogaClass.Course.Name))
+            .ForMember(dest => dest.DayOfWeek, opt => opt.MapFrom(src =>
+                src.TimeSlot.DayOfWeek.ToString()));
         CreateMap<TeacherScheduleDTO, TeacherSchedule>();
         #endregion
 

@@ -58,7 +58,17 @@ public class JwtManager
     public string GetEmail()
         => IsAuthenticated ? SecureToken.Claims.Where(c => c.Type == ClaimTypes.Email).SingleOrDefault().Value : "";
 
-
+    public int GetProfileId()
+    {
+        if (IsMember() || IsTeacher())
+        {
+            return int.Parse(SecureToken.Claims.Where(c => c.Type == "Profile").SingleOrDefault().Value);
+        }
+        else
+        {
+            return 0;
+        }
+    }
     public ClaimsPrincipal TryGetPriciples()
     {
         if (!IsAuthenticated)

@@ -59,6 +59,11 @@ public class AuthController : Controller
             {
                 return RedirectToAction("Index", "YogaClasses");
             }
+            if (_jwtManager.IsMember())
+            {
+                return RedirectToAction("Member", "TimeTable");
+            } 
+
             return RedirectToAction("Index", "Home");
         }
         catch (ApiException ex)

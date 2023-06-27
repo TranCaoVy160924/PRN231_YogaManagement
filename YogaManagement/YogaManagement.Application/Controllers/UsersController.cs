@@ -71,7 +71,10 @@ public class UsersController : ODataController
         try
         {
             ModelState.ValidateRequest();
-            var user = await _userManager.FindByEmailAsync(request.Email);
+            var user = await _userManager.Users
+                .Include(x => x.Member)
+                .Include(x => x.TeacherProfile)
+                .SingleOrDefaultAsync(x => x.Email == request.Email);
             if (user == null)
             {
                 throw new Exception("Username or password is incorrect. Please try again");

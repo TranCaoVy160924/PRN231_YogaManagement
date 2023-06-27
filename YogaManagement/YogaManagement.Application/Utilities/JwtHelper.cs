@@ -32,6 +32,8 @@ public class JwtHelper
                 new Claim(ClaimTypes.GivenName, $"{user.Firstname} {user.Lastname}"),
                 new Claim(ClaimTypes.Email, email),
                 new Claim(ClaimTypes.Role, role),
+                role == "Member"? new Claim("Profile", user.Member.Id.ToString()) : null,
+                role == "Teacher"? new Claim("Profile", user.TeacherProfile.Id.ToString()) : null
             };
     }
 
