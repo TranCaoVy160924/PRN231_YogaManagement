@@ -22,6 +22,7 @@ public class ClassTimeSlotController : ODataController
     [EnableQuery]
     public ActionResult<IQueryable<ClassTimeSlotDTO>> Get()
     {
-        return Ok(_mapper.ProjectTo<ClassTimeSlotDTO>(_scheduleRepo.GetAllInclude()));
+        var result = _mapper.Map<List<ClassTimeSlotDTO>>(_scheduleRepo.GetAllInclude().ToList());
+        return Ok(result);
     }
 }

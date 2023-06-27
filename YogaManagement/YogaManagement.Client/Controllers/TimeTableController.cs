@@ -31,12 +31,11 @@ public class TimeTableController : Controller
             }
             var studyingClass = _context.Enrollments
                 .Where(x => x.MemberId == memberId)
-                .Select(x => x.YogaClassName)
-                .ToList();
+                .ToList()
+                .Select(x => x.YogaClassName);
 
             var timetable = _context.ClassTimeSlot
-                .Where(x => studyingClass.Contains(x.ClassName))
-                .ToList();
+                .Where(x => studyingClass.Contains(x.ClassName));
 
             return View(timetable);
         }

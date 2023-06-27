@@ -243,7 +243,6 @@ public static class ModelBuilderExtensions
                 DayOfWeek = DayOfWeek.Monday,
                 StartTime = StartTime,
                 EndTime = EndTime,
-                Room = 101 * i,
                 Status = true
             });
 
@@ -253,7 +252,6 @@ public static class ModelBuilderExtensions
                 DayOfWeek = DayOfWeek.Tuesday,
                 StartTime = StartTime,
                 EndTime = EndTime,
-                Room = 101 * i,
                 Status = true
             });
 
@@ -263,7 +261,6 @@ public static class ModelBuilderExtensions
                 DayOfWeek = DayOfWeek.Wednesday,
                 StartTime = StartTime,
                 EndTime = EndTime,
-                Room = 101 * i,
                 Status = true
             });
 
@@ -273,7 +270,6 @@ public static class ModelBuilderExtensions
                 DayOfWeek = DayOfWeek.Thursday,
                 StartTime = StartTime,
                 EndTime = EndTime,
-                Room = 101 * i,
                 Status = true
             });
 
@@ -283,7 +279,6 @@ public static class ModelBuilderExtensions
                 DayOfWeek = DayOfWeek.Friday,
                 StartTime = StartTime,
                 EndTime = EndTime,
-                Room = 101 * i,
                 Status = true
             });
 
@@ -293,7 +288,6 @@ public static class ModelBuilderExtensions
                 DayOfWeek = DayOfWeek.Saturday,
                 StartTime = StartTime,
                 EndTime = EndTime,
-                Room = 101 * i,
                 Status = true
             });
 
@@ -303,7 +297,6 @@ public static class ModelBuilderExtensions
                 DayOfWeek = DayOfWeek.Sunday,
                 StartTime = StartTime,
                 EndTime = EndTime,
-                Room = 101 * i,
                 Status = true
             });
         }
