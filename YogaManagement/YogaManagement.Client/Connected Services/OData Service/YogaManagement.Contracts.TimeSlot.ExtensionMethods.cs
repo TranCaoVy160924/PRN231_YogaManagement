@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/26/2023 4:10:29 PM
+// Generation date: 6/27/2023 1:49:37 PM
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
 {
     /// <summary>
@@ -90,6 +90,29 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
                 { "TimeSlotId", timeSlotId }
             };
             return new global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.TeacherScheduleDTOSingle(_source.Context, _source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(_source.Context, _keys)));
+        }
+        /// <summary>
+        /// Get an entity of type global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ClassTimeSlotDTO as global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ClassTimeSlotDTOSingle specified by key from an entity set
+        /// </summary>
+        /// <param name="_source">source entity set</param>
+        /// <param name="_keys">dictionary with the names and values of keys</param>
+        public static global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ClassTimeSlotDTOSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ClassTimeSlotDTO> _source, global::System.Collections.Generic.IDictionary<string, object> _keys)
+        {
+            return new global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ClassTimeSlotDTOSingle(_source.Context, _source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(_source.Context, _keys)));
+        }
+        /// <summary>
+        /// Get an entity of type global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ClassTimeSlotDTO as global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ClassTimeSlotDTOSingle specified by key from an entity set
+        /// </summary>
+        /// <param name="_source">source entity set</param>
+        /// <param name="id">The value of id</param>
+        public static global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ClassTimeSlotDTOSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ClassTimeSlotDTO> _source,
+            int id)
+        {
+            global::System.Collections.Generic.IDictionary<string, object> _keys = new global::System.Collections.Generic.Dictionary<string, object>
+            {
+                { "Id", id }
+            };
+            return new global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.ClassTimeSlotDTOSingle(_source.Context, _source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(_source.Context, _keys)));
         }
     }
 }

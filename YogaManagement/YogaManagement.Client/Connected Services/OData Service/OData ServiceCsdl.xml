@@ -123,6 +123,17 @@
         <Property Name="TeacherProfileId" Type="Edm.Int32" Nullable="false" />
         <Property Name="IsTaken" Type="Edm.Boolean" Nullable="false" />
       </EntityType>
+      <EntityType Name="ClassTimeSlotDTO">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DayOfWeek" Type="System.DayOfWeek" Nullable="false" />
+        <Property Name="StartTime" Type="Edm.String" Nullable="false" />
+        <Property Name="EndTime" Type="Edm.String" Nullable="false" />
+        <Property Name="ClassName" Type="Edm.String" Nullable="false" />
+        <Property Name="CourseName" Type="Edm.String" Nullable="false" />
+      </EntityType>
     </Schema>
     <Schema Namespace="YogaManagement.Contracts.Wallet" xmlns="http://docs.oasis-open.org/odata/ns/edm">
       <EntityType Name="WalletDTO">
@@ -172,6 +183,7 @@
         <EntitySet Name="TimeSlots" EntityType="YogaManagement.Contracts.TimeSlot.TimeSlotDTO" />
         <EntitySet Name="Schedules" EntityType="YogaManagement.Contracts.TimeSlot.ScheduleDTO" />
         <EntitySet Name="TeacherSchedules" EntityType="YogaManagement.Contracts.TimeSlot.TeacherScheduleDTO" />
+        <EntitySet Name="ClassTimeSlot" EntityType="YogaManagement.Contracts.TimeSlot.ClassTimeSlotDTO" />
         <EntitySet Name="Wallets" EntityType="YogaManagement.Contracts.Wallet.WalletDTO" />
         <EntitySet Name="Transactions" EntityType="YogaManagement.Contracts.Transaction.TransactionDTO" />
       </EntityContainer>
