@@ -74,6 +74,17 @@ public class MapperProfile : Profile
         #region Teacher Schedule
         CreateMap<TeacherSchedule, TeacherScheduleDTO>();
         CreateMap<TeacherScheduleDTO, TeacherSchedule>();
+
+        CreateMap<Schedule, ClassTimeSlotDTO>()
+            .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src =>
+                src.TimeSlot.StartTime.ToString("HH:mm")))
+            .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src =>
+                src.TimeSlot.EndTime.ToString("HH:mm")))
+            .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src =>
+                src.YogaClass.Name))
+            .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src =>
+                src.YogaClass.Course.Name));
+        CreateMap<TeacherScheduleDTO, TeacherSchedule>();
         #endregion
 
         #region Transaction
@@ -87,6 +98,7 @@ public class MapperProfile : Profile
         CreateMap<Wallet, WalletDTO>();
         CreateMap<WalletDTO, Wallet>();
         #endregion
+
         #region Enrollment
         CreateMap<Enrollment, EnrollmentDTO>()
             .ForMember(dest => dest.MemberName, otp =>

@@ -1,16 +1,22 @@
-﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot;
+﻿@using YogaManagement.Client.Helper;
+@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot;
 @model IEnumerable<TimeSlotDTO>
+@inject JwtManager _jwtManager;
 
 @{
     ViewData["Title"] = "Index";
-    int id = (int) ViewData["classId"];
+    int id = (int)ViewData["classId"];
 }
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create" asp-route-id="@id"> Manage schedule</a>
-</p>
+@if (_jwtManager.IsStaff())
+{
+    <p>
+        <a asp-action="Create" asp-route-id="@id"> Manage schedule</a>
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>

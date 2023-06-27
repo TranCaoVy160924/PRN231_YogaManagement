@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YogaManagement.Client.Helper;
 using YogaManagement.Client.Models;
@@ -21,6 +22,7 @@ public class ClassScheduleController : Controller
     }
 
     // GET: ClassSchedule
+    [Authorize]
     public IActionResult Index(int? id)
     {
         try
@@ -52,25 +54,8 @@ public class ClassScheduleController : Controller
         }
     }
 
-    //// GET: ClassSchedule/Details/5
-    //public async Task<IActionResult> Details(int? id)
-    //{
-    //    if (id == null || _context.TimeSlots == null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    var timeSlot = await _context.TimeSlots
-    //        .FirstOrDefaultAsync(m => m.Id == id);
-    //    if (timeSlot == null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    return View(timeSlot);
-    //}
-
     // GET: ClassSchedule/Create
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Create(int? id)
     {
         if (id == null)
@@ -110,6 +95,7 @@ public class ClassScheduleController : Controller
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Create(ScheduleViewModel model)
     {
         try
@@ -161,97 +147,4 @@ public class ClassScheduleController : Controller
             return RedirectToAction(nameof(Create), new { id = model.Id });
         }
     }
-
-    //// GET: ClassSchedule/Edit/5
-    //public async Task<IActionResult> Edit(int? id)
-    //{
-    //    if (id == null || _context.TimeSlots == null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    var timeSlot = await _context.TimeSlots.FindAsync(id);
-    //    if (timeSlot == null)
-    //    {
-    //        return NotFound();
-    //    }
-    //    return View(timeSlot);
-    //}
-
-    //// POST: ClassSchedule/Edit/5
-    //// To protect from overposting attacks, enable the specific properties you want to bind to.
-    //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public async Task<IActionResult> Edit(int id, [Bind("Id,DayOfWeek,StartTime,EndTime,Room,Status")] TimeSlot timeSlot)
-    //{
-    //    if (id != timeSlot.Id)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    if (ModelState.IsValid)
-    //    {
-    //        try
-    //        {
-    //            _context.Update(timeSlot);
-    //            await _context.SaveChangesAsync();
-    //        }
-    //        catch (DbUpdateConcurrencyException)
-    //        {
-    //            if (!TimeSlotExists(timeSlot.Id))
-    //            {
-    //                return NotFound();
-    //            }
-    //            else
-    //            {
-    //                throw;
-    //            }
-    //        }
-    //        return RedirectToAction(nameof(Index));
-    //    }
-    //    return View(timeSlot);
-    //}
-
-    //// GET: ClassSchedule/Delete/5
-    //public async Task<IActionResult> Delete(int? id)
-    //{
-    //    if (id == null || _context.TimeSlots == null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    var timeSlot = await _context.TimeSlots
-    //        .FirstOrDefaultAsync(m => m.Id == id);
-    //    if (timeSlot == null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    return View(timeSlot);
-    //}
-
-    //// POST: ClassSchedule/Delete/5
-    //[HttpPost, ActionName("Delete")]
-    //[ValidateAntiForgeryToken]
-    //public async Task<IActionResult> DeleteConfirmed(int id)
-    //{
-    //    if (_context.TimeSlots == null)
-    //    {
-    //        return Problem("Entity set 'YogaManagementDbContext.TimeSlots'  is null.");
-    //    }
-    //    var timeSlot = await _context.TimeSlots.FindAsync(id);
-    //    if (timeSlot != null)
-    //    {
-    //        _context.TimeSlots.Remove(timeSlot);
-    //    }
-
-    //    await _context.SaveChangesAsync();
-    //    return RedirectToAction(nameof(Index));
-    //}
-
-    //private bool TimeSlotExists(int id)
-    //{
-    //    return (_context.TimeSlots?.Any(e => e.Id == id)).GetValueOrDefault();
-    //}
 }

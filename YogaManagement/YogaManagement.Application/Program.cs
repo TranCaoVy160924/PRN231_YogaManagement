@@ -219,6 +219,9 @@ static IEdmModel GetEdmModel()
     teacherSchedule.HasKey(e => new { e.TimeSlotId, e.TeacherProfileId });
     #endregion
 
+    #region ClassTimeSlot
+    var classTimeSlot = builder.EntitySet<ClassTimeSlotDTO>("ClassTimeSlot").EntityType;
+    #endregion
 
     #region Wallet
     var wallet = builder.EntitySet<WalletDTO>("Wallets").EntityType;

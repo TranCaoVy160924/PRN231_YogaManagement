@@ -87,38 +87,4 @@ public class SchedulesController : ODataController
             return BadRequest(ex.Message);
         }
     }
-
-    // delete all time slot of 1 class
-    [HttpDelete("odata/Schedules/yogaClassId")]
-    public async Task<IActionResult> Delete(int keyYogaClassId)
-    {
-        var existClass = await _ygClassRepo.Get(keyYogaClassId);
-        if (existClass == null)
-        {
-            return NotFound();
-        }
-
-        var listSchedule = _scheduleRepo.GetScheduleOfAClass(keyYogaClassId);
-        if (listSchedule == null)
-        {
-            return NotFound();
-        }
-        try
-        {
-            if (existClass.YogaClassStatus == YogaClassStatus.Active && existClass.Course.EnddDate < DateTime.Today)
-            {
-                throw new Exception("Cannot delete ongoing class");
-            }
-
-            foreach (var schedule in listSchedule)
-            {
-                await _scheduleRepo.DeleteAsync(schedule);
-            }
-            return NoContent();
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-    }
 }
