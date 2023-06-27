@@ -61,12 +61,16 @@
 {
     <div>
         <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+        <a asp-action="Index" asp-controller="YogaClasses"
+           asp-route-id="@Model.Id">Classes</a> |
         <a asp-action="Index">Back to List</a>
     </div>
 }
 @if (_jwtManager.IsMember())
 {
     <div>
+        <a asp-action="Index" asp-controller="YogaClasses"
+           asp-route-id="@Model.Id">Classes</a> |
         <a asp-action="Index">Back to List</a>
     </div>
 }

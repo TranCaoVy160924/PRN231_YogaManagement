@@ -48,7 +48,11 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    <a asp-action="Index" asp-controller="YogaClasses"
+                       asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.Name)
+
+                    </a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
@@ -73,13 +77,17 @@
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                        <a asp-action="Index" asp-controller="YogaClasses"
+                           asp-route-id="@item.Id">Classes</a>
                     </td>
                 }
                 @if (_jwtManager.IsMember())
                 {
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Index" asp-controller="YogaClasses"
+                           asp-route-id="@item.Id">Classes</a>
                     </td>
                 }
             </tr>

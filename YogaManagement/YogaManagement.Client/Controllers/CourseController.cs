@@ -29,7 +29,8 @@ public class CourseController : Controller
     // GET: Courses
     public async Task<IActionResult> Index()
     {
-        var coursesDbContext = await _context.Courses.ExecuteAsync();
+        var coursesDbContext = _context.Courses.
+            Where(x => x.IsActive);
         return View(coursesDbContext);
     }
 

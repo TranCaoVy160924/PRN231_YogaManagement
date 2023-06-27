@@ -56,6 +56,7 @@
                         <td>
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@item.Id">Schedule</a> |
                             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                         </td>
                     }
@@ -64,6 +65,7 @@
                         <td>
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                             <a class="btn-link disabled" href="#">Edit</a> |
+                            <a class="btn-link disabled" href="#">Schedule</a> |
                             <a class="btn-link disabled" href="#">Delete</a>
                         </td>
                     }
@@ -71,7 +73,8 @@
                 @if (_jwtManager.IsMember())
                 {
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@item.Id">Schedule</a> |
                     </td>
                 }
             </tr>

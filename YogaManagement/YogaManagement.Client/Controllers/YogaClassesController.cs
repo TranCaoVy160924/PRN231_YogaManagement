@@ -26,10 +26,22 @@ public class YogaClassesController : Controller
     }
 
     // GET: YogaClasses
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int? id)
     {
-        var ygClasses = await _context.YogaClasses.ExecuteAsync();
-        return View(ygClasses.ToList());
+        IEnumerable<YogaClassDTO> ygClasses;
+        if (id == null)
+        {
+            ygClasses = await _context.YogaClasses.ExecuteAsync();
+        }
+        else
+        {
+            ygClasses = _context.YogaClasses
+                .Where(x => x.CourseId == id);
+        }
+
+        return View(ygClasses.ToList()
+            .OrderByDescending(x => x.YogaClassStatus)
+            .ThenBy(x => x.CourseId));
     }
 
     // GET: YogaClasses/Details/5
