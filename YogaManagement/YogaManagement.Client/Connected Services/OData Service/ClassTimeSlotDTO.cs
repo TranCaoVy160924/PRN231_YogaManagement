@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/27/2023 1:49:37 PM
+// Generation date: 6/27/2023 4:42:56 PM
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
 {
     /// <summary>
@@ -57,7 +57,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
         /// <param name="courseName">Initial value of CourseName.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         public static ClassTimeSlotDTO CreateClassTimeSlotDTO(int ID, 
-                    global::YogaManagement.Client.OdataClient.System.DayOfWeek dayOfWeek, 
+                    string dayOfWeek, 
                     string startTime, 
                     string endTime, 
                     string className, 
@@ -104,7 +104,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("DayOfWeek")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "DayOfWeek is required.")]
-        public virtual global::YogaManagement.Client.OdataClient.System.DayOfWeek DayOfWeek
+        public virtual string DayOfWeek
         {
             get
             {
@@ -119,8 +119,8 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::YogaManagement.Client.OdataClient.System.DayOfWeek _DayOfWeek;
-        partial void OnDayOfWeekChanging(global::YogaManagement.Client.OdataClient.System.DayOfWeek value);
+        private string _DayOfWeek;
+        partial void OnDayOfWeekChanging(string value);
         partial void OnDayOfWeekChanged();
         /// <summary>
         /// There are no comments for Property StartTime in the schema.
