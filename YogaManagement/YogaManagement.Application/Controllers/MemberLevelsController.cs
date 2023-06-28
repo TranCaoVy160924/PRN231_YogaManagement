@@ -34,6 +34,8 @@ public class MemberLevelsController : ODataController
     {
         var updateRequest = delta.GetInstance();
 
+        _mldRepo.Edit(updateRequest);
+
         return Updated(updateRequest);
     }
 }

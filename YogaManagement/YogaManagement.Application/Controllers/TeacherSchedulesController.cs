@@ -18,13 +18,19 @@ public class TeacherSchedulesController : ODataController
         _mapper = mapper;
         _Repo = Repo;
     }
-    //get schedules of a teacher
+    //get schedules teacher
     [EnableQuery]
-    public ActionResult<IQueryable<TeacherScheduleDTO>> Get(int keyTeacherProfileId)
+    public ActionResult<IQueryable<TeacherScheduleDTO>> Get()
     {
-
-        return Ok(_mapper.ProjectTo<TeacherScheduleDTO>(_Repo.GetScheduleOfATeacher(keyTeacherProfileId)));
+        return Ok(_mapper.ProjectTo<TeacherScheduleDTO>(_Repo.GetAll()));
     }
+
+    //get schedules of a teacher
+    //public ActionResult<IQueryable<TeacherScheduleDTO>> Get(int keyTeacherProfileId)
+    //{
+    //    return Ok(_mapper.ProjectTo<TeacherScheduleDTO>(_Repo.GetScheduleOfATeacher(keyTeacherProfileId)));
+    //}
+
     public async Task<IActionResult> Post([FromBody] TeacherScheduleDTO createRequest)
     {
         try

@@ -1,0 +1,51 @@
+﻿@using YogaManagement.Client.Helper;
+@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot;
+@model IEnumerable<TimeSlotDTO>
+@inject JwtManager _jwtManager;
+
+@{
+    ViewData["Title"] = "Index";
+    int id = (int)ViewData["teacherId"];
+}
+
+<h1>Index</h1>
+
+@if (_jwtManager.IsTeacher())
+{
+    <p>
+        <a asp-action="Create" asp-route-id="@id"> Manage schedule</a>
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DayOfWeek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DayOfWeek)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
