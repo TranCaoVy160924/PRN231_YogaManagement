@@ -93,34 +93,6 @@ public class TeacherEnrollmentsController : ODataController
         }
     }
 
-    //public async Task<IActionResult> Patch([FromRoute] int key, [FromBody] Delta<TeacherEnrollmentDTO> delta)
-    //{
-    //    var updateRequest = delta.GetInstance();
-    //    var existEnroll = await _tcErRepo.Get(key);
-    //    if (existEnroll == null)
-    //    {
-    //        return NotFound();
-    //    }
-    //    else
-    //    {
-    //        try
-    //        {
-    //            //var tcEnroll = _mapper.Map(updateRequest, existEnroll);
-    //            existEnroll.StartDate = updateRequest.StartDate;
-    //            existEnroll.EndDate = updateRequest.EndDate;
-    //            existEnroll.TeacherProfileId = updateRequest.TeacherProfileId;
-    //            existEnroll.YogaClassId = updateRequest.YogaClassId;
-    //            existEnroll.IsActive = updateRequest.IsActive;
-    //            await _tcErRepo.UpdateAsync(existEnroll);
-    //            return Updated(existEnroll);
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            return BadRequest(ex.Message);
-    //        }
-    //    }
-    //}
-
     public async Task<IActionResult> Delete(int key)
     {
         var existEnroll = await _tcErRepo.Get(key);

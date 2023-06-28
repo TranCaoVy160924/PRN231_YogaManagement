@@ -31,7 +31,9 @@ public class YogaClassesController : Controller
         IEnumerable<YogaClassDTO> ygClasses;
         if (id == null)
         {
-            ygClasses = await _context.YogaClasses.ExecuteAsync();
+            ygClasses = _context.YogaClasses.Execute()
+                .Where(x => x.YogaClassStatus == "Pending" ||
+                    x.YogaClassStatus == "Active");
         }
         else
         {
@@ -79,8 +81,18 @@ public class YogaClassesController : Controller
     [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Create()
     {
-        var course = await _context.Courses.ExecuteAsync();
-        ViewBag.Courses = new SelectList(course, "Id", "Name");
+        var courses = _context.Courses.Execute()
+            .Where(x => x.IsActive
+                && x.StartDate > DateTime.Today
+                && x.EnddDate > DateTime.Today)
+            .ToList();
+        if (courses.Count == 0)
+        {
+            _notyf.Error("No available course");
+            return RedirectToAction(nameof(Index));
+        }
+
+        ViewBag.Courses = new SelectList(courses, "Id", "Name");
         return View();
     }
 
@@ -94,8 +106,18 @@ public class YogaClassesController : Controller
     {
         try
         {
-            var course = await _context.Courses.ExecuteAsync();
-            ViewBag.Courses = new SelectList(course, "Id", "Name");
+            var courses = _context.Courses.Execute()
+            .Where(x => x.IsActive
+                && x.StartDate > DateTime.Today
+                && x.EnddDate > DateTime.Today)
+            .ToList();
+            if (courses.Count == 0)
+            {
+                _notyf.Error("No available course");
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewBag.Courses = new SelectList(courses, "Id", "Name");
             ModelState.Remove("CourseName");
             if (!ModelState.IsValid)
             {
@@ -109,87 +131,6 @@ public class YogaClassesController : Controller
         }
         catch (InvalidOperationException ex)
         {
-            _notyf.Error(ex.ReadOdataErrorMessage());
-            return View(yogaClass);
-        }
-        catch (Exception ex)
-        {
-            _notyf.Error(ex.Message);
-            return View(yogaClass);
-        }
-    }
-
-    // GET: YogaClasses/Edit/5
-    [Authorize(Roles = "Staff")]
-    public async Task<IActionResult> Edit(int? id)
-    {
-        try
-        {
-            if (id == null || _context.YogaClasses == null)
-            {
-                throw new Exception("Invalid class");
-            }
-
-            var yogaClass = await _context.YogaClasses.ByKey(id.Value).GetValueAsync();
-            var course = await _context.Courses.ExecuteAsync();
-            ViewBag.Courses = new SelectList(course, "Id", "Name");
-            if (yogaClass == null)
-            {
-                throw new Exception("No class found");
-            }
-            if (yogaClass.YogaClassStatus == "Active")
-            {
-                throw new Exception("Cannot update ongoing class");
-            }
-            return View(yogaClass);
-        }
-        catch (InvalidOperationException ex)
-        {
-            _notyf.Error(ex.ReadOdataErrorMessage());
-            return RedirectToAction(nameof(Index));
-        }
-        catch (Exception ex)
-        {
-            _notyf.Error(ex.Message);
-            return RedirectToAction(nameof(Index));
-        }
-    }
-
-    // POST: YogaClasses/Edit/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    [Authorize(Roles = "Staff")]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Size,YogaClassStatus,CourseId")] YogaClassDTO yogaClass)
-    {
-        if (id != yogaClass.Id || yogaClass.YogaClassStatus == "Active")
-        {
-            _notyf.Error("Class cannot be update");
-            return RedirectToAction(nameof(Index));
-        }
-
-        try
-        {
-            var course = await _context.Courses.ExecuteAsync();
-            ViewBag.Courses = new SelectList(course, "Id", "Name");
-            ModelState.Remove("CourseName");
-            if (!ModelState.IsValid)
-            {
-                throw new Exception("Invalid input");
-            }
-            var ygClass = _context.YogaClasses.ByKey(id).GetValue();
-            ygClass.Name = yogaClass.Name;
-            ygClass.YogaClassStatus = yogaClass.YogaClassStatus;
-            ygClass.Size = yogaClass.Size;
-
-            _context.UpdateObject(ygClass);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-        catch (InvalidOperationException ex)
-        {
-
             _notyf.Error(ex.ReadOdataErrorMessage());
             return View(yogaClass);
         }
@@ -248,9 +189,17 @@ public class YogaClassesController : Controller
         try
         {
             var yogaClass = _context.YogaClasses.ByKey(id).GetValue();
+            var tcEnrollments = _context.TeacherEnrollments
+                .Where(x => x.YogaClassId == yogaClass.Id)
+                .ToList();
             if (yogaClass != null)
             {
                 _context.DeleteObject(yogaClass);
+
+                foreach (var tcEnrollment in tcEnrollments)
+                {
+                    _context.DeleteObject(tcEnrollment);
+                }
             }
 
             await _context.SaveChangesAsync();

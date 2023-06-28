@@ -5,6 +5,11 @@
 
 @{
     ViewData["Title"] = "Index";
+    var courses = Model;
+    if (_jwtManager.IsMember())
+    {
+        courses = courses.Where(x => x.IsActive);
+    }
 }
 
 <h1>Index</h1>
@@ -44,7 +49,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in courses.OrderByDescending(x => x.IsActive).ThenByDescending(x => x.StartDate))
         {
             <tr>
                 <td>
@@ -74,13 +79,16 @@
                 </td>
                 @if (_jwtManager.IsStaff())
                 {
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                        <a asp-action="Index" asp-controller="YogaClasses"
-                           asp-route-id="@item.Id">Classes</a>
-                    </td>
+                    @if (item.IsActive)
+                    {
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                            <a asp-action="Index" asp-controller="YogaClasses"
+                               asp-route-id="@item.Id">Classes</a>
+                        </td>
+                    }
                 }
                 @if (_jwtManager.IsMember())
                 {

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using Microsoft.EntityFrameworkCore;
 using YogaManagement.Application.Utilities;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.YogaClass;
@@ -15,13 +16,22 @@ public class YogaClassesController : ODataController
 {
     private readonly IMapper _mapper;
     private readonly YogaClassRepository _ygClassRepo;
+    private readonly EnrollmentRepository _enrollmentRepo;
+    private readonly WalletRepository _walletRepo;
+    private readonly TransactionRepository _transacRepo;
     private readonly CourseRepository _courseRepo;
 
     public YogaClassesController(YogaClassRepository yogaClassRepository,
-        IMapper mapper,
-        CourseRepository courseRepo)
+        EnrollmentRepository enrollmentRepo,
+        WalletRepository walletRepo,
+        TransactionRepository transacRepo,
+        CourseRepository courseRepo,
+        IMapper mapper)
     {
         _mapper = mapper;
+        _enrollmentRepo = enrollmentRepo;
+        _walletRepo = walletRepo;
+        _transacRepo = transacRepo;
         _ygClassRepo = yogaClassRepository;
         _courseRepo = courseRepo;
     }
@@ -43,7 +53,6 @@ public class YogaClassesController : ODataController
         {
             return NotFound();
         }
-        //var ygclassout = _mapper.Map<YogaClassDTO>(ygClass);
 
         return Ok(_mapper.Map<YogaClassDTO>(ygClass));
     }
@@ -82,46 +91,13 @@ public class YogaClassesController : ODataController
     }
 
     [Authorize(Roles = "Staff")]
-    public async Task<IActionResult> Patch([FromRoute] int key, [FromBody] Delta<YogaClassDTO> delta)
-    {
-        var updateRequest = delta.GetInstance();
-        var existClass = await _ygClassRepo.Get(key);
-        if (existClass == null)
-        {
-            return NotFound();
-        }
-
-        else
-        {
-            try
-            {
-                if (updateRequest.CourseId != existClass.CourseId)
-                {
-                    throw new Exception("Invalid course change request");
-                }
-
-                if (existClass.YogaClassStatus == YogaClassStatus.Active && existClass.Course.EnddDate < DateTime.Today)
-                {
-                    throw new Exception("Cannot delete ongoing class");
-                }
-
-                existClass.Size = updateRequest.Size;
-                existClass.Name = updateRequest.Name;
-                await _ygClassRepo.UpdateAsync(existClass);
-                return Updated(existClass);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-    }
-
-    [Authorize(Roles = "Staff")]
     [HttpDelete]
     public async Task<IActionResult> Delete(int key)
     {
         var existClass = await _ygClassRepo.Get(key);
+        var course = existClass.Course;
+        var adminWallet = _walletRepo.GetAll()
+            .SingleOrDefault(x => x.IsAdminWallet);
         if (existClass == null)
         {
             return NotFound();
@@ -129,9 +105,45 @@ public class YogaClassesController : ODataController
 
         try
         {
-            if (existClass.YogaClassStatus == YogaClassStatus.Active && existClass.Course.EnddDate < DateTime.Today)
+            if (existClass.YogaClassStatus != YogaClassStatus.Pending)
             {
-                throw new Exception("Cannot delete ongoing class");
+                throw new Exception("Only pending class can be delete");
+            }
+
+            // find member who enroll in class
+            var enrollments = _enrollmentRepo.GetAll()
+                .Include(x => x.Member)
+                .ThenInclude(x => x.AppUser)
+                .ThenInclude(x => x.Wallet)
+                .Where(x => x.YogaClassId == existClass.Id)
+                .ToList();
+
+
+            foreach (var enrollment in enrollments)
+            {
+                var wallet = enrollment.Member.AppUser.Wallet;
+                double transacAmount = course.Price * (1 - enrollment.Discount);
+                // refund
+                if (adminWallet.Balance >= transacAmount)
+                {
+                    wallet.Balance += transacAmount;
+                    adminWallet.Balance -= transacAmount;
+                    await _transacRepo.CreateAsync(new Transaction
+                    {
+                        Amount = transacAmount,
+                        Content = $"Refund for course {course.Name}",
+                        CreatedDate = DateTime.Today,
+                        TransactionType = TransactionType.Refund,
+                        WalletId = wallet.Id
+                    });
+                    await _walletRepo.UpdateAsync(adminWallet);
+                    await _walletRepo.UpdateAsync(wallet);
+                    await _enrollmentRepo.DeleteAsync(enrollment);
+                }
+                else
+                {
+                    throw new Exception("Refund not available now");
+                }
             }
 
             existClass.YogaClassStatus = YogaClassStatus.Inactive;

@@ -14,11 +14,16 @@ public class ClassScheduleController : Controller
 {
     private readonly Container _context;
     private readonly INotyfService _notyf;
+    private readonly JwtManager _jwtManager;
 
-    public ClassScheduleController(Container context, INotyfService notyf)
+    public ClassScheduleController(Container context, 
+        INotyfService notyf,
+        JwtManager jwtManager)
     {
         _context = context;
         _notyf = notyf;
+        _jwtManager = jwtManager;
+        _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
     }
 
     // GET: ClassSchedule
@@ -61,6 +66,14 @@ public class ClassScheduleController : Controller
         if (id == null)
         {
             _notyf.Error("Not found");
+            return RedirectToAction(nameof(Index), new { id = id });
+        }
+
+        var ygClass = _context.YogaClasses
+            .Where(x => x.Id == id).SingleOrDefault();
+        if (ygClass.YogaClassStatus != "Pending")
+        {
+            _notyf.Warning("Only pending class's schedule can be edit");
             return RedirectToAction(nameof(Index), new { id = id });
         }
 

@@ -122,6 +122,7 @@ public class CourseController : Controller
 
             var course = await _context.Courses.ByKey(id.Value).GetValueAsync();
             var categories = await _context.Categories.ExecuteAsync();
+
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
             if (course == null)
             {

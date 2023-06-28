@@ -49,9 +49,9 @@ public class CoursesController : ODataController
     [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Post([FromBody] CourseDTO createRequest)
     {
-        if (createRequest.StartDate > DateTime.Today.AddDays(-7))
+        if (createRequest.StartDate < DateTime.Today.AddDays(7))
         {
-            return BadRequest("Start date must be at least 1 week before today");
+            return BadRequest("Start date must be at least 1 week later than today");
         }
 
         if (createRequest.EnddDate < createRequest.StartDate.AddMonths(1))
@@ -112,9 +112,9 @@ public class CoursesController : ODataController
         }
         try
         {
-            if (existCourse.YogaClasses.Any(c => c.YogaClassStatus == YogaClassStatus.Active))
+            if (existCourse.YogaClasses.Any(c => c.YogaClassStatus == YogaClassStatus.Active || c.YogaClassStatus == YogaClassStatus.Pending))
             {
-                throw new Exception("Course have ongoing class");
+                throw new Exception("Course have ongoing or pending class");
             }
 
             if (existCourse.IsActive)

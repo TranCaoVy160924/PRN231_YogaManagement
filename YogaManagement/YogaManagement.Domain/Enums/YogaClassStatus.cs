@@ -3,5 +3,6 @@ public enum YogaClassStatus
 {
     Inactive,
     Pending,
-    Active
+    Active,
+    Finish
 }
