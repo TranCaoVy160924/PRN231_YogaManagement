@@ -1,0 +1,28 @@
+﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot;
+@using YogaManagement.Client.OdataClient.System;
+@model ScheduleViewModel;
+
+@{
+    ViewData["Title"] = "Create";
+    int id = (int)ViewData["teacherId"];
+}
+
+<h2>Choose date</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Id)
+    <div>
+        @Html.EditorFor(m=>m.TimeSlots)
+    </div>
+    <input type="submit" value="Submit" />
+}
+
+<div>
+    <a asp-action="Index" asp-route-id="@id">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
