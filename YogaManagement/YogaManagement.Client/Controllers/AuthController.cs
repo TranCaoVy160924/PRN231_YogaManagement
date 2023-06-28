@@ -63,6 +63,10 @@ public class AuthController : Controller
             {
                 return RedirectToAction("Member", "TimeTable");
             } 
+            if (_jwtManager.IsTeacher())
+            {
+                return RedirectToAction("Teacher", "TimeTable");
+            }
 
             return RedirectToAction("Index", "Home");
         }

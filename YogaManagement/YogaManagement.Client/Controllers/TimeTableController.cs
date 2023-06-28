@@ -11,7 +11,7 @@ public class TimeTableController : Controller
     private readonly INotyfService _notyf;
     private readonly JwtManager _jwtManager;
 
-    public TimeTableController(Container context, 
+    public TimeTableController(Container context,
         INotyfService notyf,
         JwtManager jwtManager)
     {
@@ -46,6 +46,42 @@ public class TimeTableController : Controller
         catch (Exception ex)
         {
             _notyf.Error(ex.Message);
+            return RedirectToAction("Index", "Home");
+        }
+    }
+
+    public IActionResult Teacher()
+    {
+        try
+        {
+            var teacherId = _jwtManager.GetProfileId();
+            if (teacherId == 0)
+            {
+                throw new Exception("User not exist");
+            }
+            var teachingClass = _context.TeacherEnrollments
+                .Where(x => x.TeacherProfileId == teacherId)
+                .ToList()
+                .Select(x => x.ClassName);
+
+            if (teachingClass.Count() <= 0)
+            {
+                throw new Exception("You have not been assign to a class");
+            }
+
+            var timetable = _context.ClassTimeSlot
+            .Where(x => teachingClass.Contains(x.ClassName));
+
+            return View(timetable);
+
+        }
+        catch (InvalidOperationException ex)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+        catch (Exception ex)
+        {
+            _notyf.Warning(ex.Message);
             return RedirectToAction("Index", "Home");
         }
     }
