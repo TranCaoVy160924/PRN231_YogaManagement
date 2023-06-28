@@ -121,9 +121,6 @@ public class CourseController : Controller
             }
 
             var course = await _context.Courses.ByKey(id.Value).GetValueAsync();
-            var categories = await _context.Categories.ExecuteAsync();
-
-            ViewBag.Categories = new SelectList(categories, "Id", "Name");
             if (course == null)
             {
                 throw new Exception("Not found");
@@ -159,8 +156,6 @@ public class CourseController : Controller
         try
         {
             ModelState.Remove("CategoryName");
-            var categories = await _context.Categories.ExecuteAsync();
-            ViewBag.Categories = new SelectList(categories, "Id", "Name");
             if (!ModelState.IsValid)
             {
                 throw new Exception("Invalid input");
