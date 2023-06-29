@@ -23,6 +23,7 @@ public class TeacherScheduleController : Controller
         _context = context;
         _notyf = notyf;
         _jwtManager = jwtManager;
+        _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
     }
 
     // GET: ClassSchedule

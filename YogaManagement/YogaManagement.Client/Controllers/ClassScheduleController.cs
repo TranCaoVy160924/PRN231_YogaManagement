@@ -9,7 +9,7 @@ using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot;
 using DayOfWeek = YogaManagement.Client.OdataClient.System.DayOfWeek;
 
 namespace YogaManagement.Client.Controllers;
-
+[Authorize]
 public class ClassScheduleController : Controller
 {
     private readonly Container _context;
@@ -27,7 +27,6 @@ public class ClassScheduleController : Controller
     }
 
     // GET: ClassSchedule
-    [Authorize]
     public IActionResult Index(int? id)
     {
         try
@@ -50,7 +49,15 @@ public class ClassScheduleController : Controller
         }
         catch (InvalidOperationException ex)
         {
-            return RedirectToAction(nameof(Create), new { id = id });
+            if (_jwtManager.IsStaff())
+            {
+                return RedirectToAction(nameof(Create), new { id = id });
+            }
+            else
+            {
+                _notyf.Information("The class have no schedule for now");
+                return RedirectToAction("Index", "YogaClasses", id);
+            }
         }
         catch (Exception ex)
         {

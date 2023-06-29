@@ -1,10 +1,12 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel;
 
 namespace YogaManagement.Client.Controllers;
+[Authorize(Roles = "Admin")]
 public class MemberLevelConditionController : Controller
 {
     private readonly Container _context;

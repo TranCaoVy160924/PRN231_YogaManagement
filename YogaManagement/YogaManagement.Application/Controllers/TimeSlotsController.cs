@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
@@ -9,6 +10,7 @@ using YogaManagement.Contracts.TimeSlot;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
+[Authorize]
 public class TimeSlotsController : ODataController
 {
     private readonly IMapper _mapper;

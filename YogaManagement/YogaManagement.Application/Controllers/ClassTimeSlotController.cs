@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
@@ -7,6 +8,8 @@ using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.TimeSlot;
 
 namespace YogaManagement.Application.Controllers;
+
+[Authorize]
 public class ClassTimeSlotController : ODataController
 {
     private readonly IMapper _mapper;

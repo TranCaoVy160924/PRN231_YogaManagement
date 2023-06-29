@@ -11,6 +11,7 @@ using YogaManagement.Domain.Enums;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
+[Authorize]
 public class TransactionsController : ODataController
 {
     private readonly IMapper _mapper;
@@ -30,14 +31,12 @@ public class TransactionsController : ODataController
     }
 
     [EnableQuery]
-    [Authorize]
     public ActionResult<IQueryable<TransactionDTO>> Get()
     {
         return Ok(_mapper.ProjectTo<TransactionDTO>(_transacRepo.GetAll()));
     }
 
     [EnableQuery]
-    [Authorize]
     public async Task<ActionResult<TransactionDTO>> Get([FromRoute] int key)
     {
         var transaction = await _transacRepo.Get(key);
@@ -52,7 +51,7 @@ public class TransactionsController : ODataController
 
 
     // For member transaction
-    [Authorize(Roles = "Member")]
+    [Authorize(Roles = "Member,Admin")]
     public async Task<IActionResult> Post([FromBody] TransactionDTO transacRequest)
     {
         try

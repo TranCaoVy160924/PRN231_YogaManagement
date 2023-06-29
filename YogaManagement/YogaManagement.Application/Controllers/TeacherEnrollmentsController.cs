@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
@@ -10,6 +11,8 @@ using YogaManagement.Contracts.TeacherEnrollment;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
+
+[Authorize(Roles = "Staff,Teacher,Member")]
 public class TeacherEnrollmentsController : ODataController
 {
     private readonly IMapper _mapper;
@@ -121,6 +124,7 @@ public class TeacherEnrollmentsController : ODataController
         }
     }
 
+    [HttpDelete]
     public async Task<IActionResult> Delete(int key)
     {
         var existEnroll = await _tcErRepo.Get(key);
@@ -132,8 +136,7 @@ public class TeacherEnrollmentsController : ODataController
         {
             var tcSchedule = _tcScheduleRepo.GetAll()
                 .Include(x => x.TimeSlot)
-                .Where(x => x.TeacherProfileId == existEnroll.TeacherProfileId
-                    && !x.IsTaken)
+                .Where(x => x.TeacherProfileId == existEnroll.TeacherProfileId)
                 .ToList();
 
             var classSchedule = _scheduleRepo.GetAll()

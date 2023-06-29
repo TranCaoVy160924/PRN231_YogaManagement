@@ -39,4 +39,3 @@ public class MemberLevelConditonsController : ODataController
         return Ok(updateRequest);
     }
 }
-

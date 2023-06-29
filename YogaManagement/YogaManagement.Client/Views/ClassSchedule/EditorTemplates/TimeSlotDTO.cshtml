@@ -17,8 +17,12 @@
 <div class="card-body">
     
     <p>
-        <div>@Model.Id</div>
-        <b>@Model.DayOfWeek @Model.StartTime : @Model.EndTime</b>   :
+        @if (isFirst)
+        {
+            <div>@Model.DayOfWeek</div>
+        }
+        
+        <b>@Model.StartTime : @Model.EndTime</b>   :
         @Html.CheckBoxFor(x => x.Status) <br />
         @Html.HiddenFor(x => x.Id)
         @Html.HiddenFor(x => x.DayOfWeek)

@@ -12,6 +12,7 @@ using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
 
+[Authorize]
 public class CoursesController : ODataController
 {
     private readonly IMapper _mapper;
@@ -25,14 +26,12 @@ public class CoursesController : ODataController
         _categoryRepo = categoryRepository;
     }
 
-    [Authorize]
     public ActionResult<IQueryable<CourseDTO>> Get()
     {
         return Ok(_mapper.ProjectTo<CourseDTO>(_courseRepo.GetAll()));
     }
 
     [EnableQuery]
-    [Authorize]
     public async Task<ActionResult<CourseDTO>> Get([FromRoute] int key)
     {
         var course = await _courseRepo.Get(key);

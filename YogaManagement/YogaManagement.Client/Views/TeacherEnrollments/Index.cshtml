@@ -1,5 +1,7 @@
-﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment;
+﻿@using YogaManagement.Client.Helper;
+@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment;
 @model IEnumerable<TeacherEnrollmentDTO>
+@inject JwtManager _jwtManager
 
 @{
     ViewData["Title"] = "Index";
@@ -8,15 +10,16 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create" asp-route-id=@classId>Create New</a>
-</p>
+@if (_jwtManager.IsStaff())
+{
+    <p>
+        <a asp-action="Create" asp-route-id=@classId>Create New</a>
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.StartDate)
             </th>
@@ -29,6 +32,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ClassName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -36,9 +42,6 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.StartDate)
                 </td>
@@ -52,10 +55,23 @@
                     @Html.DisplayFor(modelItem => item.ClassName)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @Html.DisplayFor(modelItem => item.IsActive)
                 </td>
+                @if (_jwtManager.IsStaff())
+                {
+                    @if (item.IsActive)
+                    {
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a class="btn-link disabled" href="#">Delete</a>
+                        </td>
+                    }
+                }
             </tr>
         }
     </tbody>

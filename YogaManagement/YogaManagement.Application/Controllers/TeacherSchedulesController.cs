@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
@@ -8,6 +9,7 @@ using YogaManagement.Contracts.TimeSlot;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
+[Authorize(Roles = "Staff,Teacher")]
 public class TeacherSchedulesController : ODataController
 {
     private readonly IMapper _mapper;

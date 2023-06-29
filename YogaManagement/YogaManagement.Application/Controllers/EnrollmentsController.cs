@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
@@ -9,17 +10,17 @@ using YogaManagement.Contracts.Enrollment;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
+
+[Authorize]
 public class EnrollmentsController : ODataController
 {
     private readonly IMapper _mapper;
     private readonly EnrollmentRepository _Repo;
-    private readonly YogaClassRepository _yogaRepo;
 
-    public EnrollmentsController(IMapper mapper, EnrollmentRepository repo, YogaClassRepository yogaRepo)
+    public EnrollmentsController(IMapper mapper, EnrollmentRepository repo)
     {
         _mapper = mapper;
         _Repo = repo;
-        _yogaRepo = yogaRepo;
     }
 
     [EnableQuery]

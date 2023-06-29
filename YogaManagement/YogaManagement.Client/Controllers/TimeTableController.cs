@@ -18,6 +18,7 @@ public class TimeTableController : Controller
         _context = context;
         _notyf = notyf;
         _jwtManager = jwtManager;
+        _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
     }
 
     public IActionResult Member()
@@ -29,15 +30,24 @@ public class TimeTableController : Controller
             {
                 throw new Exception("User not exist");
             }
-            var studyingClass = _context.Enrollments
+            var enrollments = _context.Enrollments
                 .Where(x => x.MemberId == memberId)
-                .ToList()
-                .Select(x => x.YogaClassName);
+                .ToList();
 
-            var timetable = _context.ClassTimeSlot
-                .Where(x => studyingClass.Contains(x.ClassName));
+            if (enrollments.Count > 0)
+            {
+                var studyingClass = enrollments
+                    .Select(x => x.YogaClassName);
 
-            return View(timetable);
+                var timetable = _context.ClassTimeSlot
+                    .Where(x => studyingClass.Contains(x.ClassName));
+
+                return View(timetable);
+            }
+            else
+            {
+                throw new Exception("You have not enroll in any class");
+            }
         }
         catch (InvalidOperationException ex)
         {
@@ -45,7 +55,7 @@ public class TimeTableController : Controller
         }
         catch (Exception ex)
         {
-            _notyf.Error(ex.Message);
+            _notyf.Warning(ex.Message);
             return RedirectToAction("Index", "Home");
         }
     }

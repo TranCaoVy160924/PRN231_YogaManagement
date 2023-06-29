@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
@@ -6,6 +7,8 @@ using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Category;
 
 namespace YogaManagement.Application.Controllers;
+
+[Authorize]
 public class CategoriesController : ODataController
 {
     private readonly IMapper _mapper;
