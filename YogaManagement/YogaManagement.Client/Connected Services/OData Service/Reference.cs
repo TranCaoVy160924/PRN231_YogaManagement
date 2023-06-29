@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/27/2023 4:42:56 PM
+// Generation date: 6/29/2023 10:33:07 AM
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass
 {
 }
@@ -31,6 +31,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel
 {
 }
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot
+{
+}
+namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherProfile
 {
 }
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Wallet
@@ -82,6 +85,11 @@ namespace YogaManagement.Client.OdataClient.Default
         protected global::System.Type ResolveTypeFromName(string typeName)
         {
             global::System.Type resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.TeacherEnrollment", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment");
+            if ((resolvedType != null))
+            {
+                return resolvedType;
+            }
+            resolvedType = this.DefaultResolveType(typeName, "YogaManagement.Contracts.TeacherProfile", "YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherProfile");
             if ((resolvedType != null))
             {
                 return resolvedType;
@@ -159,6 +167,14 @@ namespace YogaManagement.Client.OdataClient.Default
                     return string.Concat("YogaManagement.Contracts.TeacherEnrollment.", originalNameAttribute.OriginalName);
                 }
                 return string.Concat("YogaManagement.Contracts.TeacherEnrollment.", clientType.Name);
+            }
+            if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherProfile", global::System.StringComparison.Ordinal))
+            {
+                if (originalNameAttribute != null)
+                {
+                    return string.Concat("YogaManagement.Contracts.TeacherProfile.", originalNameAttribute.OriginalName);
+                }
+                return string.Concat("YogaManagement.Contracts.TeacherProfile.", clientType.Name);
             }
             if (clientType.Namespace.Equals("YogaManagement.Client.OdataClient.YogaManagement.Contracts.MemberLevel", global::System.StringComparison.Ordinal))
             {
@@ -449,6 +465,24 @@ namespace YogaManagement.Client.OdataClient.Default
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.TeacherScheduleDTO> _TeacherSchedules;
         /// <summary>
+        /// There are no comments for TeacherProfiles in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("TeacherProfiles")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherProfile.TeacherProfileDTO> TeacherProfiles
+        {
+            get
+            {
+                if ((this._TeacherProfiles == null))
+                {
+                    this._TeacherProfiles = base.CreateQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherProfile.TeacherProfileDTO>("TeacherProfiles");
+                }
+                return this._TeacherProfiles;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherProfile.TeacherProfileDTO> _TeacherProfiles;
+        /// <summary>
         /// There are no comments for ClassTimeSlot in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
@@ -589,6 +623,14 @@ namespace YogaManagement.Client.OdataClient.Default
         public virtual void AddToTeacherSchedules(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot.TeacherScheduleDTO teacherScheduleDTO)
         {
             base.AddObject("TeacherSchedules", teacherScheduleDTO);
+        }
+        /// <summary>
+        /// There are no comments for TeacherProfiles in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual void AddToTeacherProfiles(global::YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherProfile.TeacherProfileDTO teacherProfileDTO)
+        {
+            base.AddObject("TeacherProfiles", teacherProfileDTO);
         }
         /// <summary>
         /// There are no comments for ClassTimeSlot in the schema.

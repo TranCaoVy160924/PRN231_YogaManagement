@@ -4,6 +4,7 @@ using YogaManagement.Contracts.Category;
 using YogaManagement.Contracts.Course;
 using YogaManagement.Contracts.Enrollment;
 using YogaManagement.Contracts.TeacherEnrollment;
+using YogaManagement.Contracts.TeacherProfile;
 using YogaManagement.Contracts.TimeSlot;
 using YogaManagement.Contracts.Transaction;
 using YogaManagement.Contracts.Wallet;
@@ -74,6 +75,10 @@ public class MapperProfile : Profile
         #region Teacher Schedule
         CreateMap<TeacherSchedule, TeacherScheduleDTO>();
         CreateMap<TeacherScheduleDTO, TeacherSchedule>();
+
+        CreateMap<TeacherProfile, TeacherProfileDTO>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src =>
+                src.AppUser.Firstname + src.AppUser.Lastname));
 
         CreateMap<Schedule, ClassTimeSlotDTO>()
             .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src =>

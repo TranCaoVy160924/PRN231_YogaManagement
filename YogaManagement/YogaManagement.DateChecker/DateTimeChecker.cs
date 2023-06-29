@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +17,27 @@ public class DateTimeChecker
     private readonly EnrollmentRepository _enrollmentRepo;
     private readonly WalletRepository _walletRepo;
     private readonly TransactionRepository _transacRepo;
+    private readonly TeacherEnrollmentRepository _tcErRepo;
+    private readonly TeacherScheduleRepository _tcScheduleRepo;
+    private readonly ScheduleRepository _scheduleRepo;
 
     public DateTimeChecker(CourseRepository courseRepo,
         YogaClassRepository ygClassRepo,
         EnrollmentRepository enrollmentRepo,
         WalletRepository walletRepo,
-        TransactionRepository transacRepo)
+        TransactionRepository transacRepo,
+        TeacherEnrollmentRepository tcErRepo,
+        TeacherScheduleRepository tcScheduleRepo,
+        ScheduleRepository scheduleRepo)
     {
         _courseRepo = courseRepo;
         _ygClassRepo = ygClassRepo;
         _enrollmentRepo = enrollmentRepo;
         _walletRepo = walletRepo;
         _transacRepo = transacRepo;
+        _tcErRepo = tcErRepo;
+        _tcScheduleRepo = tcScheduleRepo;
+        _scheduleRepo = scheduleRepo;
     }
 
     // End course will be delete and all active class become finish
@@ -80,6 +90,44 @@ public class DateTimeChecker
 
             foreach (var yogaClass in pendingClass)
             {
+                #region DeleteTeacherEnrollemt
+                var existEnrolls = _tcErRepo.GetAll()
+                    .Where(x => x.YogaClassId == yogaClass.Id)
+                    .ToList();
+                foreach (var existEnroll in existEnrolls)
+                {
+                    try
+                    {
+                        var tcSchedule = _tcScheduleRepo.GetAll()
+                            .Include(x => x.TimeSlot)
+                            .Where(x => x.TeacherProfileId == existEnroll.TeacherProfileId
+                                && !x.IsTaken)
+                            .ToList();
+
+                        var classSchedule = _scheduleRepo.GetAll()
+                            .Include(x => x.TimeSlot)
+                            .Where(x => x.YogaClassId == existEnroll.YogaClassId)
+                            .ToList().Select(x => x.TimeSlotId);
+
+                        existEnroll.IsActive = false;
+                        await _tcErRepo.UpdateAsync(existEnroll);
+
+                        foreach (var timeSlot in classSchedule)
+                        {
+                            var teacherTimeSlot = tcSchedule
+                                .SingleOrDefault(x => x.TimeSlotId == timeSlot);
+                            teacherTimeSlot.IsTaken = false;
+                            await _tcScheduleRepo.UpdateAsync(teacherTimeSlot);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+                #endregion
+
+                #region DeleteAndRefundMemberEnrollemt
                 // find member who enroll in class
                 var enrollments = _enrollmentRepo.GetAll()
                     .Include(x => x.Member)
@@ -120,7 +168,7 @@ public class DateTimeChecker
                 }
                 catch { }
             }
-
+            #endregion
         }
     }
 }

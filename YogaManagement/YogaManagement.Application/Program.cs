@@ -16,6 +16,7 @@ using YogaManagement.Contracts.Course;
 using YogaManagement.Contracts.Enrollment;
 using YogaManagement.Contracts.MemberLevel;
 using YogaManagement.Contracts.TeacherEnrollment;
+using YogaManagement.Contracts.TeacherProfile;
 using YogaManagement.Contracts.TimeSlot;
 using YogaManagement.Contracts.Transaction;
 using YogaManagement.Contracts.Wallet;
@@ -216,6 +217,7 @@ static IEdmModel GetEdmModel()
 
     #region Teacher
     var teacherSchedule = builder.EntitySet<TeacherScheduleDTO>("TeacherSchedules").EntityType;
+    var teacherProfiles = builder.EntitySet<TeacherProfileDTO>("TeacherProfiles").EntityType;
     teacherSchedule.HasKey(e => new { e.TimeSlotId, e.TeacherProfileId });
     #endregion
 
