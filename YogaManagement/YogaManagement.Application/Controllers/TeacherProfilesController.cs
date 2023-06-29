@@ -14,6 +14,8 @@ public class TeacherProfilesController : ODataController
 {
     private readonly IMapper _mapper;
     private readonly TeacherProfileRepository _tcProfileRepo;
+    private readonly ScheduleRepository _scheduleRepo;
+    private readonly TeacherProfileDTO _teacherProfileDTO;
 
     public TeacherProfilesController(IMapper mapper, TeacherProfileRepository tcProfileRepo)
     {
@@ -21,6 +23,7 @@ public class TeacherProfilesController : ODataController
         _tcProfileRepo = tcProfileRepo;
     }
 
+    [EnableQuery]
     public ActionResult<IQueryable<TeacherProfileDTO>> Get()
     {
         return Ok(_mapper.ProjectTo<TeacherProfileDTO>(_tcProfileRepo.GetAll()));
@@ -32,6 +35,6 @@ public class TeacherProfilesController : ODataController
         var teacher = _tcProfileRepo.GetAll()
             .SingleOrDefault(x => x.Id == key);
 
-        return Ok(_mapper.Map<TeacherProfileDTO>(teacher));
+        return Ok(_mapper.ProjectTo<TeacherProfileDTO>(_tcProfileRepo.GetAll()));
     }
 }

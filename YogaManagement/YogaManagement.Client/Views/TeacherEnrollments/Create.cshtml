@@ -14,7 +14,7 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input hidden class="form-check-input" asp-for="IsActive" value=@true />
+            <input hidden class="form-check-input" asp-for="IsActive" value="@true" />
             <div class="form-group">
                 <label asp-for="StartDate" class="control-label"></label>
                 @Html.TextBoxFor(x => x.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date"})

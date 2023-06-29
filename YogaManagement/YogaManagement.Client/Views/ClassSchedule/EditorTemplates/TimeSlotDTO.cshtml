@@ -1,12 +1,24 @@
 ﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot;
 @model TimeSlotDTO
-<div class="card-body">
-    @if (Model.Id < 20)
+
+@{
+    bool isFirst = false;
+    List<TimeSlotDTO> timeslots = ViewData["TimeSlots"] as List<TimeSlotDTO>;
+    var sameDayOfWeekTimeSlots = timeslots
+        .Where(x => (x.Id % 10) == (Model.Id % 10))
+        .OrderBy(x => x.Id);
+    if (sameDayOfWeekTimeSlots.First().Id == Model.Id)
     {
-        <div>@Model.DayOfWeek.ToString()</div>
-    }
+        
+        isFirst = true;
+    } 
+}
+
+<div class="card-body">
+    
     <p>
-        <b>@Model.StartTime : @Model.EndTime</b>   :
+        <div>@Model.Id</div>
+        <b>@Model.DayOfWeek @Model.StartTime : @Model.EndTime</b>   :
         @Html.CheckBoxFor(x => x.Status) <br />
         @Html.HiddenFor(x => x.Id)
         @Html.HiddenFor(x => x.DayOfWeek)

@@ -1,12 +1,13 @@
 ﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot;
 @model TimeSlotDTO
+
 <div class="card-body">
     @if (Model.Id < 20)
     {
         <div>@Model.DayOfWeek.ToString()</div>
     }
     <p>
-        <b>@Model.StartTime : @Model.EndTime</b>   :
+        <b>@Model.StartTime : @Model.EndTime</b> :
         @Html.CheckBoxFor(x => x.Status) <br />
         @Html.HiddenFor(x => x.Id)
         @Html.HiddenFor(x => x.DayOfWeek)

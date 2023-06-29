@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 // Generation date: 6/17/2023 8:41:25 PM
+using System.ComponentModel.DataAnnotations;
+using YogaManagement.Client.ValidationAttributes;
+
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment
 {
     /// <summary>
@@ -21,19 +24,19 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnro
         /// Initialize a new TeacherEnrollmentDTOSingle object.
         /// </summary>
         public TeacherEnrollmentDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
-            : base(context, path) {}
+            : base(context, path) { }
 
         /// <summary>
         /// Initialize a new TeacherEnrollmentDTOSingle object.
         /// </summary>
         public TeacherEnrollmentDTOSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
-            : base(context, path, isComposable) {}
+            : base(context, path, isComposable) { }
 
         /// <summary>
         /// Initialize a new TeacherEnrollmentDTOSingle object.
         /// </summary>
         public TeacherEnrollmentDTOSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<TeacherEnrollmentDTO> query)
-            : base(query) {}
+            : base(query) { }
 
     }
     /// <summary>
@@ -56,11 +59,11 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnro
         /// <param name="teacherProfileId">Initial value of TeacherProfileId.</param>
         /// <param name="yogaClassId">Initial value of YogaClassId.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static TeacherEnrollmentDTO CreateTeacherEnrollmentDTO(int ID, 
-                    bool isActive, 
-                    global::System.DateTimeOffset startDate, 
-                    global::System.DateTimeOffset endDate, 
-                    int teacherProfileId, 
+        public static TeacherEnrollmentDTO CreateTeacherEnrollmentDTO(int ID,
+                    bool isActive,
+                    global::System.DateTimeOffset startDate,
+                    global::System.DateTimeOffset endDate,
+                    int teacherProfileId,
                     int yogaClassId)
         {
             TeacherEnrollmentDTO teacherEnrollmentDTO = new TeacherEnrollmentDTO();
@@ -75,10 +78,11 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnro
         /// <summary>
         /// There are no comments for Property Id in the schema.
         /// </summary>
+        /// 
+        #region Id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("Id")]
-        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Id is required.")]
         public virtual int Id
         {
             get
@@ -97,6 +101,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnro
         private int _Id;
         partial void OnIdChanging(int value);
         partial void OnIdChanged();
+        #endregion
+
+        #region IsActive
         /// <summary>
         /// There are no comments for Property IsActive in the schema.
         /// </summary>
@@ -122,6 +129,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnro
         private bool _IsActive;
         partial void OnIsActiveChanging(bool value);
         partial void OnIsActiveChanged();
+        #endregion
+
+        #region StartAndEndDate
         /// <summary>
         /// There are no comments for Property StartDate in the schema.
         /// </summary>
@@ -154,6 +164,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnro
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("EndDate")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "EndDate is required.")]
+        [DateMoreThan("StartDate", ErrorMessage = "End date must be later than start date")]
         public virtual global::System.DateTimeOffset EndDate
         {
             get
@@ -172,6 +183,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnro
         private global::System.DateTimeOffset _EndDate;
         partial void OnEndDateChanging(global::System.DateTimeOffset value);
         partial void OnEndDateChanged();
+        #endregion
+
+        #region TeacherProfileId
         /// <summary>
         /// There are no comments for Property TeacherProfileId in the schema.
         /// </summary>
@@ -179,6 +193,7 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnro
 
         [global::Microsoft.OData.Client.OriginalNameAttribute("TeacherProfileId")]
         [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "TeacherProfileId is required.")]
+        [Range(1, double.MaxValue)]
         public virtual int TeacherProfileId
         {
             get
@@ -197,6 +212,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnro
         private int _TeacherProfileId;
         partial void OnTeacherProfileIdChanging(int value);
         partial void OnTeacherProfileIdChanged();
+        #endregion
+
+        #region YogaClassId
         /// <summary>
         /// There are no comments for Property YogaClassId in the schema.
         /// </summary>
@@ -222,6 +240,9 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnro
         private int _YogaClassId;
         partial void OnYogaClassIdChanging(int value);
         partial void OnYogaClassIdChanged();
+        #endregion
+
+
         /// <summary>
         /// There are no comments for Property TeacherName in the schema.
         /// </summary>

@@ -8,13 +8,15 @@ using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot;
 using DayOfWeek = YogaManagement.Client.OdataClient.System.DayOfWeek;
 
 namespace YogaManagement.Client.Controllers;
+
+[Authorize(Roles = "Teacher")]
 public class TeacherScheduleController : Controller
 {
     private readonly Container _context;
     private readonly INotyfService _notyf;
     private readonly JwtManager _jwtManager;
 
-    public TeacherScheduleController(Container context, 
+    public TeacherScheduleController(Container context,
         INotyfService notyf,
         JwtManager jwtManager)
     {
@@ -63,21 +65,37 @@ public class TeacherScheduleController : Controller
             return RedirectToAction(nameof(Index), new { id = id });
         }
 
-        var teacherSchedule = _context.TeacherSchedules
+        var teacherSchedules = _context.TeacherSchedules
             .Where(x => x.TeacherProfileId == id)
-            .ToList()
-            .Select(x => x.TimeSlotId);
+            .ToList();
+
+        var scheduleId = teacherSchedules.Select(x => x.TimeSlotId);
 
         var teacherTimeSlots = _context.TimeSlots
             .OrderBy(x => x.DayOfWeek)
             .ToList();
+        List<TimeSlotDTO> takenTimeSlot = new List<TimeSlotDTO>();
         foreach (var timeSlot in teacherTimeSlots)
         {
             timeSlot.Status = false;
-            if (teacherSchedule.Contains(timeSlot.Id))
+            if (scheduleId.Contains(timeSlot.Id))
             {
-                timeSlot.Status = true;
+                var teacherSchdule = teacherSchedules
+                    .SingleOrDefault(x => x.TimeSlotId == timeSlot.Id);
+                if (teacherSchdule.IsTaken)
+                {
+                   takenTimeSlot.Add(timeSlot);
+                }
+                else
+                {
+                    timeSlot.Status = true;
+                }
             }
+        }
+
+        foreach(var timeSlot in takenTimeSlot)
+        {
+            teacherTimeSlots.Remove(timeSlot);
         }
 
         var model = new ScheduleViewModel
@@ -104,7 +122,10 @@ public class TeacherScheduleController : Controller
 
             foreach (var oldSchedule in originalSchedule)
             {
-                _context.DeleteObject(oldSchedule);
+                if (!oldSchedule.IsTaken)
+                {
+                    _context.DeleteObject(oldSchedule);
+                }
             }
 
             var schedule = model.TimeSlots

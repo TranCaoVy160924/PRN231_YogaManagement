@@ -10,10 +10,6 @@ using YogaManagement.Database.EF;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<JwtManager>();
-
-builder.Services.AddScoped<AuthFilter>();
-
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(opt =>
     {
@@ -52,6 +48,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddMvcCore().AddAuthorization();
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<JwtManager>();
 
 builder.Services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
 

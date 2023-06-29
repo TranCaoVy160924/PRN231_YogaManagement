@@ -1,11 +1,12 @@
 ﻿@using YogaManagement.Client.Helper;
+@using YogaManagement.Client.OdataClient.Default;
 @using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TimeSlot;
 @model IEnumerable<ClassTimeSlotDTO>
 @inject JwtManager _jwtManager;
+@inject Container _context;
 
 @{
     ViewData["Title"] = "Teacher";
-    //int id = (int)ViewData["classId"];
 }
 
 <h1>Time table</h1>

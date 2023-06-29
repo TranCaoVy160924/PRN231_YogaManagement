@@ -10,6 +10,26 @@ public class JwtManager
     public bool IsAuthenticated { get; private set; }
     private JwtSecurityToken SecureToken;
     private string JwtTokenString = "";
+    private readonly IHttpContextAccessor _contextAccessor;
+
+    public JwtManager(IHttpContextAccessor contextAccessor)
+    {
+        _contextAccessor = contextAccessor;
+        var session = _contextAccessor.HttpContext.Session;
+        JwtTokenString = session.GetString("SecureToken");
+        if (JwtTokenString != null)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            SecureToken = handler.ReadJwtToken(JwtTokenString);
+            IsAuthenticated = true;
+        }
+        else
+        {
+            JwtTokenString = "";
+            SecureToken = null;
+            IsAuthenticated = false;
+        }
+    }
 
     public void Login(string token)
     {
@@ -20,6 +40,9 @@ public class JwtManager
             var handler = new JwtSecurityTokenHandler();
             SecureToken = handler.ReadJwtToken(JwtTokenString);
             IsAuthenticated = true;
+
+            var session = _contextAccessor.HttpContext.Session;
+            session.SetString("SecureToken", token);
         }
         catch (Exception ex)
         {

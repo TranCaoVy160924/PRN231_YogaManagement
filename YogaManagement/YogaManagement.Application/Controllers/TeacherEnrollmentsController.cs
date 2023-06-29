@@ -16,16 +16,19 @@ public class TeacherEnrollmentsController : ODataController
     private readonly TeacherEnrollmentRepository _tcErRepo;
     private readonly TeacherScheduleRepository _tcScheduleRepo;
     private readonly ScheduleRepository _scheduleRepo;
+    private readonly YogaClassRepository _ysClassRepo;
 
     public TeacherEnrollmentsController(IMapper mapper,
         TeacherEnrollmentRepository tcrepo,
         TeacherScheduleRepository tcScheduleRepo,
-        ScheduleRepository scheduleRepo)
+        ScheduleRepository scheduleRepo,
+        YogaClassRepository ygClassRepo)
     {
         _mapper = mapper;
         _tcErRepo = tcrepo;
         _tcScheduleRepo = tcScheduleRepo;
         _scheduleRepo = scheduleRepo;
+        _ysClassRepo = ygClassRepo;
     }
 
     [EnableQuery]
@@ -55,6 +58,31 @@ public class TeacherEnrollmentsController : ODataController
             ModelState.Remove("ClassName");
             ModelState.ValidateRequest();
 
+            Course course = _ysClassRepo.GetAll()
+                .Include(x => x.Course)
+                .SingleOrDefault(x => x.Id == createRequest.YogaClassId)
+                .Course;
+
+            var existEnrolls = _tcErRepo.GetAll()
+                .Where(x => x.YogaClassId == createRequest.YogaClassId
+                    && x.IsActive)
+                .ToList();
+
+            if (existEnrolls.Any(x => x.StartDate < createRequest.EndDate && createRequest.StartDate < x.EndDate))
+            {
+                throw new Exception("This class already have enroll teacher for the period");
+            }
+
+            if (createRequest.StartDate < course.StartDate || createRequest.StartDate > course.EnddDate)
+            {
+                throw new Exception("Invalid start date");
+            }
+
+            if (createRequest.EndDate < course.StartDate || createRequest.EndDate > course.EnddDate)
+            {
+                throw new Exception("Invalid end date");
+            }
+
             var tcSchedule = _tcScheduleRepo.GetAll()
                 .Include(x => x.TimeSlot)
                 .Where(x => x.TeacherProfileId == createRequest.TeacherProfileId
@@ -62,7 +90,7 @@ public class TeacherEnrollmentsController : ODataController
                 .ToList();
 
             var classSchedule = _scheduleRepo.GetAll()
-                .Include(x => x.TimeSlot)   
+                .Include(x => x.TimeSlot)
                 .Where(x => x.YogaClassId == createRequest.YogaClassId)
                 .ToList().Select(x => x.TimeSlotId);
 
