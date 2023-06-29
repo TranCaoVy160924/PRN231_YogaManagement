@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
+using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment;
 using YogaManagement.Database.EF;
 using YogaManagement.Domain.Models;
 
@@ -12,12 +14,16 @@ namespace YogaManagement.Client.Controllers
     {
         private readonly Container _context;
         private readonly INotyfService _notyf;
+        private readonly JwtManager _jwtManager;
 
         public TeacherEnrollmentsController(Container context,
-            INotyfService notyf)
+            INotyfService notyf,
+            JwtManager jwtManager)
         {
             _context = context;
             _notyf = notyf;
+            _jwtManager = jwtManager;
+            _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
         }
 
         // GET: TeacherEnrollments
@@ -52,40 +58,52 @@ namespace YogaManagement.Client.Controllers
         {
             try
             {
-                //ViewData["TeacherProfileId"] = new SelectList(_context.TeacherProfiles, "Id", "Id");
-                //ViewData["YogaClassId"] = new SelectList(_context.YogaClasses, "Id", "Name");
-                ViewData["classId"] = id;
-                return View();
+                var ygClass = _context.YogaClasses
+                    .Where(x => x.Id == id).Single()
+                    ?? throw new Exception("Class not exist");
+
+                ViewData["TeacherProfileId"] = new SelectList(_context.TeacherProfiles.Execute(), "Id", "Name");
+                var course = _context.Courses
+                    .Where(x => x.Id == ygClass.CourseId).Single();
+                return View(new TeacherEnrollmentDTO
+                {
+                    StartDate = course.StartDate.DateTime,
+                    EndDate = course.EnddDate.DateTime
+                });
             }
             catch (InvalidOperationException ex)
             {
                 _notyf.Error(ex.Message);
-                return RedirectToAction("Index", "YogaClasses", id);
+                return RedirectToAction("Index", "TeacherEnrollments", new { id });
             }
             catch (Exception ex)
             {
                 _notyf.Error(ex.Message);
-                return RedirectToAction("Index", "YogaClasses", id);
+                return RedirectToAction("Index", "TeacherEnrollments", new { id });
             }
         }
 
-        //// POST: TeacherEnrollments/Create
-        //// To protect from overposting attacks, enable the specific properties you want to bind to.
-        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,IsActive,StartDate,EndDate,TeacherProfileId,YogaClassId")] TeacherEnrollment teacherEnrollment)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(teacherEnrollment);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["TeacherProfileId"] = new SelectList(_context.TeacherProfiles, "Id", "Id", teacherEnrollment.TeacherProfileId);
-        //    ViewData["YogaClassId"] = new SelectList(_context.YogaClasses, "Id", "Name", teacherEnrollment.YogaClassId);
-        //    return View(teacherEnrollment);
-        //}
+        // POST: TeacherEnrollments/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(TeacherEnrollmentDTO teacherEnrollment)
+        {
+            //if (ModelState.IsValid)
+            //{
+            //    _context.Add(teacherEnrollment);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            var ygClass = _context.YogaClasses
+                    .Where(x => x.Id == teacherEnrollment.YogaClassId).Single()
+                    ?? throw new Exception("Class not exist");
+
+            ViewData["TeacherProfileId"] = new SelectList(_context.TeacherProfiles.Execute(), "Id", "Name");
+
+            return View(teacherEnrollment);
+        }
 
         //// GET: TeacherEnrollments/Edit/5
         //public async Task<IActionResult> Edit(int? id)

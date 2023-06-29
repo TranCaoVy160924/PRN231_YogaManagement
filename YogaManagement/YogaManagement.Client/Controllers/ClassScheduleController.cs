@@ -73,7 +73,7 @@ public class ClassScheduleController : Controller
             .Where(x => x.Id == id).SingleOrDefault();
         if (ygClass.YogaClassStatus != "Pending")
         {
-            _notyf.Warning("Only pending class's schedule can be edit");
+            _notyf.Warning("Only pending class schedule can be edit");
             return RedirectToAction(nameof(Index), new { id = id });
         }
 

@@ -1,4 +1,6 @@
-﻿@model YogaManagement.Domain.Models.TeacherEnrollment
+﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course;
+@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.TeacherEnrollment;
+@model TeacherEnrollmentDTO;
 
 @{
     ViewData["Title"] = "Create";
@@ -12,29 +14,22 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                </label>
-            </div>
+            <input hidden class="form-check-input" asp-for="IsActive" value=@true />
             <div class="form-group">
                 <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
+                @Html.TextBoxFor(x => x.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date"})
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
+                @Html.TextBoxFor(x => x.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date"})
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TeacherProfileId" class="control-label"></label>
-                <select asp-for="TeacherProfileId" class ="form-control" asp-items="ViewBag.TeacherProfileId"></select>
+                <select asp-for="TeacherProfileId" class="form-control" asp-items="ViewBag.TeacherProfileId"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="YogaClassId" class="control-label"></label>
-                <select asp-for="YogaClassId" class ="form-control" asp-items="ViewBag.YogaClassId"></select>
-            </div>
+            @Html.HiddenFor(x => x.YogaClassId)
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -47,5 +42,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -56,6 +56,7 @@
                         <td>
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                             <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@item.Id">Schedule</a> |
+                            <a asp-action="Index" asp-controller="TeacherEnrollments" asp-route-id="@item.Id">Teacher</a> |
                             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                         </td>
                     }
@@ -64,6 +65,7 @@
                         <td>
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                             <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@item.Id">Schedule</a> |
+                            <a asp-action="Index" asp-controller="TeacherEnrollments" asp-route-id="@item.Id">Teacher</a> |
                             <a class="btn-link disabled" href="#">Delete</a>
                         </td>
                     }
@@ -73,6 +75,7 @@
                     <td>
                         <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                         <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@item.Id">Schedule</a> |
+                        <a asp-action="Index" asp-controller="TeacherEnrollments" asp-route-id="@item.Id">Teacher</a> 
                     </td>
                 }
             </tr>

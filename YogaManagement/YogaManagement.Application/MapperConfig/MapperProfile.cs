@@ -78,7 +78,7 @@ public class MapperProfile : Profile
 
         CreateMap<TeacherProfile, TeacherProfileDTO>()
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src =>
-                src.AppUser.Firstname + src.AppUser.Lastname));
+                src.AppUser.Firstname + " " + src.AppUser.Lastname));
 
         CreateMap<Schedule, ClassTimeSlotDTO>()
             .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src =>

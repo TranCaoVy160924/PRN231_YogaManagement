@@ -39,18 +39,9 @@
         </dd>
     </dl>
 </div>
-@if (_jwtManager.IsStaff())
-{
-    <div>
-        <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@Model?.Id">Schedule</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>
-}
-@if (_jwtManager.IsMember())
-{
-    <div>
-        <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@Model?.Id">Schedule</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>
-}
+<div>
+    <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@Model?.Id">Schedule</a> |
+    <a asp-action="Index" asp-controller="TeacherEnrollments" asp-route-id="@Model.Id">Teacher</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
 

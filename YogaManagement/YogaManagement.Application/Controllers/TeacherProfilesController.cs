@@ -15,6 +15,12 @@ public class TeacherProfilesController : ODataController
     private readonly IMapper _mapper;
     private readonly TeacherProfileRepository _tcProfileRepo;
 
+    public TeacherProfilesController(IMapper mapper, TeacherProfileRepository tcProfileRepo)
+    {
+        _mapper = mapper;
+        _tcProfileRepo = tcProfileRepo;
+    }
+
     public ActionResult<IQueryable<TeacherProfileDTO>> Get()
     {
         return Ok(_mapper.ProjectTo<TeacherProfileDTO>(_tcProfileRepo.GetAll()));

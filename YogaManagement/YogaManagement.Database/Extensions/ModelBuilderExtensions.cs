@@ -192,8 +192,8 @@ public static class ModelBuilderExtensions
                 Name = "Course" + i.ToString(),
                 Description = "Yoga course number " + i.ToString(),
                 Price = i * 100,
-                StartDate = DateTime.Now,
-                EnddDate = DateTime.MaxValue,
+                StartDate = DateTime.Now.AddDays(7),
+                EnddDate = DateTime.Now.AddDays(7).AddMonths(1),
                 IsActive = true,
                 CategoryId = i
             });
