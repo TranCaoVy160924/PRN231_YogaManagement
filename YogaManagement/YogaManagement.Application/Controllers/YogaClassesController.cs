@@ -91,6 +91,36 @@ public class YogaClassesController : ODataController
     }
 
     [Authorize(Roles = "Staff")]
+    public async Task<IActionResult> Patch([FromRoute] int key, [FromBody] Delta<YogaClassDTO> delta)
+    {
+        var existClass = _ygClassRepo.GetAll()
+            .Include(x => x.Enrollments)
+            .SingleOrDefault(x => x.Id == key);
+        var update = delta.GetInstance();
+
+        try
+        {
+            if (existClass.YogaClassStatus != YogaClassStatus.Pending)
+            {
+                throw new Exception("Invalid class activation request");
+            }
+
+            if (existClass.Enrollments.Count() < 5)
+            {
+                throw new Exception("Not enough enrollment for activation");
+            }
+
+            existClass.YogaClassStatus = YogaClassStatus.Active;
+            await _ygClassRepo.UpdateAsync(existClass);
+            return Updated(update);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [Authorize(Roles = "Staff")]
     [HttpDelete]
     public async Task<IActionResult> Delete(int key)
     {

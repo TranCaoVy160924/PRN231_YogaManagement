@@ -70,7 +70,7 @@ public class TimeTableController : Controller
                 throw new Exception("User not exist");
             }
             var teachingClass = _context.TeacherEnrollments
-                .Where(x => x.TeacherProfileId == teacherId)
+                .Where(x => x.TeacherProfileId == teacherId && x.IsActive)
                 .ToList()
                 .Select(x => x.ClassName);
 

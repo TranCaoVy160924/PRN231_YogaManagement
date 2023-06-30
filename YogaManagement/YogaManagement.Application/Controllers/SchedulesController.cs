@@ -13,7 +13,7 @@ using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
 
-[Authorize(Roles = "Staff")]
+[Authorize]
 public class SchedulesController : ODataController
 {
     private readonly IMapper _mapper;
@@ -28,13 +28,14 @@ public class SchedulesController : ODataController
         _scheduleRepo = Repo;
         _ygClassRepo = ygClassRepo;
     }
-    //get schedules of a class
+    
     [EnableQuery]
     public ActionResult<IQueryable<ScheduleDTO>> Get()
     {
         return Ok(_mapper.ProjectTo<ScheduleDTO>(_scheduleRepo.GetAll()));
     }
 
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Post([FromBody] ScheduleDTO createRequest)
     {
         var existClass = await _ygClassRepo.Get(createRequest.YogaClassId);
@@ -61,7 +62,7 @@ public class SchedulesController : ODataController
         }
     }
 
-    // delete 1 slot 
+    [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Delete([FromRoute] int keyTimeSlotId, [FromRoute] int keyYogaClassId)
     {
         var existClass = await _ygClassRepo.Get(keyYogaClassId);

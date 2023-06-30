@@ -97,6 +97,11 @@ public class TeacherEnrollmentsController : ODataController
                 .Where(x => x.YogaClassId == createRequest.YogaClassId)
                 .ToList().Select(x => x.TimeSlotId);
 
+            if (classSchedule.Count() <= 0)
+            {
+                throw new Exception("Can only assign teacher to a class which already have schedule");
+            }
+
             foreach (var timeSlot in classSchedule)
             {
                 if (!tcSchedule.Select(x => x.TimeSlotId).Contains(timeSlot))

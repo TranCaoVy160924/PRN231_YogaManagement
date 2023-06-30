@@ -39,8 +39,16 @@ public class TeacherEnrollmentsController : Controller
                 throw new Exception("Not found");
             }
 
-            var tcEnrollments = _context.TeacherEnrollments
+            var classSchedule = _context.Schedules
                 .Where(x => x.YogaClassId == id);
+
+            if (classSchedule.Count() <= 0)
+            {
+                throw new Exception("Class not have schedule");
+            }
+
+            var tcEnrollments = _context.TeacherEnrollments
+                .Where(x => x.YogaClassId == id && x.IsActive);
 
             ViewData["classId"] = id;
             return View(tcEnrollments);
@@ -52,7 +60,7 @@ public class TeacherEnrollmentsController : Controller
         catch (Exception ex)
         {
             _notyf.Error(ex.Message);
-            return RedirectToAction("Index", "YogaClasses", new { id });
+            return RedirectToAction("Index", "YogaClasses");
         }
     }
 
@@ -140,16 +148,17 @@ public class TeacherEnrollmentsController : Controller
 
     public async Task<IActionResult> Delete(int? id)
     {
+        if (id == null || _context.TeacherEnrollments == null)
+        {
+            return RedirectToAction(nameof(Index), "YogaClasses");
+        }
+
+        var teacherEnrollment = _context.TeacherEnrollments
+            .Where(x => x.Id == id)
+            .SingleOrDefault();
+
         try
         {
-            if (id == null || _context.TeacherEnrollments == null)
-            {
-                throw new Exception("Not found");
-            }
-
-            var teacherEnrollment = _context.TeacherEnrollments
-                .Where(x => x.Id == id)
-                .Single();
             if (teacherEnrollment == null)
             {
                 throw new Exception("Teacher enrollment not exist");
@@ -160,18 +169,18 @@ public class TeacherEnrollmentsController : Controller
         catch (InvalidOperationException ex)
         {
             _notyf.Error(ex.ReadOdataErrorMessage());
-            return RedirectToAction(nameof(Index), new { id });
         }
         catch (Exception ex)
         {
             _notyf.Error(ex.Message);
-            return RedirectToAction(nameof(Index), new { id });
         }
+
+        return RedirectToAction(nameof(Index), new { id = teacherEnrollment.YogaClassId });
     }
 
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
+    public async Task<IActionResult> DeleteConfirmed(int? id)
     {
         try
         {
@@ -186,7 +195,7 @@ public class TeacherEnrollmentsController : Controller
             _context.DeleteObject(teacherEnrollment);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index), new { id });
+            return RedirectToAction(nameof(Index), new { id = teacherEnrollment.YogaClassId });
         }
         catch (InvalidOperationException ex)
         {

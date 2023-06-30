@@ -216,4 +216,72 @@ public class YogaClassesController : Controller
             return RedirectToAction(nameof(Index));
         }
     }
+
+    // GET: YogaClasses/Delete/5
+    [Authorize(Roles = "Staff")]
+    public async Task<IActionResult> Activate(int? id)
+    {
+        try
+        {
+            if (id == null || _context.YogaClasses == null)
+            {
+                throw new Exception("Invalid class");
+            }
+
+            var yogaClass = await _context.YogaClasses.ByKey(id.Value).GetValueAsync();
+            if (yogaClass == null)
+            {
+                throw new Exception("No class found");
+            }
+            if (yogaClass.YogaClassStatus != "Pending")
+            {
+                throw new Exception("Only pending class can be activated");
+            }
+            return View(yogaClass);
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception ex)
+        {
+            _notyf.Error(ex.Message);
+            return RedirectToAction(nameof(Index));
+        }
+    }
+
+    // POST: YogaClasses/Delete/5
+    [HttpPost, ActionName("Activate")]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Staff")]
+    public async Task<IActionResult> ActivateConfirm(int id)
+    {
+        if (_context.YogaClasses == null)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        try
+        {
+            var yogaClass = _context.YogaClasses.ByKey(id).GetValue();;
+            if (yogaClass != null)
+            {
+                _context.UpdateObject(yogaClass);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception ex)
+        {
+            _notyf.Error(ex.Message);
+            return RedirectToAction(nameof(Index));
+        }
+    }
 }
