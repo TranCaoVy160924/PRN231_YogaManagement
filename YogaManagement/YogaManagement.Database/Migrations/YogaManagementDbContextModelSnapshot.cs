@@ -524,7 +524,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "a5a76ad6-c4a4-4697-8ad4-08fb54c6facc",
+                            ConcurrencyStamp = "cc8f2029-a8d2-49dd-baa2-d9ea9adc1c91",
                             Email = "member1@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name1",
@@ -532,7 +532,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member1@gmail.com",
                             NormalizedUserName = "member1@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJMj+jj3BoLG1C2bBCVzlVrG5NzpcDjheXk4BTOOdDQMEksaeSUs+T+RKmwEyF4cJQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEx4mjnsd8FZpuL3L/WrSmd+j7tgWZMGbSBKoqO+0jBoILm0/76LJsW7cfLm7PavrQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -544,7 +544,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 2,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "fa6cbbea-91ce-439d-ad7b-80e72c0a59ef",
+                            ConcurrencyStamp = "b865cec4-d28f-4bd0-8a2b-55d337bb568a",
                             Email = "member2@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name2",
@@ -552,7 +552,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member2@gmail.com",
                             NormalizedUserName = "member2@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEANngFQ5JTVdMv7jHAUvkwKlmRAwUivJmXS6/q3GTMGg3q7s9ZcANnYTe+QSmPEgeA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBYDs64VuruKvyhxRhuqmRMHxSFyueeSg8gc1KyYSMuQBCrdAivYjs9ZKXBaj/JylA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -564,7 +564,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 3,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "96cfd296-1f56-45a0-8c21-deeaf4db1d6e",
+                            ConcurrencyStamp = "7eceddd2-3022-4106-9cc8-de81115d1314",
                             Email = "member3@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name3",
@@ -572,7 +572,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member3@gmail.com",
                             NormalizedUserName = "member3@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKorHL0X84PZrSOs65uJ/8KQ2IFP82rixrozvb1QzlJ+i4HdVr8ozRKBLM82SaGxng==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJvu+DXxuNXDkZH6SQw68Cx6diMjQEJLSYOxvA7+EBQDG7gZ4EY3k2LLPc2R8gk4lw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -584,7 +584,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 4,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "5821193c-a326-469d-8289-2ae44b4e1b8a",
+                            ConcurrencyStamp = "62536042-dfe8-41f8-89bc-b6cbc98bffce",
                             Email = "member4@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name4",
@@ -592,7 +592,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member4@gmail.com",
                             NormalizedUserName = "member4@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGzXXA9dS8CsG/B2F5owpOFOHdHxW8TpxRGhWN6YIqzQId8BqFnNoD8IYMqShq0jAA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEI7ZBpdW1dBGCXVW/+H7kFCoAOqPnU9hGfWAw2C3+xRRE8+JlC31TpSLYR3PrNPr/Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -604,7 +604,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 5,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "d7697ed6-ef94-4cad-8c0e-7c1d33a07b5f",
+                            ConcurrencyStamp = "42a171bb-a623-44e9-b729-14a4df911d48",
                             Email = "member5@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name5",
@@ -612,7 +612,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member5@gmail.com",
                             NormalizedUserName = "member5@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDJZAN74adweyG5VsEZK+hg4hmFfB+Jhj/NWksn/52ZwPDYiRDFk7lkVLt2zEO1USQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEN4DhELoXbVcl5UwqMHPoC9nm5S6WTCMDd8xW2syqGrZ8u0HRdR6i+tFMDhLa+f2KA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -624,7 +624,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 6,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "d471050b-8c92-4782-ab08-85fcdb2514ec",
+                            ConcurrencyStamp = "8d4dd902-e5b0-4110-beee-57948f49cd8f",
                             Email = "member6@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name6",
@@ -632,7 +632,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member6@gmail.com",
                             NormalizedUserName = "member6@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDybM6Bj8OewoRWIFLJQ+9Aya3Vo4+Exxzg3MBiSqkDCWTODpc3j2eah3LH2aH7gAw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEB1L2lTM+ATgQWA9OH97BcW9Mr2iVUME4CBMm+71Ydp0a/Hd2Ph/D/JkKyjbIv2v7w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -644,7 +644,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 7,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "0a662518-e1c2-4e3e-9de8-e9fe0e789812",
+                            ConcurrencyStamp = "965c75f3-2dd8-48c4-bb78-2f456ac33244",
                             Email = "member7@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name7",
@@ -652,7 +652,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member7@gmail.com",
                             NormalizedUserName = "member7@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB7/VjAby/tvPiIwOYnb+ThAkKk+3OSSdeBn5uY0PJ6qWwMTj86mhj9eAQBcwzerxA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDIZkyagSyHTPbzZwHnTXRgOb6gSIsHJsf4j+XQ1tTuspRX2KOixpCJZCnXY2jNtbQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -664,7 +664,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 8,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "6ed6dc2a-fdcb-43b3-9410-ebbb84a1c89d",
+                            ConcurrencyStamp = "aab83e8e-3720-4012-a76c-8949a48f1b25",
                             Email = "member8@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name8",
@@ -672,7 +672,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member8@gmail.com",
                             NormalizedUserName = "member8@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKN87RF1HR7/mfMvSc2ntjQW12dN44Wx/nMAH5Xv6xu9xgK39tdI8Czzfr013KDiGw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFvsTj9Nh0A5uLCiXVShue1MPksZfiVsj52eo8e95R47091s/C1i6FJ/Rn/IpAEglA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -684,7 +684,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 9,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "1777b4a2-1041-4930-b5e8-086d8c0d2a5e",
+                            ConcurrencyStamp = "dbdc010d-a367-4ae1-a3ea-05595db171b4",
                             Email = "member9@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name9",
@@ -692,7 +692,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member9@gmail.com",
                             NormalizedUserName = "member9@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBmtmETC8RSZ/4g9xujklqVeBZL72aEWejj+asDBEwxwbEM6y0DWs75a763S4zsfYQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENAJ9zHcxDJnccV/3CjGpqP7p70r/ScqtgUosM3NJfICKHAA7prsremLvJAWFXJbFQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -704,7 +704,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 10,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "e8bb8a9a-d901-469d-bd98-2ffd95afe509",
+                            ConcurrencyStamp = "560e5f59-b7c1-430c-a1b8-3a1f07f12ba6",
                             Email = "member10@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name10",
@@ -712,7 +712,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member10@gmail.com",
                             NormalizedUserName = "member10@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHU1WPI+fBP1kwThXpsqjStul96iLNfC8iFHd+vfPRm9sZad/uVTFNomL56SXZOFwg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEANSSmOIsHOkA2sRQ7NX8FnyBTzTzRqjcWy40EHXhVP03cDapFnTtGbPPfMk9wznIQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -724,7 +724,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 11,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "73548848-4f95-4b40-b3d4-ac407c41abba",
+                            ConcurrencyStamp = "69246b46-26e0-4071-b4ee-62ab26bd6437",
                             Email = "member11@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name11",
@@ -732,7 +732,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member11@gmail.com",
                             NormalizedUserName = "member11@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOkaSrZI1+BJ2cARO5zUBDFNvZSe8HIWfsjDUU3ImS14qeju8DhjRNFnH/45Tjlvyg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED5BOoh9gh2RjsXrudBezq1JulGU8kh7Udf2FrIpUFd2dPW1oelvJgXshD5MCWlJ4A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -744,7 +744,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 12,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "8500a2b7-9443-4aec-9939-8113ac2391a1",
+                            ConcurrencyStamp = "895cede5-74f0-423e-95f8-4ae7a58daf83",
                             Email = "member12@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name12",
@@ -752,7 +752,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member12@gmail.com",
                             NormalizedUserName = "member12@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIt+soYz/riiDhYxl8XEUYxrQlu5NQpvimqnCfo1IjLZ9vgXJNBuke1gM7lg7NVNng==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAwqHEe4BWaIP7dhnDDCN4NYsueqvcc3hk5ka+AsMW3N4UVplgFDbCLIXk6BTjwmhw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -764,7 +764,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 13,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "0c7a7fc8-e5a2-48e7-b381-b14a79a92b69",
+                            ConcurrencyStamp = "8422d426-61e5-4593-ae71-07bf056e5c4f",
                             Email = "member13@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name13",
@@ -772,7 +772,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member13@gmail.com",
                             NormalizedUserName = "member13@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEONRmWSH0b2SbnMl2SMY9EioD836kSC+NGqBgqGue5PFRma2NiKAxZCR77eTtTBmRQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDqf8MMk+bRRImOQl+IC+qBUZVyeEnCr85JbgIcXsXiWaCDZ2O6523S7orD4caBHFg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -784,7 +784,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 14,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "18eb17b9-cf2f-4af5-9518-02a4e94f73e8",
+                            ConcurrencyStamp = "eccad797-05ab-48ca-97f6-3f2bdf6633f0",
                             Email = "member14@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name14",
@@ -792,7 +792,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member14@gmail.com",
                             NormalizedUserName = "member14@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFZueWlLVgvzRX19EFYjqPN2YeafBo2aG+CEZFrPWTTtkNiV2sGgTcVLUh9XmVHpRA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEP3EhfGhZ5Pqw0nF/fIaMSxe5tp8r98n/UtuMTDFZEr7lwJ1GgsyWW6Nvvxw5/81Nw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -804,7 +804,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 15,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "d67a8ca2-a4fb-4775-9d5d-e8532681463c",
+                            ConcurrencyStamp = "7ee6e075-733d-40a0-8b61-1715197dfe01",
                             Email = "member15@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name15",
@@ -812,7 +812,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member15@gmail.com",
                             NormalizedUserName = "member15@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAECygqY7DyEVlAFHcBOZQg0tArTokgitjSDZfw789ob1xdqKufeOYG3i8KkwXKUw8kA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEDlGV2WCWAuDP500+o1BUKQQQObayYZTUdTIwPAPsaMekRhwqBaaykkIMgg83E8ig==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -824,7 +824,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 16,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "ee995934-6046-4219-b3a7-9da2c23693db",
+                            ConcurrencyStamp = "f5ea3a45-5528-46c2-b216-78b7aa0a5052",
                             Email = "member16@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name16",
@@ -832,7 +832,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member16@gmail.com",
                             NormalizedUserName = "member16@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDWLRtlFWo1S/lcjmGRZO5QST6betE+5QiHF1SzUvJ59+7sspSDGReJVlQbCqYOkRw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGGUvo/zBfhebShRoS60DI1P3g3MlfVMYwx+AOxlz6bMk7L+AHIzedOxBvSb465dbg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -844,7 +844,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 17,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "36c19868-d639-4d87-a145-b5d4476023a7",
+                            ConcurrencyStamp = "b58bf21c-536e-47e7-a992-6b16e67be131",
                             Email = "member17@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name17",
@@ -852,7 +852,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member17@gmail.com",
                             NormalizedUserName = "member17@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEE5vj0udMIFZ4K4EhA8v9kOpiDIEZmN0aqLXeRWh2xMCNrzl3Dmkb2PLVMjzYm9gTA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEm50jOpqLWlEjo/HsBkiSzMz7A1kDGvf9J8lOlRPwe7oFpiReOsTuMyJvdWm9dwCw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -864,7 +864,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 18,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "a4f30e34-828b-4327-84c8-ca88709928a7",
+                            ConcurrencyStamp = "9245d8cf-18fb-4590-8f22-83e8952ba660",
                             Email = "member18@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name18",
@@ -872,7 +872,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member18@gmail.com",
                             NormalizedUserName = "member18@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBnA2KJDmYMlrGo73give/72TVQrjbOfD8kGor9TKx+Dz+QCaLrTTnqKdM/wcjSvNQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECSC/T75VQkgOgulJvoLUUclcC0fUdIDRME9cJx88lcbDeJx/jnV9uqM940xESLrvA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -884,7 +884,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 19,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "11f19db8-d4b5-43c9-af4d-e7e5107c1c0d",
+                            ConcurrencyStamp = "ec1b1ebd-dac1-4a93-a340-475dca39ea39",
                             Email = "member19@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name19",
@@ -892,7 +892,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member19@gmail.com",
                             NormalizedUserName = "member19@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAELTKo1dDJWMB1+FBpxhJBXNViQMRuwmfxU50CgXOR2epL4tyWQtGN7IAjdATrCy6mg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMASRcATRUI2sUlAAl/fK+l9Ww0EgAjxmI7+sMNWkbCg0Xvzc+mVEQUuXaSckCSKSg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -904,7 +904,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 20,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "3bb2130b-1bc6-4cc1-91c5-3f7bfc483b2d",
+                            ConcurrencyStamp = "afceecfa-c828-4e57-aeee-da0ad3880a06",
                             Email = "member20@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name20",
@@ -912,7 +912,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member20@gmail.com",
                             NormalizedUserName = "member20@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBDv8Y0x+lHjGnCpp60vXRd7AXbfKESFsWESIAZOg1vhsYUGiuRo7ZYMeMJ1VjaqMg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEM4TSRUibrAR+IMGybBGEC9hwYZKTMuf3nBA4otFBZtxSVNRzAC/PjwEdQEVOs+WPw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -924,7 +924,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 21,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "b5f3be7c-103b-4907-b17e-eb28761fe88a",
+                            ConcurrencyStamp = "bb5420bd-a2be-4758-a486-eea11495c863",
                             Email = "member21@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name21",
@@ -932,7 +932,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member21@gmail.com",
                             NormalizedUserName = "member21@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAECBvzJE0OTGHRUkztN4y7HoTGj6sKryP7qclM6AfWfRGETRogbGZ9xp9+1N1mPh8lg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBeMw+8qNuFR0qMNOqHnCtMLqDCvqbhoUNRetde3MM33sug+tbN//8ZlZAuFptyrHA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -944,7 +944,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 22,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "557395d6-5463-48f5-821a-1f27291adc8f",
+                            ConcurrencyStamp = "0447b575-6e6b-4bbd-ba9c-7424e3b2cd75",
                             Email = "member22@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name22",
@@ -952,7 +952,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member22@gmail.com",
                             NormalizedUserName = "member22@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEfjWBn5arRTST0/4Ga3aDfEo7hgeGoIMqMrcGm/2DBdaYmWpgc5ukDs2knB/U8xXQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBShV6gPlbDjSaDwhpJKN580jkwpMS8J/RDaR2w04RCC6yem+8AMr8RClACgR0pyiw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -964,7 +964,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 23,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "f3c4b940-2701-440f-a037-bf97781fb591",
+                            ConcurrencyStamp = "462c6514-6143-4679-8bfa-a49ba8a45860",
                             Email = "member23@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name23",
@@ -972,7 +972,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member23@gmail.com",
                             NormalizedUserName = "member23@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFx8VN+y057kmQPtxiB53bltTfR6ywfjkFU80UFgHPFizZipPy6j9z8KPPDBYwHZZQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAOckl/cJ4iBBIdCQaIVNdnk/g6OrNLCjjZgUm9ATRmdTebKDQx4LVdFX5MsK3oCQg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -984,7 +984,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 24,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "588b7d16-823f-43c3-a9bd-375d18202d46",
+                            ConcurrencyStamp = "b68a6fbb-f095-4317-8198-bc8aff790e38",
                             Email = "member24@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name24",
@@ -992,7 +992,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member24@gmail.com",
                             NormalizedUserName = "member24@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL51YHyVPaj8g1WQ5npxJoWIIx3pjoMFvxmdHKEvZ04HuAyfInFCwc3CYBGqog9iIA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMK5eZpjEH0yiOr4o3Sdj2jsdGuSeQkncYTFnVN/uTxin/yy4GBybkuDSKC6+btRLg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1004,7 +1004,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 25,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "655b0615-940a-47de-bd10-5bc711b820ba",
+                            ConcurrencyStamp = "cc921b97-7eb9-4646-81e2-f58633bc42bb",
                             Email = "member25@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name25",
@@ -1012,7 +1012,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member25@gmail.com",
                             NormalizedUserName = "member25@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMxcjjqLAH1gHDlxcctbdxKoIyCKlEtlO2gE6v2AU4J9pIKY6oQ5O0tpuCksC4a0vA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECwpM8jF+IGKP+DM5jrs8pdhWhVG75H79EMhyuupvbzQZTZ/1AWY9iB9IxWZ3tHgGA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1024,7 +1024,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 26,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "77084158-2157-42ad-9b5b-624fadf14d26",
+                            ConcurrencyStamp = "e6735d26-6db9-43c5-a19e-78d9fa090dd5",
                             Email = "member26@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name26",
@@ -1032,7 +1032,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member26@gmail.com",
                             NormalizedUserName = "member26@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIrN9MpIuMYq/3gRS4YIg04mwX0LplchZWcdYyYT7wf5PrUBfDHkuC0BJJw6bQV7vw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBYnC9XpXSWABbJM90tEDjsGASuboTEs6FdSc4ff2etS0rvb06/L+um+V7egL6CBwQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1044,7 +1044,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 27,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "67d9064d-2abc-4a78-a884-7ebc396ea570",
+                            ConcurrencyStamp = "68d16fad-c2ac-48f8-986a-9626b5ffbe84",
                             Email = "member27@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name27",
@@ -1052,7 +1052,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member27@gmail.com",
                             NormalizedUserName = "member27@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEE169XTjX0iXH6qC+XplezoZznoxUkyqFdTKagVH6zlXNasv1ysnmELyUB9EeLrBmA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAt1KJZm/5jGzoZPtFG073hCEXNi4et1XIjkwQkuucz4ciGMXfCwof/5oIn+uuN1Dw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1064,7 +1064,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 28,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "e1c4be41-a8f5-4a98-92fa-7af6bc9be2ba",
+                            ConcurrencyStamp = "678d02dd-0726-43e9-a228-956e60c5e05e",
                             Email = "member28@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name28",
@@ -1072,7 +1072,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member28@gmail.com",
                             NormalizedUserName = "member28@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIonJjuPF9Wn2qT+PgVEKscCu27kh9MjuRt8cXIagRk/33FznmJgZDA5gGsk2iZKuw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIKDnsm0T+3OO18BG6vCTZz67sKwTx204qBfBFxEGNahD0xtRCcclL29TGM+RUaEdw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1084,7 +1084,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 29,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "221a04cc-6f06-4d32-b9a7-dc2658505b6b",
+                            ConcurrencyStamp = "10c70826-ad77-4aff-89c5-690070da47d2",
                             Email = "member29@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name29",
@@ -1092,7 +1092,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member29@gmail.com",
                             NormalizedUserName = "member29@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAENl3ViZK69aKugfmmuwIWXsxEiKtx6lw8x9AeWA6aDst8bUsKsc+BwLSFJYmw+93Gg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFDh+5wFFxJ5/aSI1GHCBRQ38hhsEwFGtZe04GRuo3bVXd6mZWvwn/KVcuc0n1zQ9A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1104,7 +1104,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 30,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "f6e63ed3-b515-4cbc-bde6-5df8c0f2d546",
+                            ConcurrencyStamp = "fa8ac6e8-e657-4eb8-842d-9f5e4cb760f4",
                             Email = "member30@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name30",
@@ -1112,7 +1112,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "member30@gmail.com",
                             NormalizedUserName = "member30@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAELcKAkdajDhG1dnpPZ2TXqzgcoFrXPtaNQG7uRlO/2Kngpo4i+oXpv9QaxgKd9ngxA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBTEgqptiOg62RzxAsDpnC4Xhg7H8GOlLu9xq9EHciFc8z6HjqNGfCkzFoVNQYJ01A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1124,7 +1124,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 31,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "35a3280d-0fc8-49f0-933a-bed4ccf8aa5f",
+                            ConcurrencyStamp = "891265cb-4658-4aff-a8ec-582f90c3ec8c",
                             Email = "teacher31@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name31",
@@ -1132,7 +1132,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher31@gmail.com",
                             NormalizedUserName = "teacher31@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAECqcWbCWF4TNFr/W3qWhUkXSaG38YeQncxD/60HiwE5VJJ0J3lWYiuMy6lVnpv5FBQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEH3UHPeQXe+OZESzWdAt/+Z8u0egm5Wn1QwWrT15Ms0zGtyOrQb0R/298W+AflYC6w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1144,7 +1144,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 32,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "00e4c226-35f6-4305-905e-6b7bb89020fa",
+                            ConcurrencyStamp = "0eb5c42c-16f5-4f4c-a039-a430168f2d11",
                             Email = "teacher32@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name32",
@@ -1152,7 +1152,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher32@gmail.com",
                             NormalizedUserName = "teacher32@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOe4NxzC84SLI28LrxSVK01OtZ2Dni++/qnnjQEzaQdLHTaD4auiKrMY4r2X4Wn3tw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAFJaXPV9MQVb++DeFDBjsSUahWS6cl8FnGLAgGRCFZ4e7m6rIXFfV0FREhyAM0V1A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1164,7 +1164,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 33,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "bc83c7be-135d-4ba8-8b45-ce1966d7d8d4",
+                            ConcurrencyStamp = "9ca257ff-dc6b-45c8-b850-d506efc6ce25",
                             Email = "teacher33@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name33",
@@ -1172,7 +1172,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher33@gmail.com",
                             NormalizedUserName = "teacher33@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEbS2LviQ98sHeiVSewBP2fKdaj4VbYuGP0G4aBW6WPUZQNdLAk0J2rzaPfbfFWaig==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAK/uuC1uodlf/s7Zs+Rl8mRxpLUgy704d38RVTDy5OYL6/fWE1Ua8QJ93vyne5Bzg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1184,7 +1184,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 34,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "6979ced1-da66-435a-ac75-07e059bc9ab2",
+                            ConcurrencyStamp = "7491c59c-1053-4e2f-8013-28a3901f9bf0",
                             Email = "teacher34@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name34",
@@ -1192,7 +1192,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher34@gmail.com",
                             NormalizedUserName = "teacher34@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDuaHH/FU3Rug75Nub4ojERdhgoL4cq9us+nCijxvC+bBVdMA5PjupXbl0JzvpF9HQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMA8e40D7xha1lIUaTJcQPJIllorDAsWITHciBfVnYHcJq3GiQv/FX7/eKUA48782g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1204,7 +1204,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 35,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "322391fc-918e-4f66-876d-b9db55bc4ac6",
+                            ConcurrencyStamp = "a1f81f34-b0e7-40ae-a578-785881cf1bf7",
                             Email = "teacher35@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name35",
@@ -1212,7 +1212,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher35@gmail.com",
                             NormalizedUserName = "teacher35@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKQkVPe/OUNhRVXjTjbrpTJoXvSMUjSZZJGqQH3BjgSnFFfTIz9EZDB6tydDk5ZhtQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAvrMa3HVAR54fwflJ7QbJ+lTsDXNYWrUskJdYF38JjDVoscTqqIUmlelHC7sIBVLg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1224,7 +1224,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 36,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "f8f6a2a1-163c-45c0-bf90-944964f76f0a",
+                            ConcurrencyStamp = "de45ef5e-0025-4265-ae63-0128dea6a2fa",
                             Email = "teacher36@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name36",
@@ -1232,7 +1232,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher36@gmail.com",
                             NormalizedUserName = "teacher36@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEExa3ezC+xoLaN5dXkBiWTo9VNKRT/gNRNyed7Uvq0LaIk2fpjqnAEQzSFdSCgwt5w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENWUe7WmxUgyJPzLXwK2iSNi9MO4tjoi+niFCa/gP3FHSAZ6cTE+pnRaBkyNWH+bQA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1244,7 +1244,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 37,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "ac1974a2-7f17-4118-bcee-23fd5d49d2cf",
+                            ConcurrencyStamp = "a27a09e1-b86a-4b8c-96ee-9c2e0fb149b4",
                             Email = "teacher37@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name37",
@@ -1252,7 +1252,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher37@gmail.com",
                             NormalizedUserName = "teacher37@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKCX1DZ6FeZ6i0Tq8YpVn5maKonTaRSoIpFWLNEjNyBD+2et0KegwSRBzQPMv4JRXA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPnRUyqDamFVbjOvFAGNFBB9t+bL9/iqp9ECgzqaZv5LsbFcKc//jdg4URPyJg9NEg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1264,7 +1264,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 38,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "74e2158b-4fde-4c2e-a508-5ec01cae2485",
+                            ConcurrencyStamp = "80ab48af-7064-431b-92da-e20971f91ccf",
                             Email = "teacher38@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name38",
@@ -1272,7 +1272,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher38@gmail.com",
                             NormalizedUserName = "teacher38@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAECNaKniNuWXpH1IsKukPCdLUuQT8E4vOwQML/3y2a8ZVrqZTde45a7uBb2gpzzbULw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEK7TUW9hR0G+kdtoI8Ekqz0XKBxshM/7xP5PzTyZH5bl66LxDcG4w6joewVNve0ASw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1284,7 +1284,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 39,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "c0f035af-e40f-4f39-acd2-e5b411c5301b",
+                            ConcurrencyStamp = "df9637c1-72f9-4e8f-9454-7694b2ac38cf",
                             Email = "teacher39@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name39",
@@ -1292,7 +1292,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher39@gmail.com",
                             NormalizedUserName = "teacher39@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEG+iSqm8pRt2h9tG6V+YL/gxRwYipOrWE5Rbm+QXEGIV2x2uu2riOIc4QN+Io5pczQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEODyOPbyMFQwa+yZEW3MZLfCVS5Elnluadcpms+5DqSrag532k+mdYMMhfgE821eFQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1304,7 +1304,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 40,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "95e74065-6713-4e25-a40e-eb6e26100b3e",
+                            ConcurrencyStamp = "e9d8a329-1948-47e7-bde9-778f734442b8",
                             Email = "teacher40@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name40",
@@ -1312,7 +1312,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "teacher40@gmail.com",
                             NormalizedUserName = "teacher40@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAECIIR2baBDy8Ma80zp9ccEjVDcYubCzsIzUypxDD0d/dIGiUbhbfjssWGp+H7gMSVw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENPLSkKl/rfpq8V8IoIAayuRyJ8M0JPsqHJBaKSh+19eJss1spzhEWnRdEKBRHE9lQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1324,7 +1324,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 41,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "d2c69233-dbc0-457d-bc2b-4b1c33733a15",
+                            ConcurrencyStamp = "512b41a4-c43a-4fb6-ba2e-85b514bf5e3d",
                             Email = "staff41@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name41",
@@ -1332,7 +1332,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "staff41@gmail.com",
                             NormalizedUserName = "staff41@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAHydZ6JLOt6EdvB6DLRpzlv7+l74nplDfR5KkkVlzDZljdpLzlWBpZfrD3Q5Ofhug==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO0c2m1EtAAFp1ufLgHDwvLVFEKKW9qYFYqjUcjJopVOlBFE/GRxhSjKrza9f6UfVw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1344,7 +1344,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 42,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "5bfae5cf-506e-47b8-8b73-94a8f0d2d163",
+                            ConcurrencyStamp = "59456c0a-5b53-45b6-83e9-a9c1f50718eb",
                             Email = "staff42@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name42",
@@ -1352,7 +1352,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "staff42@gmail.com",
                             NormalizedUserName = "staff42@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAECc1DiAJgDCHDNvu38TMOSfqPPRLBQUgS6pGYjGRiD3uhgybPeCaG/3DUB2cbfUlkg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGgIqMM+jY3JK7/f1JxjHnjQK6oyNQj0lny9OMGJdL0MuRKRopOHiwYLFWjD8B/cxQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1364,7 +1364,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 43,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "43cec95d-86e7-4e4c-961f-81b6f27c97ac",
+                            ConcurrencyStamp = "80675e04-a84d-4099-94c6-17323da973fc",
                             Email = "staff43@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name43",
@@ -1372,7 +1372,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "staff43@gmail.com",
                             NormalizedUserName = "staff43@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHcIoo2fIAI2GCSu5Ly3QlLPvB/Gb6u1stRUAj/B4lNkdyqc4f5EH93GUJmozQX6hg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKPQhJTMT9F+disz3nA8IANszfBBqAac26I8ELTAdez7JjLOsDlrHo3nXDQOjeTAzg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1384,7 +1384,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 44,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "7c25e12a-9b7a-46b2-a121-f440785d9b56",
+                            ConcurrencyStamp = "da503933-2f98-48e5-aa76-128e9a5b0b20",
                             Email = "staff44@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name44",
@@ -1392,7 +1392,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "staff44@gmail.com",
                             NormalizedUserName = "staff44@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGUZO5jxagBxyx1qcxhfuiutIZUQOqKpo3ncl1V0H70TE67Mcd9QK60c/nzLBc+nNw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIGKLmjbIsocH705JZUVE/O/GqQNmZm9nxGU+DGNvhU2Qpbscmejt53yOpP3yd+ZTQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1404,7 +1404,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 45,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "382b7111-3dc9-41e4-a440-29899268f868",
+                            ConcurrencyStamp = "adab0745-ca89-4b13-b4dd-2ef763da0e7b",
                             Email = "staff45@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name45",
@@ -1412,7 +1412,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "staff45@gmail.com",
                             NormalizedUserName = "staff45@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN5sGdIA18iRavARLlllAqTNDiCXglGasUxOskmbG0uBMceZWIKjGV30y/Qry0Jleg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBoJRQqvU4pvEqegWUj4vz+Gs0CSssd0IA3UxuuiXlztOi73sybCF5NfsWENnzoa5A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1424,7 +1424,7 @@ namespace YogaManagement.Database.Migrations
                             Id = 46,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "1f592271-bd03-4577-8b13-b3ae80126ff9",
+                            ConcurrencyStamp = "8df2893a-73f6-4d82-8af0-7a17efdfdabd",
                             Email = "admin46@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name46",
@@ -1432,7 +1432,7 @@ namespace YogaManagement.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin46@gmail.com",
                             NormalizedUserName = "admin46@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEKgjU3VajBr/GmkBPddxf9PIJAN7qy8tVt4RCtQpm2e23XMy8q066yxhXyUJFRc9g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDEY+motos3UcPDqj7KSMUnz1YlZNfKniUIY04GyeKaFaeAh6zLVna7shkqPcS9jbg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -1566,110 +1566,110 @@ namespace YogaManagement.Database.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Description = "Yoga course number 1",
-                            EnddDate = new DateTime(2023, 8, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(7816),
+                            EnddDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             IsActive = true,
                             Name = "Course1",
                             Price = 100.0,
-                            StartDate = new DateTime(2023, 7, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(7797)
+                            StartDate = new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Id = 2,
                             CategoryId = 2,
                             Description = "Yoga course number 2",
-                            EnddDate = new DateTime(2023, 8, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(7829),
+                            EnddDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             IsActive = true,
                             Name = "Course2",
                             Price = 200.0,
-                            StartDate = new DateTime(2023, 7, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(7829)
+                            StartDate = new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Id = 3,
                             CategoryId = 3,
                             Description = "Yoga course number 3",
-                            EnddDate = new DateTime(2023, 8, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(7924),
+                            EnddDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             IsActive = true,
                             Name = "Course3",
                             Price = 300.0,
-                            StartDate = new DateTime(2023, 7, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(7924)
+                            StartDate = new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Id = 4,
                             CategoryId = 4,
                             Description = "Yoga course number 4",
-                            EnddDate = new DateTime(2023, 8, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8005),
+                            EnddDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             IsActive = true,
                             Name = "Course4",
                             Price = 400.0,
-                            StartDate = new DateTime(2023, 7, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8004)
+                            StartDate = new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Id = 5,
                             CategoryId = 5,
                             Description = "Yoga course number 5",
-                            EnddDate = new DateTime(2023, 8, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8011),
+                            EnddDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             IsActive = true,
                             Name = "Course5",
                             Price = 500.0,
-                            StartDate = new DateTime(2023, 7, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8010)
+                            StartDate = new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Id = 6,
                             CategoryId = 6,
                             Description = "Yoga course number 6",
-                            EnddDate = new DateTime(2023, 8, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8016),
+                            EnddDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             IsActive = true,
                             Name = "Course6",
                             Price = 600.0,
-                            StartDate = new DateTime(2023, 7, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8015)
+                            StartDate = new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Id = 7,
                             CategoryId = 7,
                             Description = "Yoga course number 7",
-                            EnddDate = new DateTime(2023, 8, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8020),
+                            EnddDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             IsActive = true,
                             Name = "Course7",
                             Price = 700.0,
-                            StartDate = new DateTime(2023, 7, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8020)
+                            StartDate = new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Id = 8,
                             CategoryId = 8,
                             Description = "Yoga course number 8",
-                            EnddDate = new DateTime(2023, 8, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8024),
+                            EnddDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             IsActive = true,
                             Name = "Course8",
                             Price = 800.0,
-                            StartDate = new DateTime(2023, 7, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8023)
+                            StartDate = new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Id = 9,
                             CategoryId = 9,
                             Description = "Yoga course number 9",
-                            EnddDate = new DateTime(2023, 8, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8028),
+                            EnddDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             IsActive = true,
                             Name = "Course9",
                             Price = 900.0,
-                            StartDate = new DateTime(2023, 7, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8028)
+                            StartDate = new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Id = 10,
                             CategoryId = 10,
                             Description = "Yoga course number 10",
-                            EnddDate = new DateTime(2023, 8, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8033),
+                            EnddDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             IsActive = true,
                             Name = "Course10",
                             Price = 1000.0,
-                            StartDate = new DateTime(2023, 7, 6, 10, 56, 14, 772, DateTimeKind.Local).AddTicks(8033)
+                            StartDate = new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 
@@ -1692,6 +1692,218 @@ namespace YogaManagement.Database.Migrations
                     b.HasIndex("YogaClassId");
 
                     b.ToTable("Enrollments");
+
+                    b.HasData(
+                        new
+                        {
+                            MemberId = 1,
+                            YogaClassId = 4,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 2,
+                            YogaClassId = 2,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 3,
+                            YogaClassId = 4,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 4,
+                            YogaClassId = 2,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 5,
+                            YogaClassId = 4,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 6,
+                            YogaClassId = 2,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 7,
+                            YogaClassId = 4,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 8,
+                            YogaClassId = 2,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 9,
+                            YogaClassId = 4,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 10,
+                            YogaClassId = 2,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 11,
+                            YogaClassId = 4,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 12,
+                            YogaClassId = 2,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 13,
+                            YogaClassId = 4,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 14,
+                            YogaClassId = 2,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 15,
+                            YogaClassId = 4,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 16,
+                            YogaClassId = 6,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 17,
+                            YogaClassId = 8,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 18,
+                            YogaClassId = 6,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 19,
+                            YogaClassId = 8,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 20,
+                            YogaClassId = 6,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 21,
+                            YogaClassId = 8,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 22,
+                            YogaClassId = 6,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 23,
+                            YogaClassId = 8,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 24,
+                            YogaClassId = 6,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 25,
+                            YogaClassId = 8,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 26,
+                            YogaClassId = 6,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 27,
+                            YogaClassId = 8,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 28,
+                            YogaClassId = 6,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 29,
+                            YogaClassId = 8,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            MemberId = 30,
+                            YogaClassId = 6,
+                            Discount = 0.0,
+                            EnrollDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local)
+                        });
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.Member", b =>
@@ -2050,6 +2262,53 @@ namespace YogaManagement.Database.Migrations
                     b.HasIndex("YogaClassId");
 
                     b.ToTable("TeacherEnrollments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 31,
+                            EndDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            IsActive = true,
+                            StartDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            TeacherProfileId = 31,
+                            YogaClassId = 4
+                        },
+                        new
+                        {
+                            Id = 32,
+                            EndDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            IsActive = true,
+                            StartDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            TeacherProfileId = 32,
+                            YogaClassId = 2
+                        },
+                        new
+                        {
+                            Id = 33,
+                            EndDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            IsActive = true,
+                            StartDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            TeacherProfileId = 33,
+                            YogaClassId = 4
+                        },
+                        new
+                        {
+                            Id = 34,
+                            EndDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            IsActive = true,
+                            StartDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            TeacherProfileId = 34,
+                            YogaClassId = 2
+                        },
+                        new
+                        {
+                            Id = 35,
+                            EndDate = new DateTime(2023, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            IsActive = true,
+                            StartDate = new DateTime(2023, 7, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            TeacherProfileId = 35,
+                            YogaClassId = 4
+                        });
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.TeacherProfile", b =>
@@ -2139,6 +2398,1268 @@ namespace YogaManagement.Database.Migrations
                     b.HasIndex("TeacherProfileId");
 
                     b.ToTable("TeacherSchedule");
+
+                    b.HasData(
+                        new
+                        {
+                            TimeSlotId = 11,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 12,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 13,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 14,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 15,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 16,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 17,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 11,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 12,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 13,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 14,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 15,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 16,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 17,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 11,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 12,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 13,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 14,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 15,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 16,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 17,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 11,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 12,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 13,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 14,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 15,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 16,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 17,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 11,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 12,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 13,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 14,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 15,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 16,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 17,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 11,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 12,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 13,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 14,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 15,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 16,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 17,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 11,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 12,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 13,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 14,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 15,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 16,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 17,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 11,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 12,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 13,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 14,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 15,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 16,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 17,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 11,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 12,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 13,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 14,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 15,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 16,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 17,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 11,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 12,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 13,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 14,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 15,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 16,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 17,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 21,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 22,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 23,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 24,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 25,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 26,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 27,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 21,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 22,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 23,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 24,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 25,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 26,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 27,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 21,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 22,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 23,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 24,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 25,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 26,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 27,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 21,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 22,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 23,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 24,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 25,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 26,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 27,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 21,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 22,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 23,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 24,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 25,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 26,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 27,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 21,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 22,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 23,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 24,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 25,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 26,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 27,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 21,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 22,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 23,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 24,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 25,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 26,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 27,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 21,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 22,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 23,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 24,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 25,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 26,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 27,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 21,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 22,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 23,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 24,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 25,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 26,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 27,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 21,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 22,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 23,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 24,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 25,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 26,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 27,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 31,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 32,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 33,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 34,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 35,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 36,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 37,
+                            TeacherProfileId = 31,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 31,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 32,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 33,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 34,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 35,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 36,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 37,
+                            TeacherProfileId = 32,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 31,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 32,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 33,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 34,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 35,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 36,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 37,
+                            TeacherProfileId = 33,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 31,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 32,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 33,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 34,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 35,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 36,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 37,
+                            TeacherProfileId = 34,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 31,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 32,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 33,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 34,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 35,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 36,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 37,
+                            TeacherProfileId = 35,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 31,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 32,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 33,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 34,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 35,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 36,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 37,
+                            TeacherProfileId = 36,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 31,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 32,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 33,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 34,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 35,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 36,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 37,
+                            TeacherProfileId = 37,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 31,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 32,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 33,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 34,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 35,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 36,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 37,
+                            TeacherProfileId = 38,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 31,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 32,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 33,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 34,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 35,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 36,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 37,
+                            TeacherProfileId = 39,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 31,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 32,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 33,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 34,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 35,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 36,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        },
+                        new
+                        {
+                            TimeSlotId = 37,
+                            TeacherProfileId = 40,
+                            IsTaken = false
+                        });
                 });
 
             modelBuilder.Entity("YogaManagement.Domain.Models.TimeSlot", b =>

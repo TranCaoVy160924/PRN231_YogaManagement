@@ -192,8 +192,8 @@ public static class ModelBuilderExtensions
                 Name = "Course" + i.ToString(),
                 Description = "Yoga course number " + i.ToString(),
                 Price = i * 100,
-                StartDate = DateTime.Now.AddDays(7),
-                EnddDate = DateTime.Now.AddDays(7).AddMonths(1),
+                StartDate = DateTime.Today.AddDays(7),
+                EnddDate = DateTime.Today.AddDays(7).AddMonths(1),
                 IsActive = true,
                 CategoryId = i
             });
@@ -420,6 +420,91 @@ public static class ModelBuilderExtensions
                 Balance = 0,
                 IsAdminWallet = i == 46 ? true : false,
                 AppUserId = i
+            });
+        }
+        #endregion
+
+        #region TeacherSchedule
+        for (int i = 31; i <= 40; i++)
+        {
+            for(int j = 11; j<= 17; j++)
+            modelBuilder.Entity<TeacherSchedule>().HasData(new TeacherSchedule
+            {   
+                IsTaken = false,
+                TeacherProfileId = i,
+                TimeSlotId = j
+            });
+        }
+        for (int i = 31; i <= 40; i++)
+        {
+            for (int j = 21; j <= 27; j++)
+                modelBuilder.Entity<TeacherSchedule>().HasData(new TeacherSchedule
+                {
+                    IsTaken = false,
+                    TeacherProfileId = i,
+                    TimeSlotId = j
+                });
+        }
+        for (int i = 31; i <= 40; i++)
+        {
+            for (int j = 31; j <= 37; j++)
+                modelBuilder.Entity<TeacherSchedule>().HasData(new TeacherSchedule
+                {
+                    IsTaken = false,
+                    TeacherProfileId = i,
+                    TimeSlotId = j
+                });
+        }
+        #endregion
+
+        #region MemberEnroll
+        for (int i = 1; i <= 15; i++)
+        {
+            modelBuilder.Entity<Enrollment>().HasData(new Enrollment
+            {
+                EnrollDate = DateTime.Today.AddDays(8),
+                Discount = 0,
+                MemberId = i,
+                YogaClassId = i % 2 == 0 ? 2 : 4,
+
+            }) ;
+        }
+        for (int i = 16; i <= 30; i++)
+        {
+            modelBuilder.Entity<Enrollment>().HasData(new Enrollment
+            {
+                EnrollDate = DateTime.Today.AddDays(8),
+                Discount = 0,
+                MemberId = i,
+                YogaClassId = i % 2 == 0 ? 6 : 8,
+
+            });
+        }
+        #endregion
+        
+        #region TeacherEnroll 
+        for (int i = 31; i <= 35; i++)
+        {
+            modelBuilder.Entity<TeacherEnrollment>().HasData(new TeacherEnrollment
+            {
+                Id = i,
+                IsActive = true,
+                StartDate = DateTime.Today.AddDays(8),
+                EndDate = DateTime.Today.AddDays(7).AddMonths(1),
+                TeacherProfileId = i,
+                YogaClassId = i % 2 == 0 ? 2 : 4
+            });
+        }
+        for (int i =36; i <= 10; i++)
+        {
+            modelBuilder.Entity<TeacherEnrollment>().HasData(new TeacherEnrollment
+            {
+                Id = i,
+                IsActive = true,
+                StartDate = DateTime.Today.AddDays(8),
+                EndDate = DateTime.Today.AddDays(7).AddMonths(1),
+                TeacherProfileId = i,
+                YogaClassId = i % 2 == 0 ? 6 : 8
             });
         }
         #endregion
