@@ -2,9 +2,13 @@ using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
+using System.Diagnostics;
 using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass;
+using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment;
 
 namespace YogaManagement.Client.Controllers;
 
@@ -40,6 +44,9 @@ public class YogaClassesController : Controller
             ygClasses = _context.YogaClasses
                 .Where(x => x.CourseId == id);
         }
+
+        var enrollments = _context.Enrollments.ToList();
+        ViewData["EnrolledMember"] = enrollments;
 
         return View(ygClasses.ToList()
             .OrderByDescending(x => x.YogaClassStatus)
