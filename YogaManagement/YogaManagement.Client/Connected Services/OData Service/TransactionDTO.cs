@@ -55,11 +55,12 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Transaction
         /// <param name="transactionType">Initial value of TransactionType.</param>
         /// <param name="walletId">Initial value of WalletId.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static TransactionDTO CreateTransactionDTO(int ID, double amount, global::System.DateTimeOffset createdDate, string transactionType, int walletId)
+        public static TransactionDTO CreateTransactionDTO(int ID, double amount, string content, global::System.DateTimeOffset createdDate, string transactionType, int walletId)
         {
             TransactionDTO transactionDTO = new TransactionDTO();
             transactionDTO.Id = ID;
             transactionDTO.Amount = amount;
+            transactionDTO.Content = content;
             transactionDTO.CreatedDate = createdDate;
             transactionDTO.TransactionType = transactionType;
             transactionDTO.WalletId = walletId;
@@ -115,6 +116,31 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Transaction
         private double _Amount;
         partial void OnAmountChanging(double value);
         partial void OnAmountChanged();
+        /// <summary>
+        /// There are no comments for Property Content in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Content")]
+        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "Content is required.")]
+        public virtual string Content
+        {
+            get
+            {
+                return this._Content;
+            }
+            set
+            {
+                this.OnContentChanging(value);
+                this._Content = value;
+                this.OnContentChanged();
+                this.OnPropertyChanged("Content");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _Content;
+        partial void OnContentChanging(string value);
+        partial void OnContentChanged();
         /// <summary>
         /// There are no comments for Property CreatedDate in the schema.
         /// </summary>

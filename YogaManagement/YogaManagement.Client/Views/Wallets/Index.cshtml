@@ -1,0 +1,21 @@
+﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Wallet;
+@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Transaction;
+@model WalletDTO
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Current Money in Wallet: @Model.Balance</h1>
+
+
+<form method="post" asp-action="Index">
+    <div>
+        <label for="money">Enter Money:</label>
+        <input type="text" name="Money" value="0"/>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
