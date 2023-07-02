@@ -32,9 +32,9 @@ public class WalletsController : Controller
         _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
     }
 
-    public async Task<IActionResult> Index(int? id)
+    public async Task<IActionResult> Index()
     {
-        var userWallet = await _context.Wallets.ByKey(_jwtManager.GetProfileId()).GetValueAsync();
+        var userWallet = await _context.Wallets.ByKey(_jwtManager.GetUserId()).GetValueAsync();
         try
         {
             return View(userWallet);
@@ -53,7 +53,7 @@ public class WalletsController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Index([Bind("Id, Amount, Content, CreatedDate, TransactionType, WalletId")] TransactionDTO transaction, double Money)
+    public async Task<IActionResult> Index(double Money)
     {
         var userWallet = await _context.Wallets.ByKey(_jwtManager.GetProfileId()).GetValueAsync();
         try
@@ -70,7 +70,6 @@ public class WalletsController : Controller
 
             var AddingAmount = new TransactionDTO()
             {
-                 Id = _jwtManager.GetProfileId(),
                  Amount = Money,
                  Content = Money.ToString(),
                  CreatedDate = DateTime.Today,
@@ -82,7 +81,7 @@ public class WalletsController : Controller
 
             await _context.SaveChangesAsync();
 
-            return View(userWallet); ;
+            return RedirectToAction(nameof(Index));
         }
         catch (InvalidOperationException ex)
         {

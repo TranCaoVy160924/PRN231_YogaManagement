@@ -1,7 +1,8 @@
-﻿@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Wallet;
+﻿@using YogaManagement.Client.Helper;
+@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Wallet;
 @using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Transaction;
 @model WalletDTO
-
+@inject JwtManager _jwtManager;
 
 @{
     ViewData["Title"] = "Index";
@@ -9,13 +10,16 @@
 
 <h1>Current Money in Wallet: @Model.Balance</h1>
 
+@if (_jwtManager.IsAdmin() || _jwtManager.IsMember())
+{
+    <form method="post" asp-action="Index">
+        <div>
+            <label for="money">Enter Money:</label>
+            <input type="text" name="Money" value="0" />
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+}
 
-<form method="post" asp-action="Index">
-    <div>
-        <label for="money">Enter Money:</label>
-        <input type="text" name="Money" value="0"/>
-    </div>
-    <div>
-        <button type="submit">Submit</button>
-    </div>
-</form>

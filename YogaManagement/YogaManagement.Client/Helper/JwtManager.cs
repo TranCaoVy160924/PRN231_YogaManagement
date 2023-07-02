@@ -72,8 +72,8 @@ public class JwtManager
 
     public bool IsAdmin() => GetUserRole() == "Admin";
 
-    private string GetUserId()
-        => IsAuthenticated ? SecureToken.Claims.Where(c => c.Type == ClaimTypes.Sid).SingleOrDefault().Value : "";
+    public int GetUserId()
+        => IsAuthenticated ? int.Parse(SecureToken.Claims.Where(c => c.Type == ClaimTypes.Sid).SingleOrDefault().Value) : 0;
 
     private string GetUserRole()
         => IsAuthenticated ? SecureToken.Claims.Where(c => c.Type == ClaimTypes.Role).SingleOrDefault().Value : "";
@@ -101,7 +101,7 @@ public class JwtManager
 
         var claims = new List<Claim>();
         var tokenString = "Bearer " + JwtTokenString;
-        claims.Add(new Claim(ClaimTypes.Sid, GetUserId()));
+        claims.Add(new Claim(ClaimTypes.Sid, GetUserId().ToString()));
         claims.Add(new Claim(ClaimTypes.Email, GetEmail()));
         claims.Add(new Claim(ClaimTypes.Role, GetUserRole()));
         claims.Add(new Claim("AuthHeader",
