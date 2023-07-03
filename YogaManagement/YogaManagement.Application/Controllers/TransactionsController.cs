@@ -93,6 +93,7 @@ public class TransactionsController : ODataController
                 case TransactionType.Deposit:
                     {
                         wallet.Balance += transacAmount;
+                        wallet.TotalDeposit += transacAmount;
                         await _transacRepo.CreateAsync(transaction);
                         await _walletRepo.UpdateAsync(wallet);
                         break;

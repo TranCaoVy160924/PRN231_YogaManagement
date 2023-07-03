@@ -6,7 +6,8 @@
 
 @{
     ViewData["Title"] = "Index";
-    var Enrollment = ViewData["EnrolledMember"] as List<EnrollmentDTO>;
+    var enrollments = ViewData["EnrolledMember"] as List<EnrollmentDTO>;
+    bool courseEnrolled = (bool)ViewData["CourseEnrolled"];
 }
 
 <h1>Index</h1>
@@ -33,7 +34,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.CourseName)
             </th>
-            <th></th>
+            @if (_jwtManager.IsMember())
+            {
+                <th>
+                    Enrolled
+                </th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -45,7 +51,7 @@
                 </td>
                 <td>
                     @{
-                        var countEnroll = Enrollment.Where(e => e.YogaClassId == item.Id).Count();
+                        var countEnroll = enrollments.Where(e => e.YogaClassId == item.Id).Count();
                     }
                     @*@Html.DisplayFor(modelItem => item.Size)*@
                     @countEnroll/@item.Size
@@ -54,13 +60,45 @@
                     @Html.DisplayFor(modelItem => item.YogaClassStatus)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CourseName)
+                    <a asp-action="Details" asp-controller="Course" asp-route-id="@item.CourseId">
+                        @Html.DisplayFor(modelItem => item.CourseName)
+                    </a>
                 </td>
+                @if (_jwtManager.IsMember())
+                {
+                    var enrolled = enrollments.Any(x => x.YogaClassId == item.Id
+                    && x.MemberId == _jwtManager.GetProfileId());
+                    <td>
+                        @Html.DisplayFor(modelItem => enrolled)
+                    </td>
+                    <td>
+                        <a asp-action="Index" asp-controller="YogaClasses" asp-route-id="@item.CourseId">Others</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@item.Id">Schedule</a> |
+                        <a asp-action="Index" asp-controller="TeacherEnrollments" asp-route-id="@item.Id">Teacher</a> |
+                        @if (!enrolled)
+                        {
+                            @if (courseEnrolled)
+                            {
+                                <a asp-action="Create" asp-controller="Enrollments" asp-route-id="@item.Id">Change Class</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Create" asp-controller="Enrollments" asp-route-id="@item.Id">Enroll</a>
+                            }
+                        }
+                        else
+                        {
+                            <a asp-action="Delete" asp-controller="Enrollments" asp-route-id="@item.Id">Unenroll</a>
+                        }
+                    </td>
+                }
                 @if (_jwtManager.IsStaff())
                 {
                     @if (item.YogaClassStatus != "Active")
                     {
                         <td>
+                            <a asp-action="Index" asp-controller="YogaClasses" asp-route-id="@item.CourseId">Others</a> |
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                             <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@item.Id">Schedule</a> |
                             <a asp-action="Index" asp-controller="TeacherEnrollments" asp-route-id="@item.Id">Teacher</a> |
@@ -70,20 +108,13 @@
                     else
                     {
                         <td>
+                            <a asp-action="Index" asp-controller="YogaClasses" asp-route-id="@item.CourseId">Others</a> |
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                             <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@item.Id">Schedule</a> |
                             <a asp-action="Index" asp-controller="TeacherEnrollments" asp-route-id="@item.Id">Teacher</a> |
                             <a class="btn-link disabled" href="#">Delete</a>
                         </td>
                     }
-                }
-                @if (_jwtManager.IsMember())
-                {
-                    <td>
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@item.Id">Schedule</a> |
-                        <a asp-action="Index" asp-controller="TeacherEnrollments" asp-route-id="@item.Id">Teacher</a> 
-                    </td>
                 }
             </tr>
         }

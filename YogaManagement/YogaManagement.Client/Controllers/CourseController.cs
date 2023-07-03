@@ -31,6 +31,13 @@ public class CourseController : Controller
     {
         var coursesDbContext = _context.Courses.
             Where(x => x.IsActive);
+
+        if (_jwtManager.IsMember())
+        {
+            ViewData["UserEnrolls"] = _context.Enrollments
+                .Where(x => x.MemberId == _jwtManager.GetProfileId())
+                .ToList();
+        }
         return View(coursesDbContext);
     }
 
@@ -44,11 +51,18 @@ public class CourseController : Controller
                 throw new Exception("Not found");
             }
 
-            var course = await _context.Courses.ByKey(id.Value).GetValueAsync();
-            if (course == null)
+            var course = await _context.Courses.ByKey(id.Value).GetValueAsync()
+                ?? throw new Exception("Not found");
+
+            bool enrolled = false;
+            if (_jwtManager.IsMember())
             {
-                throw new Exception("Not found");
+                enrolled = _context.Enrollments.ToList()
+                    .Any(x => x.CourseId == course.Id 
+                        && x.MemberId == _jwtManager.GetProfileId());
             }
+
+            ViewData["Enrolled"] = enrolled;
 
             return View(course);
         }

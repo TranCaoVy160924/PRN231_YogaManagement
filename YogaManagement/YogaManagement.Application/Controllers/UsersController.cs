@@ -74,6 +74,7 @@ public class UsersController : ODataController
             var user = await _userManager.Users
                 .Include(x => x.Member)
                 .Include(x => x.TeacherProfile)
+                .Include(x => x.Wallet)
                 .SingleOrDefaultAsync(x => x.Email == request.Email);
             if (user == null)
             {
@@ -155,6 +156,7 @@ public class UsersController : ODataController
                 {
                     AppUserId = user.Id,
                     Balance = 0,
+                    TotalDeposit = 0,
                     Transactions = new List<Transaction>()
                 });
 

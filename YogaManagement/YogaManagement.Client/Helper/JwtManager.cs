@@ -75,6 +75,9 @@ public class JwtManager
     public int GetUserId()
         => IsAuthenticated ? int.Parse(SecureToken.Claims.Where(c => c.Type == ClaimTypes.Sid).SingleOrDefault().Value) : 0;
 
+    public double GetTotalDeposit()
+        => IsAuthenticated ? double.Parse(SecureToken.Claims.Where(c => c.Type == "TotalDeposit").SingleOrDefault().Value) : 0;
+
     private string GetUserRole()
         => IsAuthenticated ? SecureToken.Claims.Where(c => c.Type == ClaimTypes.Role).SingleOrDefault().Value : "";
 

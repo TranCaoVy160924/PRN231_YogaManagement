@@ -5,6 +5,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    bool enrolled = (bool) ViewData["Enrolled"];
 }
 
 <h1>Details</h1>
@@ -44,10 +45,10 @@
             @Html.DisplayFor(model => model.EnddDate.Date)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
+            Enrolled
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
+            @Html.DisplayFor(model => enrolled)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CategoryName)

@@ -1,175 +1,187 @@
-﻿//using Microsoft.AspNetCore.Authorization;
-//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.AspNetCore.Mvc.Rendering;
-//using Microsoft.EntityFrameworkCore;
-//using YogaManagement.Client.Helper;
-//using YogaManagement.Database.EF;
-//using YogaManagement.Domain.Models;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using YogaManagement.Client.Helper;
+using YogaManagement.Client.OdataClient.Default;
+using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment;
+using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Transaction;
+using YogaManagement.Database.EF;
+using YogaManagement.Domain.Models;
 
-//namespace YogaManagement.Client.Controllers;
-//[Authorize]
-//public class EnrollmentsController : Controller
-//{
-//    private readonly YogaManagementDbContext _context;
-//    private readonly JwtManager _jwtManager;
+namespace YogaManagement.Client.Controllers;
+[Authorize(Roles = "Member")]
+public class EnrollmentsController : Controller
+{
+    private readonly Container _context;
+    private readonly JwtManager _jwtManager;
+    private readonly INotyfService _notyf;
 
-//    public EnrollmentsController(YogaManagementDbContext context,
-//        JwtManager jwtManager)
-//    {
-//        _context = context;
-//        _jwtManager = jwtManager;
-//        _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
-//    }
+    public EnrollmentsController(Container context,
+        JwtManager jwtManager,
+        INotyfService notyf)
+    {
+        _context = context;
+        _notyf = notyf;
+        _jwtManager = jwtManager;
+        _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
+    }
 
-//    // GET: Enrollments
-//    public async Task<IActionResult> Index()
-//    {
-//        var yogaManagementDbContext = _context.Enrollments.Include(e => e.Member).Include(e => e.YogaClass);
-//        return View(await yogaManagementDbContext.ToListAsync());
-//    }
+    // GET: Enrollments/Create
+    // ClassId
+    public IActionResult Create(int? id)
+    {
+        try
+        {
+            if (id == null)
+            {
+                throw new Exception("Not found");
+            }
 
-//    // GET: Enrollments/Details/5
-//    public async Task<IActionResult> Details(int? id)
-//    {
-//        if (id == null || _context.Enrollments == null)
-//        {
-//            return NotFound();
-//        }
+            var enrolled = _context.Enrollments.ToList()
+                .Any(x => x.YogaClassId == id && x.MemberId == _jwtManager.GetProfileId());
+            if (enrolled)
+            {
+                throw new Exception("Already enrolled");
+            }
 
-//        var enrollment = await _context.Enrollments
-//            .Include(e => e.Member)
-//            .Include(e => e.YogaClass)
-//            .FirstOrDefaultAsync(m => m.MemberId == id);
-//        if (enrollment == null)
-//        {
-//            return NotFound();
-//        }
+            var ygClass = _context.YogaClasses
+                .Where(x => x.Id == id).Single();
 
-//        return View(enrollment);
-//    }
+            double totalDeposit = _jwtManager.GetTotalDeposit();
+            var privilege = _context.MemberLevels.ToList().Single();
+            var condition = _context.MemberLevelConditons.ToList().Single();
+            double discount = 0;
 
-//    // GET: Enrollments/Create
-//    public IActionResult Create()
-//    {
-//        ViewData["MemberId"] = new SelectList(_context.Members, "Id", "Id");
-//        ViewData["YogaClassId"] = new SelectList(_context.YogaClasses, "Id", "Name");
-//        return View();
-//    }
+            if (totalDeposit > condition.Platinum)
+            {
+                discount = privilege.Platinum / 100;
+            }
+            else if (totalDeposit > condition.Gold)
+            {
+                discount = privilege.Gold / 100;
+            }
+            else if (totalDeposit > condition.Silver)
+            {
+                discount = privilege.Silver / 100;
+            }
 
-//    // POST: Enrollments/Create
-//    // To protect from overposting attacks, enable the specific properties you want to bind to.
-//    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-//    [HttpPost]
-//    [ValidateAntiForgeryToken]
-//    public async Task<IActionResult> Create([Bind("EnrollDate,Discount,MemberId,YogaClassId")] Enrollment enrollment)
-//    {
-//        if (ModelState.IsValid)
-//        {
-//            _context.Add(enrollment);
-//            await _context.SaveChangesAsync();
-//            return RedirectToAction(nameof(Index));
-//        }
-//        ViewData["MemberId"] = new SelectList(_context.Members, "Id", "Id", enrollment.MemberId);
-//        ViewData["YogaClassId"] = new SelectList(_context.YogaClasses, "Id", "Name", enrollment.YogaClassId);
-//        return View(enrollment);
-//    }
+            var enrollment = new EnrollmentDTO
+            {
+                YogaClassId = id.Value,
+                MemberId = _jwtManager.GetProfileId(),
+                MemberName = _jwtManager.GetEmail(),
+                YogaClassName = ygClass.Name,
+                CourseId = ygClass.CourseId,
+                Discount = discount,
+                EnrollDate = DateTime.Today
+            };
 
-//    // GET: Enrollments/Edit/5
-//    public async Task<IActionResult> Edit(int? id)
-//    {
-//        if (id == null || _context.Enrollments == null)
-//        {
-//            return NotFound();
-//        }
+            return View(enrollment);
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+        }
+        catch (Exception ex)
+        {
+            _notyf.Error(ex.Message);
+        }
 
-//        var enrollment = await _context.Enrollments.FindAsync(id);
-//        if (enrollment == null)
-//        {
-//            return NotFound();
-//        }
-//        ViewData["MemberId"] = new SelectList(_context.Members, "Id", "Id", enrollment.MemberId);
-//        ViewData["YogaClassId"] = new SelectList(_context.YogaClasses, "Id", "Name", enrollment.YogaClassId);
-//        return View(enrollment);
-//    }
+        return RedirectToAction("Index", "YogaClasses");
+    }
 
-//    // POST: Enrollments/Edit/5
-//    // To protect from overposting attacks, enable the specific properties you want to bind to.
-//    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-//    [HttpPost]
-//    [ValidateAntiForgeryToken]
-//    public async Task<IActionResult> Edit(int id, [Bind("EnrollDate,Discount,MemberId,YogaClassId")] Enrollment enrollment)
-//    {
-//        if (id != enrollment.MemberId)
-//        {
-//            return NotFound();
-//        }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(EnrollmentDTO enrollment)
+    {
+        try
+        {
+            var course = _context.Courses
+                .Where(x => x.Id == enrollment.CourseId)
+                .Single();
 
-//        if (ModelState.IsValid)
-//        {
-//            try
-//            {
-//                _context.Update(enrollment);
-//                await _context.SaveChangesAsync();
-//            }
-//            catch (DbUpdateConcurrencyException)
-//            {
-//                if (!EnrollmentExists(enrollment.MemberId))
-//                {
-//                    return NotFound();
-//                }
-//                else
-//                {
-//                    throw;
-//                }
-//            }
-//            return RedirectToAction(nameof(Index));
-//        }
-//        ViewData["MemberId"] = new SelectList(_context.Members, "Id", "Id", enrollment.MemberId);
-//        ViewData["YogaClassId"] = new SelectList(_context.YogaClasses, "Id", "Name", enrollment.YogaClassId);
-//        return View(enrollment);
-//    }
+            var wallet = _context.Wallets
+                .Where(x => x.AppUserId == _jwtManager.GetUserId())
+                .Single();
 
-//    // GET: Enrollments/Delete/5
-//    public async Task<IActionResult> Delete(int? id)
-//    {
-//        if (id == null || _context.Enrollments == null)
-//        {
-//            return NotFound();
-//        }
+            double amount = course.Price * (1 - enrollment.Discount);
+            
+            if (amount > wallet.Balance)
+            {
+                throw new Exception("Not enough money in wallet");
+            }
 
-//        var enrollment = await _context.Enrollments
-//            .Include(e => e.Member)
-//            .Include(e => e.YogaClass)
-//            .FirstOrDefaultAsync(m => m.MemberId == id);
-//        if (enrollment == null)
-//        {
-//            return NotFound();
-//        }
+            var sameClassEnrollment = _context.Enrollments
+                .Where(x => x.CourseId == enrollment.CourseId
+                    && x.MemberId == enrollment.MemberId)
+                .ToList();
 
-//        return View(enrollment);
-//    }
+            var transaction = new TransactionDTO
+            {
+                Amount = course.Price * (1 - enrollment.Discount),
+                Content = "Enroll to class " + enrollment.YogaClassName,
+                CreatedDate = DateTime.Today,
+                TransactionType = "Payment",
+                WalletId = wallet.Id
+            };
 
-//    // POST: Enrollments/Delete/5
-//    [HttpPost, ActionName("Delete")]
-//    [ValidateAntiForgeryToken]
-//    public async Task<IActionResult> DeleteConfirmed(int id)
-//    {
-//        if (_context.Enrollments == null)
-//        {
-//            return Problem("Entity set 'YogaManagementDbContext.Enrollments'  is null.");
-//        }
-//        var enrollment = await _context.Enrollments.FindAsync(id);
-//        if (enrollment != null)
-//        {
-//            _context.Enrollments.Remove(enrollment);
-//        }
+            if (sameClassEnrollment.Count == 0)
+            {
+                _context.AddToTransactions(transaction);
+            }
+            _context.AddToEnrollments(enrollment);
+            await _context.SaveChangesAsync();
 
-//        await _context.SaveChangesAsync();
-//        return RedirectToAction(nameof(Index));
-//    }
+            return RedirectToAction("Index", "YogaClasses", new { id = enrollment.CourseId });
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+        }
+        catch (Exception ex)
+        {
+            _notyf.Error(ex.Message);
+        }
 
-//    private bool EnrollmentExists(int id)
-//    {
-//        return (_context.Enrollments?.Any(e => e.MemberId == id)).GetValueOrDefault();
-//    }
-//}
+        return View(enrollment);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int? id)
+    {
+        try
+        {
+            if (id == null || _context.Enrollments == null)
+            {
+                return NotFound();
+            }
+
+            var enrollment = _context.Enrollments
+                .Where(x => x.YogaClassId == id
+                    && x.MemberId == _jwtManager.GetProfileId())
+                .Single();
+
+            return View(enrollment);
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+        }
+        catch (Exception ex)
+        {
+            _notyf.Error(ex.Message);
+        }
+
+        return RedirectToAction("Index", "YogaClasses");
+    }
+
+    // POST: Enrollments/Delete/5
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int MemberId, int YogaClassId)
+    {
+        return RedirectToAction("Index", "YogaClasses");
+    }
+}

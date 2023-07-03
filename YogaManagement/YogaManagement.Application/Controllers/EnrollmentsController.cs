@@ -17,11 +17,17 @@ public class EnrollmentsController : ODataController
 {
     private readonly IMapper _mapper;
     private readonly EnrollmentRepository _enrollmentRepo;
+    private readonly CourseRepository _courseRepo;
+    private readonly YogaClassRepository _yogaClassRepo;
 
-    public EnrollmentsController(IMapper mapper, EnrollmentRepository repo)
+    public EnrollmentsController(IMapper mapper, EnrollmentRepository repo,
+        CourseRepository courseRepo,
+        YogaClassRepository yogaClassRepo)
     {
         _mapper = mapper;
         _enrollmentRepo = repo;
+        _courseRepo = courseRepo;
+        _yogaClassRepo = yogaClassRepo;
     }
 
     [EnableQuery]
@@ -57,6 +63,36 @@ public class EnrollmentsController : ODataController
             ModelState.Remove("MemberName");
             ModelState.Remove("YogaClassName");
             ModelState.ValidateRequest();
+
+            var existEnrollment = _enrollmentRepo.GetAll()
+                .SingleOrDefault(x => x.YogaClassId == createRequest.YogaClassId
+                    && x.MemberId == createRequest.MemberId);
+
+            var course = _courseRepo.GetAll()
+                .Single(x => x.Id == createRequest.CourseId);
+
+            var ygClass = _yogaClassRepo.GetAll()
+                .Single(x => x.Id == createRequest.YogaClassId);
+
+            if (existEnrollment != null)
+            {
+                throw new Exception("Already enrolled");
+            }
+
+            if (createRequest.EnrollDate > course.StartDate)
+            {
+                throw new Exception("Course already start");
+            }
+
+            var sameCourseEnrollment = _enrollmentRepo.GetAll()
+                .SingleOrDefault(x => x.YogaClass.Course.Id == createRequest.CourseId
+                    && x.MemberId == createRequest.MemberId);
+
+            if (sameCourseEnrollment != null)
+            {
+                await _enrollmentRepo.DeleteAsync(sameCourseEnrollment);
+            }
+
             var newEnr = _mapper.Map<Enrollment>(createRequest);
             await _enrollmentRepo.CreateAsync(newEnr);
             return Created(createRequest);
@@ -64,33 +100,6 @@ public class EnrollmentsController : ODataController
         catch (Exception ex)
         {
             return BadRequest(ex.Message);
-        }
-    }
-
-    public async Task<IActionResult> Patch([FromRoute] int keyMemberId, [FromRoute] int keyYogaClassId, [FromBody] Delta<EnrollmentDTO> delta)
-    {
-        var updateRequest = delta.GetInstance();
-        var existEnroll = _enrollmentRepo.GetEnrollment(keyMemberId, keyYogaClassId);
-        if (existEnroll == null)
-        {
-            return NotFound();
-        }
-        else
-        {
-            try
-            {
-                var Enroll = _mapper.Map(updateRequest, existEnroll);
-                //existEnroll.EnrollDate = updateRequest.EnrollDate;
-                //existEnroll.Discount = updateRequest.Discount;
-                //existEnroll.MemberId = updateRequest.MemberId;
-                //existEnroll.YogaClassId = updateRequest.YogaClassId;
-                await _enrollmentRepo.UpdateAsync(Enroll);
-                return Updated(updateRequest);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
     }
 

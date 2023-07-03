@@ -6,7 +6,7 @@ using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.MemberLevel;
 
 namespace YogaManagement.Application.Controllers;
-[Authorize(Roles = "Admin")]
+[Authorize]
 public class MemberLevelConditonsController : ODataController
 {
     private readonly MemberLevelConditonRepository _mldRepo;
@@ -30,6 +30,7 @@ public class MemberLevelConditonsController : ODataController
         return Ok(memberLevel);
     }
 
+    [Authorize(Roles = "Admin")]
     public IActionResult Patch([FromRoute] int key, [FromBody] Delta<MemberLevelDiscountDTO> delta)
     {
         var updateRequest = delta.GetInstance();

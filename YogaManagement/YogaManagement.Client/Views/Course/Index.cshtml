@@ -1,14 +1,17 @@
 ﻿@using YogaManagement.Client.Helper;
 @using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course;
+@using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment;
 @model IEnumerable<CourseDTO>
 @inject JwtManager _jwtManager;
 
 @{
     ViewData["Title"] = "Index";
     var courses = Model;
+    List<EnrollmentDTO> enrollments = new List<EnrollmentDTO>();
     if (_jwtManager.IsMember())
     {
         courses = courses.Where(x => x.IsActive);
+        enrollments = ViewData["UserEnrolls"] as List<EnrollmentDTO>;
     }
 }
 
@@ -40,11 +43,14 @@
                 @Html.DisplayNameFor(model => model.EnddDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.CategoryName)
             </th>
+            @if (_jwtManager.IsMember())
+            {
+                <th>
+                    Enrolled
+                </th>
+            }
             <th></th>
         </tr>
     </thead>
@@ -72,11 +78,15 @@
                     @Html.DisplayFor(modelItem => item.EnddDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.CategoryName)
                 </td>
+                @if (_jwtManager.IsMember())
+                {
+                    bool enrolled = enrollments.Any(x => x.CourseId == item.Id);
+                    <td>
+                        @Html.CheckBoxFor(modelItem => enrolled)
+                    </td>
+                }
                 @if (_jwtManager.IsStaff())
                 {
                     @if (item.IsActive)

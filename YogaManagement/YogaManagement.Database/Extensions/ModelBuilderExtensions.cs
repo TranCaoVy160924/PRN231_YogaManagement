@@ -208,7 +208,7 @@ public static class ModelBuilderExtensions
                 Id = i,
                 Name = "Class" + i.ToString(),
                 Size = 20 - i,
-                YogaClassStatus = i % 2 == 0 ? YogaClassStatus.Pending : YogaClassStatus.Active,
+                YogaClassStatus = YogaClassStatus.Pending,
                 CourseId = i
             });
         }
@@ -418,6 +418,7 @@ public static class ModelBuilderExtensions
             {
                 Id = i,
                 Balance = 0,
+                TotalDeposit = 0,
                 IsAdminWallet = i == 46 ? true : false,
                 AppUserId = i
             });
@@ -458,7 +459,7 @@ public static class ModelBuilderExtensions
         #endregion
 
         #region MemberEnroll
-        for (int i = 1; i <= 15; i++)
+        for (int i = 1; i <= 10; i++)
         {
             modelBuilder.Entity<Enrollment>().HasData(new Enrollment
             {
@@ -469,7 +470,7 @@ public static class ModelBuilderExtensions
 
             }) ;
         }
-        for (int i = 16; i <= 30; i++)
+        for (int i = 11; i <= 20; i++)
         {
             modelBuilder.Entity<Enrollment>().HasData(new Enrollment
             {
@@ -480,8 +481,19 @@ public static class ModelBuilderExtensions
 
             });
         }
+        for (int i = 21; i <= 30; i++)
+        {
+            modelBuilder.Entity<Enrollment>().HasData(new Enrollment
+            {
+                EnrollDate = DateTime.Today.AddDays(8),
+                Discount = 0,
+                MemberId = i,
+                YogaClassId = i % 2 == 0 ? 1 : 3,
+
+            });
+        }
         #endregion
-        
+
         #region TeacherEnroll 
         for (int i = 31; i <= 35; i++)
         {

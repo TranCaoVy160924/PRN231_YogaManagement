@@ -38,11 +38,17 @@ public class YogaClassesController : Controller
             ygClasses = _context.YogaClasses.Execute()
                 .Where(x => x.YogaClassStatus == "Pending" ||
                     x.YogaClassStatus == "Active");
+
+            ViewData["CourseEnrolled"] = false;
         }
         else
         {
             ygClasses = _context.YogaClasses
                 .Where(x => x.CourseId == id);
+
+            ViewData["CourseEnrolled"] = _context.Enrollments.ToList()
+                .Any(x => x.CourseId == id 
+                    && x.MemberId == _jwtManager.GetProfileId());
         }
 
         var enrollments = _context.Enrollments.ToList();
