@@ -107,7 +107,7 @@ public class EnrollmentsController : Controller
                 .Single();
 
             double amount = course.Price * (1 - enrollment.Discount);
-            
+
             if (amount > wallet.Balance)
             {
                 throw new Exception("Not enough money in wallet");
@@ -120,7 +120,7 @@ public class EnrollmentsController : Controller
 
             var transaction = new TransactionDTO
             {
-                Amount = course.Price * (1 - enrollment.Discount),
+                Amount = amount,
                 Content = "Enroll to class " + enrollment.YogaClassName,
                 CreatedDate = DateTime.Today,
                 TransactionType = "Payment",
@@ -180,8 +180,49 @@ public class EnrollmentsController : Controller
     // POST: Enrollments/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int MemberId, int YogaClassId)
+    public async Task<IActionResult> DeleteConfirmed(int memberId, int yogaClassId)
     {
+        try
+        {
+            var enrollment = _context.Enrollments
+                .Where(x => x.MemberId == memberId
+                    && x.YogaClassId == yogaClassId)
+                .Single();
+
+            var course = _context.Courses
+                .Where(x => x.Id == enrollment.CourseId)
+                .Single();
+
+            var wallet = _context.Wallets
+                .Where(x => x.AppUserId == _jwtManager.GetUserId())
+                .Single();
+
+            double amount = course.Price * (1 - enrollment.Discount);
+
+            var transaction = new TransactionDTO
+            {
+                Amount = amount,
+                Content = "Refund enrollment to class " + enrollment.YogaClassName,
+                CreatedDate = DateTime.Today,
+                TransactionType = "Refund",
+                WalletId = wallet.Id
+            };
+
+            _context.AddToTransactions(transaction);
+            _context.DeleteObject(enrollment);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "YogaClasses");
+        }
+        catch (InvalidOperationException ex)
+        {
+            _notyf.Error(ex.ReadOdataErrorMessage());
+        }
+        catch (Exception ex)
+        {
+            _notyf.Error(ex.Message);
+        }
+
         return RedirectToAction("Index", "YogaClasses");
     }
 }

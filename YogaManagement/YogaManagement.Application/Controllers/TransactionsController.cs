@@ -58,7 +58,7 @@ public class TransactionsController : ODataController
         {
             ModelState.ValidateRequest();
             var wallet = _walletRepo.GetAll()
-                .SingleOrDefault(x => x.Id == transacRequest.WalletId && !x.IsAdminWallet)
+                .SingleOrDefault(x => x.Id == transacRequest.WalletId)
                 ?? throw new Exception("Wallet not exist");
 
             var user = _userManager.Users

@@ -55,26 +55,17 @@ public class WalletsController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Index(double Money)
     {
-        var userWallet = await _context.Wallets.ByKey(_jwtManager.GetProfileId()).GetValueAsync();
+        var userWallet = await _context.Wallets.ByKey(_jwtManager.GetUserId()).GetValueAsync();
+
         try
         {
-            ModelState.Remove("Id");
-            ModelState.Remove("Content");
-            ModelState.Remove("CreatedDate");
-            ModelState.Remove("TransactionType");
-            ModelState.Remove("WalletId");
-            if (!ModelState.IsValid)
-            {
-                throw new Exception("Invalid input");
-            }
-
             var AddingAmount = new TransactionDTO()
             {
                  Amount = Money,
                  Content = Money.ToString(),
                  CreatedDate = DateTime.Today,
                  TransactionType = TransactionType.Deposit.ToString(),
-                 WalletId = _jwtManager.GetProfileId(),
+                 WalletId = userWallet.Id,
             };
 
             _context.AddToTransactions(AddingAmount);
@@ -86,12 +77,12 @@ public class WalletsController : Controller
         catch (InvalidOperationException ex)
         {
             _notyf.Error(ex.ReadOdataErrorMessage());
-            return View(userWallet); ;
+            return View(userWallet);
         }
         catch (Exception ex)
         {
             _notyf.Error(ex.Message);
-            return View(userWallet); ;
+            return View(userWallet);
         }
     }
 }
