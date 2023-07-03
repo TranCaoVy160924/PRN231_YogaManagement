@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 6/17/2023 8:41:25 PM
+// Generation date: 7/3/2023 10:24:45 AM
 namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment
 {
     /// <summary>
@@ -54,14 +54,16 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment
         /// <param name="yogaClassId">Initial value of YogaClassId.</param>
         /// <param name="enrollDate">Initial value of EnrollDate.</param>
         /// <param name="discount">Initial value of Discount.</param>
+        /// <param name="courseId">Initial value of CourseId.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        public static EnrollmentDTO CreateEnrollmentDTO(int memberId, int yogaClassId, global::System.DateTimeOffset enrollDate, double discount)
+        public static EnrollmentDTO CreateEnrollmentDTO(int memberId, int yogaClassId, global::System.DateTimeOffset enrollDate, double discount, int courseId)
         {
             EnrollmentDTO enrollmentDTO = new EnrollmentDTO();
             enrollmentDTO.MemberId = memberId;
             enrollmentDTO.YogaClassId = yogaClassId;
             enrollmentDTO.EnrollDate = enrollDate;
             enrollmentDTO.Discount = discount;
+            enrollmentDTO.CourseId = courseId;
             return enrollmentDTO;
         }
         /// <summary>
@@ -164,6 +166,31 @@ namespace YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment
         private double _Discount;
         partial void OnDiscountChanging(double value);
         partial void OnDiscountChanged();
+        /// <summary>
+        /// There are no comments for Property CourseId in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("CourseId")]
+        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "CourseId is required.")]
+        public virtual int CourseId
+        {
+            get
+            {
+                return this._CourseId;
+            }
+            set
+            {
+                this.OnCourseIdChanging(value);
+                this._CourseId = value;
+                this.OnCourseIdChanged();
+                this.OnPropertyChanged("CourseId");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private int _CourseId;
+        partial void OnCourseIdChanging(int value);
+        partial void OnCourseIdChanged();
         /// <summary>
         /// There are no comments for Property MemberName in the schema.
         /// </summary>

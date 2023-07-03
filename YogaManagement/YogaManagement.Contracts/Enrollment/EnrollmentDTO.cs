@@ -5,6 +5,7 @@ public class EnrollmentDTO
     public double Discount { get; set; }
     public int MemberId { get; set; }
     public int YogaClassId { get; set; }
+    public int CourseId { get; set; }
 
     // Display 
     public string? MemberName { get; set; }

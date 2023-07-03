@@ -108,14 +108,12 @@ public class MapperProfile : Profile
 
         #region Enrollment
         CreateMap<Enrollment, EnrollmentDTO>()
-            .ForMember(dest => dest.MemberName, otp =>
-            {
-                otp.MapFrom(src => src.Member.AppUser.Firstname + " " + src.Member.AppUser.Lastname);
-            })
-            .ForMember(dest => dest.YogaClassName, otp =>
-            {
-                otp.MapFrom(src => src.YogaClass.Name);
-            });
+            .ForMember(dest => dest.MemberName, otp => otp.MapFrom(
+                src => src.Member.AppUser.Firstname + " " + src.Member.AppUser.Lastname))
+            .ForMember(dest => dest.YogaClassName, otp => otp.MapFrom(
+                src => src.YogaClass.Name))
+            .ForMember(dest => dest.CourseId, otp => otp.MapFrom(
+                src => src.YogaClass.Course.Id));
         CreateMap<EnrollmentDTO, Enrollment>();
         #endregion
     }

@@ -65,6 +65,7 @@
         <Property Name="YogaClassId" Type="Edm.Int32" Nullable="false" />
         <Property Name="EnrollDate" Type="Edm.DateTimeOffset" Nullable="false" />
         <Property Name="Discount" Type="Edm.Double" Nullable="false" />
+        <Property Name="CourseId" Type="Edm.Int32" Nullable="false" />
         <Property Name="MemberName" Type="Edm.String" />
         <Property Name="YogaClassName" Type="Edm.String" />
       </EntityType>
