@@ -74,6 +74,10 @@ public class EnrollmentsController : ODataController
             var ygClass = _yogaClassRepo.GetAll()
                 .Single(x => x.Id == createRequest.YogaClassId);
 
+            var classEnrollCount = _enrollmentRepo.GetAll()
+                .Where(x => x.YogaClassId == createRequest.YogaClassId)
+                .ToList().Count;
+
             if (existEnrollment != null)
             {
                 throw new Exception("Already enrolled");
@@ -82,6 +86,11 @@ public class EnrollmentsController : ODataController
             if (createRequest.EnrollDate > course.StartDate)
             {
                 throw new Exception("Course already start");
+            }
+
+            if (classEnrollCount > ygClass.Size)
+            {
+                throw new Exception("Class is full");
             }
 
             var sameCourseEnrollment = _enrollmentRepo.GetAll()
