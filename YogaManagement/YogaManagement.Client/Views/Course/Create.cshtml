@@ -36,18 +36,18 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
+                <label class="control-label">Start Date</label>
                 <input type="date" asp-for="StartDate" class="form-control" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EnddDate" class="control-label"></label>
+                <label class="control-label">End Date</label>
                 <input type="date" asp-for="EnddDate" class="form-control" />
                 <span asp-validation-for="EnddDate" class="text-danger"></span>
             </div>
             <input hidden class="form-check-input" value=@true asp-for="IsActive" />
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
+                <label class="control-label">Category</label>
                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories"></select>
             </div>
             <div class="form-group">

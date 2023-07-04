@@ -5,7 +5,7 @@
 @inject JwtManager _jwtManager;
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Courses";
     var courses = Model;
     List<EnrollmentDTO> enrollments = new List<EnrollmentDTO>();
     if (_jwtManager.IsMember())
@@ -15,7 +15,7 @@
     }
 }
 
-<h1>Index</h1>
+<h1>Courses</h1>
 
 @if (_jwtManager.IsStaff())
 {
@@ -28,22 +28,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Course Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                Price
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Start Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartDate)
+                End Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EnddDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryName)
+                Category
             </th>
             @if (_jwtManager.IsMember())
             {
@@ -64,9 +61,6 @@
                         @Html.DisplayFor(modelItem => item.Name)
 
                     </a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)

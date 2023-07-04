@@ -230,7 +230,6 @@ public class YogaClassesController : Controller
         }
     }
 
-    // GET: YogaClasses/Delete/5
     [Authorize(Roles = "Staff")]
     public async Task<IActionResult> Activate(int? id)
     {
@@ -241,11 +240,13 @@ public class YogaClassesController : Controller
                 throw new Exception("Invalid class");
             }
 
-            var yogaClass = await _context.YogaClasses.ByKey(id.Value).GetValueAsync();
+            var yogaClass = _context.YogaClasses
+                .Where(x => x.Id == id.Value).Single();
             if (yogaClass == null)
             {
                 throw new Exception("No class found");
             }
+
             if (yogaClass.YogaClassStatus != "Pending")
             {
                 throw new Exception("Only pending class can be activated");

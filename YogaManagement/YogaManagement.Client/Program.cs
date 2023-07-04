@@ -28,10 +28,8 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json")
             .Build();
-//var cntString = configuration.GetConnectionString("YogaManagement");
 var odataRoot = configuration.GetConnectionString("Odata");
 builder.Services.AddScoped(x => new Container(new Uri(odataRoot + "/")));
-//builder.Services.AddSqlServer<YogaManagementDbContext>(cntString);
 
 string baseUrl = odataRoot;
 builder.Services.AddRefitClient<IAuthorityClient>()
