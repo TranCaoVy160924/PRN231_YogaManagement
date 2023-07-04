@@ -5,12 +5,12 @@
 @inject JwtManager _jwtManager;
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Yoga Classes";
     var enrollments = ViewData["EnrolledMember"] as List<EnrollmentDTO>;
     bool courseEnrolled = (bool)ViewData["CourseEnrolled"];
 }
 
-<h1>Index</h1>
+<h1>Yoga Classes</h1>
 
 @if (_jwtManager.IsStaff())
 {
@@ -22,17 +22,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Class Name
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Size)*@
                 Size
             </th>
             <th>
                 Status
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CourseName)
+                Course
             </th>
             @if (_jwtManager.IsMember())
             {
@@ -73,7 +72,7 @@
                     </td>
                     <td>
                         <a asp-action="Index" asp-controller="YogaClasses" asp-route-id="@item.CourseId">Others</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
                         <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@item.Id">Schedule</a> |
                         <a asp-action="Index" asp-controller="TeacherEnrollments" asp-route-id="@item.Id">Teacher</a> |
                         @if (!enrolled)
@@ -99,7 +98,8 @@
                     {
                         <td>
                             <a asp-action="Index" asp-controller="YogaClasses" asp-route-id="@item.CourseId">Others</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Activate" asp-controller="YogaClasses" asp-route-id="@item.CourseId">Activate</a> |
+                            @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
                             <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@item.Id">Schedule</a> |
                             <a asp-action="Index" asp-controller="TeacherEnrollments" asp-route-id="@item.Id">Teacher</a> |
                             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
@@ -109,7 +109,8 @@
                     {
                         <td>
                             <a asp-action="Index" asp-controller="YogaClasses" asp-route-id="@item.CourseId">Others</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a class="btn-link disabled">Activate</a> |
+                            @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
                             <a asp-action="Index" asp-controller="ClassSchedule" asp-route-id="@item.Id">Schedule</a> |
                             <a asp-action="Index" asp-controller="TeacherEnrollments" asp-route-id="@item.Id">Teacher</a> |
                             <a class="btn-link disabled" href="#">Delete</a>
