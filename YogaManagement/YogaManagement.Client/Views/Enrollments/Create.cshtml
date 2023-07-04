@@ -14,7 +14,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="EnrollDate" class="control-label"></label>
+                <label class="control-label">Enroll Date</label>
                 <input readonly asp-for="EnrollDate" class="form-control" />
                 <span asp-validation-for="EnrollDate" class="text-danger"></span>
             </div>
@@ -29,7 +29,7 @@
                 <input hidden asp-for="MemberId" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="YogaClassName" class="control-label"></label>
+                <label class="control-label">Yoga Class</label>
                 <input readonly asp-for="YogaClassName" class ="form-control" />
                 <input hidden asp-for="YogaClassId" class="form-control" />
                 <input hidden asp-for="CourseId" class="form-control" />
