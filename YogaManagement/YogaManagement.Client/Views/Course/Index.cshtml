@@ -3,6 +3,7 @@
 @using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment;
 @model IEnumerable<CourseDTO>
 @inject JwtManager _jwtManager;
+@inject IHttpContextAccessor _httpContextAccessor
 
 @{
     ViewData["Title"] = "Courses";
@@ -13,6 +14,7 @@
         courses = courses.Where(x => x.IsActive);
         enrollments = ViewData["UserEnrolls"] as List<EnrollmentDTO>;
     }
+    var courseNameSearch = _httpContextAccessor.HttpContext.Session.GetString("courseNameSearch");
 }
 
 <h1>Courses</h1>
@@ -23,6 +25,14 @@
         <a asp-action="Create">Create New</a>
     </p>
 }
+
+<p>
+    <label>Search For Course</label>
+    <form asp-action="Index">
+        <input type="text" name="courseName" placeholder="Course name" value="@courseNameSearch" />
+        <input type="submit" value="Search for course" class="btn btn-primary" />
+    </form>
+</p>
 
 <table class="table">
     <thead>

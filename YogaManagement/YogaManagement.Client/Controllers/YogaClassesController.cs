@@ -9,6 +9,7 @@ using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.YogaClass;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Enrollment;
+using Microsoft.IdentityModel.Tokens;
 
 namespace YogaManagement.Client.Controllers;
 
@@ -30,7 +31,7 @@ public class YogaClassesController : Controller
     }
 
     // GET: YogaClasses
-    public async Task<IActionResult> Index(int? id)
+    public async Task<IActionResult> Index(int? id, string className)
     {
         IEnumerable<YogaClassDTO> ygClasses;
         if (id == null)
@@ -53,6 +54,13 @@ public class YogaClassesController : Controller
 
         var enrollments = _context.Enrollments.ToList();
         ViewData["EnrolledMember"] = enrollments;
+
+        if (!className.IsNullOrEmpty())
+        {
+            ygClasses = ygClasses.Where(x => x.Name.Contains(className));
+        }
+
+        Request.HttpContext.Session.SetString("classNameSearch", !className.IsNullOrEmpty()? className : string.Empty);
 
         return View(ygClasses.ToList()
             .OrderByDescending(x => x.YogaClassStatus)

@@ -4,11 +4,11 @@
 @inject JwtManager _jwtManager;
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Your Schedule";
     int id = (int)ViewData["teacherId"];
 }
 
-<h1>Index</h1>
+<h1>Your Teaching Schedule</h1>
 
 @if (_jwtManager.IsTeacher())
 {

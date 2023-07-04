@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.IdentityModel.Tokens;
 using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Authority;
@@ -27,10 +28,11 @@ public class CourseController : Controller
     }
 
     // GET: Courses
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string courseName)
     {
-        var coursesDbContext = _context.Courses.
-            Where(x => x.IsActive);
+        var courses = _context.Courses.
+            Where(x => x.IsActive)
+            .ToList();
 
         if (_jwtManager.IsMember())
         {
@@ -38,7 +40,15 @@ public class CourseController : Controller
                 .Where(x => x.MemberId == _jwtManager.GetProfileId())
                 .ToList();
         }
-        return View(coursesDbContext);
+
+        if (!courseName.IsNullOrEmpty())
+        {
+            courses = courses.Where(x => x.Name.Contains(courseName)).ToList();
+        }
+
+        Request.HttpContext.Session.SetString("courseNameSearch", !courseName.IsNullOrEmpty() ? courseName : string.Empty);
+
+        return View(courses);
     }
 
     // GET: Courses/Details/5
