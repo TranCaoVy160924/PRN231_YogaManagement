@@ -108,11 +108,6 @@ public class EnrollmentsController : Controller
 
             double amount = course.Price * (1 - enrollment.Discount);
 
-            if (amount > wallet.Balance)
-            {
-                throw new Exception("Not enough money in wallet");
-            }
-
             var sameClassEnrollment = _context.Enrollments
                 .Where(x => x.CourseId == enrollment.CourseId
                     && x.MemberId == enrollment.MemberId)
@@ -129,6 +124,11 @@ public class EnrollmentsController : Controller
 
             if (sameClassEnrollment.Count == 0)
             {
+                if (amount > wallet.Balance)
+                {
+                    throw new Exception("Not enough money in wallet");
+                }
+
                 _context.AddToTransactions(transaction);
             }
             _context.AddToEnrollments(enrollment);

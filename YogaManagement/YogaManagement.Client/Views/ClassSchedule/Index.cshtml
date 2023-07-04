@@ -4,11 +4,11 @@
 @inject JwtManager _jwtManager;
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Class Schedule";
     int id = (int)ViewData["classId"];
 }
 
-<h1>Index</h1>
+<h1>Class Schedule</h1>
 
 @if (_jwtManager.IsStaff())
 {
@@ -21,7 +21,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DayOfWeek)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.StartTime)

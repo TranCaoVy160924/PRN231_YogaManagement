@@ -21,16 +21,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.StartDate)
+                Start Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EndDate)
+                End Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TeacherName)
+                Teacher
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ClassName)
+                Class Name
             </th>
             <th></th>
         </tr>
@@ -40,10 +40,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
+                    @Html.DisplayFor(modelItem => item.StartDate.Date)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
+                    @Html.DisplayFor(modelItem => item.EndDate.Date)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TeacherName)

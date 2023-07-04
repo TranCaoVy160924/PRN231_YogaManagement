@@ -40,6 +40,9 @@
     <Content Update="Views\ClassSchedule\EditorTemplates\TimeSlotDTO.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Views\TeacherEnrollments\EditorTemplates\TimeSlotDTO.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
