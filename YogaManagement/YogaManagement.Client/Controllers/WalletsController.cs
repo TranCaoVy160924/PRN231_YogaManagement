@@ -106,6 +106,12 @@ public class WalletsController : Controller
             return RedirectToAction(nameof(Index));
         }
 
+        if (response.VnPayResponseCode != "00")
+        {
+            _notyf.Information("Payment canceled");
+            return RedirectToAction(nameof(Index));
+        }
+
         var userWallet = await _context.Wallets.ByKey(_jwtManager.GetUserId()).GetValueAsync();
 
         string[] orderParts = response.OrderDescription.Split(' ');
