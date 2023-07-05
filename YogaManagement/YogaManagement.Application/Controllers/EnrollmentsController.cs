@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using YogaManagement.Application.Utilities;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Enrollment;
+using YogaManagement.Domain.Enums;
 using YogaManagement.Domain.Models;
 
 namespace YogaManagement.Application.Controllers;
@@ -91,6 +92,12 @@ public class EnrollmentsController : ODataController
             if (classEnrollCount > ygClass.Size)
             {
                 throw new Exception("Class is full");
+            }
+
+            if (ygClass.YogaClassStatus != YogaClassStatus.Pending &&
+                ygClass.YogaClassStatus != YogaClassStatus.Active)
+            {
+                throw new Exception("Class is finished or deleted");
             }
 
             var sameCourseEnrollment = _enrollmentRepo.GetAll()
