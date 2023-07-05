@@ -66,11 +66,7 @@
         {
             <tr>
                 <td>
-                    <a asp-action="Index" asp-controller="YogaClasses"
-                       asp-route-id="@item.Id">
-                        @Html.DisplayFor(modelItem => item.Name)
-
-                    </a>
+                    @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
@@ -88,7 +84,7 @@
                 {
                     bool enrolled = enrollments.Any(x => x.CourseId == item.Id);
                     <td>
-                        @Html.CheckBoxFor(modelItem => enrolled)
+                        <input disabled type="checkbox" checked=@enrolled />
                     </td>
                 }
                 @if (_jwtManager.IsStaff())
