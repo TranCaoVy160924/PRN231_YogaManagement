@@ -13,7 +13,8 @@ using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Transaction;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Wallet;
 using YogaManagement.Domain.Enums;
-using YogaManagement.Domain.Models;
+using YogaManagement.VNPayGateWay.Services;
+using YogaManagement.VNPayGateWay.VnPayModels;
 
 namespace YogaManagement.Client.Controllers;
 public class WalletsController : Controller
@@ -21,15 +22,18 @@ public class WalletsController : Controller
     private readonly Container _context;
     private readonly INotyfService _notyf;
     private readonly JwtManager _jwtManager;
+    private readonly IVnPayService _vnpay;
 
     public WalletsController(Container context,
         INotyfService notyf,
-        JwtManager jwtManager)
+        JwtManager jwtManager,
+        IVnPayService vnpay)
     {
         _context = context;
         _notyf = notyf;
         _jwtManager = jwtManager;
         _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
+        _vnpay = vnpay;
     }
 
     public async Task<IActionResult> Index()
@@ -59,13 +63,65 @@ public class WalletsController : Controller
 
         try
         {
+            var url = _vnpay.CreatePaymentUrl(new PaymentInformationModel
+            {
+                Amount = Money,
+                AppUserId = _jwtManager.GetUserId()
+            }, Request.HttpContext);
+
+            return Redirect(url);
+        }
+        catch (Exception ex)
+        {
+            _notyf.Error(ex.Message);
+            return View(userWallet);
+        }
+    }
+
+    public async Task<IActionResult> Payment()
+    {
+        var response = new PaymentResponseModel
+        {
+            PaymentMethod = Request.Query["vnp_BankCode"],
+            OrderDescription = Request.Query["vnp_OrderInfo"],
+            OrderId = Request.Query["vnp_TxnRef"],
+            PaymentId = Request.Query["vnp_TransactionNo"],
+            TransactionId = Request.Query["vnp_TransactionNo"],
+            Token = Request.Query["vnp_SecureHash"],
+            VnPayResponseCode = Request.Query["vnp_ResponseCode"],
+            PayDate = Request.Query["vnp_PayDate"],
+            Success = true // assume the request is successful
+        };
+
+        if (string.IsNullOrEmpty(response.PaymentMethod) ||
+            string.IsNullOrEmpty(response.OrderDescription) ||
+            string.IsNullOrEmpty(response.OrderId) ||
+            string.IsNullOrEmpty(response.PaymentId) ||
+            string.IsNullOrEmpty(response.TransactionId) ||
+            string.IsNullOrEmpty(response.Token) ||
+            string.IsNullOrEmpty(response.VnPayResponseCode) ||
+            string.IsNullOrEmpty(response.PayDate))
+        {
+            _notyf.Error("Invalid payment data received");
+            return RedirectToAction(nameof(Index));
+        }
+
+        var userWallet = await _context.Wallets.ByKey(_jwtManager.GetUserId()).GetValueAsync();
+
+        string[] orderParts = response.OrderDescription.Split(' ');
+
+        int appUserId = Convert.ToInt32(orderParts[0]);
+        double amount = Convert.ToDouble(orderParts[1]);
+
+        try
+        {
             var AddingAmount = new TransactionDTO()
             {
-                 Amount = Money,
-                 Content = Money.ToString(),
-                 CreatedDate = DateTime.Today,
-                 TransactionType = TransactionType.Deposit.ToString(),
-                 WalletId = userWallet.Id,
+                Amount = amount,
+                Content = "Depoist " + amount.ToString(),
+                CreatedDate = DateTime.Today,
+                TransactionType = TransactionType.Deposit.ToString(),
+                WalletId = userWallet.Id,
             };
 
             _context.AddToTransactions(AddingAmount);

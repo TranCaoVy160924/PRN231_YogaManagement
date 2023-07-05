@@ -6,6 +6,7 @@ using YogaManagement.Client.Helper;
 using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.RefitClient;
 using YogaManagement.Database.EF;
+using YogaManagement.VNPayGateWay.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +48,7 @@ builder.Services.AddMvcCore().AddAuthorization();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<JwtManager>();
+builder.Services.AddScoped<IVnPayService, VnPayService>();
 
 builder.Services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
 
