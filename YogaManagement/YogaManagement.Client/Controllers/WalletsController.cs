@@ -119,6 +119,18 @@ public class WalletsController : Controller
         int appUserId = Convert.ToInt32(orderParts[0]);
         double amount = Convert.ToDouble(orderParts[1]);
 
+        if (appUserId != _jwtManager.GetUserId())
+        {
+            _notyf.Error("User not match");
+            return RedirectToAction(nameof(Index));
+        }
+
+        if (amount < 5000)
+        {
+            _notyf.Error("Must be more than 5000");
+            return RedirectToAction(nameof(Index));
+        }
+
         try
         {
             var AddingAmount = new TransactionDTO()
