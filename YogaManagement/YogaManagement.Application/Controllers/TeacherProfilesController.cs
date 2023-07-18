@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using Microsoft.EntityFrameworkCore;
 using YogaManagement.Business.Repositories;
 using YogaManagement.Contracts.Course;
 using YogaManagement.Contracts.TeacherProfile;
@@ -26,7 +27,10 @@ public class TeacherProfilesController : ODataController
     [EnableQuery]
     public ActionResult<IQueryable<TeacherProfileDTO>> Get()
     {
-        return Ok(_mapper.ProjectTo<TeacherProfileDTO>(_tcProfileRepo.GetAll()));
+        var teachers = _tcProfileRepo.GetAll()
+            .Include(x => x.AppUser)
+            .Where(x => x.AppUser.Status);
+        return Ok(_mapper.ProjectTo<TeacherProfileDTO>(teachers));
     }
 
     [EnableQuery]

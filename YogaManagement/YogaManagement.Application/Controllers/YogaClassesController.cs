@@ -20,12 +20,16 @@ public class YogaClassesController : ODataController
     private readonly WalletRepository _walletRepo;
     private readonly TransactionRepository _transacRepo;
     private readonly CourseRepository _courseRepo;
+    private readonly ScheduleRepository _scheduleRepo;
+    private readonly TeacherEnrollmentRepository _tcEnrollRepo; 
 
     public YogaClassesController(YogaClassRepository yogaClassRepository,
         EnrollmentRepository enrollmentRepo,
         WalletRepository walletRepo,
         TransactionRepository transacRepo,
         CourseRepository courseRepo,
+        TeacherEnrollmentRepository tcEnrollRepo,
+        ScheduleRepository scheduleRepo,
         IMapper mapper)
     {
         _mapper = mapper;
@@ -34,6 +38,8 @@ public class YogaClassesController : ODataController
         _transacRepo = transacRepo;
         _ygClassRepo = yogaClassRepository;
         _courseRepo = courseRepo;
+        _tcEnrollRepo = tcEnrollRepo;
+        _scheduleRepo = scheduleRepo;
     }
 
     [EnableQuery]
@@ -98,6 +104,15 @@ public class YogaClassesController : ODataController
             .SingleOrDefault(x => x.Id == key);
         var update = delta.GetInstance();
 
+        var existTcEnroll = await _tcEnrollRepo.GetAll()
+            .Where(x => x.YogaClassId == key
+                && x.IsActive)
+            .ToListAsync();
+
+        var classSchedule = await _scheduleRepo.GetAll()
+            .Where(x => x.YogaClassId == key)
+            .ToListAsync();
+
         try
         {
             if (existClass.YogaClassStatus != YogaClassStatus.Pending)
@@ -108,6 +123,16 @@ public class YogaClassesController : ODataController
             if (existClass.Enrollments.Count() < 5)
             {
                 throw new Exception("Not enough enrollment for activation");
+            }
+
+            if (existTcEnroll.Count == 0)
+            {
+                throw new Exception("Class do not have teacher enrolled! Cannot be activate");
+            }
+
+            if (classSchedule.Count == 0)
+            {
+                throw new Exception("Class do not have schedule! Cannot be activate");
             }
 
             existClass.YogaClassStatus = YogaClassStatus.Active;

@@ -32,7 +32,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="TimeTable" asp-action="Member">Time Table</a>
-                            </li>                         
+                            </li>
                         </ul>
                     }
                     @if (_jwtManager.IsTeacher())
@@ -69,9 +69,12 @@
                         </ul>
                     }
                     <ul class="navbar-nav flex-grow-2">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Wallets" asp-action="Index" asp-route-id=@_jwtManager.GetProfileId()>My Wallet</a>
-                        </li>
+                        @if (_jwtManager.IsMember())
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Wallets" asp-action="Index" asp-route-id=@_jwtManager.GetProfileId()>My Wallet</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Logout</a>
                         </li>

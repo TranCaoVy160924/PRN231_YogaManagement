@@ -9,7 +9,7 @@ public class JwtManager
 {
     public bool IsAuthenticated { get; private set; }
     private JwtSecurityToken SecureToken;
-    private string JwtTokenString = "";
+    public string JwtTokenString { get; private set; } = "";
     private readonly IHttpContextAccessor _contextAccessor;
 
     public JwtManager(IHttpContextAccessor contextAccessor)

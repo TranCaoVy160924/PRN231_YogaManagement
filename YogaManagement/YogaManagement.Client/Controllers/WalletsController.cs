@@ -1,4 +1,7 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Azure.Core;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,26 +15,34 @@ using YogaManagement.Client.OdataClient.Default;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Course;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Transaction;
 using YogaManagement.Client.OdataClient.YogaManagement.Contracts.Wallet;
+using YogaManagement.Client.RefitClient;
+using YogaManagement.Contracts.Authority.Request;
+using YogaManagement.Contracts.Authority.Response;
 using YogaManagement.Domain.Enums;
 using YogaManagement.VNPayGateWay.Services;
 using YogaManagement.VNPayGateWay.VnPayModels;
 
 namespace YogaManagement.Client.Controllers;
+
+[Authorize(Roles = "Member")]
 public class WalletsController : Controller
 {
     private readonly Container _context;
     private readonly INotyfService _notyf;
     private readonly JwtManager _jwtManager;
     private readonly IVnPayService _vnpay;
+    private readonly IAuthorityClient _userClient;
 
     public WalletsController(Container context,
         INotyfService notyf,
         JwtManager jwtManager,
+        IAuthorityClient userClient,
         IVnPayService vnpay)
     {
         _context = context;
         _notyf = notyf;
         _jwtManager = jwtManager;
+        _userClient = userClient;
         _context.BuildingRequest += (sender, e) => _jwtManager.OnBuildingRequest(sender, e);
         _vnpay = vnpay;
     }
@@ -141,7 +152,6 @@ public class WalletsController : Controller
                 TransactionType = TransactionType.Deposit.ToString(),
                 WalletId = userWallet.Id,
             };
-
             _context.AddToTransactions(AddingAmount);
 
             await _context.SaveChangesAsync();
@@ -151,12 +161,12 @@ public class WalletsController : Controller
         catch (InvalidOperationException ex)
         {
             _notyf.Error(ex.ReadOdataErrorMessage());
-            return View(userWallet);
+            return RedirectToAction("Index", new { userWallet });
         }
         catch (Exception ex)
         {
             _notyf.Error(ex.Message);
-            return View(userWallet);
+            return RedirectToAction("Index", new { userWallet });
         }
     }
 }

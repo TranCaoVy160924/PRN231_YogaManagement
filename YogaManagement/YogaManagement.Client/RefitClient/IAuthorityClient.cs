@@ -12,4 +12,7 @@ public interface IAuthorityClient
 
     [Post("/Users/auth")]
     Task<LoginResponse> AuthenticateAsync([Body] LoginRequest loginRequest);
+
+    [Post("/Users/auth/refresh")]
+    Task<LoginResponse> RefreshTokenAsync([Header("Authorization")] string jwtToken);
 }
